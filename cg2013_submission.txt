@@ -1,4 +1,4 @@
-Session title: UI modeling using annotation processing
+Session title: Rock solid UI modeling using annotation processing
 Session type: Case of study
 Session duration: 75 or 90 minutes
 Session output: open source github project MDL4UI
@@ -23,17 +23,17 @@ The session will show patterns and architecture to solve classical UI issues usi
 Session description:
 --------------------
 
-We work a long time to reverse engineer some complex UI forms of our insurance comparison web site. We provide some models that explain all the dependencies between UI fields (with various semantics) and start to imagine some new design to rewrite a new generation of UI.
+We work a long time to reverse engineer some complex UI forms of our insurance aggregator web site. We provide some models that explain all the dependencies between UI fields (with various semantics) and start to imagine some new design to rewrite a new generation of UI.
 
-We decide to never lose again that knowledge and choose to translate that model as a UI meta model written in java. The model is essentially based on enumerations, annotations and relations between the various literals. We translate the direct dependencies between fields with the same pattern.
+We decide to never lose again that knowledge and choose to translate that model as a UI meta model written in java. The model is essentially based on enumerations, annotations and relations between various literals. We translate the direct dependencies between fields with the same pattern.
 
 The adventure was still at the beginning:
 
 It was quickly necessary to visualize the field graph to understand cycle and to fix dependencies issues: we process the UI java model to export some XMI and display in a UML modeler. Quickly we start to validate the model dependencies during the JAVA compilation and we generate statically the set of deep dependencies for each field to improve the runtime performances and avoid graph cycles.
 
-We start to implement the UI using a 'pure' MVC pattern to link the widget and the data model: each widget is instantiated dynamically at runtime based on the UI meta model and we plug the MVC glue between the widget and the data model with some injection patterns. The injection is statically resolved to target AJAX runtimes. With the same fashion, we inject labels, placeholders, helps, tips and other i18n text resources.
+We start to implement the UI using a 'pure' MVC pattern to link the widget and the data model: each widget is instantiated dynamically at runtime based on the UI meta model and we plug the MVC glue between the widget and the data model with some injection patterns. The injection is statically resolved to target AJAX runtimes. In the same way, we inject labels, placeholders, helps, tips and other i18n text resources.
 
-The rework of our forms was progressing quickly and we decide to add some layout information at the UI meta model level: it aggregates fields together in screens, blocks and groups. The structure allows checking the topology of the graph during the compilation: the layout is compliant with the dependency model of the fields.
+The rework of our forms was progressing quickly and we decide to add some layout information at the UI meta model level: it aggregates fields together in screens, blocks and groups. The structure allows checking the topology of the graph during the compilation: the layout is compliant with the dependency model of fields.
 
 Actually we are experimenting some AB testing using multiple permutations of our field model to optimize the user experience and our conversion rate.
 
@@ -49,8 +49,8 @@ Session speakers:
 
 * Gilles Di Guglielmo
 
-Gilles is a 10+ software developer working for various software vendors (ILOG, PrimaSolution, Courtanet) : graphic 2D library, rules engine, J2EE service platform, domain model code generation. He is currently software architect for the insurance comparison web site LesFurets.com. He loves to feel the fresh air of San Francisco and Anvers. He was speaking at JavaOne, Devoxx and some Java User Groups in France.
+Gilles is a 10+ software developer working for various software vendors (ILOG, PrimaSolution, Courtanet) : graphic 2D library, rules engine, J2EE service platform, domain model code generation. He is currently software architect for the insurance aggregator web site LesFurets.com. He loves to feel the fresh air of San Francisco and Anvers. He was speaking at JavaOne, Devoxx and some Java User Groups in France.
 
 * Julien Baudry
 
-Julien is a senior developer at the insurance comparison web site LesFurets.com. He also worked for Prima Solutions insurance software vendor. He has 5+ years¡¯ experience of Java design & coding experience, Model Driven Architecture, code generation, J2EE & Web Framework.
+Julien is a senior developer at the insurance aggregator web site LesFurets.com. He also worked for Prima Solutions insurance software vendor. He has 5+ years¡¯ experience of Java design & coding experience, Model Driven Architecture, code generation, J2EE & Web Framework.
