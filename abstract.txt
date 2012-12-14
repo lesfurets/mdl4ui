@@ -2,7 +2,7 @@ UI modeling using annotation processing
 
 Case of study
 
-* Complex UI form with more than 100 fields describe in a model
+* Complex UI form with more than 100 fields described in a model
 * Linked form fields (dependencies)
 * Conditional field display
 * Dynamic content for lists, radio lists and combo boxes
