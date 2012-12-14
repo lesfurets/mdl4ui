@@ -27,3 +27,14 @@ The rework of our forms was progressing quickly and we decide to add some layout
 Actually we are experimenting some AB testing using multiple permutations of our field model to optimize the user experience and our conversion rate.
 
 Our project is available on github with a full sample and all the tooling. We will show patterns, code and demo during the presentation.
+
+
+Speakers
+
+* Gilles Di Guglielmo
+
+Gilles is a 10+ software developer working for various software vendors (ILOG, PrimaSolution, Courtanet) : graphic 2D librairy, rules engine, J2EE service platform, domain model code generation. He is currently software architect for the insurance comparison web site LesFurets.com. He loves to feel the fresh air of San Francisco and Anvers.
+
+* Julien Baudry
+
+Julien should write a bio.
