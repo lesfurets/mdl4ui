@@ -2,31 +2,28 @@ UI modeling using annotation processing
 
 Case of study
 
-* Complex form with more than 100 fields describe in a model
+* Complex UI form with more than 100 fields describe in a model
 * Linked form fields (dependencies)
 * Conditional field display
 * Dynamic content for lists, radio lists and combo boxes
 * Dynamic range for numerical values and dates
 * Incremental validation based on user inputs and navigation
 * AJAX application target
-* Slow javascript runtime for mobile and old microsoft browsers
+* Slow JavaScript runtime for mobile and old Microsoft browsers
 
 
-We work a long time to reverse ingeneer some complex UI forms of our insurance comparaison web site. We provide some models that explain all the dependencies between UI fields (with various semantics) and start to imagine some new design to rewrite a new generation of UI.
+We work a long time to reverse engineer some complex UI forms of our insurance comparison web site. We provide some models that explain all the dependencies between UI fields (with various semantics) and start to imagine some new design to rewrite a new generation of UI.
 
-We decide to never loose that knowledge and choose to translate that model as a UI meta model written in java. The model is essentially based on enumerations, annotations and relation between the various literals. We translate the direct dependencies between fields with the same patten.
+We decide to never lose again that knowledge and choose to translate that model as a UI meta model written in java. The model is essentially based on enumerations, annotations and relations between the various literals. We translate the direct dependencies between fields with the same pattern.
 
 The adventure was still at the beginning:
 
-It was quickly necessary to visualize the field graph to understand cycle and to fix dependencies issues : we process the UI java model to export some XMI and allows some dispay in a UML modeler. Quickly we start to validate the model dependencies during the JAVA compilation and we generate statically the set of deep dependencies for each field to improve the runtime performances and avoid graph cycles.
+It was quickly necessary to visualize the field graph to understand cycle and to fix dependencies issues: we process the UI java model to export some XMI and display in a UML modeler. Quickly we start to validate the model dependencies during the JAVA compilation and we generate statically the set of deep dependencies for each field to improve the runtime performances and avoid graph cycles.
 
-We start to implement the UI using a 'pure' MVC pattern to linked the widget and the data model: each widget is instanciated dynamically at runtime based on the UI meta model and we plug the MVC glue between the widget and the data model with some injection patterns. The injection is statically resolved to target AJAX runtimes. With the same fashion, we inject labels, placeholders, helps, tips and other i18n text resources.
+We start to implement the UI using a 'pure' MVC pattern to link the widget and the data model: each widget is instantiated dynamically at runtime based on the UI meta model and we plug the MVC glue between the widget and the data model with some injection patterns. The injection is statically resolved to target AJAX runtimes. With the same fashion, we inject labels, placeholders, helps, tips and other i18n text resources.
 
-The rework of our forms was progressing quickly and we decide to add some layout informations at the UI meta model level: it aggregates fields together in screens, blocks and groups. The structure allows to check the topology of the graph during the compilation: the layout is compliant with the dependency model of the fields.
+The rework of our forms was progressing quickly and we decide to add some layout information at the UI meta model level: it aggregates fields together in screens, blocks and groups. The structure allows checking the topology of the graph during the compilation: the layout is compliant with the dependency model of the fields.
 
-Acually we are experimenting some AB testing using multiple permutations of our field model to optimize the user experience and our convertion rate.
+Actually we are experimenting some AB testing using multiple permutations of our field model to optimize the user experience and our conversion rate.
 
 Our project is available on github with a full sample and all the tooling. We will show patterns, code and demo during the presentation.
-
-
-
