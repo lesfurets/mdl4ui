@@ -1,12 +1,14 @@
-UI modeling using annotation processing
-
+Session title: UI modeling using annotation processing
 Session type: Case of study
 Session duration: 75 or 90 minutes
+Session output: open source github project MDL4UI
+Intended audience: beginner
 
 
-Session abstact:
+Session abstract:
+----------------
 
-The session will show patterns and approach to solve classical UI issues using a modeling approach:
+The session will show patterns and architecture to solve classical UI issues using a modeling approach:
 
 * Complex UI form with more than 100 fields described in a model
 * Linked form fields (dependencies)
@@ -19,6 +21,7 @@ The session will show patterns and approach to solve classical UI issues using a
 
 
 Session description:
+--------------------
 
 We work a long time to reverse engineer some complex UI forms of our insurance comparison web site. We provide some models that explain all the dependencies between UI fields (with various semantics) and start to imagine some new design to rewrite a new generation of UI.
 
@@ -37,20 +40,17 @@ Actually we are experimenting some AB testing using multiple permutations of our
 Our project is available on github with a full sample and all the tooling. We will show patterns, code and demo during the presentation.
 
 
-The session was presented previously at JavaOne 2012 and various Java User Group in france, focused on i18n and labelling issues. We will mainly show here the UI modeling side of the project and some quick references on the labelling.
+The session was presented previously at JavaOne 2012 and various Java User Group in France, focused on i18n and labeling issues. We will mainly show here the UI modeling side of the project and some quick explanations on the UI labeling.
 
 https://oracleus.activeevents.com/connect/sessionDetail.ww?SESSION_ID=11234
 
-Intended audience: beginner
-
-Session output: open source github project
-
-Speakers
+Session speakers:
+-----------------
 
 * Gilles Di Guglielmo
 
-Gilles is a 10+ software developer working for various software vendors (ILOG, PrimaSolution, Courtanet) : graphic 2D librairy, rules engine, J2EE service platform, domain model code generation. He is currently software architect for the insurance comparison web site LesFurets.com. He loves to feel the fresh air of San Francisco and Anvers.
+Gilles is a 10+ software developer working for various software vendors (ILOG, PrimaSolution, Courtanet) : graphic 2D library, rules engine, J2EE service platform, domain model code generation. He is currently software architect for the insurance comparison web site LesFurets.com. He loves to feel the fresh air of San Francisco and Anvers. He was speaking at JavaOne, Devoxx and some Java User Groups in France.
 
 * Julien Baudry
 
-Julien is a senior developer at the insurance comparison web site LesFurets.com. He also worked for Prima Solutions insurance software vendor. He has 5+ years experience of Java design & coding experience, Model Driven Architecture, code generation, J2EE & Web Framework.
+Julien is a senior developer at the insurance comparison web site LesFurets.com. He also worked for Prima Solutions insurance software vendor. He has 5+ years¡¯ experience of Java design & coding experience, Model Driven Architecture, code generation, J2EE & Web Framework.
