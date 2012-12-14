@@ -37,4 +37,4 @@ Gilles is a 10+ software developer working for various software vendors (ILOG, P
 
 * Julien Baudry
 
-Julien should write a bio.
+Julien is a senior developer at the insurance comparison web site LesFurets.com. He also worked for Prima Solutions insurance software vendor. He has 5+ years experience of Java design & coding experience, Model Driven Architecture, code generation, J2EE & Web Framework.
