@@ -1,0 +1,55 @@
+﻿Titre : Rock solid UI modeling using annotation processing
+Type: Case of study
+Durée: 75 or 90 minutes
+Ressources : open source github project MDL4UI
+Cible: débutant
+
+
+Session abstract:
+-----------------
+
+Cette session présentera l’architecture et les patterns utilisés pour résoudre plusieurs problématiques UI, par la  modélisation.
+
+* Formulaires complexes, avec une centaine de champs modélisés
+* Champs liés entre eux (dépendances)
+* Affichage conditionnel de certains champs
+* Contenu dynamique pour les listes, radio listes and combo boxes
+* Domaine de valeur variable, pour les champs numériques et de dates
+* Validation incrémentale en fonction de la saisie et de la navigation de l’utilisateur
+* Application web  AJAX 
+* Environnements avec des ressources limités (mobile)
+* Navigateurs obsolètes (IE) 
+
+Session description:
+--------------------
+
+Nous travaillons depuis un moment  sur le reverse engineering des formulaires de notre comparateur d’assurance. Un modèle a été produit, décrivant les dépendances entre les champs de cette UI (de sémantiques différentes & variées). De là, la conception du futur design de note UI a commencé.
+
+Nous avons décidé de ne pas perdre cette connaissance, et ce modèle a été transformé en un méta modèle de UI, écrit en Java. Ce modèle se base uniquement sur des énumérations, des annotations et des relations entre littéraux. Les dépendances entre les champs ont été décrites avec le même pattern.
+
+L’aventure n’en était qu’à son début :
+
+Il nous été rapidement nécessaire de visualiser le graphe de dépendances, afin de comprendre les cycles potentiels, et de résoudre les soucis de dépendances. Notre modèle de UI Java a été exporté en XMI, afin de pouvoir le manipuler dans un modeleur UML. Puis la validation du modèle de dépendances est effectué lors la compilation Java. L’ensemble des dépendances profondes pour chaque champ est généré statiquement, dans le but d’améliorer les performances runtime, et d’éviter les possibles dépendances cycliques.
+
+Nous avons ré implémenté la UI en utilisant un pattern MVC, pour lier widgets des formulaires et données du data model : en se basant  sur le méta-modèle de UI, chaque widget est instancié dynamiquement au runtime, et le framework MVC lie widget et data model via des patterns d’injections. Les injections sont résolues statiquement. De la même manière, les labels, placeholders, aide, tips et toute autre ressource i18n est injecté.
+
+La refonte des formulaires progressait rapidement, et nous avons décidé d’ajouter la notion de layout au méta-modèle de UI : les champs sont agrégés en écrans, blocs et groupes. Cette structure permet de valider la topologie du graphe pendant la compilation : ainsi le layout est compatible avec les dépendances de champs.
+
+Nous expérimentons actuellement un AB testing en déclarant plusieurs permutations du modèle de champs, pour optimiser l’expérience utilisateur et améliorer le taux de conversion.
+
+Notre projet est disponible sur GitHub,  avec un exemple complet  ainsi que tout le framework. Nous présenterons les patterns, le code et une démo durant la session.
+
+Cette session a été présentée précédemment à JavaOne 2012, ainsi qu’à plusieurs Java User Group in France, principalement axé sur i18n and problématiques liés aux labels. Nous nous concentrerons plus sur la partie modélisation de UI du projet. Quelques explications sur ces problématiques liés à i18n seront faites. 
+
+https://oracleus.activeevents.com/connect/sessionDetail.ww?SESSION_ID=11234
+
+Session speakers:
+-----------------
+
+* Gilles Di Guglielmo
+
+Gilles is a 10+ software developer working for various software vendors (ILOG, PrimaSolution, Courtanet) : graphic 2D library, rules engine, J2EE service platform, domain model code generation. He is currently software architect for the insurance aggregator web site LesFurets.com. He loves to feel the fresh air of San Francisco and Anvers. He was speaking at JavaOne, Devoxx and some Java User Groups in France.
+
+* Julien Baudry
+
+Julien is a senior developer at the insurance aggregator web site LesFurets.com. He also worked for Prima Solutions insurance software vendor. He has 5+ years¡¯ experience of Java design & coding experience, Model Driven Architecture, code generation, J2EE & Web Framework.
