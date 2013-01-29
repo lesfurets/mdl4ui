@@ -53,4 +53,4 @@ Gilles travaille depuis plus de 10 ans pour différents éditeurs de logiciels (
 
 * Julien Baudry
 
-Julien is a senior developer at the insurance aggregator web site LesFurets.com. He also worked for Prima Solutions insurance software vendor. He has 5+ years¡¯ experience of Java design & coding experience, Model Driven Architecture, code generation, J2EE & Web Framework.
+Julien est développeur senior pour le site LesFurets.com (comparateur d'assurances). Il a également travaillé chez l’éditeur de logiciel d’assurance Prima Solutions. Il possède plus de 5 ans d’expérience en développement Java/J2EE, frameworks web, Model Driven Architecture, et code génération de modèle métier.
