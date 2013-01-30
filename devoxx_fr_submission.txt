@@ -1,25 +1,24 @@
-﻿Titre : 1/ Java mieux avec mon IHM
-        2/ Mon IHM est méta et toi ?
+﻿Titre : Java mieux avec mon IHM
 Type: Session
 Durée: 60 minutes
-Ressources : open source github project MDL4UI
 Cible: débutant
 
 
 Session abstract:
 -----------------
 
-Cette session présente l’architecture et les patterns utilisés pour résoudre grâce à la modelisation plusieurs problèmes courants lors du développement d'IHM.
+Cette session présente l’architecture et les patterns utilisés pour péréniser l'intelligence métier de l'IHM d'un site web grand public. Ce travail se base largement sur de la modelisation et des techniques de refactoring pour résoudre les problèmatiques courantes lors de ce type de développement. Notre projet est disponible sur GitHub, avec un exemple complet ainsi que tout le framework. Nous présenterons les patterns, le code et une démo durant la session.
 
+* Modélisation métier 'pure' Java
 * Formulaires complexes, avec une centaine de champs modélisés,
 * Champs liés entre eux (dépendances),
 * Affichage conditionnel de certains champs,
 * Contenu dynamique pour les listes, radio listes and combo boxes,
 * Domaine de valeur variable, pour les champs numériques et les dates,
 * Validation incrémentale en fonction de la saisie et de la navigation de l’utilisateur,
-* Application web AJAX 
+* Application web AJAX,
 * Environnements avec des ressources limités (mobile),
-* Compatibilité avec les navigateurs anciens,
+* Compatibilité avec les navigateurs anciens fabriqués à Seattle.
 
 Session description:
 --------------------
