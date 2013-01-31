@@ -8,6 +8,6 @@ public class Sample implements EntryPoint {
 
     @Override
     public void onModuleLoad() {
-        RootPanel.get("sample").add(new Label("It works!"));
+        RootPanel.get("content").add(new Label("It works!"));
     }
 }

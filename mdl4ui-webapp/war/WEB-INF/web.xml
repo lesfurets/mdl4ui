@@ -9,7 +9,4 @@
   <welcome-file-list>
     <welcome-file>mdl4ui.html</welcome-file>
   </welcome-file-list>
-  
-  <!-- Servlets -->
-
 </web-app>
