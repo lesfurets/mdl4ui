@@ -21,7 +21,12 @@
 			</dependency>
 			<dependency>
 				<groupId>org.mdl4ui</groupId>
-				<artifactId>mdl4ui-sample</artifactId>
+				<artifactId>mdl4ui-ui</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mdl4ui</groupId>
+				<artifactId>mdl4ui-fields</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
@@ -63,7 +68,8 @@
 	</dependencyManagement>
 	<modules>
 		<module>mdl4ui-base</module>
-		<module>mdl4ui-sample</module>
+		<module>mdl4ui-ui</module>
+		<module>mdl4ui-fields</module>
 		<module>mdl4ui-webapp</module>
 	</modules>
 	<build>

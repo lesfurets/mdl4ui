@@ -7,8 +7,8 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.mdl4ui</groupId>
-  <artifactId>mdl4ui-sample</artifactId>
-  <name>mdl4ui-sample</name>
+  <artifactId>mdl4ui-ui</artifactId>
+  <name>mdl4ui-ui</name>
   <dependencies>
     <dependency>
       <groupId>org.mdl4ui</groupId>
