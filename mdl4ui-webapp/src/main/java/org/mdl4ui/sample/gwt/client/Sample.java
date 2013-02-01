@@ -3,13 +3,14 @@ package org.mdl4ui.sample.gwt.client;
 import org.mdl4ui.sample.gwt.client.ui.FieldView;
 
 import com.github.gwtbootstrap.client.ui.Button;
-import com.github.gwtbootstrap.client.ui.Form;
+import com.github.gwtbootstrap.client.ui.Collapse;
+import com.github.gwtbootstrap.client.ui.Fieldset;
 import com.github.gwtbootstrap.client.ui.FormActions;
 import com.github.gwtbootstrap.client.ui.Legend;
 import com.github.gwtbootstrap.client.ui.PasswordTextBox;
+import com.github.gwtbootstrap.client.ui.WellForm;
 import com.github.gwtbootstrap.client.ui.base.TextBox;
 import com.github.gwtbootstrap.client.ui.constants.ButtonType;
-import com.github.gwtbootstrap.client.ui.constants.FormType;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -19,21 +20,23 @@ public class Sample implements EntryPoint {
 
     @Override
     public void onModuleLoad() {
-        Form form = new Form();
-        form.setType(FormType.HORIZONTAL);
+        WellForm form = new WellForm();
 
         Legend legend = new Legend("Form Validation with Control Decoration");
         form.add(legend);
 
+        Fieldset fieldset = new Fieldset();
+        form.add(fieldset);
+
         final TextBox userName = new TextBox();
         userName.getElement().setAttribute("placeholder", "Username");
         final FieldView userNameField = new FieldView(userName, "Username");
-        form.add(userNameField.asWidget());
+        fieldset.add(userNameField.asWidget());
 
         final PasswordTextBox password = new PasswordTextBox();
         password.getElement().setAttribute("placeholder", "Password");
         final FieldView passwordField = new FieldView(password, "Password");
-        form.add(passwordField.asWidget());
+        fieldset.add(passwordField.asWidget());
 
         FormActions actions = new FormActions();
         Button validate = new Button("Validate Login");
@@ -59,6 +62,10 @@ public class Sample implements EntryPoint {
             }
         });
 
-        RootPanel.get("content").add(form);
+        Collapse collapse = new Collapse();
+        collapse.add(form);
+        collapse.setDefaultOpen(true);
+
+        RootPanel.get("content").add(collapse);
     }
 }
