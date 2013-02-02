@@ -13,7 +13,7 @@
   <dependencies>
     <dependency>
       <groupId>org.mdl4ui</groupId>
-      <artifactId>mdl4ui-base</artifactId>
+      <artifactId>mdl4ui-fields</artifactId>
     </dependency>
     <dependency>
       <groupId>javax.servlet</groupId>

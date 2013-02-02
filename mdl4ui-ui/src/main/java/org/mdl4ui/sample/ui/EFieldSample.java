@@ -15,7 +15,8 @@ import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.base.model.GroupID;
 
 public enum EFieldSample implements FieldID {
-    ;
+    LOGIN(EFieldType.TEXTBOX), //
+    PASSWORD(EFieldType.PASSWORD_TEXTBOX);
 
     private EFieldType type;
 

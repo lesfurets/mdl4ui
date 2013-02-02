@@ -10,7 +10,7 @@ public enum EFieldType {
     // form fields
     TEXTBOX, //
     EMAIL_TEXTBOX, //
-    PHONE_TEXTBOX, //
+    PASSWORD_TEXTBOX, //
     PERCENTAGE, //
     LISTBOX, //
     DUREEASS, //
