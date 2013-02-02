@@ -1,5 +1,9 @@
 package org.mdl4ui.gwt.sample.client.ui;
 
+import static org.mdl4ui.gwt.sample.client.ui.factory.FieldHelplFactory.HELP;
+import static org.mdl4ui.gwt.sample.client.ui.factory.FieldLabelFactory.LABEL;
+import static org.mdl4ui.gwt.sample.client.ui.factory.FieldRendererFactory.RENDERER;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,32 +26,28 @@ public class WizardImpl implements Wizard {
         List<Block> blocks = new ArrayList<Block>();
         for (BlockID blockId : screenId.blocks()) {
             List<BlockItem> blockItems = new ArrayList<BlockItem>();
-            for (ElementID blockItemId : blockId.childs()) {
-                switch (blockItemId.elementType()) {
+            for (ElementID child : blockId.childs()) {
+                switch (child.elementType()) {
                     case FIELD:
-                        blockItems.add(getField(screenId, (FieldID) blockItemId));
+                        blockItems.add(getField(screenId, (FieldID) child));
                         break;
                     case GROUP:
                         ArrayList<Field> fields = new ArrayList<Field>();
-                        for (FieldID fieldId : ((GroupID) blockItemId).fields()) {
+                        for (FieldID fieldId : ((GroupID) child).fields()) {
                             fields.add(getField(screenId, fieldId));
                         }
-                        blockItems.add(new Group((GroupID) blockItemId, fields));
+                        blockItems.add(new Group((GroupID) child, fields));
                         break;
                 }
 
             }
-            Block block = new Block(getLabel(blockId), blockId, blockItems);
+            Block block = new Block(LABEL.get(blockId), blockId, blockItems);
             blocks.add(block);
         }
         return new Screen(screenId, blocks);
     }
 
-    private String getLabel(ElementID elementID) {
-        return elementID.toString().toLowerCase().replace("_", " ");
-    }
-
     private Field getField(ScreenID screenId, FieldID fieldId) {
-        return new Field(fieldId, screenId, null);
+        return new Field(fieldId, LABEL.get(fieldId), HELP.get(fieldId), RENDERER.get(fieldId));
     }
 }

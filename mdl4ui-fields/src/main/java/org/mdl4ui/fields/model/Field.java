@@ -5,22 +5,22 @@ package org.mdl4ui.fields.model;
 
 import org.mdl4ui.base.model.EElementType;
 import org.mdl4ui.base.model.FieldID;
-import org.mdl4ui.base.model.ScreenID;
 import org.mdl4ui.fields.model.component.FieldComponent;
 import org.mdl4ui.fields.model.validation.FieldValidation;
 
 public class Field implements BlockItem {
 
     private final FieldID fieldId;
-    private final ScreenID screenId;
 
+    private final String label, help;
     private final FieldComponent<?> component;
     private final FieldRenderer<?> renderer;
     private EFieldState state = EFieldState.DEFAULT;
 
-    public Field(FieldID fieldId, ScreenID screenId, final FieldRenderer<?> renderer) {
+    public Field(FieldID fieldId, String label, String help, final FieldRenderer<?> renderer) {
         this.fieldId = fieldId;
-        this.screenId = screenId;
+        this.label = label;
+        this.help = help;
         this.component = renderer.getFieldComponent();
         this.renderer = renderer;
     }
@@ -29,8 +29,12 @@ public class Field implements BlockItem {
         return fieldId;
     }
 
-    public ScreenID getScreenID() {
-        return screenId;
+    public String getLabel() {
+        return label;
+    }
+
+    public String getHelp() {
+        return help;
     }
 
     @SuppressWarnings("unchecked")

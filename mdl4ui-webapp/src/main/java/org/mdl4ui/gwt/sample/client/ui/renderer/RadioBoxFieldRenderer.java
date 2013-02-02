@@ -1,13 +1,12 @@
 package org.mdl4ui.gwt.sample.client.ui.renderer;
 
 import org.mdl4ui.fields.model.FieldRenderer;
-import org.mdl4ui.fields.model.component.RadioBoxField;
+import org.mdl4ui.fields.model.component.RadioListField;
 
-public class RadioBoxFieldRenderer implements FieldRenderer<RadioBoxField> {
+public class RadioBoxFieldRenderer implements FieldRenderer<RadioListField> {
 
     @Override
-    public RadioBoxField getFieldComponent() {
+    public RadioListField getFieldComponent() {
         return null;
     }
-
 }
