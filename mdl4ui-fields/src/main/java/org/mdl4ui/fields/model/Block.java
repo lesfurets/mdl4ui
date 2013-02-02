@@ -20,7 +20,7 @@ public class Block {
         this.items = items;
     }
 
-    public String getTitre() {
+    public String getTitle() {
         return label;
     }
 

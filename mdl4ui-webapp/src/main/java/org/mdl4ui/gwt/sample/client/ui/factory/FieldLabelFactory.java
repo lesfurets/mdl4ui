@@ -12,6 +12,7 @@ public class FieldLabelFactory {
     }
 
     public String get(ElementID elementID) {
-        return "help content for field " + elementID.toString().toLowerCase().replace("_", " ");
+        final String label = elementID.toString().toLowerCase().replace("_", " ");
+        return Character.toUpperCase(label.charAt(0)) + label.substring(1);
     }
 }

@@ -3,6 +3,7 @@ package org.mdl4ui.gwt.sample.client;
 import org.mdl4ui.fields.model.Screen;
 import org.mdl4ui.fields.model.Wizard;
 import org.mdl4ui.gwt.sample.client.ui.FieldView;
+import org.mdl4ui.gwt.sample.client.ui.model.ScreenView;
 import org.mdl4ui.ui.sample.EScreenSample;
 
 import com.github.gwtbootstrap.client.ui.Button;
@@ -27,53 +28,9 @@ public class Sample implements EntryPoint {
 
         Wizard wizard = GWT.create(Wizard.class);
         final Screen screen = wizard.createScreen(EScreenSample.SCR_WIDGETS_SHOWCASE);
+        final ScreenView view = new ScreenView(screen);
 
-        WellForm form = new WellForm();
 
-        Legend legend = new Legend("Form Validation with Control Decoration");
-        form.add(legend);
-
-        Fieldset fieldset = new Fieldset();
-        form.add(fieldset);
-
-        final TextBox userName = new TextBox();
-        userName.getElement().setAttribute("placeholder", "Username");
-        final FieldView userNameField = new FieldView(userName, "Username");
-        fieldset.add(userNameField.asWidget());
-
-        final PasswordTextBox password = new PasswordTextBox();
-        password.getElement().setAttribute("placeholder", "Password");
-        final FieldView passwordField = new FieldView(password, "Password");
-        fieldset.add(passwordField.asWidget());
-
-        FormActions actions = new FormActions();
-        Button validate = new Button("Validate Login");
-        validate.setType(ButtonType.PRIMARY);
-        actions.add(validate);
-        form.add(actions);
-
-        validate.addClickHandler(new ClickHandler() {
-            @Override
-            public void onClick(ClickEvent event) {
-                String text = userName.getText();
-                if (text == null || "".equals(text.trim())) {
-                    userNameField.error("Please enter your username");
-                } else {
-                    userNameField.valid();
-                }
-                text = password.getText();
-                if (text == null || "".equals(text.trim())) {
-                    passwordField.error("Please enter your password");
-                } else {
-                    passwordField.valid();
-                }
-            }
-        });
-
-        Collapse collapse = new Collapse();
-        collapse.add(form);
-        collapse.setDefaultOpen(true);
-
-        RootPanel.get("content").add(collapse);
+        RootPanel.get("content").add(view);
     }
 }

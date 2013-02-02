@@ -13,7 +13,6 @@ public class Field implements BlockItem {
     private final FieldID fieldId;
 
     private final String label, help;
-    private final FieldComponent<?> component;
     private final FieldRenderer<?> renderer;
     private EFieldState state = EFieldState.DEFAULT;
 
@@ -21,7 +20,6 @@ public class Field implements BlockItem {
         this.fieldId = fieldId;
         this.label = label;
         this.help = help;
-        this.component = renderer.getFieldComponent();
         this.renderer = renderer;
     }
 
@@ -39,12 +37,13 @@ public class Field implements BlockItem {
 
     @SuppressWarnings("unchecked")
     public <F extends FieldComponent<?>> F getComponent() {
-        return (F) component;
+        final F component = (F) renderer.getFieldComponent(fieldId);
+        renderer.setLabel(label, fieldId);
+        return component;
     }
 
-    @SuppressWarnings("unchecked")
-    public <R extends FieldRenderer<?>> R getRenderer() {
-        return (R) renderer;
+    public boolean isLabelInline() {
+        return renderer.isLabelInline();
     }
 
     public EFieldState getState() {

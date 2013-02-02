@@ -4,6 +4,8 @@ import static org.mdl4ui.base.model.ElementIDImpl.collectBlocks;
 import static org.mdl4ui.base.model.ElementIDImpl.collectFields;
 import static org.mdl4ui.base.model.ElementIDImpl.collectGroups;
 import static org.mdl4ui.base.model.ElementIDImpl.containsRec;
+import static org.mdl4ui.ui.sample.EFieldSample.NUMERIC;
+import static org.mdl4ui.ui.sample.EFieldSample.PASSWORD;
 
 import java.util.List;
 
@@ -14,7 +16,8 @@ import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.base.model.GroupID;
 
 public enum EGroupSample implements GroupID {
-    ;
+    SPECIAL_TEXT_FIELDS(PASSWORD, //
+                    NUMERIC);
 
     private final ElementID[] childs;
 

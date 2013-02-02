@@ -1,13 +1,13 @@
 package org.mdl4ui.gwt.sample.client.ui.renderer;
 
-import org.mdl4ui.fields.model.FieldRenderer;
+import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.fields.model.component.PasswordField;
 import org.mdl4ui.gwt.sample.client.ui.PasswordTextBox;
 
-public class PasswordFieldRenderer implements FieldRenderer<PasswordField> {
+public class PasswordFieldRenderer extends BaseFieldRenderer<PasswordField> {
 
     @Override
-    public PasswordField getFieldComponent() {
+    protected PasswordField createFieldComponent(FieldID fieldID) {
         return new PasswordTextBox();
     }
 }

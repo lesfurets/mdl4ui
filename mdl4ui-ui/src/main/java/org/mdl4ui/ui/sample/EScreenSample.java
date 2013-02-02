@@ -4,7 +4,8 @@ import static org.mdl4ui.base.model.ElementIDImpl.collectBlocks;
 import static org.mdl4ui.base.model.ElementIDImpl.collectFields;
 import static org.mdl4ui.base.model.ElementIDImpl.collectGroups;
 import static org.mdl4ui.base.model.ElementIDImpl.containsRec;
-import static org.mdl4ui.ui.sample.EBlockSample.BLK_WIDGETS_SHOWCASE;
+import static org.mdl4ui.ui.sample.EBlockSample.OTHER_FIELDS;
+import static org.mdl4ui.ui.sample.EBlockSample.TEXT_FIELDS;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ import org.mdl4ui.base.model.GroupID;
 import org.mdl4ui.base.model.ScreenID;
 
 public enum EScreenSample implements ScreenID {
-    SCR_WIDGETS_SHOWCASE(BLK_WIDGETS_SHOWCASE);
+    SCR_WIDGETS_SHOWCASE(TEXT_FIELDS, OTHER_FIELDS);
 
     private final ElementID[] childs;
 

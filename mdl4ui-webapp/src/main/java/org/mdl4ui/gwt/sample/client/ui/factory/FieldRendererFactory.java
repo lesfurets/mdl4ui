@@ -2,12 +2,12 @@ package org.mdl4ui.gwt.sample.client.ui.factory;
 
 import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.fields.model.FieldRenderer;
-import org.mdl4ui.gwt.sample.client.ui.renderer.CheckBoxFieldRenderer;
+import org.mdl4ui.gwt.sample.client.ui.renderer.CheckBoxGroupFieldRenderer;
 import org.mdl4ui.gwt.sample.client.ui.renderer.DateFieldRenderer;
 import org.mdl4ui.gwt.sample.client.ui.renderer.ListBoxFieldRenderer;
 import org.mdl4ui.gwt.sample.client.ui.renderer.NumericFieldRenderer;
 import org.mdl4ui.gwt.sample.client.ui.renderer.PasswordFieldRenderer;
-import org.mdl4ui.gwt.sample.client.ui.renderer.RadioBoxFieldRenderer;
+import org.mdl4ui.gwt.sample.client.ui.renderer.RadioGroupFieldRenderer;
 import org.mdl4ui.gwt.sample.client.ui.renderer.TextBoxFieldRenderer;
 
 import com.google.gwt.core.shared.GWT;
@@ -29,10 +29,10 @@ public class FieldRendererFactory {
                 return new NumericFieldRenderer();
             case LISTBOX:
                 return new ListBoxFieldRenderer();
-            case RADIOBOX:
-                return new RadioBoxFieldRenderer();
-            case CHECKBOX:
-                return new CheckBoxFieldRenderer();
+            case RADIO_GROUP:
+                return new RadioGroupFieldRenderer();
+            case CHECKBOX_GROUP:
+                return new CheckBoxGroupFieldRenderer();
             case DATE:
                 return new DateFieldRenderer();
             default:

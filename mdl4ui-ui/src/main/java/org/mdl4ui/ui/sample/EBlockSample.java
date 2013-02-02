@@ -4,8 +4,12 @@ import static org.mdl4ui.base.model.ElementIDImpl.collectBlocks;
 import static org.mdl4ui.base.model.ElementIDImpl.collectFields;
 import static org.mdl4ui.base.model.ElementIDImpl.collectGroups;
 import static org.mdl4ui.base.model.ElementIDImpl.containsRec;
-import static org.mdl4ui.ui.sample.EFieldSample.LOGIN;
-import static org.mdl4ui.ui.sample.EFieldSample.PASSWORD;
+import static org.mdl4ui.ui.sample.EFieldSample.CHECKBOX_GROUP;
+import static org.mdl4ui.ui.sample.EFieldSample.DATE;
+import static org.mdl4ui.ui.sample.EFieldSample.LISTBOX;
+import static org.mdl4ui.ui.sample.EFieldSample.RADIO_GROUP;
+import static org.mdl4ui.ui.sample.EFieldSample.TEXTBOX;
+import static org.mdl4ui.ui.sample.EGroupSample.SPECIAL_TEXT_FIELDS;
 
 import java.util.List;
 
@@ -16,7 +20,13 @@ import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.base.model.GroupID;
 
 public enum EBlockSample implements BlockID {
-    BLK_WIDGETS_SHOWCASE(LOGIN, PASSWORD);
+    TEXT_FIELDS(TEXTBOX, //
+                    SPECIAL_TEXT_FIELDS), //
+
+    OTHER_FIELDS(LISTBOX, //
+                    RADIO_GROUP, //
+                    CHECKBOX_GROUP, //
+                    DATE);
 
     private final ElementID[] childs;
 

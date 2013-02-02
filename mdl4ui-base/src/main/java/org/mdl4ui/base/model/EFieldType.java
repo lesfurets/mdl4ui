@@ -8,7 +8,7 @@ public enum EFieldType {
     PASSWORD, //
     NUMERIC, //
     LISTBOX, //
-    RADIOBOX, //
-    CHECKBOX, //
+    RADIO_GROUP, //
+    CHECKBOX_GROUP, //
     DATE;
 }
