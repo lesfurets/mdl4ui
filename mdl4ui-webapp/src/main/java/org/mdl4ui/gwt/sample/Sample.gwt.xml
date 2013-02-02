@@ -17,7 +17,7 @@
   <!-- Inherit the core Web Toolkit stuff. -->
   <inherits name='com.google.gwt.user.User' />
   <inherits name="com.github.gwtbootstrap.Bootstrap" />
-  <inherits name="org.mdl4ui.Fields" />
+  <inherits name="org.mdl4ui.fields.Fields" />
 
   <!-- Specify the app entry point class. -->
   <entry-point class='org.mdl4ui.gwt.sample.client.Sample' />

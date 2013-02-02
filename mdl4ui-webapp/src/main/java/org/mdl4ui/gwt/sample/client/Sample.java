@@ -1,6 +1,6 @@
 package org.mdl4ui.gwt.sample.client;
 
-import org.mdl4ui.gwt.sample.client.core.FieldView;
+import org.mdl4ui.gwt.sample.client.ui.FieldView;
 
 import com.github.gwtbootstrap.client.ui.Button;
 import com.github.gwtbootstrap.client.ui.Collapse;
