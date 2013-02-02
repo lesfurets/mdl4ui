@@ -1,4 +1,4 @@
-package org.mdl4ui.sample.gwt.client.ui;
+package org.mdl4ui.gwt.sample.client.core;
 
 import com.github.gwtbootstrap.client.ui.ControlGroup;
 import com.github.gwtbootstrap.client.ui.ControlLabel;

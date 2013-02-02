@@ -4,16 +4,10 @@
 package org.mdl4ui.base.model;
 
 public enum EFieldType {
-    // read-only fields
-    TITLE, //
-
-    // form fields
     TEXTBOX, //
-    EMAIL_TEXTBOX, //
-    PASSWORD_TEXTBOX, //
-    PERCENTAGE, //
+    PASSWORD, //
+    NUMERIC, //
     LISTBOX, //
-    DUREEASS, //
     SLIDER, //
     RADIOBOX, //
     CHECKBOX, //

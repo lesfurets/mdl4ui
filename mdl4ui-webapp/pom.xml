@@ -97,7 +97,7 @@
           <showDeprecation>true</showDeprecation>
           <showWarnings>true</showWarnings>
           <modules>
-            <module>org.mdl4ui.sample.gwt.Sample</module>
+            <module>org.mdl4ui.gwt.sample.Sample</module>
           </modules>
         </configuration>
         <executions>

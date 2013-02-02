@@ -1,11 +1,10 @@
-package org.mdl4ui.sample.ui;
+package org.mdl4ui.ui.sample;
 
 import static org.mdl4ui.base.model.ElementIDImpl.collectBlocks;
 import static org.mdl4ui.base.model.ElementIDImpl.collectFields;
 import static org.mdl4ui.base.model.ElementIDImpl.collectGroups;
 import static org.mdl4ui.base.model.ElementIDImpl.containsRec;
-import static org.mdl4ui.sample.ui.EFieldSample.LOGIN;
-import static org.mdl4ui.sample.ui.EFieldSample.PASSWORD;
+import static org.mdl4ui.ui.sample.EBlockSample.BLK_WIDGETS_SHOWCASE;
 
 import java.util.List;
 
@@ -14,19 +13,20 @@ import org.mdl4ui.base.model.EElementType;
 import org.mdl4ui.base.model.ElementID;
 import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.base.model.GroupID;
+import org.mdl4ui.base.model.ScreenID;
 
-public enum EBlockSample implements BlockID {
-    BLK_WIDGETS_SHOWCASE(LOGIN, PASSWORD);
+public enum EScreenSample implements ScreenID {
+    SCR_WIDGETS_SHOWCASE(BLK_WIDGETS_SHOWCASE);
 
     private final ElementID[] childs;
 
-    private EBlockSample(ElementID... blocks) {
+    private EScreenSample(BlockID... blocks) {
         this.childs = blocks;
     }
 
     @Override
     public EElementType elementType() {
-        return EElementType.BLOCK;
+        return EElementType.SCREEN;
     }
 
     @Override

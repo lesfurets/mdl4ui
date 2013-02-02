@@ -17,10 +17,10 @@
   <!-- Inherit the core Web Toolkit stuff. -->
   <inherits name='com.google.gwt.user.User' />
   <inherits name="com.github.gwtbootstrap.Bootstrap" />
-  <inherits name="org.mdl4ui.sample.Fields" />
+  <inherits name="org.mdl4ui.Fields" />
 
   <!-- Specify the app entry point class. -->
-  <entry-point class='org.mdl4ui.sample.gwt.client.Sample' />
+  <entry-point class='org.mdl4ui.gwt.sample.client.Sample' />
 
   <extend-property name="locale" values="fr" />
 

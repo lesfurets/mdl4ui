@@ -1,4 +1,4 @@
-package org.mdl4ui.sample.ui;
+package org.mdl4ui.ui.sample;
 
 import static org.mdl4ui.base.model.ElementIDImpl.collectBlocks;
 import static org.mdl4ui.base.model.ElementIDImpl.collectFields;
@@ -9,27 +9,29 @@ import java.util.List;
 
 import org.mdl4ui.base.model.BlockID;
 import org.mdl4ui.base.model.EElementType;
+import org.mdl4ui.base.model.EFieldType;
 import org.mdl4ui.base.model.ElementID;
 import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.base.model.GroupID;
 
-public enum EGroupSample implements GroupID {
-    ;
+public enum EFieldSample implements FieldID {
+    LOGIN(EFieldType.TEXTBOX), //
+    PASSWORD(EFieldType.PASSWORD);
 
-    private final ElementID[] childs;
+    private EFieldType type;
 
-    private EGroupSample(FieldID... blocks) {
-        this.childs = blocks;
+    private EFieldSample(EFieldType type) {
+        this.type = type;
     }
 
     @Override
     public EElementType elementType() {
-        return EElementType.GROUP;
+        return EElementType.FIELD;
     }
 
     @Override
     public ElementID[] childs() {
-        return childs;
+        return null;
     }
 
     @Override
@@ -50,5 +52,10 @@ public enum EGroupSample implements GroupID {
     @Override
     public List<GroupID> groups() {
         return collectGroups(this);
+    }
+
+    @Override
+    public EFieldType type() {
+        return type;
     }
 }
