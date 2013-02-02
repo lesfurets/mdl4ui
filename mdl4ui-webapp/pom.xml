@@ -90,7 +90,7 @@
           <style>OBFUSCATED</style>
           <warSourceDirectory>${basedir}/war</warSourceDirectory>
           <webappDirectory>target/${project.build.finalName}</webappDirectory>
-          <extraJvmArgs>-Xmx512M</extraJvmArgs>
+          <extraJvmArgs>-Xmx256M</extraJvmArgs>
           <localWorkers>3</localWorkers>
           <strict>true</strict>
           <gwtSdkFirstInClasspath>true</gwtSdkFirstInClasspath>
