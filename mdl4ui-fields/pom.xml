@@ -15,6 +15,10 @@
       <artifactId>mdl4ui-ui</artifactId>
     </dependency>
     <dependency>
+      <groupId>com.google.gwt.inject</groupId>
+      <artifactId>gin</artifactId>
+    </dependency>
+    <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <scope>test</scope>
