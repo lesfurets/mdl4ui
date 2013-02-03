@@ -14,7 +14,10 @@ import org.mdl4ui.fields.model.event.Event.Type;
 /**
  * Basic implementation of {@link EventBus}.
  */
-public class SimpleEventBus implements EventBus {
+public enum SimpleEventBus implements EventBus {
+
+    EVENT_BUS;
+
     private interface Command {
         void execute();
     }
