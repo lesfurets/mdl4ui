@@ -14,7 +14,7 @@ public class Sample implements EntryPoint {
     @Override
     public void onModuleLoad() {
         Wizard wizard = GWT.create(Wizard.class);
-        final Screen screen = wizard.createScreen(EScreenSample.SCR_WIDGETS_SHOWCASE);
+        final Screen screen = wizard.getScreen(EScreenSample.SCR_WIDGETS_SHOWCASE);
         final ScreenView view = new ScreenView(screen);
 
         RootPanel.get("content").add(view);

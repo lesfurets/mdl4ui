@@ -2,6 +2,7 @@ package org.mdl4ui.gwt.sample.client.ui.factory;
 
 import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.fields.model.FieldRenderer;
+import org.mdl4ui.fields.model.FieldRendererFactory;
 import org.mdl4ui.gwt.sample.client.ui.renderer.CheckBoxGroupFieldRenderer;
 import org.mdl4ui.gwt.sample.client.ui.renderer.DateFieldRenderer;
 import org.mdl4ui.gwt.sample.client.ui.renderer.ListBoxFieldRenderer;
@@ -12,13 +13,14 @@ import org.mdl4ui.gwt.sample.client.ui.renderer.TextBoxFieldRenderer;
 
 import com.google.gwt.core.shared.GWT;
 
-public class FieldRendererFactory {
+public class GwtFieldRendererFactory implements FieldRendererFactory {
 
-    public static final FieldRendererFactory RENDERER = GWT.create(FieldRendererFactory.class);
+    public static final GwtFieldRendererFactory RENDERER = GWT.create(GwtFieldRendererFactory.class);
 
-    private FieldRendererFactory() {
+    private GwtFieldRendererFactory() {
     }
 
+    @Override
     public FieldRenderer<?> get(FieldID fieldID) {
         switch (fieldID.type()) {
             case TEXTBOX:

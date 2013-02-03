@@ -40,6 +40,7 @@ public class ScreenView implements IsWidget {
             }
         }
 
+        // FIXME move handlers to wizard
         EVENT_BUS.subscribe(BlockSubmitedEvent.TYPE, new BlockSubmitedHandler() {
             @Override
             public void onSubmit(BlockSubmitedEvent event) {
@@ -51,6 +52,7 @@ public class ScreenView implements IsWidget {
             }
         });
 
+        // FIXME move handlers to wizard
         EVENT_BUS.subscribe(BlockModifiedEvent.TYPE, new BlockModifiedEventHandler() {
 
             @Override

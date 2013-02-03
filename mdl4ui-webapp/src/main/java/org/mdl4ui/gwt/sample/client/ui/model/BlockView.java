@@ -17,6 +17,7 @@ import com.github.gwtbootstrap.client.ui.FormActions;
 import com.github.gwtbootstrap.client.ui.Legend;
 import com.github.gwtbootstrap.client.ui.WellForm;
 import com.github.gwtbootstrap.client.ui.constants.ButtonType;
+import com.github.gwtbootstrap.client.ui.constants.IconType;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.IsWidget;
@@ -24,27 +25,24 @@ import com.google.gwt.user.client.ui.Widget;
 
 public class BlockView implements IsWidget {
 
-    private final Block block;
-
     private final WellForm form;
     private final Button modify;
     private final Fieldset fieldset;
     private final FormActions actions;
 
     public BlockView(final Block block) {
-        this.block = block;
-
         form = new WellForm();
 
         FluidRow row = new FluidRow();
 
-        Column column = new Column(3);
+        Column column = new Column(11);
         row.add(column);
         column.add(new Legend(block.getTitle()));
 
-        column = new Column(4, 3);
+        column = new Column(1);
         row.add(column);
-        modify = new Button("Modify");
+        modify = new Button();
+        modify.setIcon(IconType.EDIT);
         modify.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
