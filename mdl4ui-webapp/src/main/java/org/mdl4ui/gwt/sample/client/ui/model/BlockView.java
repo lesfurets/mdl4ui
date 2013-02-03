@@ -6,10 +6,13 @@ import org.mdl4ui.fields.model.Block;
 import org.mdl4ui.fields.model.BlockItem;
 import org.mdl4ui.fields.model.Field;
 import org.mdl4ui.fields.model.Group;
+import org.mdl4ui.fields.model.event.BlockModifiedEvent;
 import org.mdl4ui.fields.model.event.BlockSubmitedEvent;
 
 import com.github.gwtbootstrap.client.ui.Button;
+import com.github.gwtbootstrap.client.ui.Column;
 import com.github.gwtbootstrap.client.ui.Fieldset;
+import com.github.gwtbootstrap.client.ui.FluidRow;
 import com.github.gwtbootstrap.client.ui.FormActions;
 import com.github.gwtbootstrap.client.ui.Legend;
 import com.github.gwtbootstrap.client.ui.WellForm;
@@ -21,15 +24,36 @@ import com.google.gwt.user.client.ui.Widget;
 
 public class BlockView implements IsWidget {
 
+    private final Block block;
+
     private final WellForm form;
+    private final Button modify;
     private final Fieldset fieldset;
     private final FormActions actions;
 
     public BlockView(final Block block) {
+        this.block = block;
+
         form = new WellForm();
 
-        Legend title = new Legend(block.getTitle());
-        form.add(title);
+        FluidRow row = new FluidRow();
+
+        Column column = new Column(3);
+        row.add(column);
+        column.add(new Legend(block.getTitle()));
+
+        column = new Column(4, 3);
+        row.add(column);
+        modify = new Button("Modify");
+        modify.addClickHandler(new ClickHandler() {
+            @Override
+            public void onClick(ClickEvent event) {
+                EVENT_BUS.publish(new BlockModifiedEvent(block.getBlockId()));
+            }
+        });
+        column.add(modify);
+
+        form.add(row);
 
         fieldset = new Fieldset();
         form.add(fieldset);

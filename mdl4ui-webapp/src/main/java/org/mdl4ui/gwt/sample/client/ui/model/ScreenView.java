@@ -9,6 +9,8 @@ import java.util.Map;
 import org.mdl4ui.base.model.BlockID;
 import org.mdl4ui.fields.model.Block;
 import org.mdl4ui.fields.model.Screen;
+import org.mdl4ui.fields.model.event.BlockModifiedEvent;
+import org.mdl4ui.fields.model.event.BlockModifiedEvent.BlockModifiedEventHandler;
 import org.mdl4ui.fields.model.event.BlockSubmitedEvent;
 import org.mdl4ui.fields.model.event.BlockSubmitedEvent.BlockSubmitedHandler;
 
@@ -43,13 +45,31 @@ public class ScreenView implements IsWidget {
             public void onSubmit(BlockSubmitedEvent event) {
                 final List<BlockID> blocks = screen.getScreenId().blocks();
                 final int index = blocks.indexOf(event.getBlockID());
-
-                blocksByIds.get(event.getBlockID()).collapse();
                 if (index < blocks.size() - 1) {
-                    blocksByIds.get(blocks.get(index + 1)).expand();
+                    expand(screen, blocks.get(index + 1));
                 }
             }
         });
+
+        EVENT_BUS.subscribe(BlockModifiedEvent.TYPE, new BlockModifiedEventHandler() {
+
+            @Override
+            public void onModify(BlockModifiedEvent event) {
+                expand(screen, event.getBlockID());
+            }
+        });
+    }
+
+    private void expand(final Screen screen, BlockID expanded) {
+        final List<BlockID> blocks = screen.getScreenId().blocks();
+        if (blocks.contains(expanded)) {
+            blocksByIds.get(expanded).expand();
+            for (BlockID blockID : blocks) {
+                if (expanded != blockID) {
+                    blocksByIds.get(blockID).collapse();
+                }
+            }
+        }
     }
 
     @Override
