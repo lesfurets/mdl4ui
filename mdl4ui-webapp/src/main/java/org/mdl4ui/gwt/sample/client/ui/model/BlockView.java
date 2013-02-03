@@ -22,6 +22,8 @@ import com.google.gwt.user.client.ui.Widget;
 public class BlockView implements IsWidget {
 
     private final WellForm form;
+    private final Fieldset fieldset;
+    private final FormActions actions;
 
     public BlockView(final Block block) {
         form = new WellForm();
@@ -29,7 +31,7 @@ public class BlockView implements IsWidget {
         Legend title = new Legend(block.getTitle());
         form.add(title);
 
-        Fieldset fieldset = new Fieldset();
+        fieldset = new Fieldset();
         form.add(fieldset);
         for (BlockItem item : block.getBlockItems()) {
             switch (item.getType()) {
@@ -42,7 +44,7 @@ public class BlockView implements IsWidget {
             }
         }
 
-        FormActions actions = new FormActions();
+        actions = new FormActions();
         Button validate = new Button("Submit");
         validate.addClickHandler(new ClickHandler() {
             @Override
@@ -55,6 +57,16 @@ public class BlockView implements IsWidget {
         actions.add(validate);
 
         form.add(actions);
+    }
+
+    public void expand() {
+        fieldset.setVisible(true);
+        actions.setVisible(true);
+    }
+
+    public void collapse() {
+        fieldset.setVisible(false);
+        actions.setVisible(false);
     }
 
     @Override
