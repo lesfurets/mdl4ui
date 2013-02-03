@@ -3,37 +3,34 @@
  */
 package org.mdl4ui.fields.model.event;
 
-import org.mdl4ui.base.model.BlockID;
-import org.mdl4ui.fields.model.event.BlockModifiedEvent.BlockModifiedEventHandler;
+import org.mdl4ui.fields.model.Block;
+import org.mdl4ui.fields.model.event.BlockModifiedEvent.BlockModifiedHandler;
 
-public class BlockModifiedEvent extends Event<BlockModifiedEventHandler> {
+public class BlockModifiedEvent extends Event<BlockModifiedHandler> {
 
-    public static Type<BlockModifiedEventHandler> TYPE = new Type<BlockModifiedEventHandler>();
+    public static Type<BlockModifiedHandler> TYPE = new Type<BlockModifiedHandler>();
 
-    /**
-     * string representation of the catched {@link Event}
-     */
-    private final BlockID blockID;
+    private final Block block;
 
-    public BlockModifiedEvent(BlockID blockID) {
-        this.blockID = blockID;
+    public BlockModifiedEvent(Block block) {
+        this.block = block;
     }
 
     @Override
-    public Type<BlockModifiedEventHandler> getAssociatedType() {
+    public Type<BlockModifiedHandler> getAssociatedType() {
         return TYPE;
     }
 
     @Override
-    protected void dispatch(BlockModifiedEventHandler handler) {
+    protected void dispatch(BlockModifiedHandler handler) {
         handler.onModify(this);
     }
 
-    public BlockID getBlockID() {
-        return blockID;
+    public Block getBlock() {
+        return block;
     }
 
-    public interface BlockModifiedEventHandler {
+    public interface BlockModifiedHandler {
         void onModify(BlockModifiedEvent event);
     }
 }

@@ -7,21 +7,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.mdl4ui.base.model.BlockID;
+import org.mdl4ui.base.model.ScreenID;
 
 public class Block {
 
     private final String label;
-    private final List<BlockItem> items;
     private final BlockID blockId;
+    private final ScreenID screenID;
+    private final List<BlockItem> items = new ArrayList<BlockItem>();
 
-    public Block(String label, final BlockID blockId, List<BlockItem> items) {
+    public Block(String label, final BlockID blockId, ScreenID screenID) {
         this.label = label;
         this.blockId = blockId;
-        this.items = items;
+        this.screenID = screenID;
     }
 
     public String getTitle() {
         return label;
+    }
+
+    public void add(List<BlockItem> newItems) {
+        items.addAll(newItems);
     }
 
     public List<BlockItem> getBlockItems() {
@@ -44,6 +50,10 @@ public class Block {
             }
         }
         return fields;
+    }
+
+    public ScreenID getScreenID() {
+        return screenID;
     }
 
     public BlockID getBlockId() {

@@ -8,6 +8,8 @@ import org.mdl4ui.fields.model.Field;
 import org.mdl4ui.fields.model.Group;
 import org.mdl4ui.fields.model.event.BlockModifiedEvent;
 import org.mdl4ui.fields.model.event.BlockSubmitedEvent;
+import org.mdl4ui.fields.model.event.ExpandBlockEvent;
+import org.mdl4ui.fields.model.event.ExpandBlockEvent.ExpandBlockHandler;
 
 import com.github.gwtbootstrap.client.ui.Button;
 import com.github.gwtbootstrap.client.ui.Column;
@@ -46,7 +48,7 @@ public class BlockView implements IsWidget {
         modify.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
-                EVENT_BUS.publish(new BlockModifiedEvent(block.getBlockId()));
+                EVENT_BUS.publish(new BlockModifiedEvent(block));
             }
         });
         column.add(modify);
@@ -71,7 +73,7 @@ public class BlockView implements IsWidget {
         validate.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
-                EVENT_BUS.publish(new BlockSubmitedEvent(block.getBlockId()));
+                EVENT_BUS.publish(new BlockSubmitedEvent(block));
             }
         });
 
@@ -79,14 +81,27 @@ public class BlockView implements IsWidget {
         actions.add(validate);
 
         form.add(actions);
+
+        EVENT_BUS.subscribe(ExpandBlockEvent.TYPE, new ExpandBlockHandler() {
+            @Override
+            public void onExpand(ExpandBlockEvent event) {
+                if (event.getScreenId() == block.getScreenID()) {
+                    if (event.getBlockId() == block.getBlockId()) {
+                        expand();
+                    } else {
+                        collapse();
+                    }
+                }
+            }
+        });
     }
 
-    public void expand() {
+    void expand() {
         fieldset.setVisible(true);
         actions.setVisible(true);
     }
 
-    public void collapse() {
+    void collapse() {
         fieldset.setVisible(false);
         actions.setVisible(false);
     }
