@@ -26,9 +26,7 @@ public class ScreenView implements IsWidget {
 
             BlockView blockView = new BlockView(block);
             column.add(blockView);
-
         }
-
         Block firstBlock = screen.getBlocks().get(0);
         EVENT_BUS.publish(new ExpandBlockEvent(firstBlock));
     }

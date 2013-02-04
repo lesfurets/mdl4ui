@@ -55,6 +55,10 @@ public class Wizard {
         });
     }
 
+    public Map<ScreenID, Screen> getScreens() {
+        return this.screens;
+    }
+
     private Screen getScreen(Block block) {
         for (Screen screen : screens.values()) {
             if (screen.getBlocks().contains(block)) {
