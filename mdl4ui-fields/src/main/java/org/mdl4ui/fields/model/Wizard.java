@@ -68,31 +68,32 @@ public class Wizard {
         return null;
     }
 
-    public Screen createScreen(ScreenID screenId) {
-        List<Block> blocks = new ArrayList<Block>();
-        for (BlockID blockId : screenId.blocks()) {
-            List<BlockItem> blockItems = new ArrayList<BlockItem>();
-            for (ElementID child : blockId.childs()) {
-                switch (child.elementType()) {
-                    case FIELD:
-                        blockItems.add(getField(screenId, (FieldID) child));
-                        break;
-                    case GROUP:
-                        ArrayList<Field> fields = new ArrayList<Field>();
-                        for (FieldID fieldId : ((GroupID) child).fields()) {
-                            fields.add(getField(screenId, fieldId));
-                        }
-                        blockItems.add(new Group((GroupID) child, fields));
-                        break;
+    public void setScreens(ScreenID... screenIds) {
+        for (ScreenID screenID : screenIds) {
+            List<Block> blocks = new ArrayList<Block>();
+            for (BlockID blockId : screenID.blocks()) {
+                List<BlockItem> blockItems = new ArrayList<BlockItem>();
+                for (ElementID child : blockId.childs()) {
+                    switch (child.elementType()) {
+                        case FIELD:
+                            blockItems.add(getField(screenID, (FieldID) child));
+                            break;
+                        case GROUP:
+                            ArrayList<Field> fields = new ArrayList<Field>();
+                            for (FieldID fieldId : ((GroupID) child).fields()) {
+                                fields.add(getField(screenID, fieldId));
+                            }
+                            blockItems.add(new Group((GroupID) child, fields));
+                            break;
+                    }
                 }
+                Block block = new Block(labelFactory.get(blockId), blockId, screenID);
+                block.add(blockItems);
+                blocks.add(block);
             }
-            Block block = new Block(labelFactory.get(blockId), blockId, screenId);
-            block.add(blockItems);
-            blocks.add(block);
+            final Screen screen = new Screen(screenID, blocks);
+            screens.put(screenID, screen);
         }
-        final Screen screen = new Screen(screenId, blocks);
-        screens.put(screenId, screen);
-        return screen;
     }
 
     private Field getField(ScreenID screenId, FieldID fieldId) {

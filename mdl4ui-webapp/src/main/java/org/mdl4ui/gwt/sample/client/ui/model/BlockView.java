@@ -2,6 +2,7 @@ package org.mdl4ui.gwt.sample.client.ui.model;
 
 import static org.mdl4ui.fields.model.event.SimpleEventBus.EVENT_BUS;
 
+import org.mdl4ui.base.model.ScreenID;
 import org.mdl4ui.fields.model.Block;
 import org.mdl4ui.fields.model.BlockItem;
 import org.mdl4ui.fields.model.Field;
@@ -48,6 +49,7 @@ public class BlockView implements IsWidget {
         modify.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
+                // modify block
                 EVENT_BUS.publish(new BlockModifiedEvent(block));
             }
         });
@@ -73,6 +75,7 @@ public class BlockView implements IsWidget {
         validate.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
+                // submit current block
                 EVENT_BUS.publish(new BlockSubmitedEvent(block));
             }
         });
@@ -85,14 +88,22 @@ public class BlockView implements IsWidget {
         EVENT_BUS.subscribe(ExpandBlockEvent.TYPE, new ExpandBlockHandler() {
             @Override
             public void onExpand(ExpandBlockEvent event) {
-                if (event.getBlock().getScreenID() != block.getScreenID()) {
+                ScreenID screenID = block.getScreenID();
+                if (event.getBlock().getScreenID() != screenID) {
                     return;
                 }
+
+                // expand or collapse block
                 if (event.getBlock() == block) {
                     expand();
                 } else {
                     collapse();
                 }
+
+                // update modify icon visibility
+                int position = screenID.blocks().indexOf(block.getBlockID());
+                int otherPosition = screenID.blocks().indexOf(event.getBlock().getBlockID());
+                modify.setVisible(position < otherPosition);
             }
         });
     }
