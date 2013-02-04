@@ -3,7 +3,9 @@ package org.mdl4ui.fields.model;
 import static org.mdl4ui.fields.model.event.SimpleEventBus.EVENT_BUS;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mdl4ui.base.model.BlockID;
 import org.mdl4ui.base.model.ElementID;
@@ -22,6 +24,8 @@ public class Wizard {
     private final FieldRendererFactory rendererFactory;
     private final FieldHelpFactory helpFactory;
 
+    private final Map<ScreenID, Screen> screens = new HashMap<ScreenID, Screen>();
+
     public Wizard(FieldLabelFactory labelFactory, FieldRendererFactory rendererFactory, FieldHelpFactory helpFactory) {
         this.labelFactory = labelFactory;
         this.rendererFactory = rendererFactory;
@@ -34,11 +38,10 @@ public class Wizard {
             @Override
             public void onSubmit(BlockSubmitedEvent event) {
                 // TODO validate block
-
-                final List<BlockID> blocks = event.getBlock().getScreenID().blocks();
-                final int index = blocks.indexOf(event.getBlock().getBlockId());
-                if (index < blocks.size() - 1) {
-                    EVENT_BUS.publish(new ExpandBlockEvent(event.getBlock().getScreenID(), blocks.get(index + 1)));
+                final Screen screen = getScreen(event.getBlock());
+                final Block nextBlock = screen.getNextBlock(event.getBlock());
+                if (nextBlock != null) {
+                    EVENT_BUS.publish(new ExpandBlockEvent(nextBlock));
                 }
             }
         });
@@ -46,12 +49,22 @@ public class Wizard {
         EVENT_BUS.subscribe(BlockModifiedEvent.TYPE, new BlockModifiedHandler() {
             @Override
             public void onModify(BlockModifiedEvent event) {
-                EVENT_BUS.publish(new ExpandBlockEvent(event.getBlock().getScreenID(), event.getBlock().getBlockId()));
+                // TODO check if block can be modified
+                EVENT_BUS.publish(new ExpandBlockEvent(event.getBlock()));
             }
         });
     }
 
-    public Screen getScreen(ScreenID screenId) {
+    private Screen getScreen(Block block) {
+        for (Screen screen : screens.values()) {
+            if (screen.getBlocks().contains(block)) {
+                return screen;
+            }
+        }
+        return null;
+    }
+
+    public Screen createScreen(ScreenID screenId) {
         List<Block> blocks = new ArrayList<Block>();
         for (BlockID blockId : screenId.blocks()) {
             List<BlockItem> blockItems = new ArrayList<BlockItem>();
@@ -73,7 +86,9 @@ public class Wizard {
             block.add(blockItems);
             blocks.add(block);
         }
-        return new Screen(screenId, blocks);
+        final Screen screen = new Screen(screenId, blocks);
+        screens.put(screenId, screen);
+        return screen;
     }
 
     private Field getField(ScreenID screenId, FieldID fieldId) {

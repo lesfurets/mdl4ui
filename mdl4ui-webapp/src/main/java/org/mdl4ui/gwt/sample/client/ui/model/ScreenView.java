@@ -1,7 +1,10 @@
 package org.mdl4ui.gwt.sample.client.ui.model;
 
+import static org.mdl4ui.fields.model.event.SimpleEventBus.EVENT_BUS;
+
 import org.mdl4ui.fields.model.Block;
 import org.mdl4ui.fields.model.Screen;
+import org.mdl4ui.fields.model.event.ExpandBlockEvent;
 
 import com.github.gwtbootstrap.client.ui.Column;
 import com.github.gwtbootstrap.client.ui.Container;
@@ -24,12 +27,10 @@ public class ScreenView implements IsWidget {
             BlockView blockView = new BlockView(block);
             column.add(blockView);
 
-            if (screen.getScreenId().blocks().get(0) == block.getBlockId()) {
-                blockView.expand();
-            } else {
-                blockView.collapse();
-            }
         }
+
+        Block firstBlock = screen.getBlocks().get(0);
+        EVENT_BUS.publish(new ExpandBlockEvent(firstBlock));
     }
 
     @Override

@@ -26,5 +26,4 @@ public class GroupView implements IsWidget {
     public Widget asWidget() {
         return row;
     }
-
 }

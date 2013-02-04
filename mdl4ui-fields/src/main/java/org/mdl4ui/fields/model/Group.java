@@ -6,11 +6,11 @@ import org.mdl4ui.base.model.EElementType;
 import org.mdl4ui.base.model.GroupID;
 
 public class Group implements BlockItem {
-    private final GroupID groupId;
+    private final GroupID groupID;
     private final List<Field> fields;
 
-    public Group(final GroupID groupId, List<Field> fields) {
-        this.groupId = groupId;
+    public Group(final GroupID groupID, List<Field> fields) {
+        this.groupID = groupID;
         this.fields = fields;
     }
 
@@ -19,8 +19,8 @@ public class Group implements BlockItem {
         return EElementType.GROUP;
     }
 
-    public GroupID getGroupId() {
-        return this.groupId;
+    public GroupID getGroupID() {
+        return groupID;
     }
 
     public List<Field> getFields() {

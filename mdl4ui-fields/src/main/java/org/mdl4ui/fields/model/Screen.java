@@ -6,11 +6,11 @@ import org.mdl4ui.base.model.ScreenID;
 
 public class Screen {
 
-    private final ScreenID screenId;
+    private final ScreenID screenID;
     private final List<Block> blocks;
 
     public Screen(ScreenID screenId, final List<Block> blocks) {
-        this.screenId = screenId;
+        this.screenID = screenId;
         this.blocks = blocks;
     }
 
@@ -18,8 +18,16 @@ public class Screen {
         return blocks;
     }
 
-    public ScreenID getScreenId() {
-        return screenId;
+    public ScreenID getScreenID() {
+        return screenID;
     }
 
+    public Block getNextBlock(Block block) {
+        final int index = blocks.indexOf(block);
+        if (index < blocks.size() - 1) {
+            return blocks.get(index + 1);
+        } else {
+            return null;
+        }
+    }
 }

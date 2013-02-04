@@ -85,24 +85,25 @@ public class BlockView implements IsWidget {
         EVENT_BUS.subscribe(ExpandBlockEvent.TYPE, new ExpandBlockHandler() {
             @Override
             public void onExpand(ExpandBlockEvent event) {
-                if (event.getScreenId() == block.getScreenID()) {
-                    if (event.getBlockId() == block.getBlockId()) {
-                        expand();
-                    } else {
-                        collapse();
-                    }
+                if (event.getBlock().getScreenID() != block.getScreenID()) {
+                    return;
+                }
+                if (event.getBlock() == block) {
+                    expand();
+                } else {
+                    collapse();
                 }
             }
         });
     }
 
-    void expand() {
+    private void expand() {
         modify.setVisible(false);
         fieldset.setVisible(true);
         actions.setVisible(true);
     }
 
-    void collapse() {
+    private void collapse() {
         modify.setVisible(true);
         fieldset.setVisible(false);
         actions.setVisible(false);

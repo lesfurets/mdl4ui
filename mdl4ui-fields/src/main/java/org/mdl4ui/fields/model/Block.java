@@ -9,13 +9,13 @@ import org.mdl4ui.base.model.ScreenID;
 public class Block {
 
     private final String label;
-    private final BlockID blockId;
+    private final BlockID blockID;
     private final ScreenID screenID;
     private final List<BlockItem> items = new ArrayList<BlockItem>();
 
-    public Block(String label, final BlockID blockId, ScreenID screenID) {
+    public Block(String label, final BlockID blockID, ScreenID screenID) {
         this.label = label;
-        this.blockId = blockId;
+        this.blockID = blockID;
         this.screenID = screenID;
     }
 
@@ -31,29 +31,11 @@ public class Block {
         return items;
     }
 
-    public List<Field> getFields() {
-        List<Field> fields = new ArrayList<Field>();
-        for (BlockItem blocItem : items) {
-            switch (blocItem.getType()) {
-                case FIELD:
-                    fields.add((Field) blocItem);
-                    break;
-                case GROUP:
-                    Group group = (Group) blocItem;
-                    for (Field field : group.getFields()) {
-                        fields.add(field);
-                    }
-                    break;
-            }
-        }
-        return fields;
-    }
-
     public ScreenID getScreenID() {
         return screenID;
     }
 
-    public BlockID getBlockId() {
-        return blockId;
+    public BlockID getBlockID() {
+        return blockID;
     }
 }

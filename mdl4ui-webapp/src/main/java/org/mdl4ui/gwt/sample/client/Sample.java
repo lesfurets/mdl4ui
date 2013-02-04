@@ -18,7 +18,7 @@ public class Sample implements EntryPoint {
     @Override
     public void onModuleLoad() {
         Wizard wizard = new Wizard(LABEL, RENDERER, HELP);
-        Screen screen = wizard.getScreen(EScreenSample.SCR_WIDGETS_SHOWCASE);
+        Screen screen = wizard.createScreen(EScreenSample.SCR_WIDGETS_SHOWCASE);
         ScreenView view = new ScreenView(screen);
 
         FluidContainer container = new FluidContainer();
