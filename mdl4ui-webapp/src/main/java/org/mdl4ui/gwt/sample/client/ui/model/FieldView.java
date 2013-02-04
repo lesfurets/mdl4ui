@@ -28,8 +28,6 @@ public class FieldView implements IsWidget {
         }
 
         Controls controls = new Controls();
-
-        // TODO display help content
         controls.add(component);
 
         validation = new HelpInline();
