@@ -31,8 +31,5 @@
   <entry-point class='org.mdl4ui.gwt.sample.client.Sample' />
 
   <source path='client' />
-
-  <replace-with class="org.mdl4ui.gwt.sample.client.ui.WizardImpl">
-    <when-type-is class="org.mdl4ui.fields.model.Wizard" />
-  </replace-with>
+  
 </module>
