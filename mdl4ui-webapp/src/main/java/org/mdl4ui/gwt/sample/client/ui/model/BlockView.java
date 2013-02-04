@@ -14,9 +14,9 @@ import org.mdl4ui.fields.model.event.ExpandBlockEvent.ExpandBlockHandler;
 import com.github.gwtbootstrap.client.ui.Button;
 import com.github.gwtbootstrap.client.ui.Column;
 import com.github.gwtbootstrap.client.ui.Fieldset;
-import com.github.gwtbootstrap.client.ui.FluidRow;
 import com.github.gwtbootstrap.client.ui.FormActions;
 import com.github.gwtbootstrap.client.ui.Legend;
+import com.github.gwtbootstrap.client.ui.Row;
 import com.github.gwtbootstrap.client.ui.WellForm;
 import com.github.gwtbootstrap.client.ui.constants.ButtonType;
 import com.github.gwtbootstrap.client.ui.constants.IconType;
@@ -35,9 +35,9 @@ public class BlockView implements IsWidget {
     public BlockView(final Block block) {
         form = new WellForm();
 
-        FluidRow row = new FluidRow();
+        Row row = new Row();
 
-        Column column = new Column(11);
+        Column column = new Column(5);
         row.add(column);
         column.add(new Legend(block.getTitle()));
 
@@ -51,7 +51,7 @@ public class BlockView implements IsWidget {
                 EVENT_BUS.publish(new BlockModifiedEvent(block));
             }
         });
-        column.add(modify);
+        row.add(modify);
 
         form.add(row);
 
@@ -97,11 +97,13 @@ public class BlockView implements IsWidget {
     }
 
     void expand() {
+        modify.setVisible(false);
         fieldset.setVisible(true);
         actions.setVisible(true);
     }
 
     void collapse() {
+        modify.setVisible(true);
         fieldset.setVisible(false);
         actions.setVisible(false);
     }
