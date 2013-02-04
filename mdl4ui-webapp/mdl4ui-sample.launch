@@ -11,7 +11,7 @@
 </listAttribute>
 <stringAttribute key="org.eclipse.jdt.launching.CLASSPATH_PROVIDER" value="com.google.gwt.eclipse.core.moduleClasspathProvider"/>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.google.gwt.dev.DevMode"/>
-<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-startupUrl mdl4ui.html -war C:\dev\projects\mdl4ui\mdl4ui-webapp\war -remoteUI &quot;${gwt_remote_ui_server_port}:${unique_id}&quot; -logLevel INFO -port 8888 -codeServerPort 9997 org.mdl4ui.gwt.sample.Sample"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-startupUrl mdl4ui.html -war C:\work\mdl4ui\mdl4ui-webapp\war -remoteUI &quot;${gwt_remote_ui_server_port}:${unique_id}&quot; -logLevel INFO -port 8888 -codeServerPort 9997 org.mdl4ui.gwt.sample.Sample"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="mdl4ui-webapp"/>
 <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Xmx512m"/>
 </launchConfiguration>

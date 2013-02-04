@@ -14,7 +14,7 @@ public class ScreenView implements IsWidget {
 
     public ScreenView(final Screen screen) {
         row = new FluidRow();
-        final Column column = new Column(4, 4);
+        final Column column = new Column(8);
         row.add(column);
 
         for (Block block : screen.getBlocks()) {
