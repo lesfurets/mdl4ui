@@ -1,6 +1,3 @@
-/*
- * Copyright (C) by Courtanet, All Rights Reserved.
- */
 package org.mdl4ui.fields.model.event;
 
 import org.mdl4ui.base.model.BlockID;
