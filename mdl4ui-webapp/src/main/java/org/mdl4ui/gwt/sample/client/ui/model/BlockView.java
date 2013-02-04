@@ -89,6 +89,8 @@ public class BlockView implements IsWidget {
             @Override
             public void onExpand(ExpandBlockEvent event) {
                 ScreenID screenID = block.getScreenID();
+
+                // ignore event from others screens
                 if (event.getBlock().getScreenID() != screenID) {
                     return;
                 }
@@ -109,13 +111,11 @@ public class BlockView implements IsWidget {
     }
 
     private void expand() {
-        modify.setVisible(false);
         fieldset.setVisible(true);
         actions.setVisible(true);
     }
 
     private void collapse() {
-        modify.setVisible(true);
         fieldset.setVisible(false);
         actions.setVisible(false);
     }

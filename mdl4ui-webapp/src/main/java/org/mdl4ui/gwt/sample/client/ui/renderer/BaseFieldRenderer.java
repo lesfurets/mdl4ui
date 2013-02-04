@@ -24,11 +24,17 @@ public abstract class BaseFieldRenderer<C extends FieldComponent<?>> implements 
         return (Widget) component;
     }
 
+    /**
+     * @return <code>true</code> if the widget contains the label, <code>false</code> by default
+     */
     @Override
     public boolean isLabelInline() {
         return false;
     }
 
+    /**
+     * called if the label is inlined, set widget label
+     */
     @Override
     public void setLabel(String label, FieldID fieldID) {
         // nothing by default

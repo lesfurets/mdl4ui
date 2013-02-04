@@ -49,7 +49,6 @@ public class Wizard {
         EVENT_BUS.subscribe(BlockModifiedEvent.TYPE, new BlockModifiedHandler() {
             @Override
             public void onModify(BlockModifiedEvent event) {
-                // TODO check if block can be modified
                 EVENT_BUS.publish(new ExpandBlockEvent(event.getBlock()));
             }
         });
