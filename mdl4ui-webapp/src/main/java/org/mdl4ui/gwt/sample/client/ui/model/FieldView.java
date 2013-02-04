@@ -1,5 +1,6 @@
 package org.mdl4ui.gwt.sample.client.ui.model;
 
+import org.mdl4ui.fields.model.EFieldState;
 import org.mdl4ui.fields.model.Field;
 
 import com.github.gwtbootstrap.client.ui.ControlGroup;
@@ -44,13 +45,23 @@ public class FieldView implements IsWidget {
         return controlGroup;
     }
 
-    public void error(String message) {
-        controlGroup.setType(ControlGroupType.ERROR);
-        validation.setText(message);
-    }
-
-    public void valid() {
-        controlGroup.setType(ControlGroupType.SUCCESS);
-        validation.setText(null);
+    public void setFieldState(EFieldState state) {
+        switch (state) {
+            case DEFAULT:
+                controlGroup.setVisible(true);
+                controlGroup.setType(ControlGroupType.NONE);
+                break;
+            case ERROR:
+                controlGroup.setVisible(true);
+                controlGroup.setType(ControlGroupType.ERROR);
+                break;
+            case HIDDEN:
+                controlGroup.setVisible(false);
+                break;
+            case SET:
+                controlGroup.setVisible(true);
+                controlGroup.setType(ControlGroupType.SUCCESS);
+                break;
+        }
     }
 }
