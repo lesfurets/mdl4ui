@@ -21,7 +21,7 @@
             </dependency>
             <dependency>
                 <groupId>org.mdl4ui</groupId>
-                <artifactId>ez18n-base</artifactId>
+                <artifactId>mdl4ui-i18n</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -82,7 +82,7 @@
         </dependencies>
     </dependencyManagement>
     <modules>
-        <module>ez18n-base</module>
+        <module>mdl4ui-i18n</module>
         <module>mdl4ui-base</module>
         <module>mdl4ui-ui</module>
         <module>mdl4ui-fields</module>

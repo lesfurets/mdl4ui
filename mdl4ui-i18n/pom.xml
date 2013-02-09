@@ -8,8 +8,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.mdl4ui</groupId>
-    <artifactId>ez18n-base</artifactId>
-    <name>ez18n-base</name>
+    <artifactId>mdl4ui-i18n</artifactId>
+    <name>mdl4ui-i18n</name>
     <dependencies>
         <dependency>
             <groupId>org.apache.commons</groupId>

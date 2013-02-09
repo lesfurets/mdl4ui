@@ -12,7 +12,7 @@
   <dependencies>
     <dependency>
       <groupId>org.mdl4ui</groupId>
-      <artifactId>ez18n-base</artifactId>
+      <artifactId>mdl4ui-i18n</artifactId>
     </dependency>
     <dependency>
       <groupId>org.apache.commons</groupId>
