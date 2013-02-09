@@ -1,0 +1,23 @@
+package ${package.name};
+
+import javax.annotation.Generated;
+import java.util.ResourceBundle;
+
+import org.ez18n.runtime.Desktop;
+
+@Desktop
+@Generated(value = "${process.class}",  date = "${process.date}")
+public final class ${target.class.name} implements ${source.class.name} {
+    private final ResourceBundle delegate;
+
+    public ${target.class.name}() {
+        delegate = ResourceBundle.getBundle("${package.name}.${bundle.property.file}");
+    }
+
+    @SuppressWarnings("all")
+    private String getMessage(String key, Object... params) {
+        return java.text.MessageFormat.format(delegate.getString(key), params);
+    }
+
+${methods.code}
+}

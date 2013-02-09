@@ -11,6 +11,10 @@
   <name>mdl4ui-base</name>
   <dependencies>
     <dependency>
+      <groupId>org.mdl4ui</groupId>
+      <artifactId>ez18n-base</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-lang3</artifactId>
     </dependency>

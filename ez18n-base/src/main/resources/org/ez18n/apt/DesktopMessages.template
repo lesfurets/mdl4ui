@@ -1,0 +1,11 @@
+package ${package.name};
+
+import javax.annotation.Generated;
+import com.google.gwt.i18n.client.LocalizableResource.Generate;
+import com.google.gwt.i18n.client.Messages;
+
+@Generated(value = "${process.class}",  date = "${process.date}")
+@Generate(format = "com.google.gwt.i18n.rebind.format.PropertiesFormat")
+public interface ${target.class.name} extends Messages, ${source.class.name} {
+${methods.code}
+}

@@ -1,0 +1,5 @@
+
+    @Override
+    public ${return.type} ${method.name}() {
+        return getMessage("${method.name}", new Object[]{});
+    }

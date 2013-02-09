@@ -51,6 +51,47 @@
     </testResources>
     <plugins>
       <plugin>
+        <groupId>org.bsc.maven</groupId>
+        <artifactId>maven-processor-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>generate-i18n-source</id>
+            <goals>
+              <goal>process</goal>
+            </goals>
+            <phase>generate-sources</phase>
+            <configuration>
+              <compilerArguments>-encoding UTF-8</compilerArguments>
+              <outputDirectory>${project.build.directory}/generated-sources/apt</outputDirectory>
+              <processors>
+                <processor>org.ez18n.apt.processor.MobileBundleProcessor</processor>
+                <processor>org.ez18n.apt.processor.MobileBundlePropertiesProcessor</processor>
+                <processor>org.ez18n.apt.processor.DesktopBundleProcessor</processor>
+                <processor>org.ez18n.apt.processor.DesktopBundlePropertiesProcessor</processor>
+                <processor>org.ez18n.apt.processor.CSVReportProcessor</processor>
+                <processor>org.ez18n.apt.processor.MetaInfServicesProcessor</processor>
+              </processors>
+            </configuration>
+          </execution>
+          <execution>
+            <id>generate-i18n-test</id>
+            <goals>
+              <goal>process-test</goal>
+            </goals>
+            <phase>generate-test-sources</phase>
+            <configuration>
+              <compilerArguments>-encoding UTF-8</compilerArguments>
+              <outputDirectory>${project.build.directory}/generated-sources/apt-test</outputDirectory>
+              <processors>
+                <processor>org.ez18n.apt.processor.TestDesktopBundleProcessor</processor>
+                <processor>org.ez18n.apt.processor.TestMobileBundleProcessor</processor>
+              </processors>
+              <sourceDirectory>${project.build.sourceDirectory}</sourceDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
         <artifactId>maven-assembly-plugin</artifactId>
         <version>2.3</version>
         <configuration>

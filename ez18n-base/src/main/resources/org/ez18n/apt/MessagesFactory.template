@@ -1,0 +1,33 @@
+package ${package.name};
+
+import javax.annotation.Generated;
+import com.google.gwt.core.client.GWT;
+
+@Generated(value = "${process.class}",  date = "${process.date}")
+public class ${target.class.name} {
+    private static final ${source.class.name} LABELS = ((LabelFactory) GWT.create(DesktopLabelFactory.class))
+                    .getLabels();
+
+    public static ${source.class.name} MSG_${source.class.name.camel}() {
+        return LABELS;
+    }
+
+    private interface LabelFactory {
+        ${source.class.name} getLabels();
+    }
+
+    private static class DesktopLabelFactory implements LabelFactory {
+        @Override
+        public ${source.class.name} getLabels() {
+            return GWT.create(${desktop.messages.class.name}.class);
+        }
+    }
+
+    @SuppressWarnings("unused")
+    private static class MobileLabelFactory implements LabelFactory {
+        @Override
+        public ${source.class.name} getLabels() {
+            return GWT.create(${mobile.messages.class.name}.class);
+        }
+    }
+}

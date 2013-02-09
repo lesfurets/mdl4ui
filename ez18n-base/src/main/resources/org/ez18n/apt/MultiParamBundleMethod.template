@@ -1,0 +1,5 @@
+
+    @Override
+    public ${return.type} ${method.name}(${input.typed.params}) {
+        return getMessage("${method.name}", ${input.params});
+    }

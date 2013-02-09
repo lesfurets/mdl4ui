@@ -1,0 +1,22 @@
+package ${package.name};
+
+import static org.junit.Assert.assertNotNull;
+
+import javax.annotation.Generated;
+
+import ${annotation.qualified.class.name};
+import org.ez18n.runtime.BundleFactory;
+
+@Generated(value = "${process.class}",  date = "${process.date}")
+public class ${target.class.name} {
+
+	private ${bundle.class.name} bundle;
+
+	@org.junit.Before
+	public void setUp() {
+		bundle = BundleFactory.get(${bundle.class.name}.class, ${annotation.simple.class.name}.class);
+	}
+
+${methods.code}
+
+}

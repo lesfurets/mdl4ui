@@ -1,0 +1,5 @@
+
+    @org.junit.Test
+    public void ${method.name}() {
+    	assertNotNull(bundle.${method.name}(${input.params}));
+    }

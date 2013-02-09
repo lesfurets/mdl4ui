@@ -30,6 +30,12 @@
   <!-- Specify the app entry point class. -->
   <entry-point class='org.mdl4ui.gwt.sample.client.Sample' />
 
-  <source path='client' />
-  
+  <source path='client'>
+    <exclude name="**DesktopBundle.java" />
+    <exclude name="**MobileBundle.java" />
+    <exclude name="**DesktopBundleTest.java" />
+    <exclude name="**MobileBundleTest.java" />
+    <exclude name="**Bundle**Factory.java" />
+  </source>
+
 </module>

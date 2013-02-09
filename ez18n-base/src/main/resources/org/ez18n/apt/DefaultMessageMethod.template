@@ -1,0 +1,4 @@
+
+    @Override
+    @DefaultMessage("${default.message}")
+    public ${return.type} ${method.name}(${input.typed.params});

@@ -2,7 +2,13 @@
 <!DOCTYPE module PUBLIC "-//Google Inc.//DTD Google Web Toolkit 2.1.0//EN" "http://google-web-toolkit.googlecode.com/svn/tags/2.1.0/distro-source/core/src/gwt-module.dtd">
 <module>
   <inherits name="org.mdl4ui.ui.UI" />
+
   <source>
     <include name="**/*.java" />
+    <exclude name="**DesktopBundle.java" />
+    <exclude name="**MobileBundle.java" />
+    <exclude name="**DesktopBundleTest.java" />
+    <exclude name="**MobileBundleTest.java" />
+    <exclude name="**Bundle**Factory.java" />
   </source>
 </module>
