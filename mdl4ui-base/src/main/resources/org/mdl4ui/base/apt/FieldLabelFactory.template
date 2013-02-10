@@ -1,0 +1,23 @@
+package ${package.name};
+
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.annotation.Generated;
+
+import org.mdl4ui.base.model.*;
+import org.mdl4ui.fields.model.*;
+
+@Generated(value = "${process.class}",  date = "${process.date}")
+public final class ${target.class.name} implements FieldLabelFactory {
+	private final Map<ElementID, String> ${map.name.elements} = new HashMap<ElementID, String>();
+
+	public ${target.class.name}() {
+${class.init}
+	}
+	
+	@Override
+	public final String get(ElementID elementId) {
+	    return ${map.name.elements}.get(elementId);
+	}
+}

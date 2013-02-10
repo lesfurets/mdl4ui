@@ -1,4 +1,4 @@
-package org.mdl4ui.base.annotation;
+package org.mdl4ui.base.injection;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,7 +7,5 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.SOURCE)
 @Target(ElementType.ANNOTATION_TYPE)
-public @interface OnField {
-
-    // FieldID[] fields() default {};
+public @interface OnElement {
 }

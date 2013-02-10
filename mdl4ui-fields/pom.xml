@@ -14,6 +14,11 @@
       <groupId>org.mdl4ui</groupId>
       <artifactId>mdl4ui-ui</artifactId>
     </dependency>
+        <dependency>
+      <groupId>com.google.gwt</groupId>
+      <artifactId>gwt-user</artifactId>
+      <scope>provided</scope>
+    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -64,12 +69,17 @@
               <compilerArguments>-encoding UTF-8</compilerArguments>
               <outputDirectory>${project.build.directory}/generated-sources/apt</outputDirectory>
               <processors>
+                <processor>org.ez18n.apt.processor.GwtXmlProcessor</processor>
+                <processor>org.ez18n.apt.processor.MessagesFactoryProcessor</processor>
+                <processor>org.ez18n.apt.processor.MobileMessagesProcessor</processor>
                 <processor>org.ez18n.apt.processor.MobileBundleProcessor</processor>
                 <processor>org.ez18n.apt.processor.MobileBundlePropertiesProcessor</processor>
+                <processor>org.ez18n.apt.processor.DesktopMessagesProcessor</processor>
                 <processor>org.ez18n.apt.processor.DesktopBundleProcessor</processor>
                 <processor>org.ez18n.apt.processor.DesktopBundlePropertiesProcessor</processor>
                 <processor>org.ez18n.apt.processor.CSVReportProcessor</processor>
                 <processor>org.ez18n.apt.processor.MetaInfServicesProcessor</processor>
+                <processor>org.mdl4ui.base.apt.FieldLabelProcessor</processor>
               </processors>
             </configuration>
           </execution>

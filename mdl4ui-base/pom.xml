@@ -41,6 +41,15 @@
           <include>**/*.gwt.xml</include>
         </includes>
       </resource>
+      <resource>
+        <directory>src/main/resources</directory>
+      </resource>
+      <resource>
+        <directory>${project.build.directory}/generated-resources/apt</directory>
+        <includes>
+          <include>META-INF/services/*</include>
+        </includes>
+      </resource>
     </resources>
   </build>
 </project>
