@@ -76,58 +76,47 @@ public class FieldLabelProcessor extends FieldProcessor {
                     }
                     final ExecutableElement methodAnnoted = (ExecutableElement) elementAnnoted;
 
-                    // retrieve all annotated elements
+                    // retrieve all annotated elements by this inherited annotation
                     for (AnnotationMirror injectLabel : elementAnnoted.getAnnotationMirrors()) {
                         Map<? extends ExecutableElement, ? extends AnnotationValue> injectLabelValues = injectLabel
                                         .getElementValues();
-                        for (ExecutableElement injectLabelMethod : injectLabelValues.keySet()) {
-                            final AnnotationValue injectLabelValue = injectLabelValues.get(injectLabelMethod);
 
-                            final OnElementVisitor visitor = new OnElementVisitor();
-                            final OnElementVisitorContext visitorContext = new OnElementVisitorContext();
-
-                            // retrieve @OnElement value
-                            // FIXME check if annotation extends @OnElement
-                            if (!(injectLabelValue.getValue() instanceof AnnotationMirror)) {
-                                continue;
-                            }
-
-                            final AnnotationMirror onElement = (AnnotationMirror) injectLabelValue.getValue();
-                            final Map<? extends ExecutableElement, ? extends AnnotationValue> onElementValues = onElement
-                                            .getElementValues();
-                            for (ExecutableElement onElementMethod : onElementValues.keySet()) {
-                                final AnnotationValue onElementValue = onElementValues.get(onElementMethod);
-                                onElementValue.accept(visitor, visitorContext);
-                            }
-
-                            final Set<ScreenID> screensIds = new HashSet<ScreenID>();
-                            final Set<BlockID> blockIds = new HashSet<BlockID>();
-                            final Set<GroupID> groupIds = new HashSet<GroupID>();
-                            final Set<FieldID> fieldIds = new HashSet<FieldID>();
-                            for (Element elementFound : visitorContext.elementIds) {
-                                final ElementID elementID = getElementID(elementFound);
-                                switch (elementID.elementType()) {
-                                    case SCREEN:
-                                        screensIds.add((ScreenID) elementID);
-                                        break;
-                                    case BLOCK:
-                                        blockIds.add((BlockID) elementID);
-                                        break;
-                                    case GROUP:
-                                        groupIds.add((GroupID) elementID);
-                                        break;
-                                    case FIELD:
-                                        fieldIds.add((FieldID) elementID);
-                                        break;
-                                }
-                            }
-
-                            processingEnv.getMessager().printMessage(Kind.NOTE, injectLabelMethod.toString());
-                            insertAndCheckUnicity(this, fields, methodAnnoted, fieldIds, processingEnv);
-                            insertAndCheckUnicity(this, groups, methodAnnoted, groupIds, processingEnv);
-                            insertAndCheckUnicity(this, blocks, methodAnnoted, blockIds, processingEnv);
-                            insertAndCheckUnicity(this, screens, methodAnnoted, screensIds, processingEnv);
+                        // FIXME check only @InjectLabel annotation is handled
+                        // retrieve element ids from this annotations
+                        final OnElementVisitor visitor = new OnElementVisitor();
+                        final OnElementVisitorContext visitorContext = new OnElementVisitorContext();
+                        for (ExecutableElement onElementMethod : injectLabelValues.keySet()) {
+                            final AnnotationValue onElementValue = injectLabelValues.get(onElementMethod);
+                            onElementValue.accept(visitor, visitorContext);
                         }
+
+                        final Set<ScreenID> screensIds = new HashSet<ScreenID>();
+                        final Set<BlockID> blockIds = new HashSet<BlockID>();
+                        final Set<GroupID> groupIds = new HashSet<GroupID>();
+                        final Set<FieldID> fieldIds = new HashSet<FieldID>();
+                        for (Element elementFound : visitorContext.elementIds) {
+                            final ElementID elementID = getElementID(elementFound);
+                            switch (elementID.elementType()) {
+                                case SCREEN:
+                                    screensIds.add((ScreenID) elementID);
+                                    break;
+                                case BLOCK:
+                                    blockIds.add((BlockID) elementID);
+                                    break;
+                                case GROUP:
+                                    groupIds.add((GroupID) elementID);
+                                    break;
+                                case FIELD:
+                                    fieldIds.add((FieldID) elementID);
+                                    break;
+                            }
+                        }
+
+                        processingEnv.getMessager().printMessage(Kind.NOTE, methodAnnoted.toString());
+                        insertAndCheckUnicity(this, fields, methodAnnoted, fieldIds, processingEnv);
+                        insertAndCheckUnicity(this, groups, methodAnnoted, groupIds, processingEnv);
+                        insertAndCheckUnicity(this, blocks, methodAnnoted, blockIds, processingEnv);
+                        insertAndCheckUnicity(this, screens, methodAnnoted, screensIds, processingEnv);
                     }
                 }
 
