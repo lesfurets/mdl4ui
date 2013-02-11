@@ -1,0 +1,37 @@
+package ${package.name};
+
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.annotation.Generated;
+
+import org.mdl4ui.base.model.*;
+import org.mdl4ui.fields.model.*;
+
+@Generated(value = "${process.class}",  date = "${process.date}")
+public final class ${target.class.name} implements FieldInitializerFactory {
+	
+	private final Map<FieldID, ${enum.support}> ${map.name} = new HashMap<FieldID, ${enum.support}>();
+
+	public ${target.class.name}() {
+${class.init}
+	}
+
+	private enum ${enum.support} {
+${constants}
+	
+		private final FieldInitializer initializer;
+	
+		${enum.support}(FieldInitializer initializer) {
+			this.initializer = initializer;
+		}
+	}
+	
+	@Override
+	public final FieldInitializer get(FieldID fieldId) {
+	    final ${enum.support} initializer = ${map.name}.get(fieldId);
+	    if (initializer == null)
+	        return null;
+	    return initializer.initializer;
+	}
+}

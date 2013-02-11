@@ -8,7 +8,7 @@ import static javax.lang.model.SourceVersion.RELEASE_6;
 import javax.annotation.processing.SupportedAnnotationTypes;
 import javax.annotation.processing.SupportedSourceVersion;
 
-@SupportedAnnotationTypes(value = "net.courtanet.b2c.tunnel.model.InjectInit")
+@SupportedAnnotationTypes(value = "org.mdl4ui.base.injection.InjectInit")
 @SupportedSourceVersion(RELEASE_6)
 public class J2seFieldInitializerProcessor extends FieldInitializerProcessor {
     @Override

@@ -86,6 +86,10 @@ public abstract class FieldInitializerProcessor extends FieldProcessor {
                     }
                 }
 
+                if (classesAnnoted.isEmpty()) {
+                    continue;
+                }
+
                 final String packageName = getPackage(classesAnnoted);
                 final String className = qualifiedClassName(packageName);
                 processingEnv.getMessager().printMessage(Kind.NOTE, className);

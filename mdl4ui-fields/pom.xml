@@ -14,7 +14,7 @@
       <groupId>org.mdl4ui</groupId>
       <artifactId>mdl4ui-ui</artifactId>
     </dependency>
-        <dependency>
+    <dependency>
       <groupId>com.google.gwt</groupId>
       <artifactId>gwt-user</artifactId>
       <scope>provided</scope>
@@ -81,6 +81,8 @@
                 <processor>org.ez18n.apt.processor.MetaInfServicesProcessor</processor>
                 <processor>org.mdl4ui.base.apt.FieldLabelProcessor</processor>
                 <processor>org.mdl4ui.base.apt.FieldHelpProcessor</processor>
+                <processor>org.mdl4ui.base.apt.GwtFieldInitializerProcessor</processor>
+                <processor>org.mdl4ui.base.apt.J2seFieldInitializerProcessor</processor>
               </processors>
             </configuration>
           </execution>

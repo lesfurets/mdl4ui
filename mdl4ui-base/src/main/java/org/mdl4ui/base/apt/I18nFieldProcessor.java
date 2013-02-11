@@ -125,6 +125,10 @@ public abstract class I18nFieldProcessor extends FieldProcessor {
                     }
                 }
 
+                if (messageBundles.isEmpty()) {
+                    continue;
+                }
+
                 final String packageName = getPackage(messageBundles);
 
                 final FactoryName[] factories = new FactoryName[] { new GwtFactoryName(), new BundleFactoryName() };

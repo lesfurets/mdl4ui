@@ -9,8 +9,8 @@ import org.mdl4ui.base.injection.InjectInit;
 
 @InjectInit
 @Retention(RetentionPolicy.SOURCE)
-@Target(ElementType.METHOD)
+@Target(ElementType.TYPE)
 public @interface InjectSampleInit {
 
-    OnElement value();
+    OnField value();
 }
