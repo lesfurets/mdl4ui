@@ -12,5 +12,5 @@ import org.mdl4ui.base.injection.InjectLabel;
 @Target(ElementType.METHOD)
 public @interface InjectSampleLabel {
 
-    OnSample value();
+    OnElement value();
 }

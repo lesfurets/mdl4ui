@@ -31,13 +31,10 @@ import javax.lang.model.type.TypeMirror;
 import javax.tools.Diagnostic;
 
 import org.ez18n.MessageBundle;
-import org.mdl4ui.base.injection.OnField;
 import org.mdl4ui.base.model.BlockID;
 import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.base.model.GroupID;
 import org.mdl4ui.base.model.ScreenID;
-
-import com.sun.org.apache.bcel.internal.classfile.Field;
 
 abstract class FieldProcessor extends AbstractProcessor {
     private static MessageFormat error = new MessageFormat(
@@ -287,18 +284,6 @@ abstract class FieldProcessor extends AbstractProcessor {
         public int compare(FieldID f1, FieldID f2) {
             return f1.toString().compareTo(f2.toString());
         }
-    }
-
-    protected static Set<FieldID> collectFieldIds(OnField onField) throws IllegalArgumentException,
-                    IllegalAccessException, InvocationTargetException {
-        final Set<FieldID> fieldIds = new HashSet<FieldID>();
-        for (Method method : onField.getClass().getMethods()) {
-            if (method.getReturnType().isArray() && method.getReturnType().equals(Field.class)) {
-                FieldID[] result = (FieldID[]) method.invoke(onField, new Object[] {});
-                fieldIds.addAll(asList(result));
-            }
-        }
-        return fieldIds;
     }
 
     private static <T> Set<T> collectElementIds(AnnotationMirror onElement, Class<T> elementClass)
