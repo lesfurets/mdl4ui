@@ -39,6 +39,8 @@ import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.base.model.GroupID;
 import org.mdl4ui.base.model.ScreenID;
 
+import com.google.common.collect.Multimap;
+
 abstract class FieldProcessor extends AbstractProcessor {
     private static MessageFormat error = new MessageFormat(
                     "[processor:{0}] {1}#{2} duplicate injection [{3}] and [{4}]");
@@ -93,7 +95,7 @@ abstract class FieldProcessor extends AbstractProcessor {
         return builder.toString();
     }
 
-    static <A> String getLabelInit(Set<ExecutableElement> filterElts, Map<ExecutableElement, Set<A>> fieldLabels,
+    static <A> String getLabelInit(Set<ExecutableElement> filterElts, Multimap<ExecutableElement, A> fieldLabels,
                     String mapKey, FactoryName factoryName) {
         final List<ExecutableElement> sortedFilterElts = new ArrayList<ExecutableElement>(filterElts);
         Collections.sort(sortedFilterElts, new ExecutableElementComparator());
@@ -249,9 +251,9 @@ abstract class FieldProcessor extends AbstractProcessor {
     }
 
     static final <E extends Element, A> void insertAndCheckUnicity(FieldProcessor processor,
-                    Map<E, Set<A>> injectedTarget, E element, Set<A> fieldIds, ProcessingEnvironment env) {
+                    Multimap<E, A> injectedTarget, E element, Set<A> fieldIds, ProcessingEnvironment env) {
         for (A fieldId : fieldIds) {
-            for (Map.Entry<E, Set<A>> entry : injectedTarget.entrySet()) {
+            for (Map.Entry<E, Collection<A>> entry : injectedTarget.asMap().entrySet()) {
                 if (entry.getValue().contains(fieldId)) {
                     final String msg = error.format(new Object[] { processor.getClass().getSimpleName(),
                                     fieldId.getClass().getSimpleName(), fieldId.toString(),
@@ -260,7 +262,7 @@ abstract class FieldProcessor extends AbstractProcessor {
                 }
             }
         }
-        injectedTarget.put(element, fieldIds);
+        injectedTarget.putAll(element, fieldIds);
     }
 
     private static final class TypeElementComparator implements Comparator<TypeElement> {

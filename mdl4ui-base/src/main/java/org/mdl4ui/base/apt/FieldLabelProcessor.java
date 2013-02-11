@@ -44,6 +44,9 @@ import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.base.model.GroupID;
 import org.mdl4ui.base.model.ScreenID;
 
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
+
 @SupportedAnnotationTypes(value = "org.mdl4ui.base.injection.InjectLabel")
 @SupportedSourceVersion(RELEASE_6)
 public class FieldLabelProcessor extends FieldProcessor {
@@ -59,10 +62,10 @@ public class FieldLabelProcessor extends FieldProcessor {
         if (roundEnv.processingOver()) {
             return true;
         }
-        final Map<ExecutableElement, Set<FieldID>> fields = new HashMap<ExecutableElement, Set<FieldID>>();
-        final Map<ExecutableElement, Set<GroupID>> groups = new HashMap<ExecutableElement, Set<GroupID>>();
-        final Map<ExecutableElement, Set<BlockID>> blocks = new HashMap<ExecutableElement, Set<BlockID>>();
-        final Map<ExecutableElement, Set<ScreenID>> screens = new HashMap<ExecutableElement, Set<ScreenID>>();
+        final Multimap<ExecutableElement, FieldID> fields = HashMultimap.create();
+        final Multimap<ExecutableElement, GroupID> groups = HashMultimap.create();
+        final Multimap<ExecutableElement, BlockID> blocks = HashMultimap.create();
+        final Multimap<ExecutableElement, ScreenID> screens = HashMultimap.create();
 
         try {
             for (Element element : roundEnv.getElementsAnnotatedWith(InjectLabel.class)) {
@@ -70,7 +73,6 @@ public class FieldLabelProcessor extends FieldProcessor {
                     continue;
                 }
                 final TypeElement annotation = (TypeElement) element;
-
                 final Collection<TypeElement> messageBundles = new ArrayList<TypeElement>();
 
                 // retrieve all annotations extending @InjectLabel
@@ -90,7 +92,7 @@ public class FieldLabelProcessor extends FieldProcessor {
                         final OnElementVisitor visitor = new OnElementVisitor();
                         final OnElementVisitorContext visitorContext = new OnElementVisitorContext();
                         for (ExecutableElement onElementMethod : injectLabelValues.keySet()) {
-                            final AnnotationValue onElementValue = injectLabelValues.get(onElementMethod);
+                            AnnotationValue onElementValue = injectLabelValues.get(onElementMethod);
                             onElementValue.accept(visitor, visitorContext);
                         }
 
@@ -163,8 +165,10 @@ public class FieldLabelProcessor extends FieldProcessor {
         return null;
     }
 
-    private String getCode(Map<ExecutableElement, Set<FieldID>> fields, Map<ExecutableElement, Set<GroupID>> groups,
-                    Map<ExecutableElement, Set<BlockID>> blocks, Map<ExecutableElement, Set<ScreenID>> screens,
+    private String getCode(Multimap<ExecutableElement, FieldID> fields, //
+                    Multimap<ExecutableElement, GroupID> groups, //
+                    Multimap<ExecutableElement, BlockID> blocks, //
+                    Multimap<ExecutableElement, ScreenID> screens, //
                     boolean gwt, FactoryName factoryName, String packageName) throws IOException {
         final String template = IOUtils.toString(getClass().getResourceAsStream("FieldLabelFactory.template"));
         final Set<ExecutableElement> filterElts = new HashSet<ExecutableElement>(fields.keySet());
@@ -207,6 +211,19 @@ public class FieldLabelProcessor extends FieldProcessor {
                 visit(annotationValue, p);
             }
             return null;
+        }
+
+        @Override
+        public Void visitAnnotation(AnnotationMirror a, OnElementVisitorContext p) {
+            for (AnnotationValue annotationValue : a.getElementValues().values()) {
+                visit(annotationValue, p);
+            }
+            return null;
+        }
+
+        @Override
+        public Void visitUnknown(AnnotationValue av, OnElementVisitorContext p) {
+            return super.visitUnknown(av, p);
         }
     }
 

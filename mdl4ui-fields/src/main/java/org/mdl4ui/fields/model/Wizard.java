@@ -26,7 +26,7 @@ public class Wizard {
 
     private final Map<ScreenID, Screen> screens = new HashMap<ScreenID, Screen>();
 
-    public Wizard(FieldLabelFactory labelFactory, FieldRendererFactory rendererFactory, FieldHelpFactory helpFactory) {
+    public Wizard(FieldLabelFactory labelFactory, FieldHelpFactory helpFactory, FieldRendererFactory rendererFactory) {
         this.labelFactory = labelFactory;
         this.rendererFactory = rendererFactory;
         this.helpFactory = helpFactory;
