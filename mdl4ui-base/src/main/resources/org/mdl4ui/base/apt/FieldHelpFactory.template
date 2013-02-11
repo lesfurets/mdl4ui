@@ -1,0 +1,24 @@
+
+package ${package.name};
+
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.annotation.Generated;
+
+import org.mdl4ui.base.model.*;
+import org.mdl4ui.fields.model.*;
+
+@Generated(value = "${process.class}",  date = "${process.date}")
+public final class ${target.class.name} implements FieldHelpFactory {
+	private final Map<FieldID, String> ${map.name.elements} = new HashMap<FieldID, String>();
+
+	public ${target.class.name}() {
+${class.init}
+	}
+
+	@Override
+	public final String get(FieldID elementId) {
+	    return ${map.name.elements}.get(elementId);
+	}
+}

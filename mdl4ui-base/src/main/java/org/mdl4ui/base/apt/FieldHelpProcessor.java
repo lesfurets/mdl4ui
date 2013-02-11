@@ -10,24 +10,24 @@ import java.lang.annotation.Annotation;
 import javax.annotation.processing.SupportedAnnotationTypes;
 import javax.annotation.processing.SupportedSourceVersion;
 
-import org.mdl4ui.base.injection.InjectLabel;
+import org.mdl4ui.base.injection.InjectHelp;
 
-@SupportedAnnotationTypes(value = "org.mdl4ui.base.injection.InjectLabel")
+@SupportedAnnotationTypes(value = "org.mdl4ui.base.injection.InjectHelp")
 @SupportedSourceVersion(RELEASE_6)
-public class FieldLabelProcessor extends I18nFieldLabelProcessor {
+public class FieldHelpProcessor extends I18nFieldLabelProcessor {
 
     @Override
     protected Class<? extends Annotation> getAnnotationClass() {
-        return InjectLabel.class;
+        return InjectHelp.class;
     }
 
     @Override
     protected String getTemplate() {
-        return "FieldLabelFactory.template";
+        return "FieldHelpFactory.template";
     }
 
     @Override
     public String simpleClassName(String... prefix) {
-        return prefix[0] + "FieldLabelFactory";
+        return prefix[0] + "FieldHelpFactory";
     }
 }

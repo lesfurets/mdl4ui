@@ -34,8 +34,10 @@ public class FieldView implements IsWidget {
         validation = new HelpInline();
         controls.add(validation);
 
-        HelpBlock help = new HelpBlock(field.getHelp());
-        controls.add(help);
+        if (field.getHelp() != null) {
+            HelpBlock help = new HelpBlock(field.getHelp());
+            controls.add(help);
+        }
 
         controlGroup.add(controls);
     }

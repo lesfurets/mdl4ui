@@ -11,11 +11,7 @@ import org.mdl4ui.gwt.sample.client.ui.renderer.PasswordFieldRenderer;
 import org.mdl4ui.gwt.sample.client.ui.renderer.RadioGroupFieldRenderer;
 import org.mdl4ui.gwt.sample.client.ui.renderer.TextBoxFieldRenderer;
 
-import com.google.gwt.core.shared.GWT;
-
 public class GwtFieldRendererFactory implements FieldRendererFactory {
-
-    public static final GwtFieldRendererFactory RENDERER = GWT.create(GwtFieldRendererFactory.class);
 
     private GwtFieldRendererFactory() {
     }
