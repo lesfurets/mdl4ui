@@ -14,7 +14,7 @@ import org.mdl4ui.base.injection.InjectLabel;
 
 @SupportedAnnotationTypes(value = "org.mdl4ui.base.injection.InjectLabel")
 @SupportedSourceVersion(RELEASE_6)
-public class FieldLabelProcessor extends I18nFieldLabelProcessor {
+public class FieldLabelProcessor extends I18nFieldProcessor {
 
     @Override
     protected Class<? extends Annotation> getAnnotationClass() {

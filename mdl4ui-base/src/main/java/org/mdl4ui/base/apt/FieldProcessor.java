@@ -12,6 +12,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
@@ -35,6 +36,7 @@ import javax.tools.Diagnostic;
 import org.apache.commons.lang3.StringUtils;
 import org.ez18n.MessageBundle;
 import org.mdl4ui.base.model.BlockID;
+import org.mdl4ui.base.model.ElementID;
 import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.base.model.GroupID;
 import org.mdl4ui.base.model.ScreenID;
@@ -224,14 +226,14 @@ abstract class FieldProcessor extends AbstractProcessor {
         return result.toString();
     }
 
-    static String getFieldIdsInit(Set<TypeElement> filterElts, Map<TypeElement, Set<FieldID>> initializer) {
+    static String getFieldIdsInit(Set<TypeElement> filterElts, Multimap<TypeElement, FieldID> initializer) {
         final List<TypeElement> sortedFilterElts = new ArrayList<TypeElement>(filterElts);
         Collections.sort(sortedFilterElts, new TypeElementComparator());
         final StringBuilder builder = new StringBuilder();
         final Iterator<TypeElement> itElts = filterElts.iterator();
         while (itElts.hasNext()) {
             final Element elt = itElts.next();
-            final List<FieldID> sortedFieldIds = new ArrayList<FieldID>(initializer.get(elt));
+            final List<FieldID> sortedFieldIds = new ArrayList<FieldID>(initializer.get((TypeElement) elt));
             Collections.sort(sortedFieldIds, new FieldIdComparator());
             final Iterator<FieldID> itField = sortedFieldIds.iterator();
             while (itField.hasNext()) {
@@ -324,9 +326,9 @@ abstract class FieldProcessor extends AbstractProcessor {
         return collectElementIds(onElement, ScreenID.class);
     }
 
-    static String getPackage(Collection<TypeElement> elements) {
+    static <T extends Element> String getPackage(Collection<T> elements) {
         String packageName = null;
-        for (TypeElement typeElement : elements) {
+        for (T typeElement : elements) {
             String typeElementPackage = typeElement.getEnclosingElement().toString();
             if (packageName == null) {
                 packageName = typeElementPackage;
@@ -349,5 +351,17 @@ abstract class FieldProcessor extends AbstractProcessor {
             intersection.add(elements1[i]);
         }
         return StringUtils.join(intersection, ".");
+    }
+
+    static ElementID getElementID(Element element) throws Exception {
+        final String elementName = element.getSimpleName().toString();
+        Class<?> enumClass = Class.forName(((TypeElement) element.getEnclosingElement()).getQualifiedName().toString());
+        List<ElementID> values = Arrays.asList((ElementID[]) enumClass.getMethod("values").invoke(null));
+        for (ElementID elementID : values) {
+            if (elementName.equals(elementID.toString())) {
+                return elementID;
+            }
+        }
+        return null;
     }
 }

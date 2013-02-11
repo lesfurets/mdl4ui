@@ -13,12 +13,10 @@ import java.io.Writer;
 import java.lang.annotation.Annotation;
 import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -30,8 +28,6 @@ import javax.lang.model.element.AnnotationValue;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.TypeElement;
-import javax.lang.model.element.VariableElement;
-import javax.lang.model.util.SimpleAnnotationValueVisitor6;
 import javax.tools.Diagnostic.Kind;
 import javax.tools.JavaFileObject;
 
@@ -49,7 +45,7 @@ import com.google.common.collect.Multimap;
 
 @SupportedAnnotationTypes(value = "org.mdl4ui.base.injection.InjectLabel")
 @SupportedSourceVersion(RELEASE_6)
-public abstract class I18nFieldLabelProcessor extends FieldProcessor {
+public abstract class I18nFieldProcessor extends FieldProcessor {
 
     @Override
     protected boolean isGwtFactory() {
@@ -79,7 +75,7 @@ public abstract class I18nFieldLabelProcessor extends FieldProcessor {
                 final TypeElement annotation = (TypeElement) element;
                 final Collection<TypeElement> messageBundles = new ArrayList<TypeElement>();
 
-                // retrieve all annotations extending @InjectLabel
+                // retrieve all annotations extending source annotation
                 for (Element elementAnnoted : roundEnv.getElementsAnnotatedWith(annotation)) {
                     if (elementAnnoted.getKind() != METHOD) {
                         continue;
@@ -104,7 +100,7 @@ public abstract class I18nFieldLabelProcessor extends FieldProcessor {
                         final Set<BlockID> blockIds = new HashSet<BlockID>();
                         final Set<GroupID> groupIds = new HashSet<GroupID>();
                         final Set<FieldID> fieldIds = new HashSet<FieldID>();
-                        for (Element elementFound : visitorContext.elementIds) {
+                        for (Element elementFound : visitorContext.getElementIds()) {
                             final ElementID elementID = getElementID(elementFound);
                             switch (elementID.elementType()) {
                                 case SCREEN:
@@ -151,18 +147,6 @@ public abstract class I18nFieldLabelProcessor extends FieldProcessor {
         }
     }
 
-    private ElementID getElementID(Element element) throws Exception {
-        final String elementName = element.getSimpleName().toString();
-        Class<?> enumClass = Class.forName(((TypeElement) element.getEnclosingElement()).getQualifiedName().toString());
-        List<ElementID> values = Arrays.asList((ElementID[]) enumClass.getMethod("values").invoke(null));
-        for (ElementID elementID : values) {
-            if (elementName.equals(elementID.toString())) {
-                return elementID;
-            }
-        }
-        return null;
-    }
-
     private String getCode(Multimap<ExecutableElement, FieldID> fields, //
                     Multimap<ExecutableElement, GroupID> groups, //
                     Multimap<ExecutableElement, BlockID> blocks, //
@@ -193,39 +177,5 @@ public abstract class I18nFieldLabelProcessor extends FieldProcessor {
         } catch (PropertyParsingException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    private static final class OnElementVisitor extends SimpleAnnotationValueVisitor6<Void, OnElementVisitorContext> {
-
-        @Override
-        public Void visitEnumConstant(VariableElement c, OnElementVisitorContext p) {
-            p.elementIds.add(c);
-            return null;
-        }
-
-        @Override
-        public Void visitArray(List<? extends AnnotationValue> vals, OnElementVisitorContext p) {
-            for (AnnotationValue annotationValue : vals) {
-                visit(annotationValue, p);
-            }
-            return null;
-        }
-
-        @Override
-        public Void visitAnnotation(AnnotationMirror a, OnElementVisitorContext p) {
-            for (AnnotationValue annotationValue : a.getElementValues().values()) {
-                visit(annotationValue, p);
-            }
-            return null;
-        }
-
-        @Override
-        public Void visitUnknown(AnnotationValue av, OnElementVisitorContext p) {
-            return super.visitUnknown(av, p);
-        }
-    }
-
-    private static final class OnElementVisitorContext {
-        private final Set<Element> elementIds = new HashSet<Element>();
     }
 }
