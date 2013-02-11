@@ -4,6 +4,7 @@
 package org.mdl4ui.base.apt;
 
 import static java.lang.Character.isUpperCase;
+import static java.lang.Math.min;
 import static java.util.Arrays.asList;
 import static org.apache.commons.lang3.StringUtils.join;
 
@@ -11,6 +12,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
@@ -30,6 +32,7 @@ import javax.lang.model.element.VariableElement;
 import javax.lang.model.type.TypeMirror;
 import javax.tools.Diagnostic;
 
+import org.apache.commons.lang3.StringUtils;
 import org.ez18n.MessageBundle;
 import org.mdl4ui.base.model.BlockID;
 import org.mdl4ui.base.model.FieldID;
@@ -40,15 +43,15 @@ abstract class FieldProcessor extends AbstractProcessor {
     private static MessageFormat error = new MessageFormat(
                     "[processor:{0}] {1}#{2} duplicate injection [{3}] and [{4}]");
 
-    protected abstract boolean isGwtFactory();
+    abstract boolean isGwtFactory();
 
-    protected abstract String simpleClassName(String... prefix);
+    abstract String simpleClassName(String... prefix);
 
-    protected String qualifiedClassName(String packageName, String... prefix) {
+    String qualifiedClassName(String packageName, String... prefix) {
         return packageName + "." + simpleClassName(prefix);
     }
 
-    protected static <E extends Element> String typeElementToConstant(E element) {
+    static <E extends Element> String typeElementToConstant(E element) {
         final StringBuilder builder = new StringBuilder();
         final char[] className = element.getSimpleName().toString().toCharArray();
         for (int i = 0; i < className.length; i++) {
@@ -61,7 +64,7 @@ abstract class FieldProcessor extends AbstractProcessor {
         return builder.toString();
     }
 
-    protected String getFieldConstantFromTypeElement(Set<TypeElement> typeElements) {
+    String getFieldConstantFromTypeElement(Set<TypeElement> typeElements) {
         final List<TypeElement> sortedTypeElements = new ArrayList<TypeElement>(typeElements);
         Collections.sort(sortedTypeElements, new Comparator<TypeElement>() {
             @Override
@@ -90,8 +93,8 @@ abstract class FieldProcessor extends AbstractProcessor {
         return builder.toString();
     }
 
-    protected static <A> String getLabelInit(Set<ExecutableElement> filterElts,
-                    Map<ExecutableElement, Set<A>> fieldLabels, String mapKey, FactoryName factoryName) {
+    static <A> String getLabelInit(Set<ExecutableElement> filterElts, Map<ExecutableElement, Set<A>> fieldLabels,
+                    String mapKey, FactoryName factoryName) {
         final List<ExecutableElement> sortedFilterElts = new ArrayList<ExecutableElement>(filterElts);
         Collections.sort(sortedFilterElts, new ExecutableElementComparator());
         final StringBuilder builder = new StringBuilder();
@@ -153,7 +156,7 @@ abstract class FieldProcessor extends AbstractProcessor {
         return join(parameters, ", ");
     }
 
-    protected interface FactoryName {
+    interface FactoryName {
         String getName(Element execElement, boolean fqcn);
 
         String getName(ExecutableElement execElement, boolean fqcn);
@@ -162,7 +165,7 @@ abstract class FieldProcessor extends AbstractProcessor {
 
     }
 
-    protected static final class GwtFactoryName implements FactoryName {
+    static final class GwtFactoryName implements FactoryName {
         @Override
         public String getName(Element element, boolean fqcn) {
             final String simpleName = element.getSimpleName().toString();
@@ -183,7 +186,7 @@ abstract class FieldProcessor extends AbstractProcessor {
         }
     }
 
-    protected static final class BundleFactoryName implements FactoryName {
+    static final class BundleFactoryName implements FactoryName {
         @Override
         public String getName(Element element, boolean fqcn) {
             final String simpleName = element.getSimpleName().toString();
@@ -219,7 +222,7 @@ abstract class FieldProcessor extends AbstractProcessor {
         return result.toString();
     }
 
-    protected static String getFieldIdsInit(Set<TypeElement> filterElts, Map<TypeElement, Set<FieldID>> initializer) {
+    static String getFieldIdsInit(Set<TypeElement> filterElts, Map<TypeElement, Set<FieldID>> initializer) {
         final List<TypeElement> sortedFilterElts = new ArrayList<TypeElement>(filterElts);
         Collections.sort(sortedFilterElts, new TypeElementComparator());
         final StringBuilder builder = new StringBuilder();
@@ -245,7 +248,7 @@ abstract class FieldProcessor extends AbstractProcessor {
         return builder.toString();
     }
 
-    protected static final <E extends Element, A> void insertAndCheckUnicity(FieldProcessor processor,
+    static final <E extends Element, A> void insertAndCheckUnicity(FieldProcessor processor,
                     Map<E, Set<A>> injectedTarget, E element, Set<A> fieldIds, ProcessingEnvironment env) {
         for (A fieldId : fieldIds) {
             for (Map.Entry<E, Set<A>> entry : injectedTarget.entrySet()) {
@@ -299,23 +302,50 @@ abstract class FieldProcessor extends AbstractProcessor {
         return elements;
     }
 
-    protected static Set<FieldID> collectFieldIds(AnnotationMirror onElement) throws IllegalArgumentException,
+    static Set<FieldID> collectFieldIds(AnnotationMirror onElement) throws IllegalArgumentException,
                     IllegalAccessException, InvocationTargetException {
         return collectElementIds(onElement, FieldID.class);
     }
 
-    protected static Set<GroupID> collectGroupIds(AnnotationMirror onElement) throws IllegalArgumentException,
+    static Set<GroupID> collectGroupIds(AnnotationMirror onElement) throws IllegalArgumentException,
                     IllegalAccessException, InvocationTargetException {
         return collectElementIds(onElement, GroupID.class);
     }
 
-    protected static Set<BlockID> collectBlockIds(AnnotationMirror onElement) throws IllegalArgumentException,
+    static Set<BlockID> collectBlockIds(AnnotationMirror onElement) throws IllegalArgumentException,
                     IllegalAccessException, InvocationTargetException {
         return collectElementIds(onElement, BlockID.class);
     }
 
-    protected static Set<ScreenID> collectScreenIds(AnnotationMirror onElement) throws IllegalArgumentException,
+    static Set<ScreenID> collectScreenIds(AnnotationMirror onElement) throws IllegalArgumentException,
                     IllegalAccessException, InvocationTargetException {
         return collectElementIds(onElement, ScreenID.class);
+    }
+
+    static String getPackage(Collection<TypeElement> elements) {
+        String packageName = null;
+        for (TypeElement typeElement : elements) {
+            String typeElementPackage = typeElement.getEnclosingElement().toString();
+            if (packageName == null) {
+                packageName = typeElementPackage;
+            } else {
+                packageName = intersectPackage(packageName, typeElementPackage);
+            }
+        }
+        return packageName;
+    }
+
+    private static String intersectPackage(String s1, String s2) {
+        String[] elements1 = StringUtils.split(s1, ".");
+        String[] elements2 = StringUtils.split(s2, ".");
+
+        List<String> intersection = new ArrayList<String>();
+        for (int i = 0; i < min(elements1.length, elements2.length); i++) {
+            if (!elements1[i].equals(elements2[i])) {
+                break;
+            }
+            intersection.add(elements1[i]);
+        }
+        return StringUtils.join(intersection, ".");
     }
 }

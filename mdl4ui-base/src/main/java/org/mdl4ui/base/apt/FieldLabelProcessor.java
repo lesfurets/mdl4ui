@@ -11,7 +11,9 @@ import static javax.lang.model.element.ElementKind.METHOD;
 import java.io.IOException;
 import java.io.Writer;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -69,19 +71,21 @@ public class FieldLabelProcessor extends FieldProcessor {
                 }
                 final TypeElement annotation = (TypeElement) element;
 
+                final Collection<TypeElement> messageBundles = new ArrayList<TypeElement>();
+
                 // retrieve all annotations extending @InjectLabel
                 for (Element elementAnnoted : roundEnv.getElementsAnnotatedWith(annotation)) {
                     if (elementAnnoted.getKind() != METHOD) {
                         continue;
                     }
                     final ExecutableElement methodAnnoted = (ExecutableElement) elementAnnoted;
+                    messageBundles.add((TypeElement) methodAnnoted.getEnclosingElement());
 
                     // retrieve all annotated elements by this inherited annotation
                     for (AnnotationMirror injectLabel : elementAnnoted.getAnnotationMirrors()) {
                         Map<? extends ExecutableElement, ? extends AnnotationValue> injectLabelValues = injectLabel
                                         .getElementValues();
 
-                        // FIXME check only @InjectLabel annotation is handled
                         // retrieve element ids from this annotations
                         final OnElementVisitor visitor = new OnElementVisitor();
                         final OnElementVisitorContext visitorContext = new OnElementVisitorContext();
@@ -120,15 +124,16 @@ public class FieldLabelProcessor extends FieldProcessor {
                     }
                 }
 
+                final String packageName = getPackage(messageBundles);
+
                 final FactoryName[] factories = new FactoryName[] { new GwtFactoryName(), new BundleFactoryName() };
                 for (FactoryName factoryName : factories) {
-                    // FIXME package name should be computed from ElementID package
-                    final String className = qualifiedClassName("org.mdl4ui", factoryName.prefix());
+                    final String className = qualifiedClassName(packageName, factoryName.prefix());
                     processingEnv.getMessager().printMessage(Kind.NOTE, className);
                     try {
                         final JavaFileObject file = processingEnv.getFiler().createSourceFile(className);
                         final Writer writer = file.openWriter();
-                        writer.write(getCode(fields, groups, blocks, screens, true, factoryName));
+                        writer.write(getCode(fields, groups, blocks, screens, true, factoryName, packageName));
                         writer.close();
                     } catch (IOException e) {
                         processingEnv.getMessager().printMessage(Kind.ERROR, e.getMessage());
@@ -160,7 +165,7 @@ public class FieldLabelProcessor extends FieldProcessor {
 
     private String getCode(Map<ExecutableElement, Set<FieldID>> fields, Map<ExecutableElement, Set<GroupID>> groups,
                     Map<ExecutableElement, Set<BlockID>> blocks, Map<ExecutableElement, Set<ScreenID>> screens,
-                    boolean gwt, FactoryName factoryName) throws IOException {
+                    boolean gwt, FactoryName factoryName, String packageName) throws IOException {
         final String template = IOUtils.toString(getClass().getResourceAsStream("FieldLabelFactory.template"));
         final Set<ExecutableElement> filterElts = new HashSet<ExecutableElement>(fields.keySet());
         filterElts.addAll(groups.keySet());
@@ -176,7 +181,7 @@ public class FieldLabelProcessor extends FieldProcessor {
         final Map<String, String> conf = new HashMap<String, String>();
         conf.put("process.class", getClass().getName());
         conf.put("process.date", DateFormat.getDateTimeInstance(SHORT, SHORT).format(new Date()));
-        conf.put("package.name", "org.mdl4ui"); // FIXME hardcoded package
+        conf.put("package.name", packageName);
         conf.put("target.class.name", simpleClassName(factoryName.prefix()));
         conf.put("map.name.elements", "elements");
         conf.put("map.name.tags", "tags");
