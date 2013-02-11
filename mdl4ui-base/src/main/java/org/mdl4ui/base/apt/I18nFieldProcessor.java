@@ -57,7 +57,7 @@ public abstract class I18nFieldProcessor extends FieldProcessor {
     protected abstract String getTemplate();
 
     @Override
-    public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
+    public final boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
 
         if (roundEnv.processingOver()) {
             return true;
