@@ -106,7 +106,6 @@ public final class GenerateDepsClassesMojo extends AbstractDepsMojo {
      */
     private String formatDepEnumConstants(Class<?> dependencyClass, Map<FieldID, List<DependencyPath>> deepDeps,
                     Set<String> staticImports) {
-        final String dependencyPackageName = dependencyClass.getPackage().getName();
         final StringBuilder builder = new StringBuilder();
         final Iterator<Entry<FieldID, List<DependencyPath>>> it = deepDeps.entrySet().iterator();
         while (it.hasNext()) {
