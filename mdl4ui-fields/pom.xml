@@ -83,6 +83,10 @@
                 <processor>org.mdl4ui.base.apt.FieldHelpProcessor</processor>
                 <processor>org.mdl4ui.base.apt.GwtFieldInitializerProcessor</processor>
                 <processor>org.mdl4ui.base.apt.J2seFieldInitializerProcessor</processor>
+                <processor>org.mdl4ui.base.apt.GwtFieldEditorProcessor</processor>
+                <processor>org.mdl4ui.base.apt.J2seFieldEditorProcessor</processor>
+                <processor>org.mdl4ui.base.apt.GwtFieldBehaviourProcessor</processor>
+                <processor>org.mdl4ui.base.apt.J2seFieldBehaviourProcessor</processor>
               </processors>
             </configuration>
           </execution>

@@ -1,0 +1,38 @@
+package ${package.name};
+
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.annotation.Generated;
+
+import org.mdl4ui.base.model.*;
+import org.mdl4ui.fields.model.*;
+
+@Generated(value = "${process.class}",  date = "${process.date}")
+public final class ${target.class.name} implements FieldBehaviourFactory {
+	private static final FieldBehaviour NO_BEHAVIOUR = new org.mdl4ui.fields.model.NoBehaviour();
+
+	private final Map<FieldID, ${enum.support}> ${map.name} = new HashMap<FieldID, ${enum.support}>();
+	
+	public ${target.class.name}() {
+${class.init}
+	}
+
+	private enum ${enum.support} {
+${constants}
+	
+		private final FieldBehaviour behaviour;
+	
+		${enum.support}(FieldBehaviour behaviour) {
+			this.behaviour = behaviour;
+		}
+	}
+	
+	@Override
+	public final FieldBehaviour get(FieldID fieldId) {
+	    final ${enum.support} behaviour = ${map.name}.get(fieldId);
+	    if (behaviour == null)
+	        return NO_BEHAVIOUR;
+	    return behaviour.behaviour;
+	}
+}

@@ -2,4 +2,7 @@ org.mdl4ui.base.apt.FieldLabelProcessor
 org.mdl4ui.base.apt.FieldHelpProcessor
 org.mdl4ui.base.apt.GwtFieldInitializerProcessor
 org.mdl4ui.base.apt.J2seFieldInitializerProcessor
-
+org.mdl4ui.base.apt.GwtFieldEditorProcessor
+org.mdl4ui.base.apt.J2seFieldEditorProcessor
+org.mdl4ui.base.apt.GwtFieldBehaviourProcessor
+org.mdl4ui.base.apt.J2seFieldBehaviourProcessor
