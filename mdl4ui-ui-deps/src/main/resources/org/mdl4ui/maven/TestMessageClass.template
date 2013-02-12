@@ -1,0 +1,19 @@
+package ${package.name};
+
+${static.imports}
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+
+import javax.annotation.Generated;
+
+import org.junit.Test;
+
+import net.courtanet.core.widgets.BundleFactory;
+
+@Generated(value = "${process.class}", date = "${process.date}")
+public final class ${target.class.name} {
+
+${group.text.tests}
+${block.text.tests}
+${field.text.tests}
+}

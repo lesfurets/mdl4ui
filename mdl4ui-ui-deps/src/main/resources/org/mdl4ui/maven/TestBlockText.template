@@ -1,0 +1,9 @@
+    @Test
+    public void testBlockText_${block.name}() {
+        final String messageLabel = BundleFactory.INSTANCE.getLabel(${block.name});
+        final String messageHelp = BundleFactory.INSTANCE.getHelp(${block.name});
+        final String messageTip = BundleFactory.INSTANCE.getTip(${block.name});
+        final String messagePlaceHolder = BundleFactory.INSTANCE.getPlaceHolder(${block.name});
+${assert.message}
+    }
+

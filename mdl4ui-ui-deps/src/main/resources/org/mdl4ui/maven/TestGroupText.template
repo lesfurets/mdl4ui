@@ -1,0 +1,9 @@
+    @Test
+    public void testGroupText_${group.name}() {
+        final String messageLabel = BundleFactory.INSTANCE.getLabel(${group.name});
+        final String messageHelp = BundleFactory.INSTANCE.getHelp(${group.name});
+        final String messageTip = BundleFactory.INSTANCE.getTip(${group.name});
+        final String messagePlaceHolder = BundleFactory.INSTANCE.getPlaceHolder(${group.name});
+${assert.message}
+    }
+

@@ -1,0 +1,21 @@
+package ${package.name};
+
+${static.imports}
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
+
+import java.util.Arrays;
+import java.util.List;
+
+import javax.annotation.Generated;
+
+import org.junit.Test;
+
+import net.courtanet.b2c.tunnel.model.FieldID;
+
+@Generated(value = "${process.class}", date = "${process.date}")
+public final class ${target.class.name} {
+	private final ${factory.class.name} factory = new ${factory.class.name}();
+	
+${field.dependencies.tests}
+}

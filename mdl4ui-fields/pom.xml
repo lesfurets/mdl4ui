@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <parent>
     <groupId>org.mdl4ui</groupId>
     <artifactId>mdl4ui-root</artifactId>
@@ -107,6 +108,42 @@
               <sourceDirectory>${project.build.sourceDirectory}</sourceDirectory>
             </configuration>
           </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.mdl4ui</groupId>
+        <artifactId>mdl4ui-ui-deps</artifactId>
+        <configuration>
+          <extension>.template</extension>
+          <fieldDependencyClasses>
+            <fieldDependencyClass>org.mdl4ui.ui.sample.EFieldDependencySample</fieldDependencyClass>
+          </fieldDependencyClasses>
+          <screenClasses>
+            <screenClasse>org.mdl4ui.ui.sample.EScreenSample</screenClasse>
+          </screenClasses>
+        </configuration>
+        <executions>
+          <execution>
+            <id>generate-deep-deps</id>
+            <phase>process-sources</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+          </execution>
+          <!-- <execution>
+            <id>generate-model</id>
+            <phase>process-classes</phase>
+            <goals>
+              <goal>generateModel</goal>
+            </goals>
+          </execution> -->
+          <!-- <execution>
+            <id>generate-tests</id>
+            <phase>process-classes</phase>
+            <goals>
+              <goal>generateTests</goal>
+            </goals>
+          </execution> -->
         </executions>
       </plugin>
       <plugin>

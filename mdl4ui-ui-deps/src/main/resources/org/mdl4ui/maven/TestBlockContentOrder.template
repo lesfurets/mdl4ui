@@ -1,0 +1,6 @@
+    @Test
+    public void testBlockContentOrder_${block.name}() {
+        final List<ElementID> blockItems = Arrays.asList(${block.name}.childs());
+${assert.block.items}
+    }
+

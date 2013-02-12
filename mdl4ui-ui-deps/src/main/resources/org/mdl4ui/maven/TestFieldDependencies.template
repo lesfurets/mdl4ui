@@ -1,0 +1,6 @@
+    @Test
+    public void testFieldDependencies_${field.name}() {
+        final List<FieldID> fields = Arrays.asList(factory.get(${field.name}));
+${assert.fields}
+    }
+
