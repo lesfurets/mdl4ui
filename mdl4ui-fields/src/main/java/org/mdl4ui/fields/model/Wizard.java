@@ -1,7 +1,5 @@
 package org.mdl4ui.fields.model;
 
-import static org.mdl4ui.fields.model.event.SimpleEventBus.EVENT_BUS;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,11 +10,6 @@ import org.mdl4ui.base.model.ElementID;
 import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.base.model.GroupID;
 import org.mdl4ui.base.model.ScreenID;
-import org.mdl4ui.fields.model.event.BlockModifiedEvent;
-import org.mdl4ui.fields.model.event.BlockModifiedEvent.BlockModifiedHandler;
-import org.mdl4ui.fields.model.event.BlockSubmitedEvent;
-import org.mdl4ui.fields.model.event.BlockSubmitedEvent.BlockSubmitedHandler;
-import org.mdl4ui.fields.model.event.ExpandBlockEvent;
 
 public class Wizard {
 
@@ -30,41 +23,10 @@ public class Wizard {
         this.labelFactory = labelFactory;
         this.rendererFactory = rendererFactory;
         this.helpFactory = helpFactory;
-        initHandlers();
-    }
-
-    private void initHandlers() {
-        EVENT_BUS.subscribe(BlockSubmitedEvent.TYPE, new BlockSubmitedHandler() {
-            @Override
-            public void onSubmit(BlockSubmitedEvent event) {
-                // TODO validate block
-                final Screen screen = getScreen(event.getBlock());
-                final Block nextBlock = screen.getNextBlock(event.getBlock());
-                if (nextBlock != null) {
-                    EVENT_BUS.publish(new ExpandBlockEvent(nextBlock));
-                }
-            }
-        });
-
-        EVENT_BUS.subscribe(BlockModifiedEvent.TYPE, new BlockModifiedHandler() {
-            @Override
-            public void onModify(BlockModifiedEvent event) {
-                EVENT_BUS.publish(new ExpandBlockEvent(event.getBlock()));
-            }
-        });
     }
 
     public Map<ScreenID, Screen> getScreens() {
         return this.screens;
-    }
-
-    private Screen getScreen(Block block) {
-        for (Screen screen : screens.values()) {
-            if (screen.getBlocks().contains(block)) {
-                return screen;
-            }
-        }
-        return null;
     }
 
     public void setScreens(ScreenID... screenIds) {

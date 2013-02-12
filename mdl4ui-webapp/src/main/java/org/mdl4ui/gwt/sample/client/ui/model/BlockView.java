@@ -1,16 +1,9 @@
 package org.mdl4ui.gwt.sample.client.ui.model;
 
-import static org.mdl4ui.fields.model.event.SimpleEventBus.EVENT_BUS;
-
-import org.mdl4ui.base.model.ScreenID;
 import org.mdl4ui.fields.model.Block;
 import org.mdl4ui.fields.model.BlockItem;
 import org.mdl4ui.fields.model.Field;
 import org.mdl4ui.fields.model.Group;
-import org.mdl4ui.fields.model.event.BlockModifiedEvent;
-import org.mdl4ui.fields.model.event.BlockSubmitedEvent;
-import org.mdl4ui.fields.model.event.ExpandBlockEvent;
-import org.mdl4ui.fields.model.event.ExpandBlockEvent.ExpandBlockHandler;
 
 import com.github.gwtbootstrap.client.ui.Button;
 import com.github.gwtbootstrap.client.ui.Column;
@@ -49,8 +42,7 @@ public class BlockView implements IsWidget {
         modify.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
-                // modify block
-                EVENT_BUS.publish(new BlockModifiedEvent(block));
+                expand();
             }
         });
         row.add(modify);
@@ -75,8 +67,7 @@ public class BlockView implements IsWidget {
         validate.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
-                // submit current block
-                EVENT_BUS.publish(new BlockSubmitedEvent(block));
+                collapse();
             }
         });
 
@@ -84,30 +75,6 @@ public class BlockView implements IsWidget {
         actions.add(validate);
 
         form.add(actions);
-
-        EVENT_BUS.subscribe(ExpandBlockEvent.TYPE, new ExpandBlockHandler() {
-            @Override
-            public void onExpand(ExpandBlockEvent event) {
-                ScreenID screenID = block.getScreenID();
-
-                // ignore event from others screens
-                if (event.getBlock().getScreenID() != screenID) {
-                    return;
-                }
-
-                // expand or collapse block
-                if (event.getBlock() == block) {
-                    expand();
-                } else {
-                    collapse();
-                }
-
-                // update modify icon visibility
-                int position = screenID.blocks().indexOf(block.getBlockID());
-                int otherPosition = screenID.blocks().indexOf(event.getBlock().getBlockID());
-                modify.setVisible(position < otherPosition);
-            }
-        });
     }
 
     private void expand() {
