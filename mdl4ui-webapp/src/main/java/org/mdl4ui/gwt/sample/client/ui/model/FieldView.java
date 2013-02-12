@@ -8,6 +8,7 @@ import com.github.gwtbootstrap.client.ui.ControlLabel;
 import com.github.gwtbootstrap.client.ui.Controls;
 import com.github.gwtbootstrap.client.ui.HelpBlock;
 import com.github.gwtbootstrap.client.ui.HelpInline;
+import com.github.gwtbootstrap.client.ui.base.ValueBoxBase;
 import com.github.gwtbootstrap.client.ui.constants.ControlGroupType;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Widget;
@@ -33,6 +34,10 @@ public class FieldView implements IsWidget {
 
         validation = new HelpInline();
         controls.add(validation);
+
+        if (field.getPlaceholder() != null && component instanceof ValueBoxBase) {
+            ((ValueBoxBase<?>) component).setPlaceholder(field.getPlaceholder());
+        }
 
         if (field.getHelp() != null) {
             HelpBlock help = new HelpBlock(field.getHelp());

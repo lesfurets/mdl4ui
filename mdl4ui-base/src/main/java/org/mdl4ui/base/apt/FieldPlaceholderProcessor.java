@@ -10,24 +10,24 @@ import java.lang.annotation.Annotation;
 import javax.annotation.processing.SupportedAnnotationTypes;
 import javax.annotation.processing.SupportedSourceVersion;
 
-import org.mdl4ui.base.injection.InjectLabel;
+import org.mdl4ui.base.injection.InjectPlaceholder;
 
-@SupportedAnnotationTypes(value = "org.mdl4ui.base.injection.InjectLabel")
+@SupportedAnnotationTypes(value = "org.mdl4ui.base.injection.InjectPlaceholder")
 @SupportedSourceVersion(RELEASE_6)
-public class FieldLabelProcessor extends FieldMessageProcessor {
+public class FieldPlaceholderProcessor extends FieldMessageProcessor {
 
     @Override
     protected Class<? extends Annotation> getAnnotationClass() {
-        return InjectLabel.class;
+        return InjectPlaceholder.class;
     }
 
     @Override
     protected String getTemplate() {
-        return "FieldLabelFactory.template";
+        return "FieldPlaceholderFactory.template";
     }
 
     @Override
     public String simpleClassName(String... prefix) {
-        return prefix[0] + "FieldLabelFactory";
+        return prefix[0] + "FieldPlaceholderFactory";
     }
 }

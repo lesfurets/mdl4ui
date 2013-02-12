@@ -7,7 +7,7 @@ import java.lang.annotation.Annotation;
 
 import org.mdl4ui.base.injection.InjectBehaviour;
 
-public abstract class FieldBehaviourProcessor extends ComponentsFieldProcessor {
+public abstract class FieldBehaviourProcessor extends FieldComponentProcessor {
 
     @Override
     protected Class<? extends Annotation> getAnnotationClass() {

@@ -45,7 +45,7 @@ import com.google.common.collect.Multimap;
 
 @SupportedAnnotationTypes(value = "org.mdl4ui.base.injection.InjectLabel")
 @SupportedSourceVersion(RELEASE_6)
-public abstract class I18nFieldProcessor extends FieldProcessor {
+public abstract class FieldMessageProcessor extends FieldProcessor {
 
     @Override
     protected boolean isGwtFactory() {

@@ -37,7 +37,7 @@ import org.mdl4ui.base.model.FieldID;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 
-public abstract class ComponentsFieldProcessor extends FieldProcessor {
+public abstract class FieldComponentProcessor extends FieldProcessor {
 
     protected abstract Class<? extends Annotation> getAnnotationClass();
 

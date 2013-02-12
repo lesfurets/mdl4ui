@@ -4,6 +4,7 @@ import org.ez18n.Message;
 import org.ez18n.MessageBundle;
 import org.mdl4ui.fields.sample.InjectSampleHelp;
 import org.mdl4ui.fields.sample.InjectSampleLabel;
+import org.mdl4ui.fields.sample.InjectSamplePlaceholder;
 import org.mdl4ui.fields.sample.OnElement;
 import org.mdl4ui.ui.sample.EFieldSample;
 
@@ -14,9 +15,17 @@ public interface FieldMessages {
     @Message("Texbox")
     String texbox();
 
+    @InjectSamplePlaceholder(@OnElement(fields = EFieldSample.TEXTBOX))
+    @Message("Type your name")
+    String texboxPlaceholder();
+
     @InjectSampleLabel(@OnElement(fields = EFieldSample.PASSWORD))
     @Message("Password")
     String password();
+
+    @InjectSamplePlaceholder(@OnElement(fields = EFieldSample.PASSWORD))
+    @Message("Type your password")
+    String passwordPlaceholder();
 
     @InjectSampleHelp(@OnElement(fields = EFieldSample.PASSWORD))
     @Message("Field content is hidden")

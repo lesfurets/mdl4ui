@@ -15,13 +15,16 @@ public class Wizard {
 
     private final FieldLabelFactory labelFactory;
     private final FieldRendererFactory rendererFactory;
+    private final FieldPlaceholderFactory placeholderFactory;
     private final FieldHelpFactory helpFactory;
 
     private final Map<ScreenID, Screen> screens = new HashMap<ScreenID, Screen>();
 
-    public Wizard(FieldLabelFactory labelFactory, FieldHelpFactory helpFactory, FieldRendererFactory rendererFactory) {
+    public Wizard(FieldLabelFactory labelFactory, FieldHelpFactory helpFactory,
+                    FieldPlaceholderFactory placeholderFactory, FieldRendererFactory rendererFactory) {
         this.labelFactory = labelFactory;
         this.rendererFactory = rendererFactory;
+        this.placeholderFactory = placeholderFactory;
         this.helpFactory = helpFactory;
     }
 
@@ -58,6 +61,7 @@ public class Wizard {
     }
 
     private Field getField(ScreenID screenId, FieldID fieldId) {
-        return new Field(fieldId, labelFactory.get(fieldId), helpFactory.get(fieldId), rendererFactory.get(fieldId));
+        return new Field(fieldId, labelFactory.get(fieldId), helpFactory.get(fieldId), placeholderFactory.get(fieldId),
+                        rendererFactory.get(fieldId));
     }
 }

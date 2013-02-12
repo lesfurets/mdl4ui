@@ -1,0 +1,4 @@
+package org.mdl4ui.fields.model;
+
+public interface FieldPlaceholderFactory extends FieldMessageFactory {
+}

@@ -1,4 +1,3 @@
-
 package ${package.name};
 
 import java.util.HashMap;
@@ -10,8 +9,8 @@ import org.mdl4ui.base.model.*;
 import org.mdl4ui.fields.model.*;
 
 @Generated(value = "${process.class}",  date = "${process.date}")
-public final class ${target.class.name} implements FieldHelpFactory {
-	private final Map<FieldID, String> ${map.name.elements} = new HashMap<FieldID, String>();
+public final class ${target.class.name} implements FieldPlaceholderFactory {
+	private final Map<ElementID, String> ${map.name.elements} = new HashMap<ElementID, String>();
 
 	public ${target.class.name}() {
 ${class.init}

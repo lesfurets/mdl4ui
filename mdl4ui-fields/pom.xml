@@ -81,6 +81,7 @@
                 <processor>org.ez18n.apt.processor.MetaInfServicesProcessor</processor>
                 <processor>org.mdl4ui.base.apt.FieldLabelProcessor</processor>
                 <processor>org.mdl4ui.base.apt.FieldHelpProcessor</processor>
+                <processor>org.mdl4ui.base.apt.FieldPlaceholderProcessor</processor>
                 <processor>org.mdl4ui.base.apt.GwtFieldInitializerProcessor</processor>
                 <processor>org.mdl4ui.base.apt.J2seFieldInitializerProcessor</processor>
                 <processor>org.mdl4ui.base.apt.GwtFieldEditorProcessor</processor>

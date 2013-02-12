@@ -9,14 +9,15 @@ public class Field implements BlockItem {
 
     private final FieldID fieldId;
 
-    private final String label, help;
+    private final String label, help, placeholder;
     private final FieldRenderer<?> renderer;
     private EFieldState state = EFieldState.DEFAULT;
 
-    public Field(FieldID fieldId, String label, String help, final FieldRenderer<?> renderer) {
+    public Field(FieldID fieldId, String label, String help, String placeholder, final FieldRenderer<?> renderer) {
         this.fieldId = fieldId;
         this.label = label;
         this.help = help;
+        this.placeholder = placeholder;
         this.renderer = renderer;
     }
 
@@ -30,6 +31,10 @@ public class Field implements BlockItem {
 
     public String getHelp() {
         return help;
+    }
+
+    public String getPlaceholder() {
+        return this.placeholder;
     }
 
     @SuppressWarnings("unchecked")
