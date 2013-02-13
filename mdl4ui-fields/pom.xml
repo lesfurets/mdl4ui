@@ -78,7 +78,6 @@
                 <processor>org.ez18n.apt.processor.DesktopBundleProcessor</processor>
                 <processor>org.ez18n.apt.processor.DesktopBundlePropertiesProcessor</processor>
                 <processor>org.ez18n.apt.processor.CSVReportProcessor</processor>
-                <processor>org.ez18n.apt.processor.MetaInfServicesProcessor</processor>
                 <processor>org.mdl4ui.base.apt.FieldLabelProcessor</processor>
                 <processor>org.mdl4ui.base.apt.FieldHelpProcessor</processor>
                 <processor>org.mdl4ui.base.apt.FieldPlaceholderProcessor</processor>

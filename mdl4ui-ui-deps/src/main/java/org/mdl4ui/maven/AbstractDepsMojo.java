@@ -32,7 +32,7 @@ import org.mdl4ui.base.model.FieldDependency;
 import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.base.model.GroupID;
 import org.mdl4ui.base.model.ScreenID;
-import org.mdl4ui.maven.util.BundleFactory;
+import org.mdl4ui.maven.util.BundleFieldFactoryDelegate;
 
 abstract class AbstractDepsMojo extends AbstractMojo {
     /**
@@ -60,10 +60,10 @@ abstract class AbstractDepsMojo extends AbstractMojo {
     private MavenProject project;
 
     /**
-     * @parameter default-value="org.mdl4ui.fields.sample.BundleFactory"
+     * @parameter default-value="org.mdl4ui.fields.sample.BundleFieldFactory"
      * @required
      */
-    private String bundleFactoryClass;
+    private String bundleFieldFactoryClass;
 
     List<String> getFieldDependencyClasses() {
         return fieldDependencyClasses;
@@ -73,8 +73,8 @@ abstract class AbstractDepsMojo extends AbstractMojo {
         return screenClasses;
     }
 
-    String getBundleFactoryClass() {
-        return bundleFactoryClass;
+    String getBundleFieldFactoryClass() {
+        return bundleFieldFactoryClass;
     }
 
     final List<ScreenID> filterScreenClass(String packageName, ClassLoader classLoader) throws MojoExecutionException {
@@ -187,11 +187,11 @@ abstract class AbstractDepsMojo extends AbstractMojo {
             file.getParentFile().mkdirs();
     }
 
-    static BundleFactory getBundleFactoy(String bundleFactoryClass, ClassLoader classLoader)
+    static BundleFieldFactoryDelegate getBundleFactoy(String bundleFactoryClass, ClassLoader classLoader)
                     throws MojoExecutionException {
         final Class<?> clazz = forName(bundleFactoryClass, classLoader);
         try {
-            return new BundleFactory(clazz, clazz.getField("INSTANCE").get(null));
+            return new BundleFieldFactoryDelegate(clazz, clazz.getField("INSTANCE").get(null));
         } catch (IllegalArgumentException e) {
             throw new MojoExecutionException(e.getMessage());
         } catch (SecurityException e) {

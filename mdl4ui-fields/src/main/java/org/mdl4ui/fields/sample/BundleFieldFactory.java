@@ -12,14 +12,14 @@ import org.mdl4ui.fields.sample.i18n.BundleFieldHelpFactory;
 import org.mdl4ui.fields.sample.i18n.BundleFieldLabelFactory;
 import org.mdl4ui.fields.sample.i18n.BundleFieldPlaceholderFactory;
 
-public enum BundleFactory {
+public enum BundleFieldFactory {
     INSTANCE;
 
     private final FieldLabelFactory[] labelFactories;
     private final FieldHelpFactory[] helpFactories;
     private final FieldPlaceholderFactory[] placeholderFactories;
 
-    BundleFactory() {
+    BundleFieldFactory() {
         labelFactories = new FieldLabelFactory[] { new BundleFieldLabelFactory() };
         helpFactories = new FieldHelpFactory[] { new BundleFieldHelpFactory() };
         placeholderFactories = new FieldPlaceholderFactory[] { new BundleFieldPlaceholderFactory() };

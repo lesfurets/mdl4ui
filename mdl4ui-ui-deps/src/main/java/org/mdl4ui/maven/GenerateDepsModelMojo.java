@@ -24,7 +24,7 @@ import org.mdl4ui.base.model.EElementType;
 import org.mdl4ui.base.model.ElementID;
 import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.base.model.ScreenID;
-import org.mdl4ui.maven.util.BundleFactory;
+import org.mdl4ui.maven.util.BundleFieldFactoryDelegate;
 
 /**
  * @goal generateModel
@@ -46,7 +46,7 @@ public final class GenerateDepsModelMojo extends AbstractDepsMojo {
         final Map<FieldID, List<DependencyPath>> allDeepDeps = new HashMap<FieldID, List<DependencyPath>>();
         final Map<FieldID, List<FieldID>> allDeps = new HashMap<FieldID, List<FieldID>>();
         computeAllDeps(classLoader, allDeps, allDeepDeps);
-        final BundleFactory bundleFactory = getBundleFactoy(getBundleFactoryClass(), classLoader);
+        final BundleFieldFactoryDelegate bundleFactory = getBundleFactoy(getBundleFieldFactoryClass(), classLoader);
         for (String fieldScreenClass : getScreenClasses()) {
             final Class<?> clazz = forName(fieldScreenClass, classLoader);
             getLog().info("fieldScreenClass : " + clazz.getName());
@@ -70,7 +70,7 @@ public final class GenerateDepsModelMojo extends AbstractDepsMojo {
     }
 
     private final String generateModel(List<ScreenID> screenIds, Map<FieldID, List<FieldID>> allDeps,
-                    BundleFactory bundleFactory) throws IOException, PropertyParsingException, MojoExecutionException {
+                    BundleFieldFactoryDelegate bundleFactory) throws IOException, PropertyParsingException, MojoExecutionException {
         final String umlModel = loadTemplate("UmlModel.template");
         final Map<String, Object> conf = new HashMap<String, Object>();
 
@@ -79,7 +79,7 @@ public final class GenerateDepsModelMojo extends AbstractDepsMojo {
     }
 
     private final String generatePackage(List<ScreenID> screenIds, Map<FieldID, List<FieldID>> allDeps,
-                    BundleFactory bundleFactory) throws IOException, PropertyParsingException, MojoExecutionException {
+                    BundleFieldFactoryDelegate bundleFactory) throws IOException, PropertyParsingException, MojoExecutionException {
         final String umlClass = loadTemplate("UmlClass.template");
         final StringBuilder builder = new StringBuilder();
         for (ScreenID screenId : screenIds)
@@ -88,7 +88,7 @@ public final class GenerateDepsModelMojo extends AbstractDepsMojo {
         return builder.toString();
     }
 
-    private static <E extends ElementID> String generateClasses(List<E> elementIds, BundleFactory bundleFactory,
+    private static <E extends ElementID> String generateClasses(List<E> elementIds, BundleFieldFactoryDelegate bundleFactory,
                     String umlClass) throws IOException, MojoExecutionException, PropertyParsingException {
         final StringBuilder builder = new StringBuilder();
         for (E elementId : elementIds) {
@@ -104,7 +104,7 @@ public final class GenerateDepsModelMojo extends AbstractDepsMojo {
     }
 
     private final String generatePackage(ElementID parentId, Map<FieldID, List<FieldID>> allDeps,
-                    BundleFactory bundleFactory) throws IOException, MojoExecutionException, PropertyParsingException {
+                    BundleFieldFactoryDelegate bundleFactory) throws IOException, MojoExecutionException, PropertyParsingException {
         final String umlPackage = loadTemplate("UmlPackage.template");
         final Map<String, Object> packageConf = new HashMap<String, Object>();
         packageConf.put("package.id", parentId.toString());
@@ -122,7 +122,7 @@ public final class GenerateDepsModelMojo extends AbstractDepsMojo {
     }
 
     private final String generateField(ElementID fieldId, Map<FieldID, List<FieldID>> allDeps,
-                    BundleFactory bundleFactory) throws IOException, MojoExecutionException, PropertyParsingException {
+                    BundleFieldFactoryDelegate bundleFactory) throws IOException, MojoExecutionException, PropertyParsingException {
         final String umlInstance = loadTemplate("UmlInstanceSpecification.template");
         final String umlInstanceWithClassifier = loadTemplate("UmlInstanceSpecificationWithClassifier.template");
         final String umlDependency = loadTemplate("UmlDependency.template");
@@ -165,7 +165,7 @@ public final class GenerateDepsModelMojo extends AbstractDepsMojo {
         return fieldIds;
     }
 
-    private static final String label(ElementID elementId, BundleFactory bundleFactoy) throws MojoExecutionException {
+    private static final String label(ElementID elementId, BundleFieldFactoryDelegate bundleFactoy) throws MojoExecutionException {
         if (StringUtils.isEmpty(bundleFactoy.getLabel(elementId)))
             return elementId.toString();
         return elementId.toString() + " : " + bundleFactoy.getLabel(elementId);

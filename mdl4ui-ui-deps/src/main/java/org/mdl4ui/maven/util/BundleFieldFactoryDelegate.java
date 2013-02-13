@@ -8,11 +8,11 @@ import java.lang.reflect.InvocationTargetException;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.mdl4ui.base.model.ElementID;
 
-public final class BundleFactory {
+public final class BundleFieldFactoryDelegate {
     private final Class<?> clazz;
     private final Object instance;
 
-    public BundleFactory(Class<?> clazz, Object instance) {
+    public BundleFieldFactoryDelegate(Class<?> clazz, Object instance) {
         this.clazz = clazz;
         this.instance = instance;
     }
