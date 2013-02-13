@@ -112,7 +112,7 @@
         <groupId>org.mdl4ui</groupId>
         <artifactId>mdl4ui-ui-deps</artifactId>
         <configuration>
-          <extension>.template</extension>
+          <extension>.java</extension>
           <fieldDependencyClasses>
             <fieldDependencyClass>org.mdl4ui.ui.sample.EFieldDependencySample</fieldDependencyClass>
           </fieldDependencyClasses>
@@ -128,20 +128,20 @@
               <goal>generate</goal>
             </goals>
           </execution>
-          <!-- <execution>
+          <execution>
             <id>generate-model</id>
             <phase>process-classes</phase>
             <goals>
               <goal>generateModel</goal>
             </goals>
-          </execution> -->
-          <!-- <execution>
+          </execution> 
+          <execution>
             <id>generate-tests</id>
             <phase>process-classes</phase>
             <goals>
               <goal>generateTests</goal>
             </goals>
-          </execution> -->
+          </execution>
         </executions>
       </plugin>
       <plugin>

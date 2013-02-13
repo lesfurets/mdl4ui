@@ -8,7 +8,7 @@ import javax.annotation.Generated;
 
 import org.junit.Test;
 
-import net.courtanet.core.widgets.BundleFactory;
+import org.mdl4ui.fields.sample.BundleFieldFactory;
 
 @Generated(value = "${process.class}", date = "${process.date}")
 public final class ${target.class.name} {

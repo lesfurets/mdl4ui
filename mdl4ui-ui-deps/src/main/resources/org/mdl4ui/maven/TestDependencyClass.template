@@ -11,7 +11,7 @@ import javax.annotation.Generated;
 
 import org.junit.Test;
 
-import net.courtanet.b2c.tunnel.model.FieldID;
+import org.mdl4ui.base.model.FieldID;
 
 @Generated(value = "${process.class}", date = "${process.date}")
 public final class ${target.class.name} {
