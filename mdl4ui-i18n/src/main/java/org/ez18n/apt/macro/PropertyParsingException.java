@@ -13,10 +13,8 @@
 package org.ez18n.apt.macro;
 
 public class PropertyParsingException extends Exception {
-    private static final long serialVersionUID = 8023170163059010010L;
 
     public PropertyParsingException(String message) {
         super(message);
     }
-
 }

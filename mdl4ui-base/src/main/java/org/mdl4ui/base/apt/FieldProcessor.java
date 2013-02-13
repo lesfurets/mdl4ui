@@ -5,18 +5,14 @@ package org.mdl4ui.base.apt;
 
 import static java.lang.Character.isUpperCase;
 import static java.lang.Math.min;
-import static java.util.Arrays.asList;
 import static org.apache.commons.lang3.StringUtils.join;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +20,6 @@ import java.util.Set;
 
 import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.ProcessingEnvironment;
-import javax.lang.model.element.AnnotationMirror;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
 import javax.lang.model.element.ExecutableElement;
@@ -35,11 +30,8 @@ import javax.tools.Diagnostic;
 
 import org.apache.commons.lang3.StringUtils;
 import org.ez18n.MessageBundle;
-import org.mdl4ui.base.model.BlockID;
 import org.mdl4ui.base.model.ElementID;
 import org.mdl4ui.base.model.FieldID;
-import org.mdl4ui.base.model.GroupID;
-import org.mdl4ui.base.model.ScreenID;
 
 import com.google.common.collect.Multimap;
 
@@ -290,39 +282,6 @@ abstract class FieldProcessor extends AbstractProcessor {
         public int compare(FieldID f1, FieldID f2) {
             return f1.toString().compareTo(f2.toString());
         }
-    }
-
-    private static <T> Set<T> collectElementIds(AnnotationMirror onElement, Class<T> elementClass)
-                    throws IllegalArgumentException, IllegalAccessException, InvocationTargetException {
-        final Set<T> elements = new HashSet<T>();
-        for (Method method : onElement.getClass().getMethods()) {
-            if (method.getReturnType().isArray() && method.getReturnType().equals(elementClass)) {
-                @SuppressWarnings("unchecked")
-                T[] result = (T[]) method.invoke(onElement, new Object[] {});
-                elements.addAll(asList(result));
-            }
-        }
-        return elements;
-    }
-
-    static Set<FieldID> collectFieldIds(AnnotationMirror onElement) throws IllegalArgumentException,
-                    IllegalAccessException, InvocationTargetException {
-        return collectElementIds(onElement, FieldID.class);
-    }
-
-    static Set<GroupID> collectGroupIds(AnnotationMirror onElement) throws IllegalArgumentException,
-                    IllegalAccessException, InvocationTargetException {
-        return collectElementIds(onElement, GroupID.class);
-    }
-
-    static Set<BlockID> collectBlockIds(AnnotationMirror onElement) throws IllegalArgumentException,
-                    IllegalAccessException, InvocationTargetException {
-        return collectElementIds(onElement, BlockID.class);
-    }
-
-    static Set<ScreenID> collectScreenIds(AnnotationMirror onElement) throws IllegalArgumentException,
-                    IllegalAccessException, InvocationTargetException {
-        return collectElementIds(onElement, ScreenID.class);
     }
 
     static <T extends Element> String getPackage(Collection<T> elements) {

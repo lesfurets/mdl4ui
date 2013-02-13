@@ -38,12 +38,6 @@ public class MacroProcessor {
                         defaultReplacement);
     }
 
-    public static String replaceProperties(String value, Map<String, ?> conf, String defaultReplacement,
-                    Evaluator evaluator) throws PropertyParsingException {
-        return replacePropertiesRec(value, conf, new ArrayList<String>(), new ArrayList<String>(), 0, false,
-                        defaultReplacement, evaluator);
-    }
-
     public static String replaceProperties(String value, Map<String, ?> conf, int depth)
                     throws PropertyParsingException {
         return replacePropertiesRec(value, conf, new ArrayList<String>(), new ArrayList<String>(), depth, false, null,
@@ -81,9 +75,9 @@ public class MacroProcessor {
         final Iterator<String> i = fragments.iterator();
         final Iterator<String> j = propertyRefs.iterator();
         while (i.hasNext()) {
-            String fragment = (String) i.next();
+            String fragment = i.next();
             if (fragment == null) {
-                final String propertyName = (String) j.next();
+                final String propertyName = j.next();
                 fragment = evaluator.eval(conf, propertyName, defaultReplacement, encodeHTML);
                 final boolean sameProperty = fragment.indexOf(REF_PREFIX + propertyName + REF_SUFFIX) >= 0;
                 final boolean alwaysProperty = containProperty(fragment);
