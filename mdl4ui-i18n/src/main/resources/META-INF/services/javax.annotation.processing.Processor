@@ -1,7 +1,6 @@
 org.ez18n.apt.processor.CSVReportProcessor
 org.ez18n.apt.processor.GwtXmlProcessor
 org.ez18n.apt.processor.MessagesFactoryProcessor
-org.ez18n.apt.processor.MetaInfServicesProcessor
 org.ez18n.apt.processor.MobileBundleProcessor
 org.ez18n.apt.processor.MobileMessagesProcessor
 org.ez18n.apt.processor.MobileBundlePropertiesProcessor

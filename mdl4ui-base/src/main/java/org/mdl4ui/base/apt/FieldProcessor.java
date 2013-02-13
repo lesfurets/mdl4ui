@@ -196,9 +196,8 @@ abstract class FieldProcessor extends AbstractProcessor {
             final String simpleName = element.getSimpleName().toString();
             final int resourceIndex = simpleName.indexOf("Resources");
             final String shortName = resourceIndex > 0 ? simpleName.substring(0, resourceIndex) : simpleName;
-            return "org.ez18n.runtime.BundleFactory.get("
-                            + (fqcn ? element.getEnclosingElement().toString() + "." : "") + shortName
-                            + ".class, org.ez18n.runtime.Desktop.class)";
+            return (fqcn ? element.getEnclosingElement().toString() + "." : "") + shortName + "DesktopBundle.MSG_"
+                            + toCamelCase(element);
         }
 
         @Override
