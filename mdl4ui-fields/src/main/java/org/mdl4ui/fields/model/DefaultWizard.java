@@ -34,13 +34,11 @@ public class DefaultWizard implements Wizard {
     }
 
     @Override
-    public Screen getCurrentScreen() {
-        return currentScreen;
-    }
-
-    @Override
-    public void setCurrentScreen(Screen screen) {
+    public void displayScreen(Screen screen) {
         currentScreen = screen;
+        for (Field field : screen.fields()) {
+            updateBehaviour(field);
+        }
     }
 
     @Override

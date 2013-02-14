@@ -13,9 +13,7 @@ public interface Wizard {
 
     Map<ScreenID, Screen> getScreens();
 
-    Screen getCurrentScreen();
-
-    void setCurrentScreen(Screen screen);
+    void displayScreen(Screen screen);
 
     void addScreens(ScreenID... screenIds);
 

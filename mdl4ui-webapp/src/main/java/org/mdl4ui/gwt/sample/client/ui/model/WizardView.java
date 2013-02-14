@@ -36,7 +36,7 @@ public class WizardView implements IsWidget {
             throw new IllegalArgumentException("unknow screen id : " + screenView);
         }
         container.add(screenView);
-        wizard.setCurrentScreen(screenView.getScreen());
+        wizard.displayScreen(screenView.getScreen());
     }
 
     @Override
