@@ -23,7 +23,7 @@ public class DefaultWizard implements Wizard {
 
     private final ClientFactory clientFactory;
     private final Map<ScreenID, Screen> screens;
-    private WizardContext context;
+    private final WizardContext context;
 
     private Screen currentScreen;
 
@@ -48,7 +48,7 @@ public class DefaultWizard implements Wizard {
 
     @Override
     public Map<ScreenID, Screen> getScreens() {
-        return this.screens;
+        return screens;
     }
 
     @Override
@@ -71,11 +71,11 @@ public class DefaultWizard implements Wizard {
                             break;
                     }
                 }
-                Block block = new Block(clientFactory.getLabelFactory().get(blockId), blockId, screenID);
+                Block block = new Block(clientFactory.getLabelFactory().get(blockId), blockId);
                 block.add(blockItems);
                 blocks.add(block);
             }
-            final Screen screen = new Screen(screenID, blocks);
+            Screen screen = new Screen(screenID, blocks);
             screens.put(screenID, screen);
         }
     }
