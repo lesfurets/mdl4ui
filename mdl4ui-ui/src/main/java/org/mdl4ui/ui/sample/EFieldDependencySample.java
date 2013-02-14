@@ -3,9 +3,9 @@
  */
 package org.mdl4ui.ui.sample;
 
-import static org.mdl4ui.ui.sample.EFieldSample.NUMERIC;
-import static org.mdl4ui.ui.sample.EFieldSample.PASSWORD;
-import static org.mdl4ui.ui.sample.EFieldSample.TEXTBOX;
+import static org.mdl4ui.ui.sample.EFieldSample.EMAIL;
+import static org.mdl4ui.ui.sample.EFieldSample.EMAILS_PREFERENCES;
+import static org.mdl4ui.ui.sample.EFieldSample.MAX_WEEKLY_EMAILS;
 
 import org.mdl4ui.base.model.FieldDependency;
 import org.mdl4ui.base.model.FieldID;
@@ -13,7 +13,7 @@ import org.mdl4ui.base.model.FieldID;
 public enum EFieldDependencySample implements FieldDependency {
 
     NO(null), //
-    DEP_TEXTBOX(TEXTBOX, PASSWORD, NUMERIC);
+    DEP_TEXTBOX(EMAIL, EMAILS_PREFERENCES, MAX_WEEKLY_EMAILS);
 
     private final FieldID from;
     private final FieldID[] to;

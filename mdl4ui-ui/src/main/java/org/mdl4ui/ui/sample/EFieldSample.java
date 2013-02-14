@@ -15,14 +15,20 @@ import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.base.model.GroupID;
 
 public enum EFieldSample implements FieldID {
-    TEXTBOX(EFieldType.TEXTBOX), //
-    PASSWORD(EFieldType.PASSWORD), //
-    NUMERIC(EFieldType.NUMERIC), //
-    LISTBOX(EFieldType.LISTBOX), //
-    RADIO_GROUP(EFieldType.RADIO_GROUP), //
-    CHECKBOX_GROUP(EFieldType.CHECKBOX_GROUP), //
-    DATE(EFieldType.DATE);
+    FIRST_NAME(EFieldType.TEXTBOX), //
+    LAST_NAME(EFieldType.TEXTBOX), //
+    EMAIL(EFieldType.TEXTBOX), //
+    BIRTHDATE(EFieldType.DATE), //
+    LANGUAGE(EFieldType.RADIO_GROUP), //
+    TIMEZONE(EFieldType.LISTBOX), //
 
+    EMAIL_ACCEPTED(EFieldType.RADIO_GROUP), //
+    EMAILS_PREFERENCES(EFieldType.CHECKBOX_GROUP), //
+    MAX_WEEKLY_EMAILS(EFieldType.NUMERIC), //
+
+    LOGIN(EFieldType.TEXTBOX), //
+    PASSWORD(EFieldType.PASSWORD), //
+    PASSWORD_CONFIRMATION(EFieldType.PASSWORD);
     private EFieldType type;
 
     private EFieldSample(EFieldType type) {

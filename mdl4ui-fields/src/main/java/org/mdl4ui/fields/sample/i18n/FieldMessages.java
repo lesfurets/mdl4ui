@@ -11,47 +11,72 @@ import org.mdl4ui.ui.sample.EFieldSample;
 @MessageBundle
 public interface FieldMessages {
 
-    @InjectSampleLabel(@OnElement(fields = EFieldSample.TEXTBOX))
-    @Message("Texbox")
-    String texbox();
+    @InjectSampleLabel(@OnElement(fields = EFieldSample.FIRST_NAME))
+    @Message("First Name")
+    String firstName();
 
-    @InjectSamplePlaceholder(@OnElement(fields = EFieldSample.TEXTBOX))
-    @Message("Type your name")
-    String texboxPlaceholder();
+    @InjectSamplePlaceholder(@OnElement(fields = EFieldSample.FIRST_NAME))
+    @Message("John")
+    String john();
+
+    @InjectSampleLabel(@OnElement(fields = EFieldSample.LAST_NAME))
+    @Message("Last Name")
+    String lastName();
+
+    @InjectSamplePlaceholder(@OnElement(fields = EFieldSample.LAST_NAME))
+    @Message("Doe")
+    String doe();
+
+    @InjectSampleLabel(@OnElement(fields = EFieldSample.EMAIL))
+    @Message("Email")
+    String email();
+
+    @InjectSamplePlaceholder(@OnElement(fields = EFieldSample.EMAIL))
+    @Message("john@doe.com")
+    String john_doe_com();
+
+    @InjectSampleHelp(@OnElement(fields = EFieldSample.EMAIL))
+    @Message("You will receive a email to confirm your inscription")
+    String confirmationEmail();
+
+    @InjectSampleLabel(@OnElement(fields = EFieldSample.BIRTHDATE))
+    @Message("Birth date")
+    String birthDate();
+
+    @InjectSamplePlaceholder(@OnElement(fields = EFieldSample.BIRTHDATE))
+    @Message("dd/mm/yyyy")
+    String ddmmyyyy();
+
+    @InjectSampleLabel(@OnElement(fields = EFieldSample.LANGUAGE))
+    @Message("Language")
+    String language();
+
+    @InjectSampleLabel(@OnElement(fields = EFieldSample.TIMEZONE))
+    @Message("Timezone")
+    String timezone();
+
+    @InjectSampleLabel(@OnElement(fields = EFieldSample.EMAIL_ACCEPTED))
+    @Message("I accept to receive email")
+    String emailAccepted();
+
+    @InjectSampleLabel(@OnElement(fields = EFieldSample.EMAILS_PREFERENCES))
+    @Message("Email preference")
+    String emailPreference();
+
+    @InjectSampleLabel(@OnElement(fields = EFieldSample.MAX_WEEKLY_EMAILS))
+    @Message("Maximum sent emails per week")
+    String max_mail_per_week();
+
+    @InjectSampleLabel(@OnElement(fields = EFieldSample.LOGIN))
+    @Message("Login")
+    String login();
 
     @InjectSampleLabel(@OnElement(fields = EFieldSample.PASSWORD))
     @Message("Password")
     String password();
 
-    @InjectSamplePlaceholder(@OnElement(fields = EFieldSample.PASSWORD))
-    @Message("Type your password")
-    String passwordPlaceholder();
+    @InjectSampleLabel(@OnElement(fields = EFieldSample.PASSWORD_CONFIRMATION))
+    @Message("Confirm your password")
+    String confirmPassword();
 
-    @InjectSampleHelp(@OnElement(fields = EFieldSample.PASSWORD))
-    @Message("Field content is hidden")
-    String passwordHelp();
-
-    @InjectSampleLabel(@OnElement(fields = EFieldSample.NUMERIC))
-    @Message("Numeric Textbox")
-    String numeric();
-
-    @InjectSampleLabel(@OnElement(fields = EFieldSample.LISTBOX))
-    @Message("Listbox")
-    String listbox();
-
-    @InjectSampleLabel(@OnElement(fields = EFieldSample.RADIO_GROUP))
-    @Message("Radiobox Group")
-    String radioboxGroup();
-
-    @InjectSampleLabel(@OnElement(fields = EFieldSample.CHECKBOX_GROUP))
-    @Message("Checkbox Group")
-    String checkBoxGroup();
-
-    @InjectSampleLabel(@OnElement(fields = EFieldSample.DATE))
-    @Message("Date textbox")
-    String date();
-
-    @InjectSampleHelp(@OnElement(fields = EFieldSample.DATE))
-    @Message("A date picker is available")
-    String dateHelp();
 }

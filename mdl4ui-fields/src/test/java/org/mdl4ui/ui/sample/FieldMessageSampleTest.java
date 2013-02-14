@@ -13,14 +13,14 @@ import org.junit.Test;
 
 import org.mdl4ui.fields.sample.BundleFieldFactory;
 
-@Generated(value = "org.mdl4ui.maven.GenerateDepsTestMojo", date = "14/02/13 09:59")
+@Generated(value = "org.mdl4ui.maven.GenerateDepsTestMojo", date = "14/02/13 10:44")
 public final class FieldMessageSampleTest {
 
     @Test
-    public void testGroupText_SPECIAL_TEXT_FIELDS() {
-        final String messageLabel = BundleFieldFactory.INSTANCE.getLabel(SPECIAL_TEXT_FIELDS);
-        final String messageHelp = BundleFieldFactory.INSTANCE.getHelp(SPECIAL_TEXT_FIELDS);
-        final String messagePlaceHolder = BundleFieldFactory.INSTANCE.getPlaceHolder(SPECIAL_TEXT_FIELDS);
+    public void testGroupText_EMAIL_GROUP() {
+        final String messageLabel = BundleFieldFactory.INSTANCE.getLabel(EMAIL_GROUP);
+        final String messageHelp = BundleFieldFactory.INSTANCE.getHelp(EMAIL_GROUP);
+        final String messagePlaceHolder = BundleFieldFactory.INSTANCE.getPlaceHolder(EMAIL_GROUP);
         assertNull(messageLabel);
         assertNull(messageHelp);
         assertNull(messagePlaceHolder);
@@ -29,22 +29,22 @@ public final class FieldMessageSampleTest {
 
 
     @Test
-    public void testBlockText_TEXT_FIELDS() {
-        final String messageLabel = BundleFieldFactory.INSTANCE.getLabel(TEXT_FIELDS);
-        final String messageHelp = BundleFieldFactory.INSTANCE.getHelp(TEXT_FIELDS);
-        final String messagePlaceHolder = BundleFieldFactory.INSTANCE.getPlaceHolder(TEXT_FIELDS);
-        assertEquals("Textbox-based fields", messageLabel);
+    public void testBlockText_INFORMATIONS() {
+        final String messageLabel = BundleFieldFactory.INSTANCE.getLabel(INFORMATIONS);
+        final String messageHelp = BundleFieldFactory.INSTANCE.getHelp(INFORMATIONS);
+        final String messagePlaceHolder = BundleFieldFactory.INSTANCE.getPlaceHolder(INFORMATIONS);
+        assertEquals("My Profile", messageLabel);
         assertNull(messageHelp);
         assertNull(messagePlaceHolder);
 
     }
 
     @Test
-    public void testBlockText_OTHER_FIELDS() {
-        final String messageLabel = BundleFieldFactory.INSTANCE.getLabel(OTHER_FIELDS);
-        final String messageHelp = BundleFieldFactory.INSTANCE.getHelp(OTHER_FIELDS);
-        final String messagePlaceHolder = BundleFieldFactory.INSTANCE.getPlaceHolder(OTHER_FIELDS);
-        assertEquals("other fields", messageLabel);
+    public void testBlockText_ACCOUNT() {
+        final String messageLabel = BundleFieldFactory.INSTANCE.getLabel(ACCOUNT);
+        final String messageHelp = BundleFieldFactory.INSTANCE.getHelp(ACCOUNT);
+        final String messagePlaceHolder = BundleFieldFactory.INSTANCE.getPlaceHolder(ACCOUNT);
+        assertEquals("My Account", messageLabel);
         assertNull(messageHelp);
         assertNull(messagePlaceHolder);
 
@@ -52,13 +52,112 @@ public final class FieldMessageSampleTest {
 
 
     @Test
-    public void testFieldText_TEXTBOX() {
-        final String messageLabel = BundleFieldFactory.INSTANCE.getLabel(TEXTBOX);
-        final String messageHelp = BundleFieldFactory.INSTANCE.getHelp(TEXTBOX);
-        final String messagePlaceHolder = BundleFieldFactory.INSTANCE.getPlaceHolder(TEXTBOX);
-        assertEquals("Texbox", messageLabel);
+    public void testFieldText_FIRST_NAME() {
+        final String messageLabel = BundleFieldFactory.INSTANCE.getLabel(FIRST_NAME);
+        final String messageHelp = BundleFieldFactory.INSTANCE.getHelp(FIRST_NAME);
+        final String messagePlaceHolder = BundleFieldFactory.INSTANCE.getPlaceHolder(FIRST_NAME);
+        assertEquals("First Name", messageLabel);
         assertNull(messageHelp);
-        assertEquals("Type your name", messagePlaceHolder);
+        assertEquals("John", messagePlaceHolder);
+
+    }
+
+    @Test
+    public void testFieldText_LAST_NAME() {
+        final String messageLabel = BundleFieldFactory.INSTANCE.getLabel(LAST_NAME);
+        final String messageHelp = BundleFieldFactory.INSTANCE.getHelp(LAST_NAME);
+        final String messagePlaceHolder = BundleFieldFactory.INSTANCE.getPlaceHolder(LAST_NAME);
+        assertEquals("Last Name", messageLabel);
+        assertNull(messageHelp);
+        assertEquals("Doe", messagePlaceHolder);
+
+    }
+
+    @Test
+    public void testFieldText_EMAIL() {
+        final String messageLabel = BundleFieldFactory.INSTANCE.getLabel(EMAIL);
+        final String messageHelp = BundleFieldFactory.INSTANCE.getHelp(EMAIL);
+        final String messagePlaceHolder = BundleFieldFactory.INSTANCE.getPlaceHolder(EMAIL);
+        assertEquals("Email", messageLabel);
+        assertEquals("You will receive a email to confirm your inscription", messageHelp);
+        assertEquals("john@doe.com", messagePlaceHolder);
+
+    }
+
+    @Test
+    public void testFieldText_BIRTHDATE() {
+        final String messageLabel = BundleFieldFactory.INSTANCE.getLabel(BIRTHDATE);
+        final String messageHelp = BundleFieldFactory.INSTANCE.getHelp(BIRTHDATE);
+        final String messagePlaceHolder = BundleFieldFactory.INSTANCE.getPlaceHolder(BIRTHDATE);
+        assertEquals("Birth date", messageLabel);
+        assertNull(messageHelp);
+        assertEquals("dd/mm/yyyy", messagePlaceHolder);
+
+    }
+
+    @Test
+    public void testFieldText_LANGUAGE() {
+        final String messageLabel = BundleFieldFactory.INSTANCE.getLabel(LANGUAGE);
+        final String messageHelp = BundleFieldFactory.INSTANCE.getHelp(LANGUAGE);
+        final String messagePlaceHolder = BundleFieldFactory.INSTANCE.getPlaceHolder(LANGUAGE);
+        assertEquals("Language", messageLabel);
+        assertNull(messageHelp);
+        assertNull(messagePlaceHolder);
+
+    }
+
+    @Test
+    public void testFieldText_TIMEZONE() {
+        final String messageLabel = BundleFieldFactory.INSTANCE.getLabel(TIMEZONE);
+        final String messageHelp = BundleFieldFactory.INSTANCE.getHelp(TIMEZONE);
+        final String messagePlaceHolder = BundleFieldFactory.INSTANCE.getPlaceHolder(TIMEZONE);
+        assertEquals("Timezone", messageLabel);
+        assertNull(messageHelp);
+        assertNull(messagePlaceHolder);
+
+    }
+
+    @Test
+    public void testFieldText_EMAIL_ACCEPTED() {
+        final String messageLabel = BundleFieldFactory.INSTANCE.getLabel(EMAIL_ACCEPTED);
+        final String messageHelp = BundleFieldFactory.INSTANCE.getHelp(EMAIL_ACCEPTED);
+        final String messagePlaceHolder = BundleFieldFactory.INSTANCE.getPlaceHolder(EMAIL_ACCEPTED);
+        assertEquals("I accept to receive email", messageLabel);
+        assertNull(messageHelp);
+        assertNull(messagePlaceHolder);
+
+    }
+
+    @Test
+    public void testFieldText_EMAILS_PREFERENCES() {
+        final String messageLabel = BundleFieldFactory.INSTANCE.getLabel(EMAILS_PREFERENCES);
+        final String messageHelp = BundleFieldFactory.INSTANCE.getHelp(EMAILS_PREFERENCES);
+        final String messagePlaceHolder = BundleFieldFactory.INSTANCE.getPlaceHolder(EMAILS_PREFERENCES);
+        assertEquals("Email preference", messageLabel);
+        assertNull(messageHelp);
+        assertNull(messagePlaceHolder);
+
+    }
+
+    @Test
+    public void testFieldText_MAX_WEEKLY_EMAILS() {
+        final String messageLabel = BundleFieldFactory.INSTANCE.getLabel(MAX_WEEKLY_EMAILS);
+        final String messageHelp = BundleFieldFactory.INSTANCE.getHelp(MAX_WEEKLY_EMAILS);
+        final String messagePlaceHolder = BundleFieldFactory.INSTANCE.getPlaceHolder(MAX_WEEKLY_EMAILS);
+        assertEquals("Maximum sent emails per week", messageLabel);
+        assertNull(messageHelp);
+        assertNull(messagePlaceHolder);
+
+    }
+
+    @Test
+    public void testFieldText_LOGIN() {
+        final String messageLabel = BundleFieldFactory.INSTANCE.getLabel(LOGIN);
+        final String messageHelp = BundleFieldFactory.INSTANCE.getHelp(LOGIN);
+        final String messagePlaceHolder = BundleFieldFactory.INSTANCE.getPlaceHolder(LOGIN);
+        assertEquals("Login", messageLabel);
+        assertNull(messageHelp);
+        assertNull(messagePlaceHolder);
 
     }
 
@@ -68,62 +167,18 @@ public final class FieldMessageSampleTest {
         final String messageHelp = BundleFieldFactory.INSTANCE.getHelp(PASSWORD);
         final String messagePlaceHolder = BundleFieldFactory.INSTANCE.getPlaceHolder(PASSWORD);
         assertEquals("Password", messageLabel);
-        assertEquals("Field content is hidden", messageHelp);
-        assertEquals("Type your password", messagePlaceHolder);
-
-    }
-
-    @Test
-    public void testFieldText_NUMERIC() {
-        final String messageLabel = BundleFieldFactory.INSTANCE.getLabel(NUMERIC);
-        final String messageHelp = BundleFieldFactory.INSTANCE.getHelp(NUMERIC);
-        final String messagePlaceHolder = BundleFieldFactory.INSTANCE.getPlaceHolder(NUMERIC);
-        assertEquals("Numeric Textbox", messageLabel);
         assertNull(messageHelp);
         assertNull(messagePlaceHolder);
 
     }
 
     @Test
-    public void testFieldText_LISTBOX() {
-        final String messageLabel = BundleFieldFactory.INSTANCE.getLabel(LISTBOX);
-        final String messageHelp = BundleFieldFactory.INSTANCE.getHelp(LISTBOX);
-        final String messagePlaceHolder = BundleFieldFactory.INSTANCE.getPlaceHolder(LISTBOX);
-        assertEquals("Listbox", messageLabel);
+    public void testFieldText_PASSWORD_CONFIRMATION() {
+        final String messageLabel = BundleFieldFactory.INSTANCE.getLabel(PASSWORD_CONFIRMATION);
+        final String messageHelp = BundleFieldFactory.INSTANCE.getHelp(PASSWORD_CONFIRMATION);
+        final String messagePlaceHolder = BundleFieldFactory.INSTANCE.getPlaceHolder(PASSWORD_CONFIRMATION);
+        assertEquals("Confirm your password", messageLabel);
         assertNull(messageHelp);
-        assertNull(messagePlaceHolder);
-
-    }
-
-    @Test
-    public void testFieldText_RADIO_GROUP() {
-        final String messageLabel = BundleFieldFactory.INSTANCE.getLabel(RADIO_GROUP);
-        final String messageHelp = BundleFieldFactory.INSTANCE.getHelp(RADIO_GROUP);
-        final String messagePlaceHolder = BundleFieldFactory.INSTANCE.getPlaceHolder(RADIO_GROUP);
-        assertEquals("Radiobox Group", messageLabel);
-        assertNull(messageHelp);
-        assertNull(messagePlaceHolder);
-
-    }
-
-    @Test
-    public void testFieldText_CHECKBOX_GROUP() {
-        final String messageLabel = BundleFieldFactory.INSTANCE.getLabel(CHECKBOX_GROUP);
-        final String messageHelp = BundleFieldFactory.INSTANCE.getHelp(CHECKBOX_GROUP);
-        final String messagePlaceHolder = BundleFieldFactory.INSTANCE.getPlaceHolder(CHECKBOX_GROUP);
-        assertEquals("Checkbox Group", messageLabel);
-        assertNull(messageHelp);
-        assertNull(messagePlaceHolder);
-
-    }
-
-    @Test
-    public void testFieldText_DATE() {
-        final String messageLabel = BundleFieldFactory.INSTANCE.getLabel(DATE);
-        final String messageHelp = BundleFieldFactory.INSTANCE.getHelp(DATE);
-        final String messagePlaceHolder = BundleFieldFactory.INSTANCE.getPlaceHolder(DATE);
-        assertEquals("Date textbox", messageLabel);
-        assertEquals("A date picker is available", messageHelp);
         assertNull(messagePlaceHolder);
 
     }

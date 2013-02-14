@@ -4,8 +4,8 @@ import static org.mdl4ui.base.model.ElementIDImpl.collectBlocks;
 import static org.mdl4ui.base.model.ElementIDImpl.collectFields;
 import static org.mdl4ui.base.model.ElementIDImpl.collectGroups;
 import static org.mdl4ui.base.model.ElementIDImpl.containsRec;
-import static org.mdl4ui.ui.sample.EFieldSample.NUMERIC;
-import static org.mdl4ui.ui.sample.EFieldSample.PASSWORD;
+import static org.mdl4ui.ui.sample.EFieldSample.EMAILS_PREFERENCES;
+import static org.mdl4ui.ui.sample.EFieldSample.MAX_WEEKLY_EMAILS;
 
 import java.util.List;
 
@@ -16,8 +16,7 @@ import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.base.model.GroupID;
 
 public enum EGroupSample implements GroupID {
-    SPECIAL_TEXT_FIELDS(PASSWORD, //
-                    NUMERIC);
+    EMAIL_GROUP(EMAILS_PREFERENCES, MAX_WEEKLY_EMAILS);
 
     private final ElementID[] childs;
 

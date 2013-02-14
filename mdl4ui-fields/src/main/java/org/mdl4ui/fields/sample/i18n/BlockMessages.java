@@ -9,11 +9,11 @@ import org.mdl4ui.ui.sample.EBlockSample;
 @MessageBundle
 public interface BlockMessages {
 
-    @InjectSampleLabel(@OnElement(blocks = EBlockSample.TEXT_FIELDS))
-    @Message("Textbox-based fields")
+    @InjectSampleLabel(@OnElement(blocks = EBlockSample.INFORMATIONS))
+    @Message("My Profile")
     String textFields();
 
-    @InjectSampleLabel(@OnElement(blocks = EBlockSample.OTHER_FIELDS))
-    @Message("other fields")
+    @InjectSampleLabel(@OnElement(blocks = EBlockSample.ACCOUNT))
+    @Message("My Account")
     String otherFields();
 }

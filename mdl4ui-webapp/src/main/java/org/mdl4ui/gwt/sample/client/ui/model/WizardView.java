@@ -31,7 +31,7 @@ public class WizardView implements IsWidget {
 
     public void displayScreen(Wizard wizard, ScreenID screenID) {
         container.clear();
-        final ScreenView screenView = screens.get(screenID);
+        ScreenView screenView = screens.get(screenID);
         if (screenView == null) {
             throw new IllegalArgumentException("unknow screen id : " + screenView);
         }
