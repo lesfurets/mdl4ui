@@ -52,7 +52,7 @@ public class ScreenView implements ElementView {
 
     @Override
     public List<ElementView> childs() {
-        return null;
+        return childs;
     }
 
     @Override

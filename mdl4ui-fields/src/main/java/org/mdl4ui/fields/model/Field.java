@@ -13,10 +13,11 @@ import org.mdl4ui.fields.model.validation.FieldValidation;
 public class Field implements Element {
 
     private final FieldID fieldId;
-
     private final String label, help, placeholder;
     private final FieldRenderer<?> renderer;
+
     private EFieldState state = EFieldState.DEFAULT;
+    private FieldValidation validation;
 
     public Field(FieldID fieldId, String label, String help, String placeholder, final FieldRenderer<?> renderer) {
         this.fieldId = fieldId;
@@ -54,11 +55,16 @@ public class Field implements Element {
     }
 
     public EFieldState getState() {
-        return this.state;
+        return state;
     }
 
-    public final void setState(EFieldState newState, FieldValidation validation) {
+    public FieldValidation getValidation() {
+        return validation;
+    }
+
+    public final void setState(EFieldState newState, FieldValidation newValidation) {
         state = newState;
+        validation = newValidation;
     }
 
     @Override
@@ -90,5 +96,4 @@ public class Field implements Element {
     public List<Group> groups() {
         return UIElementImpl.<Group, Element> collectGroups(this);
     }
-
 }

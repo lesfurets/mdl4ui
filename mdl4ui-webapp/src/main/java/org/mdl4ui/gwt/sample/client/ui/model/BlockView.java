@@ -2,6 +2,7 @@ package org.mdl4ui.gwt.sample.client.ui.model;
 
 import static org.mdl4ui.base.model.UIElementImpl.containsRec;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.mdl4ui.base.model.EElementType;
@@ -30,6 +31,7 @@ public class BlockView implements ElementView {
     private final Button modify;
     private final Fieldset fieldset;
     private final FormActions actions;
+    private final List<ElementView> childs = new ArrayList<ElementView>();
 
     public BlockView(final Block block) {
         form = new WellForm();
@@ -57,14 +59,17 @@ public class BlockView implements ElementView {
         fieldset = new Fieldset();
         form.add(fieldset);
         for (Element item : block.childs()) {
+            ElementView child = null;
             switch (item.elementType()) {
                 case FIELD:
-                    fieldset.add(new FieldView((Field) item));
+                    child = new FieldView((Field) item);
                     break;
                 case GROUP:
-                    fieldset.add(new GroupView((Group) item));
+                    child = new GroupView((Group) item);
                     break;
             }
+            fieldset.add(child);
+            childs.add(child);
         }
 
         actions = new FormActions();
@@ -99,7 +104,7 @@ public class BlockView implements ElementView {
 
     @Override
     public List<ElementView> childs() {
-        return null;
+        return childs;
     }
 
     @Override

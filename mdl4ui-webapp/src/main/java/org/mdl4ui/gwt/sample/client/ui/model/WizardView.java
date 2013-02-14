@@ -24,7 +24,7 @@ public class WizardView implements IsWidget {
     public WizardView(final DefaultWizard wizard) {
         Screen firstScreen = null;
         for (ScreenID screenID : wizard.getScreens().keySet()) {
-            ScreenView screenView = new ScreenView(wizard.getScreens().get(screenID));
+            final ScreenView screenView = new ScreenView(wizard.getScreens().get(screenID));
             if (firstScreen == null) {
                 firstScreen = screenView.getScreen();
             }
@@ -35,6 +35,11 @@ public class WizardView implements IsWidget {
                     @Override
                     public void onValueChange(ValueChangeEvent<Object> event) {
                         wizard.updateField(field);
+
+                        // update only dependents fields
+                        for (FieldView fieldView : screenView.fields()) {
+                            fieldView.updateField();
+                        }
                     }
                 });
             }

@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.mdl4ui.base.model.EElementType;
 import org.mdl4ui.base.model.UIElementImpl;
-import org.mdl4ui.fields.model.EFieldState;
 import org.mdl4ui.fields.model.Field;
 
 import com.github.gwtbootstrap.client.ui.ControlGroup;
@@ -20,11 +19,14 @@ import com.google.gwt.user.client.ui.Widget;
 
 public class FieldView implements ElementView {
 
+    private final Field field;
     private final ControlGroup controlGroup;
     private final HelpInline validation;
 
     public FieldView(Field field) {
-        final Widget component = (Widget) field.getComponent();
+        this.field = field;
+
+        Widget component = (Widget) field.getComponent();
         component.getElement().setId(field.getFieldID().toString());
 
         controlGroup = new ControlGroup();
@@ -52,27 +54,35 @@ public class FieldView implements ElementView {
         controlGroup.add(controls);
     }
 
+    public Field getField() {
+        return field;
+    }
+
     @Override
     public Widget asWidget() {
         return controlGroup;
     }
 
-    public void setFieldState(EFieldState state) {
-        switch (state) {
+    public void updateField() {
+        switch (field.getState()) {
             case DEFAULT:
                 controlGroup.setVisible(true);
                 controlGroup.setType(ControlGroupType.NONE);
+                controlGroup.setTitle(null);
                 break;
             case ERROR:
                 controlGroup.setVisible(true);
                 controlGroup.setType(ControlGroupType.ERROR);
+                controlGroup.setTitle(field.getValidation().getMessage());
                 break;
             case HIDDEN:
                 controlGroup.setVisible(false);
+                controlGroup.setTitle(null);
                 break;
             case SET:
                 controlGroup.setVisible(true);
                 controlGroup.setType(ControlGroupType.SUCCESS);
+                controlGroup.setTitle(null);
                 break;
         }
     }
