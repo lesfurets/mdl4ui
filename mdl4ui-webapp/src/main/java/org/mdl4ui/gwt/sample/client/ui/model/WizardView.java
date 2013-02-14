@@ -5,10 +5,14 @@ import java.util.Map;
 
 import org.mdl4ui.base.model.ScreenID;
 import org.mdl4ui.fields.model.DefaultWizard;
+import org.mdl4ui.fields.model.Field;
 import org.mdl4ui.fields.model.Screen;
 import org.mdl4ui.fields.model.Wizard;
 
 import com.github.gwtbootstrap.client.ui.FluidContainer;
+import com.google.gwt.event.logical.shared.HasValueChangeHandlers;
+import com.google.gwt.event.logical.shared.ValueChangeEvent;
+import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -17,14 +21,24 @@ public class WizardView implements IsWidget {
     private final FluidContainer container;
     private final Map<ScreenID, ScreenView> screens = new HashMap<ScreenID, ScreenView>();
 
-    public WizardView(DefaultWizard wizard) {
+    public WizardView(final DefaultWizard wizard) {
         Screen firstScreen = null;
         for (ScreenID screenID : wizard.getScreens().keySet()) {
-            ScreenView screen = new ScreenView(wizard.getScreens().get(screenID));
+            ScreenView screenView = new ScreenView(wizard.getScreens().get(screenID));
             if (firstScreen == null) {
-                firstScreen = screen.getScreen();
+                firstScreen = screenView.getScreen();
             }
-            screens.put(screenID, screen);
+            for (final Field field : screenView.getScreen().fields()) {
+                @SuppressWarnings({ "rawtypes", "unchecked" })
+                HasValueChangeHandlers<Object> hasChangeHandler = (HasValueChangeHandlers) field.getComponent();
+                hasChangeHandler.addValueChangeHandler(new ValueChangeHandler<Object>() {
+                    @Override
+                    public void onValueChange(ValueChangeEvent<Object> event) {
+                        wizard.updateField(field);
+                    }
+                });
+            }
+            screens.put(screenID, screenView);
         }
         container = new FluidContainer();
     }

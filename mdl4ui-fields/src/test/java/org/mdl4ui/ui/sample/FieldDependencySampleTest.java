@@ -14,13 +14,13 @@ import org.junit.Test;
 
 import org.mdl4ui.base.model.FieldID;
 
-@Generated(value = "org.mdl4ui.maven.GenerateDepsTestMojo", date = "14/02/13 12:41")
+@Generated(value = "org.mdl4ui.maven.GenerateDepsTestMojo", date = "14/02/13 13:19")
 public final class FieldDependencySampleTest {
 	private final FieldDependencySampleFactory factory = new FieldDependencySampleFactory();
 	
     @Test
-    public void testFieldDependencies_EMAIL() {
-        final List<FieldID> fields = Arrays.asList(factory.get(EMAIL));
+    public void testFieldDependencies_EMAIL_ACCEPTED() {
+        final List<FieldID> fields = Arrays.asList(factory.get(EMAIL_ACCEPTED));
         assertTrue(fields.contains(EMAILS_PREFERENCES));
         assertTrue(fields.contains(MAX_WEEKLY_EMAILS));
         assertEquals(2, fields.size());

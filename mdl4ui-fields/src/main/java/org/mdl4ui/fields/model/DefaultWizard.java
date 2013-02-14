@@ -1,7 +1,7 @@
 package org.mdl4ui.fields.model;
 
 import static java.util.Arrays.asList;
-import static org.mdl4ui.fields.model.DefaultFieldEditor.valid;
+import static org.mdl4ui.fields.model.DefaultEditor.valid;
 import static org.mdl4ui.fields.model.EFieldState.ERROR;
 import static org.mdl4ui.fields.model.EFieldState.SET;
 
@@ -27,10 +27,10 @@ public class DefaultWizard implements Wizard {
 
     private Screen currentScreen;
 
-    public DefaultWizard(ClientFactory clientFactory) {
+    public DefaultWizard(WizardContext context, ClientFactory clientFactory) {
         this.clientFactory = clientFactory;
         this.screens = new HashMap<ScreenID, Screen>();
-        this.context = new DefaultContext();
+        this.context = context;
     }
 
     @Override

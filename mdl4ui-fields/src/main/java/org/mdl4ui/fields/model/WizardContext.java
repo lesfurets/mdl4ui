@@ -1,5 +1,7 @@
 package org.mdl4ui.fields.model;
 
-public interface WizardContext {
+import java.io.Serializable;
+
+public interface WizardContext extends Serializable {
 
 }

@@ -2,6 +2,7 @@ package org.mdl4ui.gwt.sample.client;
 
 import org.mdl4ui.fields.model.ClientFactory;
 import org.mdl4ui.fields.model.DefaultWizard;
+import org.mdl4ui.fields.sample.context.SampleContext;
 import org.mdl4ui.gwt.sample.client.ui.factory.GwtClientFactory;
 import org.mdl4ui.gwt.sample.client.ui.model.WizardView;
 import org.mdl4ui.ui.sample.EScreenSample;
@@ -15,7 +16,7 @@ public class Sample implements EntryPoint {
     @Override
     public void onModuleLoad() {
         ClientFactory clientFactory = GWT.create(GwtClientFactory.class);
-        DefaultWizard wizard = new DefaultWizard(clientFactory);
+        DefaultWizard wizard = new DefaultWizard(new SampleContext(), clientFactory);
         wizard.addScreens(EScreenSample.values());
 
         WizardView wizardView = new WizardView(wizard);

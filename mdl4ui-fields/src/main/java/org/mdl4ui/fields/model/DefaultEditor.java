@@ -7,7 +7,7 @@ import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.fields.model.validation.EErrorType;
 import org.mdl4ui.fields.model.validation.FieldValidation;
 
-public abstract class DefaultFieldEditor implements FieldEditor {
+public abstract class DefaultEditor implements FieldEditor {
 
     @Override
     public void updateFromContext(Field field, WizardContext context) {

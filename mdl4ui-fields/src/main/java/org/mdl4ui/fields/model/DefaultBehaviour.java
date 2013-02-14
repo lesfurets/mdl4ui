@@ -5,7 +5,7 @@ package org.mdl4ui.fields.model;
 
 import org.mdl4ui.base.model.FieldID;
 
-public class DefaultBehaviour implements FieldBehaviour {
+public abstract class DefaultBehaviour implements FieldBehaviour {
 
     @Override
     public boolean isVisible(FieldID fieldId, WizardContext context) {
