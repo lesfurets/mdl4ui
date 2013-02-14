@@ -9,3 +9,4 @@ target-eclipse
 */gwt-unitCache
 */war/WEB-INF/lib
 */war/WEB-INF/classes
+*.template
