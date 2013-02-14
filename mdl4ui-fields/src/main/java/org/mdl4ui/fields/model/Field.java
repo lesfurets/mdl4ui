@@ -1,11 +1,13 @@
 package org.mdl4ui.fields.model;
 
+import java.util.List;
+
 import org.mdl4ui.base.model.EElementType;
 import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.fields.model.component.FieldComponent;
 import org.mdl4ui.fields.model.validation.FieldValidation;
 
-public class Field implements BlockItem {
+public class Field extends ElementImpl {
 
     private final FieldID fieldId;
 
@@ -21,7 +23,7 @@ public class Field implements BlockItem {
         this.renderer = renderer;
     }
 
-    public FieldID getId() {
+    public FieldID getFieldID() {
         return fieldId;
     }
 
@@ -57,7 +59,13 @@ public class Field implements BlockItem {
     }
 
     @Override
-    public EElementType getType() {
+    public EElementType elementType() {
         return EElementType.FIELD;
     }
+
+    @Override
+    public List<Element> childs() {
+        return null;
+    }
+
 }

@@ -27,7 +27,7 @@ public abstract class DefaultFieldEditor implements FieldEditor {
     }
 
     public static final FieldValidation valid(Field field) {
-        return valid(field.getId());
+        return valid(field.getFieldID());
     }
 
     protected static final FieldValidation valid(FieldID field) {
@@ -35,7 +35,7 @@ public abstract class DefaultFieldEditor implements FieldEditor {
     }
 
     protected static final FieldValidation empty(Field field, String message) {
-        return validation(field.getId(), message, EErrorType.EMPTY_FIELD);
+        return validation(field.getFieldID(), message, EErrorType.EMPTY_FIELD);
     }
 
     protected static final FieldValidation empty(FieldID field, String message) {
@@ -43,7 +43,7 @@ public abstract class DefaultFieldEditor implements FieldEditor {
     }
 
     protected static final FieldValidation error(Field field, String message) {
-        return validation(field.getId(), message, EErrorType.INCONSISTENT_FIELD);
+        return validation(field.getFieldID(), message, EErrorType.INCONSISTENT_FIELD);
     }
 
     protected static final FieldValidation error(FieldID field, String message) {

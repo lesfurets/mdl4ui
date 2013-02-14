@@ -12,9 +12,11 @@ import com.google.gwt.user.client.ui.Widget;
 public class ScreenView implements IsWidget {
 
     private final Container container = new Container();
+    private Screen screen;
 
     public ScreenView(final Screen screen) {
-        for (Block block : screen.getBlocks()) {
+        this.screen = screen;
+        for (Block block : screen.blocks()) {
             Row row = new Row();
             container.add(row);
 
@@ -24,6 +26,10 @@ public class ScreenView implements IsWidget {
             BlockView blockView = new BlockView(block);
             column.add(blockView);
         }
+    }
+
+    public Screen getScreen() {
+        return this.screen;
     }
 
     @Override

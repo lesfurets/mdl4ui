@@ -32,7 +32,7 @@ public class FieldValidation {
         this.errorType = kind;
     }
 
-    public FieldID getFieldId() {
+    public FieldID getFieldID() {
         return this.fieldId;
     }
 

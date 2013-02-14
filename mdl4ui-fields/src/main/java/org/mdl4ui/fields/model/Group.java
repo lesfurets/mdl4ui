@@ -1,11 +1,12 @@
 package org.mdl4ui.fields.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.mdl4ui.base.model.EElementType;
 import org.mdl4ui.base.model.GroupID;
 
-public class Group implements BlockItem {
+public class Group extends ElementImpl {
     private final GroupID groupID;
     private final List<Field> fields;
 
@@ -14,16 +15,17 @@ public class Group implements BlockItem {
         this.fields = fields;
     }
 
-    @Override
-    public EElementType getType() {
-        return EElementType.GROUP;
-    }
-
     public GroupID getGroupID() {
         return groupID;
     }
 
-    public List<Field> getFields() {
-        return fields;
+    @Override
+    public EElementType elementType() {
+        return EElementType.GROUP;
+    }
+
+    @Override
+    public List<Element> childs() {
+        return new ArrayList<Element>(fields);
     }
 }

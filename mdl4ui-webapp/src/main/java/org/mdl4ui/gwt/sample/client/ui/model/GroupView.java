@@ -17,7 +17,7 @@ public class GroupView implements IsWidget {
         final Column column = new Column(5, 1);
         row.add(column);
 
-        for (Field field : group.getFields()) {
+        for (Field field : group.fields()) {
             column.add(new FieldView(field));
         }
     }

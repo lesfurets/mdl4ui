@@ -1,7 +1,7 @@
 package org.mdl4ui.gwt.sample.client.ui.model;
 
 import org.mdl4ui.fields.model.Block;
-import org.mdl4ui.fields.model.BlockItem;
+import org.mdl4ui.fields.model.Element;
 import org.mdl4ui.fields.model.Field;
 import org.mdl4ui.fields.model.Group;
 
@@ -51,8 +51,8 @@ public class BlockView implements IsWidget {
 
         fieldset = new Fieldset();
         form.add(fieldset);
-        for (BlockItem item : block.getBlockItems()) {
-            switch (item.getType()) {
+        for (Element item : block.childs()) {
+            switch (item.elementType()) {
                 case FIELD:
                     fieldset.add(new FieldView((Field) item));
                     break;

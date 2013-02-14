@@ -20,7 +20,7 @@ public class FieldView implements IsWidget {
 
     public FieldView(Field field) {
         final Widget component = (Widget) field.getComponent();
-        component.getElement().setId(field.getId().toString());
+        component.getElement().setId(field.getFieldID().toString());
 
         controlGroup = new ControlGroup();
 
