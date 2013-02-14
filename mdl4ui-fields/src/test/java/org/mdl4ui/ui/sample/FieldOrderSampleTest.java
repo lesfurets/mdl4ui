@@ -17,7 +17,7 @@ import org.junit.Test;
 
 import org.mdl4ui.base.model.*;
 
-@Generated(value = "org.mdl4ui.maven.GenerateDepsTestMojo", date = "14/02/13 13:19")
+@Generated(value = "org.mdl4ui.maven.GenerateDepsTestMojo", date = "14/02/13 17:17")
 public final class FieldOrderSampleTest {
 
     @Test
@@ -62,7 +62,7 @@ public final class FieldOrderSampleTest {
 
     @Test
     public void testBlockContentOrder_INFORMATIONS() {
-        final List<ElementID> blockItems = Arrays.asList(INFORMATIONS.childs());
+        final List<ElementID> blockItems = INFORMATIONS.childs();
         assertEquals(0, blockItems.indexOf(FIRST_NAME));
         assertEquals(1, blockItems.indexOf(LAST_NAME));
         assertEquals(2, blockItems.indexOf(EMAIL));
@@ -77,7 +77,7 @@ public final class FieldOrderSampleTest {
 
     @Test
     public void testBlockContentOrder_ACCOUNT() {
-        final List<ElementID> blockItems = Arrays.asList(ACCOUNT.childs());
+        final List<ElementID> blockItems = ACCOUNT.childs();
         assertEquals(0, blockItems.indexOf(LOGIN));
         assertEquals(1, blockItems.indexOf(PASSWORD));
         assertEquals(2, blockItems.indexOf(PASSWORD_CONFIRMATION));
@@ -88,7 +88,7 @@ public final class FieldOrderSampleTest {
 
     @Test
     public void testGroupContentOrder_EMAIL_GROUP() {
-        final List<ElementID> fields = Arrays.asList(EMAIL_GROUP.childs());
+        final List<ElementID> fields = EMAIL_GROUP.childs();
         assertEquals(0, fields.indexOf(EMAILS_PREFERENCES));
         assertEquals(1, fields.indexOf(MAX_WEEKLY_EMAILS));
         assertEquals(2, fields.size());

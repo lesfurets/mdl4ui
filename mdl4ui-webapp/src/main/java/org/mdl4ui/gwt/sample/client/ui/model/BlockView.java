@@ -1,5 +1,11 @@
 package org.mdl4ui.gwt.sample.client.ui.model;
 
+import static org.mdl4ui.base.model.UIElementImpl.containsRec;
+
+import java.util.List;
+
+import org.mdl4ui.base.model.EElementType;
+import org.mdl4ui.base.model.UIElementImpl;
 import org.mdl4ui.fields.model.Block;
 import org.mdl4ui.fields.model.Element;
 import org.mdl4ui.fields.model.Field;
@@ -16,10 +22,9 @@ import com.github.gwtbootstrap.client.ui.constants.ButtonType;
 import com.github.gwtbootstrap.client.ui.constants.IconType;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Widget;
 
-public class BlockView implements IsWidget {
+public class BlockView implements ElementView {
 
     private final WellForm form;
     private final Button modify;
@@ -85,6 +90,36 @@ public class BlockView implements IsWidget {
     private void collapse() {
         fieldset.setVisible(false);
         actions.setVisible(false);
+    }
+
+    @Override
+    public EElementType elementType() {
+        return EElementType.GROUP;
+    }
+
+    @Override
+    public List<ElementView> childs() {
+        return null;
+    }
+
+    @Override
+    public boolean contains(ElementView child) {
+        return containsRec(this, child);
+    }
+
+    @Override
+    public List<FieldView> fields() {
+        return UIElementImpl.<FieldView, ElementView> collectFields(this);
+    }
+
+    @Override
+    public List<BlockView> blocks() {
+        return UIElementImpl.<BlockView, ElementView> collectBlocks(this);
+    }
+
+    @Override
+    public List<GroupView> groups() {
+        return UIElementImpl.<GroupView, ElementView> collectGroups(this);
     }
 
     @Override

@@ -12,7 +12,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -156,7 +155,8 @@ public class GenerateDepsTestMojo extends AbstractDepsMojo {
     }
 
     private String testDependencyClass(FieldDependency firstDependency, Map<FieldID, List<DependencyPath>> deepDeps,
-                    BundleFieldFactoryDelegate bundleFactory) throws IOException, PropertyParsingException, MojoExecutionException {
+                    BundleFieldFactoryDelegate bundleFactory) throws IOException, PropertyParsingException,
+                    MojoExecutionException {
         final Map<String, Object> params = new HashMap<String, Object>();
         final Set<String> staticImports = new HashSet<String>();
         final String packageName = firstDependency.getClass().getPackage().getName();
@@ -172,7 +172,8 @@ public class GenerateDepsTestMojo extends AbstractDepsMojo {
     }
 
     private String testOrderClass(List<ScreenID> screenIds, Map<FieldID, List<DependencyPath>> deepDeps,
-                    BundleFieldFactoryDelegate bundleFactory) throws IOException, PropertyParsingException, MojoExecutionException {
+                    BundleFieldFactoryDelegate bundleFactory) throws IOException, PropertyParsingException,
+                    MojoExecutionException {
         final Map<String, Object> params = new HashMap<String, Object>();
         final Set<String> staticImports = new HashSet<String>();
         final ScreenID firstScreenId = screenIds.get(0);
@@ -192,7 +193,8 @@ public class GenerateDepsTestMojo extends AbstractDepsMojo {
     }
 
     private String testMessageClass(List<ScreenID> screenIds, Map<FieldID, List<DependencyPath>> deepDeps,
-                    BundleFieldFactoryDelegate bundleFactory) throws IOException, PropertyParsingException, MojoExecutionException {
+                    BundleFieldFactoryDelegate bundleFactory) throws IOException, PropertyParsingException,
+                    MojoExecutionException {
         final Map<String, Object> params = new HashMap<String, Object>();
         final Set<String> staticImports = new HashSet<String>();
         final ScreenID firstScreenId = screenIds.get(0);
@@ -328,7 +330,7 @@ public class GenerateDepsTestMojo extends AbstractDepsMojo {
             params.put("block.enum.class", blockId.getClass().getSimpleName());
             params.put("block.name", blockId.toString());
             final StringBuilder assertBuilder = new StringBuilder();
-            final List<ElementID> items = Arrays.asList(blockId.childs());
+            final List<ElementID> items = blockId.childs();
             for (ElementID item : blockId.childs()) {
                 staticImports.add(item.getClass().getName());
                 assertBuilder.append(TAB_TAB + "assertEquals(");
@@ -372,8 +374,8 @@ public class GenerateDepsTestMojo extends AbstractDepsMojo {
         return methodBuilder.toString();
     }
 
-    private String testFieldText(List<FieldID> fieldIds, BundleFieldFactoryDelegate bundleFactoy, Set<String> staticImports)
-                    throws MojoExecutionException, PropertyParsingException, IOException {
+    private String testFieldText(List<FieldID> fieldIds, BundleFieldFactoryDelegate bundleFactoy,
+                    Set<String> staticImports) throws MojoExecutionException, PropertyParsingException, IOException {
         final StringBuilder methodBuilder = new StringBuilder();
         for (FieldID field : fieldIds) {
             staticImports.add(field.getClass().getName());
@@ -391,8 +393,8 @@ public class GenerateDepsTestMojo extends AbstractDepsMojo {
         return methodBuilder.toString();
     }
 
-    private String testBlockText(List<BlockID> blockIds, BundleFieldFactoryDelegate bundleFactoy, Set<String> staticImports)
-                    throws MojoExecutionException, IOException, PropertyParsingException {
+    private String testBlockText(List<BlockID> blockIds, BundleFieldFactoryDelegate bundleFactoy,
+                    Set<String> staticImports) throws MojoExecutionException, IOException, PropertyParsingException {
         final StringBuilder methodBuilder = new StringBuilder();
         for (BlockID block : blockIds) {
             staticImports.add(block.getClass().getName());
@@ -410,8 +412,8 @@ public class GenerateDepsTestMojo extends AbstractDepsMojo {
         return methodBuilder.toString();
     }
 
-    private String testGroupText(List<GroupID> groupIds, BundleFieldFactoryDelegate bundleFactoy, Set<String> staticImports)
-                    throws MojoExecutionException, IOException, PropertyParsingException {
+    private String testGroupText(List<GroupID> groupIds, BundleFieldFactoryDelegate bundleFactoy,
+                    Set<String> staticImports) throws MojoExecutionException, IOException, PropertyParsingException {
         final StringBuilder methodBuilder = new StringBuilder();
         for (GroupID groupId : groupIds) {
             staticImports.add(groupId.getClass().getName());

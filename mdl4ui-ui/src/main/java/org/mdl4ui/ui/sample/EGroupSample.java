@@ -1,12 +1,10 @@
 package org.mdl4ui.ui.sample;
 
-import static org.mdl4ui.base.model.ElementIDImpl.collectBlocks;
-import static org.mdl4ui.base.model.ElementIDImpl.collectFields;
-import static org.mdl4ui.base.model.ElementIDImpl.collectGroups;
-import static org.mdl4ui.base.model.ElementIDImpl.containsRec;
+import static org.mdl4ui.base.model.UIElementImpl.containsRec;
 import static org.mdl4ui.ui.sample.EFieldSample.EMAILS_PREFERENCES;
 import static org.mdl4ui.ui.sample.EFieldSample.MAX_WEEKLY_EMAILS;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.mdl4ui.base.model.BlockID;
@@ -14,14 +12,15 @@ import org.mdl4ui.base.model.EElementType;
 import org.mdl4ui.base.model.ElementID;
 import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.base.model.GroupID;
+import org.mdl4ui.base.model.UIElementImpl;
 
 public enum EGroupSample implements GroupID {
     EMAIL_GROUP(EMAILS_PREFERENCES, MAX_WEEKLY_EMAILS);
 
-    private final ElementID[] childs;
+    private final List<ElementID> childs;
 
-    private EGroupSample(FieldID... blocks) {
-        this.childs = blocks;
+    private EGroupSample(FieldID... fields) {
+        this.childs = Arrays.<ElementID> asList(fields);
     }
 
     @Override
@@ -30,7 +29,7 @@ public enum EGroupSample implements GroupID {
     }
 
     @Override
-    public ElementID[] childs() {
+    public List<ElementID> childs() {
         return childs;
     }
 
@@ -41,16 +40,16 @@ public enum EGroupSample implements GroupID {
 
     @Override
     public List<FieldID> fields() {
-        return collectFields(this);
+        return UIElementImpl.<FieldID, ElementID> collectFields(this);
     }
 
     @Override
     public List<BlockID> blocks() {
-        return collectBlocks(this);
+        return UIElementImpl.<BlockID, ElementID> collectBlocks(this);
     }
 
     @Override
     public List<GroupID> groups() {
-        return collectGroups(this);
+        return UIElementImpl.<GroupID, ElementID> collectGroups(this);
     }
 }

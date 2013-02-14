@@ -1,5 +1,11 @@
 package org.mdl4ui.gwt.sample.client.ui.model;
 
+import static org.mdl4ui.base.model.UIElementImpl.containsRec;
+
+import java.util.List;
+
+import org.mdl4ui.base.model.EElementType;
+import org.mdl4ui.base.model.UIElementImpl;
 import org.mdl4ui.fields.model.EFieldState;
 import org.mdl4ui.fields.model.Field;
 
@@ -10,10 +16,9 @@ import com.github.gwtbootstrap.client.ui.HelpBlock;
 import com.github.gwtbootstrap.client.ui.HelpInline;
 import com.github.gwtbootstrap.client.ui.base.ValueBoxBase;
 import com.github.gwtbootstrap.client.ui.constants.ControlGroupType;
-import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Widget;
 
-public class FieldView implements IsWidget {
+public class FieldView implements ElementView {
 
     private final ControlGroup controlGroup;
     private final HelpInline validation;
@@ -70,5 +75,35 @@ public class FieldView implements IsWidget {
                 controlGroup.setType(ControlGroupType.SUCCESS);
                 break;
         }
+    }
+
+    @Override
+    public List<ElementView> childs() {
+        return null;
+    }
+
+    @Override
+    public EElementType elementType() {
+        return EElementType.FIELD;
+    }
+
+    @Override
+    public boolean contains(ElementView child) {
+        return containsRec(this, child);
+    }
+
+    @Override
+    public List<FieldView> fields() {
+        return UIElementImpl.<FieldView, ElementView> collectFields(this);
+    }
+
+    @Override
+    public List<BlockView> blocks() {
+        return UIElementImpl.<BlockView, ElementView> collectBlocks(this);
+    }
+
+    @Override
+    public List<GroupView> groups() {
+        return UIElementImpl.<GroupView, ElementView> collectGroups(this);
     }
 }

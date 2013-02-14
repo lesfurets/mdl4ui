@@ -1,12 +1,15 @@
 package org.mdl4ui.fields.model;
 
+import static org.mdl4ui.base.model.UIElementImpl.containsRec;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import org.mdl4ui.base.model.BlockID;
 import org.mdl4ui.base.model.EElementType;
+import org.mdl4ui.base.model.UIElementImpl;
 
-public class Block extends ElementImpl {
+public class Block implements Element {
 
     private final String label;
     private final BlockID blockID;
@@ -41,5 +44,25 @@ public class Block extends ElementImpl {
     @Override
     public List<Element> childs() {
         return items;
+    }
+
+    @Override
+    public boolean contains(Element child) {
+        return containsRec(this, child);
+    }
+
+    @Override
+    public List<Field> fields() {
+        return UIElementImpl.<Field, Element> collectFields(this);
+    }
+
+    @Override
+    public List<Block> blocks() {
+        return UIElementImpl.<Block, Element> collectBlocks(this);
+    }
+
+    @Override
+    public List<Group> groups() {
+        return UIElementImpl.<Group, Element> collectGroups(this);
     }
 }

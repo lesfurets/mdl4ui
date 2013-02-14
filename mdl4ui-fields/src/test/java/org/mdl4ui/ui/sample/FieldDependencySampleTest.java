@@ -14,7 +14,7 @@ import org.junit.Test;
 
 import org.mdl4ui.base.model.FieldID;
 
-@Generated(value = "org.mdl4ui.maven.GenerateDepsTestMojo", date = "14/02/13 13:19")
+@Generated(value = "org.mdl4ui.maven.GenerateDepsTestMojo", date = "14/02/13 17:17")
 public final class FieldDependencySampleTest {
 	private final FieldDependencySampleFactory factory = new FieldDependencySampleFactory();
 	

@@ -1,12 +1,10 @@
 package org.mdl4ui.ui.sample;
 
-import static org.mdl4ui.base.model.ElementIDImpl.collectBlocks;
-import static org.mdl4ui.base.model.ElementIDImpl.collectFields;
-import static org.mdl4ui.base.model.ElementIDImpl.collectGroups;
-import static org.mdl4ui.base.model.ElementIDImpl.containsRec;
+import static org.mdl4ui.base.model.UIElementImpl.containsRec;
 import static org.mdl4ui.ui.sample.EBlockSample.ACCOUNT;
 import static org.mdl4ui.ui.sample.EBlockSample.INFORMATIONS;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.mdl4ui.base.model.BlockID;
@@ -15,14 +13,15 @@ import org.mdl4ui.base.model.ElementID;
 import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.base.model.GroupID;
 import org.mdl4ui.base.model.ScreenID;
+import org.mdl4ui.base.model.UIElementImpl;
 
 public enum EScreenSample implements ScreenID {
     SCR_WIDGETS_SHOWCASE(INFORMATIONS, ACCOUNT);
 
-    private final ElementID[] childs;
+    private final List<ElementID> childs;
 
     private EScreenSample(BlockID... blocks) {
-        this.childs = blocks;
+        this.childs = Arrays.<ElementID> asList(blocks);
     }
 
     @Override
@@ -31,7 +30,7 @@ public enum EScreenSample implements ScreenID {
     }
 
     @Override
-    public ElementID[] childs() {
+    public List<ElementID> childs() {
         return childs;
     }
 
@@ -42,16 +41,16 @@ public enum EScreenSample implements ScreenID {
 
     @Override
     public List<FieldID> fields() {
-        return collectFields(this);
+        return UIElementImpl.<FieldID, ElementID> collectFields(this);
     }
 
     @Override
     public List<BlockID> blocks() {
-        return collectBlocks(this);
+        return UIElementImpl.<BlockID, ElementID> collectBlocks(this);
     }
 
     @Override
     public List<GroupID> groups() {
-        return collectGroups(this);
+        return UIElementImpl.<GroupID, ElementID> collectGroups(this);
     }
 }

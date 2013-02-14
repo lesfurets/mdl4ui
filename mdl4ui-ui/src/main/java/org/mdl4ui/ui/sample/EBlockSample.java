@@ -1,9 +1,6 @@
 package org.mdl4ui.ui.sample;
 
-import static org.mdl4ui.base.model.ElementIDImpl.collectBlocks;
-import static org.mdl4ui.base.model.ElementIDImpl.collectFields;
-import static org.mdl4ui.base.model.ElementIDImpl.collectGroups;
-import static org.mdl4ui.base.model.ElementIDImpl.containsRec;
+import static org.mdl4ui.base.model.UIElementImpl.containsRec;
 import static org.mdl4ui.ui.sample.EFieldSample.BIRTHDATE;
 import static org.mdl4ui.ui.sample.EFieldSample.EMAIL;
 import static org.mdl4ui.ui.sample.EFieldSample.EMAIL_ACCEPTED;
@@ -16,6 +13,7 @@ import static org.mdl4ui.ui.sample.EFieldSample.PASSWORD_CONFIRMATION;
 import static org.mdl4ui.ui.sample.EFieldSample.TIMEZONE;
 import static org.mdl4ui.ui.sample.EGroupSample.EMAIL_GROUP;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.mdl4ui.base.model.BlockID;
@@ -23,6 +21,7 @@ import org.mdl4ui.base.model.EElementType;
 import org.mdl4ui.base.model.ElementID;
 import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.base.model.GroupID;
+import org.mdl4ui.base.model.UIElementImpl;
 
 public enum EBlockSample implements BlockID {
     INFORMATIONS(FIRST_NAME, //
@@ -40,10 +39,10 @@ public enum EBlockSample implements BlockID {
                     PASSWORD, //
                     PASSWORD_CONFIRMATION);
 
-    private final ElementID[] childs;
+    private final List<ElementID> childs;
 
     private EBlockSample(ElementID... blocks) {
-        this.childs = blocks;
+        this.childs = Arrays.asList(blocks);
     }
 
     @Override
@@ -52,7 +51,7 @@ public enum EBlockSample implements BlockID {
     }
 
     @Override
-    public ElementID[] childs() {
+    public List<ElementID> childs() {
         return childs;
     }
 
@@ -63,16 +62,16 @@ public enum EBlockSample implements BlockID {
 
     @Override
     public List<FieldID> fields() {
-        return collectFields(this);
+        return UIElementImpl.<FieldID, ElementID> collectFields(this);
     }
 
     @Override
     public List<BlockID> blocks() {
-        return collectBlocks(this);
+        return UIElementImpl.<BlockID, ElementID> collectBlocks(this);
     }
 
     @Override
     public List<GroupID> groups() {
-        return collectGroups(this);
+        return UIElementImpl.<GroupID, ElementID> collectGroups(this);
     }
 }

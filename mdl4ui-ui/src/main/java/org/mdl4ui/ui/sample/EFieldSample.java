@@ -1,9 +1,6 @@
 package org.mdl4ui.ui.sample;
 
-import static org.mdl4ui.base.model.ElementIDImpl.collectBlocks;
-import static org.mdl4ui.base.model.ElementIDImpl.collectFields;
-import static org.mdl4ui.base.model.ElementIDImpl.collectGroups;
-import static org.mdl4ui.base.model.ElementIDImpl.containsRec;
+import static org.mdl4ui.base.model.UIElementImpl.containsRec;
 
 import java.util.List;
 
@@ -13,6 +10,7 @@ import org.mdl4ui.base.model.EFieldType;
 import org.mdl4ui.base.model.ElementID;
 import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.base.model.GroupID;
+import org.mdl4ui.base.model.UIElementImpl;
 
 public enum EFieldSample implements FieldID {
     FIRST_NAME(EFieldType.TEXTBOX), //
@@ -41,7 +39,7 @@ public enum EFieldSample implements FieldID {
     }
 
     @Override
-    public ElementID[] childs() {
+    public List<ElementID> childs() {
         return null;
     }
 
@@ -52,17 +50,17 @@ public enum EFieldSample implements FieldID {
 
     @Override
     public List<FieldID> fields() {
-        return collectFields(this);
+        return UIElementImpl.<FieldID, ElementID> collectFields(this);
     }
 
     @Override
     public List<BlockID> blocks() {
-        return collectBlocks(this);
+        return UIElementImpl.<BlockID, ElementID> collectBlocks(this);
     }
 
     @Override
     public List<GroupID> groups() {
-        return collectGroups(this);
+        return UIElementImpl.<GroupID, ElementID> collectGroups(this);
     }
 
     @Override

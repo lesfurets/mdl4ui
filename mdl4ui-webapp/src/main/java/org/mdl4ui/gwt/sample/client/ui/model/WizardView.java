@@ -57,4 +57,5 @@ public class WizardView implements IsWidget {
     public Widget asWidget() {
         return container;
     }
+
 }
