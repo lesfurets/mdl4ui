@@ -3,8 +3,7 @@
 <module>
   <inherits name="org.mdl4ui.ui.UI" />
 
-  <source>
-    <include name="**/*.java" />
+   <source path='model'>
     <exclude name="**DesktopBundle.java" />
     <exclude name="**MobileBundle.java" />
     <exclude name="**DesktopBundleTest.java" />

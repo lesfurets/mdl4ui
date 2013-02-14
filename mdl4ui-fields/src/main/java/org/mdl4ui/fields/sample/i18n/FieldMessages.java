@@ -79,4 +79,18 @@ public interface FieldMessages {
     @Message("Confirm your password")
     String confirmPassword();
 
+    @Message("Private messages")
+    String privateMessage();
+
+    @Message("Administrator")
+    String administratorMessage();
+
+    @Message("Newsletter")
+    String newsletter();
+
+    @Message("English")
+    String english();
+
+    @Message("Français")
+    String francais();
 }
