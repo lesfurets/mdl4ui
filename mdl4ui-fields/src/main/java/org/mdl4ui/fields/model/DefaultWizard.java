@@ -83,10 +83,15 @@ public class DefaultWizard implements Wizard {
     }
 
     private Field createField(ScreenID screenId, FieldID fieldId) {
-        return new Field(fieldId, clientFactory.getLabelFactory().get(fieldId),//
+        Field field = new Field(fieldId, clientFactory.getLabelFactory().get(fieldId),//
                         clientFactory.getHelpFactory().get(fieldId),//
                         clientFactory.getPlaceholderFactory().get(fieldId),//
                         clientFactory.getRendererFactory().get(fieldId));
+        FieldInitializer initializer = clientFactory.getInitializerFactory().get(fieldId);
+        if (initializer != null) {
+            initializer.init(field);
+        }
+        return field;
     }
 
     @Override
