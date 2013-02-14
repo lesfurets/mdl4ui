@@ -113,7 +113,7 @@
         <artifactId>mdl4ui-ui-deps</artifactId>
         <version>${project.version}</version>
         <configuration>
-          <extension>.java</extension>
+          <extension>.template</extension>
           <fieldDependencyClasses>
             <fieldDependencyClass>org.mdl4ui.ui.sample.EFieldDependencySample</fieldDependencyClass>
           </fieldDependencyClasses>

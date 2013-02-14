@@ -7,6 +7,8 @@ import org.mdl4ui.fields.model.component.RadioGroupField;
 
 import com.github.gwtbootstrap.client.ui.Button;
 import com.github.gwtbootstrap.client.ui.constants.ToggleType;
+import com.google.gwt.core.client.Scheduler;
+import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.logical.shared.HasValueChangeHandlers;
@@ -29,7 +31,12 @@ public class RadioGroup extends com.github.gwtbootstrap.client.ui.ButtonGroup im
         button.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
-                ValueChangeEvent.fire(RadioGroup.this, RadioGroup.this.getValue());
+                Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+                    @Override
+                    public void execute() {
+                        ValueChangeEvent.fire(RadioGroup.this, RadioGroup.this.getValue());
+                    }
+                });
             }
         });
         add(button);

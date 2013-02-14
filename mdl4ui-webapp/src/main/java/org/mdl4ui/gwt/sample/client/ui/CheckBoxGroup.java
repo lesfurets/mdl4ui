@@ -9,8 +9,10 @@ import org.mdl4ui.fields.model.component.CheckBoxGroupField;
 
 import com.github.gwtbootstrap.client.ui.Button;
 import com.github.gwtbootstrap.client.ui.constants.ToggleType;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.core.client.Scheduler;
+import com.google.gwt.core.client.Scheduler.ScheduledCommand;
+import com.google.gwt.event.dom.client.MouseUpEvent;
+import com.google.gwt.event.dom.client.MouseUpHandler;
 import com.google.gwt.event.logical.shared.HasValueChangeHandlers;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
@@ -28,10 +30,15 @@ public class CheckBoxGroup extends com.github.gwtbootstrap.client.ui.ButtonGroup
     @Override
     public void addItem(String item, String value) {
         final Button button = new Button(item);
-        button.addClickHandler(new ClickHandler() {
+        button.addMouseUpHandler(new MouseUpHandler() {
             @Override
-            public void onClick(ClickEvent event) {
-                ValueChangeEvent.fire(CheckBoxGroup.this, CheckBoxGroup.this.getValue());
+            public void onMouseUp(MouseUpEvent event) {
+                Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+                    @Override
+                    public void execute() {
+                        ValueChangeEvent.fire(CheckBoxGroup.this, CheckBoxGroup.this.getValue());
+                    }
+                });
             }
         });
         add(button);

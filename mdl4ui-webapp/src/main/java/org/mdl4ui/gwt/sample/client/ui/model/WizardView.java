@@ -35,8 +35,6 @@ public class WizardView implements IsWidget {
                     @Override
                     public void onValueChange(ValueChangeEvent<Object> event) {
                         wizard.updateField(field);
-
-                        // update only dependents fields
                         for (FieldView fieldView : screenView.fields()) {
                             fieldView.updateField();
                         }
@@ -56,6 +54,9 @@ public class WizardView implements IsWidget {
         }
         container.add(screenView);
         wizard.displayScreen(screenView.getScreen());
+        for (FieldView fieldView : screenView.fields()) {
+            fieldView.updateField();
+        }
     }
 
     @Override
