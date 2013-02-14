@@ -5,7 +5,7 @@ package org.mdl4ui.fields.sample.initializer;
 
 import org.mdl4ui.fields.model.Field;
 import org.mdl4ui.fields.model.FieldInitializer;
-import org.mdl4ui.fields.model.component.RadioGroupField;
+import org.mdl4ui.fields.model.component.CheckBoxGroupField;
 import org.mdl4ui.fields.sample.InjectSampleInit;
 import org.mdl4ui.fields.sample.OnField;
 import org.mdl4ui.fields.sample.context.EmailType;
@@ -15,7 +15,7 @@ import org.mdl4ui.ui.sample.EFieldSample;
 @InjectSampleInit(@OnField(EFieldSample.EMAILS_PREFERENCES))
 public class EmailPreferencesInitializer implements FieldInitializer {
 
-    private FieldMessages messages;
+    private final FieldMessages messages;
 
     public EmailPreferencesInitializer(FieldMessages messages) {
         this.messages = messages;
@@ -23,9 +23,9 @@ public class EmailPreferencesInitializer implements FieldInitializer {
 
     @Override
     public void init(Field field) {
-        RadioGroupField radiogroup = field.getComponent();
-        radiogroup.addItem(EmailType.PRIVATE.name(), messages.privateMessage());
-        radiogroup.addItem(EmailType.ADMINISTRATOR.name(), messages.administratorMessage());
-        radiogroup.addItem(EmailType.NEWSLETTER.name(), messages.newsletter());
+        CheckBoxGroupField radiogroup = field.getComponent();
+        radiogroup.addItem(messages.privateMessage(), EmailType.PRIVATE.name());
+        radiogroup.addItem(messages.administratorMessage(), EmailType.ADMINISTRATOR.name());
+        radiogroup.addItem(messages.newsletter(), EmailType.NEWSLETTER.name());
     }
 }

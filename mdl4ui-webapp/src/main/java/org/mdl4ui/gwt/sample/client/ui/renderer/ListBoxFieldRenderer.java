@@ -8,10 +8,6 @@ public class ListBoxFieldRenderer extends BaseFieldRenderer<ListBoxField> {
 
     @Override
     protected ListBoxField createFieldComponent(FieldID fieldID) {
-        final ListBox listBox = new ListBox();
-        listBox.addItem("item1");
-        listBox.addItem("item2");
-        listBox.addItem("item3");
-        return listBox;
+        return new ListBox();
     }
 }

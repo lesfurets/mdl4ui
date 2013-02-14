@@ -93,4 +93,10 @@ public interface FieldMessages {
 
     @Message("Français")
     String francais();
+
+    @Message("Yes")
+    String yes();
+
+    @Message("No")
+    String no();
 }

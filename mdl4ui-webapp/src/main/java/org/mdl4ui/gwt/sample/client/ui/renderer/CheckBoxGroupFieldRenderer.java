@@ -8,10 +8,6 @@ public class CheckBoxGroupFieldRenderer extends BaseFieldRenderer<CheckBoxGroupF
 
     @Override
     protected CheckBoxGroupField createFieldComponent(FieldID fieldID) {
-        final CheckBoxGroup checkBoxGroup = new CheckBoxGroup(fieldID.toString());
-        checkBoxGroup.addItem("item1", "item1");
-        checkBoxGroup.addItem("item2", "item2");
-        checkBoxGroup.addItem("item3", "item3");
-        return checkBoxGroup;
+        return new CheckBoxGroup(fieldID.toString());
     }
 }

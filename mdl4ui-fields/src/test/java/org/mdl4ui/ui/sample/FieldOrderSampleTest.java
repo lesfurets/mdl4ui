@@ -17,7 +17,7 @@ import org.junit.Test;
 
 import org.mdl4ui.base.model.*;
 
-@Generated(value = "org.mdl4ui.maven.GenerateDepsTestMojo", date = "14/02/13 10:59")
+@Generated(value = "org.mdl4ui.maven.GenerateDepsTestMojo", date = "14/02/13 12:41")
 public final class FieldOrderSampleTest {
 
     @Test
@@ -48,10 +48,10 @@ public final class FieldOrderSampleTest {
         assertEquals(2, fields.indexOf(EMAIL));
         assertEquals(3, fields.indexOf(BIRTHDATE));
         assertEquals(4, fields.indexOf(LANGUAGE));
-        assertEquals(5, fields.indexOf(TIMEZONE));
-        assertEquals(6, fields.indexOf(EMAIL_ACCEPTED));
-        assertEquals(7, fields.indexOf(EMAILS_PREFERENCES));
-        assertEquals(8, fields.indexOf(MAX_WEEKLY_EMAILS));
+        assertEquals(5, fields.indexOf(EMAIL_ACCEPTED));
+        assertEquals(6, fields.indexOf(EMAILS_PREFERENCES));
+        assertEquals(7, fields.indexOf(MAX_WEEKLY_EMAILS));
+        assertEquals(8, fields.indexOf(TIMEZONE));
         assertEquals(9, fields.indexOf(LOGIN));
         assertEquals(10, fields.indexOf(PASSWORD));
         assertEquals(11, fields.indexOf(PASSWORD_CONFIRMATION));
@@ -68,9 +68,9 @@ public final class FieldOrderSampleTest {
         assertEquals(2, blockItems.indexOf(EMAIL));
         assertEquals(3, blockItems.indexOf(BIRTHDATE));
         assertEquals(4, blockItems.indexOf(LANGUAGE));
-        assertEquals(5, blockItems.indexOf(TIMEZONE));
-        assertEquals(6, blockItems.indexOf(EMAIL_ACCEPTED));
-        assertEquals(7, blockItems.indexOf(EMAIL_GROUP));
+        assertEquals(5, blockItems.indexOf(EMAIL_ACCEPTED));
+        assertEquals(6, blockItems.indexOf(EMAIL_GROUP));
+        assertEquals(7, blockItems.indexOf(TIMEZONE));
         assertEquals(8, blockItems.size());
 
     }

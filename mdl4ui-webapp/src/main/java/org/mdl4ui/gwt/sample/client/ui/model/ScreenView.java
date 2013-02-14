@@ -20,7 +20,7 @@ public class ScreenView implements IsWidget {
             Row row = new Row();
             container.add(row);
 
-            Column column = new Column(6, 3);
+            Column column = new Column(8, 2);
             row.add(column);
 
             BlockView blockView = new BlockView(block);

@@ -8,10 +8,6 @@ public class RadioGroupFieldRenderer extends BaseFieldRenderer<RadioGroupField> 
 
     @Override
     protected RadioGroupField createFieldComponent(FieldID fieldID) {
-        final RadioGroup radioGroup = new RadioGroup(fieldID.toString());
-        radioGroup.addItem("item1", "item1");
-        radioGroup.addItem("item2", "item2");
-        radioGroup.addItem("item3", "item3");
-        return radioGroup;
+        return new RadioGroup(fieldID.toString());
     }
 }

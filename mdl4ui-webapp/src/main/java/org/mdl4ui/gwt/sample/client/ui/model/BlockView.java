@@ -31,7 +31,7 @@ public class BlockView implements IsWidget {
 
         Row row = new Row();
 
-        Column column = new Column(5);
+        Column column = new Column(7);
         row.add(column);
         column.add(new Legend(block.getTitle()));
 

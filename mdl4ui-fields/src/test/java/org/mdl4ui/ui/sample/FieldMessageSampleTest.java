@@ -13,7 +13,7 @@ import org.junit.Test;
 
 import org.mdl4ui.fields.sample.BundleFieldFactory;
 
-@Generated(value = "org.mdl4ui.maven.GenerateDepsTestMojo", date = "14/02/13 10:59")
+@Generated(value = "org.mdl4ui.maven.GenerateDepsTestMojo", date = "14/02/13 12:41")
 public final class FieldMessageSampleTest {
 
     @Test
@@ -107,17 +107,6 @@ public final class FieldMessageSampleTest {
     }
 
     @Test
-    public void testFieldText_TIMEZONE() {
-        final String messageLabel = BundleFieldFactory.INSTANCE.getLabel(TIMEZONE);
-        final String messageHelp = BundleFieldFactory.INSTANCE.getHelp(TIMEZONE);
-        final String messagePlaceHolder = BundleFieldFactory.INSTANCE.getPlaceHolder(TIMEZONE);
-        assertEquals("Timezone", messageLabel);
-        assertNull(messageHelp);
-        assertNull(messagePlaceHolder);
-
-    }
-
-    @Test
     public void testFieldText_EMAIL_ACCEPTED() {
         final String messageLabel = BundleFieldFactory.INSTANCE.getLabel(EMAIL_ACCEPTED);
         final String messageHelp = BundleFieldFactory.INSTANCE.getHelp(EMAIL_ACCEPTED);
@@ -145,6 +134,17 @@ public final class FieldMessageSampleTest {
         final String messageHelp = BundleFieldFactory.INSTANCE.getHelp(MAX_WEEKLY_EMAILS);
         final String messagePlaceHolder = BundleFieldFactory.INSTANCE.getPlaceHolder(MAX_WEEKLY_EMAILS);
         assertEquals("Maximum sent emails per week", messageLabel);
+        assertNull(messageHelp);
+        assertNull(messagePlaceHolder);
+
+    }
+
+    @Test
+    public void testFieldText_TIMEZONE() {
+        final String messageLabel = BundleFieldFactory.INSTANCE.getLabel(TIMEZONE);
+        final String messageHelp = BundleFieldFactory.INSTANCE.getHelp(TIMEZONE);
+        final String messagePlaceHolder = BundleFieldFactory.INSTANCE.getPlaceHolder(TIMEZONE);
+        assertEquals("Timezone", messageLabel);
         assertNull(messageHelp);
         assertNull(messagePlaceHolder);
 

@@ -30,10 +30,11 @@ public enum EBlockSample implements BlockID {
                     EMAIL, //
                     BIRTHDATE, //
                     LANGUAGE, //
-                    TIMEZONE, //
 
                     EMAIL_ACCEPTED, //
-                    EMAIL_GROUP), //
+                    EMAIL_GROUP, //
+
+                    TIMEZONE), //
 
     ACCOUNT(LOGIN, //
                     PASSWORD, //
