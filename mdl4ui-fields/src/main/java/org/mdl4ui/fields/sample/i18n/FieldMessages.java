@@ -64,7 +64,7 @@ public interface FieldMessages {
     String emailPreference();
 
     @InjectSampleLabel(@OnElement(fields = EFieldSample.MAX_WEEKLY_EMAILS))
-    @Message("Maximum sent emails per week")
+    @Message("Emails limit / week")
     String max_mail_per_week();
 
     @InjectSampleLabel(@OnElement(fields = EFieldSample.LOGIN))
