@@ -49,4 +49,14 @@ public final class UIElementImpl {
         for (E child : elementId.childs())
             collectRec(child, elements, type);
     }
+
+    @SuppressWarnings("unchecked")
+    public static <B, E extends UIElement<E, ?, ?, B>> B nextBlock(E screen, B block) {
+        final int index = screen.childs().indexOf(block);
+        if (index < screen.childs().size() - 1) {
+            return (B) screen.childs().get(index + 1);
+        } else {
+            return null;
+        }
+    }
 }

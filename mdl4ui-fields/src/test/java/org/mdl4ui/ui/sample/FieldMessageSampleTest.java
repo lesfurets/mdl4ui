@@ -2,7 +2,6 @@ package org.mdl4ui.ui.sample;
 
 import static org.mdl4ui.ui.sample.EFieldSample.*;
 import static org.mdl4ui.ui.sample.EBlockSample.*;
-import static org.mdl4ui.ui.sample.EGroupSample.*;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
@@ -13,27 +12,16 @@ import org.junit.Test;
 
 import org.mdl4ui.fields.sample.BundleFieldFactory;
 
-@Generated(value = "org.mdl4ui.maven.GenerateDepsTestMojo", date = "14/02/13 17:17")
+@Generated(value = "org.mdl4ui.maven.GenerateDepsTestMojo", date = "16/02/13 14:43")
 public final class FieldMessageSampleTest {
 
-    @Test
-    public void testGroupText_EMAIL_GROUP() {
-        final String messageLabel = BundleFieldFactory.INSTANCE.getLabel(EMAIL_GROUP);
-        final String messageHelp = BundleFieldFactory.INSTANCE.getHelp(EMAIL_GROUP);
-        final String messagePlaceHolder = BundleFieldFactory.INSTANCE.getPlaceHolder(EMAIL_GROUP);
-        assertNull(messageLabel);
-        assertNull(messageHelp);
-        assertNull(messagePlaceHolder);
-
-    }
-
 
     @Test
-    public void testBlockText_INFORMATIONS() {
-        final String messageLabel = BundleFieldFactory.INSTANCE.getLabel(INFORMATIONS);
-        final String messageHelp = BundleFieldFactory.INSTANCE.getHelp(INFORMATIONS);
-        final String messagePlaceHolder = BundleFieldFactory.INSTANCE.getPlaceHolder(INFORMATIONS);
-        assertEquals("My Profile", messageLabel);
+    public void testBlockText_PERSONAL_INFORMATIONS() {
+        final String messageLabel = BundleFieldFactory.INSTANCE.getLabel(PERSONAL_INFORMATIONS);
+        final String messageHelp = BundleFieldFactory.INSTANCE.getHelp(PERSONAL_INFORMATIONS);
+        final String messagePlaceHolder = BundleFieldFactory.INSTANCE.getPlaceHolder(PERSONAL_INFORMATIONS);
+        assertEquals("My Informations", messageLabel);
         assertNull(messageHelp);
         assertNull(messagePlaceHolder);
 
@@ -92,61 +80,6 @@ public final class FieldMessageSampleTest {
         assertEquals("Birth date", messageLabel);
         assertNull(messageHelp);
         assertEquals("dd/mm/yyyy", messagePlaceHolder);
-
-    }
-
-    @Test
-    public void testFieldText_LANGUAGE() {
-        final String messageLabel = BundleFieldFactory.INSTANCE.getLabel(LANGUAGE);
-        final String messageHelp = BundleFieldFactory.INSTANCE.getHelp(LANGUAGE);
-        final String messagePlaceHolder = BundleFieldFactory.INSTANCE.getPlaceHolder(LANGUAGE);
-        assertEquals("Language", messageLabel);
-        assertNull(messageHelp);
-        assertNull(messagePlaceHolder);
-
-    }
-
-    @Test
-    public void testFieldText_EMAIL_ACCEPTED() {
-        final String messageLabel = BundleFieldFactory.INSTANCE.getLabel(EMAIL_ACCEPTED);
-        final String messageHelp = BundleFieldFactory.INSTANCE.getHelp(EMAIL_ACCEPTED);
-        final String messagePlaceHolder = BundleFieldFactory.INSTANCE.getPlaceHolder(EMAIL_ACCEPTED);
-        assertEquals("I accept to receive email", messageLabel);
-        assertNull(messageHelp);
-        assertNull(messagePlaceHolder);
-
-    }
-
-    @Test
-    public void testFieldText_EMAILS_PREFERENCES() {
-        final String messageLabel = BundleFieldFactory.INSTANCE.getLabel(EMAILS_PREFERENCES);
-        final String messageHelp = BundleFieldFactory.INSTANCE.getHelp(EMAILS_PREFERENCES);
-        final String messagePlaceHolder = BundleFieldFactory.INSTANCE.getPlaceHolder(EMAILS_PREFERENCES);
-        assertEquals("Email preference", messageLabel);
-        assertNull(messageHelp);
-        assertNull(messagePlaceHolder);
-
-    }
-
-    @Test
-    public void testFieldText_MAX_WEEKLY_EMAILS() {
-        final String messageLabel = BundleFieldFactory.INSTANCE.getLabel(MAX_WEEKLY_EMAILS);
-        final String messageHelp = BundleFieldFactory.INSTANCE.getHelp(MAX_WEEKLY_EMAILS);
-        final String messagePlaceHolder = BundleFieldFactory.INSTANCE.getPlaceHolder(MAX_WEEKLY_EMAILS);
-        assertEquals("Maximum sent emails per week", messageLabel);
-        assertNull(messageHelp);
-        assertNull(messagePlaceHolder);
-
-    }
-
-    @Test
-    public void testFieldText_TIMEZONE() {
-        final String messageLabel = BundleFieldFactory.INSTANCE.getLabel(TIMEZONE);
-        final String messageHelp = BundleFieldFactory.INSTANCE.getHelp(TIMEZONE);
-        final String messagePlaceHolder = BundleFieldFactory.INSTANCE.getPlaceHolder(TIMEZONE);
-        assertEquals("Timezone", messageLabel);
-        assertNull(messageHelp);
-        assertNull(messagePlaceHolder);
 
     }
 

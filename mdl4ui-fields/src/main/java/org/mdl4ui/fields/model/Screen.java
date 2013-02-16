@@ -23,15 +23,6 @@ public class Screen implements Element {
         return screenID;
     }
 
-    public Block getNextBlock(Block block) {
-        final int index = blocks.indexOf(block);
-        if (index < blocks.size() - 1) {
-            return blocks.get(index + 1);
-        } else {
-            return null;
-        }
-    }
-
     @Override
     public EElementType elementType() {
         return EElementType.SCREEN;

@@ -24,17 +24,14 @@ import org.mdl4ui.base.model.GroupID;
 import org.mdl4ui.base.model.UIElementImpl;
 
 public enum EBlockSample implements BlockID {
-    INFORMATIONS(FIRST_NAME, //
+    PERSONAL_INFORMATIONS(FIRST_NAME, //
                     LAST_NAME, //
                     EMAIL, //
-                    BIRTHDATE, //
-                    LANGUAGE, //
-
+                    BIRTHDATE), //
+    SETTINGS(LANGUAGE, //
                     EMAIL_ACCEPTED, //
                     EMAIL_GROUP, //
-
                     TIMEZONE), //
-
     ACCOUNT(LOGIN, //
                     PASSWORD, //
                     PASSWORD_CONFIRMATION);

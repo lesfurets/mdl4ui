@@ -14,7 +14,7 @@ import org.junit.Test;
 
 import org.mdl4ui.base.model.FieldID;
 
-@Generated(value = "org.mdl4ui.maven.GenerateDepsTestMojo", date = "14/02/13 17:17")
+@Generated(value = "org.mdl4ui.maven.GenerateDepsTestMojo", date = "16/02/13 14:43")
 public final class FieldDependencySampleTest {
 	private final FieldDependencySampleFactory factory = new FieldDependencySampleFactory();
 	
@@ -24,6 +24,22 @@ public final class FieldDependencySampleTest {
         assertTrue(fields.contains(EMAILS_PREFERENCES));
         assertTrue(fields.contains(MAX_WEEKLY_EMAILS));
         assertEquals(2, fields.size());
+
+    }
+
+    @Test
+    public void testFieldDependencies_PASSWORD() {
+        final List<FieldID> fields = Arrays.asList(factory.get(PASSWORD));
+        assertTrue(fields.contains(PASSWORD_CONFIRMATION));
+        assertEquals(1, fields.size());
+
+    }
+
+    @Test
+    public void testFieldDependencies_PASSWORD_CONFIRMATION() {
+        final List<FieldID> fields = Arrays.asList(factory.get(PASSWORD_CONFIRMATION));
+        assertTrue(fields.contains(PASSWORD));
+        assertEquals(1, fields.size());
 
     }
 

@@ -1,8 +1,10 @@
 package org.mdl4ui.gwt.sample.client.ui.model;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import org.mdl4ui.base.model.BlockID;
 import org.mdl4ui.base.model.ScreenID;
 import org.mdl4ui.fields.model.Block;
 import org.mdl4ui.fields.model.DefaultWizard;
@@ -26,7 +28,7 @@ public class WizardView implements IsWidget {
 
     public WizardView(final DefaultWizard wizard) {
         Screen firstScreen = null;
-        for (ScreenID screenID : wizard.getScreens().keySet()) {
+        for (final ScreenID screenID : wizard.getScreens().keySet()) {
             final ScreenView screenView = new ScreenView(wizard.getScreens().get(screenID));
             if (firstScreen == null) {
                 firstScreen = screenView.getScreen();
@@ -38,10 +40,7 @@ public class WizardView implements IsWidget {
                 hasChangeHandler.addValueChangeHandler(new ValueChangeHandler<Object>() {
                     @Override
                     public void onValueChange(ValueChangeEvent<Object> event) {
-                        wizard.updateField(field);
-                        for (FieldView fieldView : screenView.fields()) {
-                            fieldView.updateField();
-                        }
+                        updateField(wizard, screenView, field);
                     }
                 });
             }
@@ -50,11 +49,14 @@ public class WizardView implements IsWidget {
                 blockView.getSubmit().addClickHandler(new ClickHandler() {
                     @Override
                     public void onClick(ClickEvent event) {
-                        Block block = blockView.getBlock();
-                        wizard.submit(block);
-                        for (FieldView fieldView : screenView.fields()) {
-                            fieldView.updateField();
-                        }
+                        submitBlock(wizard, screenID, screenView, blockView);
+                    }
+                });
+
+                blockView.getModify().addClickHandler(new ClickHandler() {
+                    @Override
+                    public void onClick(ClickEvent event) {
+                        modifyBlock(screenView, blockView);
                     }
                 });
             }
@@ -62,6 +64,46 @@ public class WizardView implements IsWidget {
             screens.put(screenID, screenView);
         }
         container = new FluidContainer();
+    }
+
+    private void updateField(final DefaultWizard wizard, final ScreenView screenView, final Field field) {
+        wizard.updateField(field);
+        for (FieldView fieldView : screenView.fields()) {
+            fieldView.updateField();
+        }
+    }
+
+    private void submitBlock(final DefaultWizard wizard, final ScreenID screenID, final ScreenView screenView,
+                    final BlockView blockView) {
+        Block block = blockView.getBlock();
+        wizard.submit(block);
+        for (FieldView fieldView : screenView.fields()) {
+            fieldView.updateField();
+        }
+        if (block.isValid()) {
+            blockView.collapse();
+            blockView.getModify().setVisible(true);
+            BlockID nextBlock = screenID.nextBlock(block.getBlockID());
+            for (BlockView screenBlock : screenView.blocks()) {
+                if (screenBlock.getBlock().getBlockID() == nextBlock) {
+                    screenBlock.expand();
+                }
+            }
+        }
+    }
+
+    private void modifyBlock(ScreenView screenView, BlockView blockView) {
+        final List<BlockView> blocks = screenView.blocks();
+        boolean canBeModified = true;
+        for (BlockView otherBlock : blocks) {
+            if (blockView == otherBlock) {
+                otherBlock.expand();
+                canBeModified = false;
+            } else {
+                otherBlock.collapse();
+                otherBlock.getModify().setVisible(canBeModified);
+            }
+        }
     }
 
     public void displayScreen(Wizard wizard, ScreenID screenID) {
@@ -74,6 +116,14 @@ public class WizardView implements IsWidget {
         wizard.displayScreen(screenView.getScreen());
         for (FieldView fieldView : screenView.fields()) {
             fieldView.updateField();
+        }
+
+        List<BlockView> blocks = screenView.blocks();
+        blocks.get(0).expand();
+        blocks.remove(0);
+        for (BlockView blockView : blocks) {
+            blockView.collapse();
+            blockView.getModify().setVisible(false);
         }
     }
 

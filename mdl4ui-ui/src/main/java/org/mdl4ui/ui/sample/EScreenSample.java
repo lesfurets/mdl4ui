@@ -2,7 +2,8 @@ package org.mdl4ui.ui.sample;
 
 import static org.mdl4ui.base.model.UIElementImpl.containsRec;
 import static org.mdl4ui.ui.sample.EBlockSample.ACCOUNT;
-import static org.mdl4ui.ui.sample.EBlockSample.INFORMATIONS;
+import static org.mdl4ui.ui.sample.EBlockSample.PERSONAL_INFORMATIONS;
+import static org.mdl4ui.ui.sample.EBlockSample.SETTINGS;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,7 +17,7 @@ import org.mdl4ui.base.model.ScreenID;
 import org.mdl4ui.base.model.UIElementImpl;
 
 public enum EScreenSample implements ScreenID {
-    SCR_WIDGETS_SHOWCASE(INFORMATIONS, ACCOUNT);
+    SCR_WIDGETS_SHOWCASE(PERSONAL_INFORMATIONS, SETTINGS, ACCOUNT);
 
     private final List<ElementID> childs;
 
@@ -52,5 +53,10 @@ public enum EScreenSample implements ScreenID {
     @Override
     public List<GroupID> groups() {
         return UIElementImpl.<GroupID, ElementID> collectGroups(this);
+    }
+
+    @Override
+    public BlockID nextBlock(BlockID block) {
+        return UIElementImpl.<BlockID, ElementID> nextBlock(this, block);
     }
 }

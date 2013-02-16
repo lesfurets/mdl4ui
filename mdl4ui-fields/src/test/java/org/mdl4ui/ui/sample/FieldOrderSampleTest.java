@@ -3,7 +3,6 @@ package org.mdl4ui.ui.sample;
 import static org.mdl4ui.ui.sample.EFieldSample.*;
 import static org.mdl4ui.ui.sample.EScreenSample.*;
 import static org.mdl4ui.ui.sample.EBlockSample.*;
-import static org.mdl4ui.ui.sample.EGroupSample.*;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
@@ -17,14 +16,15 @@ import org.junit.Test;
 
 import org.mdl4ui.base.model.*;
 
-@Generated(value = "org.mdl4ui.maven.GenerateDepsTestMojo", date = "14/02/13 17:17")
+@Generated(value = "org.mdl4ui.maven.GenerateDepsTestMojo", date = "16/02/13 14:43")
 public final class FieldOrderSampleTest {
 
     @Test
     public void testScreenBlocks_SCR_WIDGETS_SHOWCASE() {
         final List<BlockID> blocks = SCR_WIDGETS_SHOWCASE.blocks();
-		assertEquals(12, SCR_WIDGETS_SHOWCASE.fields().size());
-        assertTrue(blocks.contains(INFORMATIONS));
+		assertEquals(10, SCR_WIDGETS_SHOWCASE.fields().size());
+        assertTrue(blocks.contains(PERSONAL_INFORMATIONS));
+        assertTrue(blocks.contains(ACCOUNT));
         assertTrue(blocks.contains(ACCOUNT));
 
     }
@@ -33,9 +33,10 @@ public final class FieldOrderSampleTest {
     @Test
     public void testScreenBlocksOrder_SCR_WIDGETS_SHOWCASE() {
         final List<BlockID> blocks = SCR_WIDGETS_SHOWCASE.blocks();
-        assertEquals(0, blocks.indexOf(INFORMATIONS));
+        assertEquals(0, blocks.indexOf(PERSONAL_INFORMATIONS));
         assertEquals(1, blocks.indexOf(ACCOUNT));
-        assertEquals(2, blocks.size());
+        assertEquals(1, blocks.indexOf(ACCOUNT));
+        assertEquals(3, blocks.size());
 
     }
 
@@ -47,31 +48,25 @@ public final class FieldOrderSampleTest {
         assertEquals(1, fields.indexOf(LAST_NAME));
         assertEquals(2, fields.indexOf(EMAIL));
         assertEquals(3, fields.indexOf(BIRTHDATE));
-        assertEquals(4, fields.indexOf(LANGUAGE));
-        assertEquals(5, fields.indexOf(EMAIL_ACCEPTED));
-        assertEquals(6, fields.indexOf(EMAILS_PREFERENCES));
-        assertEquals(7, fields.indexOf(MAX_WEEKLY_EMAILS));
-        assertEquals(8, fields.indexOf(TIMEZONE));
-        assertEquals(9, fields.indexOf(LOGIN));
-        assertEquals(10, fields.indexOf(PASSWORD));
-        assertEquals(11, fields.indexOf(PASSWORD_CONFIRMATION));
-        assertEquals(12, fields.size());
+        assertEquals(4, fields.indexOf(LOGIN));
+        assertEquals(5, fields.indexOf(PASSWORD));
+        assertEquals(6, fields.indexOf(PASSWORD_CONFIRMATION));
+        assertEquals(4, fields.indexOf(LOGIN));
+        assertEquals(5, fields.indexOf(PASSWORD));
+        assertEquals(6, fields.indexOf(PASSWORD_CONFIRMATION));
+        assertEquals(10, fields.size());
 
     }
 
 
     @Test
-    public void testBlockContentOrder_INFORMATIONS() {
-        final List<ElementID> blockItems = INFORMATIONS.childs();
+    public void testBlockContentOrder_PERSONAL_INFORMATIONS() {
+        final List<ElementID> blockItems = PERSONAL_INFORMATIONS.childs();
         assertEquals(0, blockItems.indexOf(FIRST_NAME));
         assertEquals(1, blockItems.indexOf(LAST_NAME));
         assertEquals(2, blockItems.indexOf(EMAIL));
         assertEquals(3, blockItems.indexOf(BIRTHDATE));
-        assertEquals(4, blockItems.indexOf(LANGUAGE));
-        assertEquals(5, blockItems.indexOf(EMAIL_ACCEPTED));
-        assertEquals(6, blockItems.indexOf(EMAIL_GROUP));
-        assertEquals(7, blockItems.indexOf(TIMEZONE));
-        assertEquals(8, blockItems.size());
+        assertEquals(4, blockItems.size());
 
     }
 
@@ -85,15 +80,6 @@ public final class FieldOrderSampleTest {
 
     }
 
-
-    @Test
-    public void testGroupContentOrder_EMAIL_GROUP() {
-        final List<ElementID> fields = EMAIL_GROUP.childs();
-        assertEquals(0, fields.indexOf(EMAILS_PREFERENCES));
-        assertEquals(1, fields.indexOf(MAX_WEEKLY_EMAILS));
-        assertEquals(2, fields.size());
-
-    }
 
 
 }

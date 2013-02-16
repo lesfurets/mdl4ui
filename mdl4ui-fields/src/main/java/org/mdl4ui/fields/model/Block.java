@@ -65,4 +65,11 @@ public class Block implements Element {
     public List<Group> groups() {
         return UIElementImpl.<Group, Element> collectGroups(this);
     }
+
+    public boolean isValid() {
+        for (Field field : fields())
+            if (field.getState() == EFieldState.ERROR)
+                return false;
+        return true;
+    }
 }

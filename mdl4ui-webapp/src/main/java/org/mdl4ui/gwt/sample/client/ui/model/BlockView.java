@@ -22,8 +22,6 @@ import com.github.gwtbootstrap.client.ui.WellForm;
 import com.github.gwtbootstrap.client.ui.constants.ButtonType;
 import com.github.gwtbootstrap.client.ui.constants.FormType;
 import com.github.gwtbootstrap.client.ui.constants.IconType;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Widget;
 
 public class BlockView implements ElementView {
@@ -49,13 +47,8 @@ public class BlockView implements ElementView {
         column = new Column(1);
         row.add(column);
         modify = new Button();
+        modify.setVisible(false);
         modify.setIcon(IconType.EDIT);
-        modify.addClickHandler(new ClickHandler() {
-            @Override
-            public void onClick(ClickEvent event) {
-                expand();
-            }
-        });
         row.add(modify);
 
         form.add(row);
@@ -78,32 +71,29 @@ public class BlockView implements ElementView {
 
         actions = new FormActions();
         submit = new Button("Submit");
-        // TODO block navigation
-        // submit.addClickHandler(new ClickHandler() {
-        // @Override
-        // public void onClick(ClickEvent event) {
-        // collapse();
-        // }
-        // });
-
         submit.setType(ButtonType.PRIMARY);
         actions.add(submit);
 
         form.add(actions);
     }
 
-    private void expand() {
+    public void expand() {
         fieldset.setVisible(true);
         actions.setVisible(true);
+        modify.setVisible(false);
     }
 
-    private void collapse() {
+    public void collapse() {
         fieldset.setVisible(false);
         actions.setVisible(false);
     }
 
     public Button getSubmit() {
         return submit;
+    }
+
+    public Button getModify() {
+        return modify;
     }
 
     public Block getBlock() {

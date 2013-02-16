@@ -74,5 +74,4 @@ public class ScreenView implements ElementView {
     public List<GroupView> groups() {
         return UIElementImpl.<GroupView, ElementView> collectGroups(this);
     }
-
 }
