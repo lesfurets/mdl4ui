@@ -3,7 +3,7 @@ package org.mdl4ui.fields.sample.editor;
 import org.mdl4ui.fields.model.DefaultEditor;
 import org.mdl4ui.fields.model.Field;
 import org.mdl4ui.fields.model.WizardContext;
-import org.mdl4ui.fields.model.component.TextBoxField;
+import org.mdl4ui.fields.model.component.PasswordField;
 import org.mdl4ui.fields.model.validation.FieldValidation;
 import org.mdl4ui.fields.sample.InjectSampleEditor;
 import org.mdl4ui.fields.sample.OnField;
@@ -23,13 +23,13 @@ public class PasswordConfirmationEditor extends DefaultEditor {
     @Override
     public void updateFromContext(Field field, WizardContext context) {
         SampleContext sampleContext = (SampleContext) context;
-        TextBoxField textbox = field.getComponent();
+        PasswordField textbox = field.getComponent();
         textbox.setValue(sampleContext.getUserAccount().getPasswordConfirmation());
     }
 
     @Override
     public void updateContext(Field field, WizardContext context) {
-        TextBoxField textbox = field.getComponent();
+        PasswordField textbox = field.getComponent();
         SampleContext sampleContext = (SampleContext) context;
         sampleContext.getUserAccount().setPasswordConfirmation(textbox.getValue());
     }
@@ -37,12 +37,12 @@ public class PasswordConfirmationEditor extends DefaultEditor {
     @Override
     public FieldValidation validate(Field field, WizardContext context) {
         UserAccount userAccount = ((SampleContext) context).getUserAccount();
-        TextBoxField textbox = field.getComponent();
+        PasswordField textbox = field.getComponent();
         String value = textbox.getValue();
         if (value == null || value.trim().length() == 0) {
             return error(field, messages.please_specify_your_password());
         }
-        if (userAccount.getPassword().equals(userAccount.getPasswordConfirmation())) {
+        if (!userAccount.getPassword().equals(userAccount.getPasswordConfirmation())) {
             return error(field, messages.passwords_does_not_match());
         }
         return valid(field);

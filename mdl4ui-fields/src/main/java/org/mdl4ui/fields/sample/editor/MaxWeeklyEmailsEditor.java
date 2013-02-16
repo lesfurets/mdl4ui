@@ -30,7 +30,8 @@ public class MaxWeeklyEmailsEditor extends DefaultEditor {
     public void updateContext(Field field, WizardContext context) {
         NumericField texbox = field.getComponent();
         SampleContext sampleContext = (SampleContext) context;
-        sampleContext.getUserAccount().setMaxEmailPerWeek(texbox.getValue());
+        if (texbox.getValue() != null)
+            sampleContext.getUserAccount().setMaxEmailPerWeek(texbox.getValue());
     }
 
     @Override

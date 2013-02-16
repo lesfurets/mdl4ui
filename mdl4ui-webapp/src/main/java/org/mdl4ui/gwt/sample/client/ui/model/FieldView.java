@@ -11,10 +11,11 @@ import org.mdl4ui.fields.model.Field;
 import com.github.gwtbootstrap.client.ui.ControlGroup;
 import com.github.gwtbootstrap.client.ui.ControlLabel;
 import com.github.gwtbootstrap.client.ui.Controls;
-import com.github.gwtbootstrap.client.ui.HelpBlock;
 import com.github.gwtbootstrap.client.ui.HelpInline;
+import com.github.gwtbootstrap.client.ui.Tooltip;
 import com.github.gwtbootstrap.client.ui.base.ValueBoxBase;
 import com.github.gwtbootstrap.client.ui.constants.ControlGroupType;
+import com.github.gwtbootstrap.client.ui.constants.Trigger;
 import com.google.gwt.user.client.ui.Widget;
 
 public class FieldView implements ElementView {
@@ -37,18 +38,16 @@ public class FieldView implements ElementView {
         }
 
         Controls controls = new Controls();
-        controls.add(component);
+        Tooltip tooltip = new Tooltip(field.getHelp());
+        tooltip.setTrigger(Trigger.HOVER);
+        controls.add(tooltip);
+        tooltip.add(component);
 
         validation = new HelpInline();
         controls.add(validation);
 
         if (field.getPlaceholder() != null && component instanceof ValueBoxBase) {
             ((ValueBoxBase<?>) component).setPlaceholder(field.getPlaceholder());
-        }
-
-        if (field.getHelp() != null) {
-            HelpBlock help = new HelpBlock(field.getHelp());
-            controls.add(help);
         }
 
         controlGroup.add(controls);
@@ -68,11 +67,13 @@ public class FieldView implements ElementView {
             case DEFAULT:
                 controlGroup.setVisible(true);
                 controlGroup.setType(ControlGroupType.NONE);
+                validation.setVisible(false);
                 validation.setText(null);
                 break;
             case ERROR:
                 controlGroup.setVisible(true);
                 controlGroup.setType(ControlGroupType.ERROR);
+                validation.setVisible(true);
                 validation.setText(field.getValidation().getMessage());
                 break;
             case HIDDEN:
@@ -82,6 +83,7 @@ public class FieldView implements ElementView {
             case SET:
                 controlGroup.setVisible(true);
                 controlGroup.setType(ControlGroupType.SUCCESS);
+                validation.setVisible(false);
                 validation.setText(null);
                 break;
         }

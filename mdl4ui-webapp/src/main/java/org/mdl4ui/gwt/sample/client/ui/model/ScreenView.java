@@ -27,7 +27,7 @@ public class ScreenView implements ElementView {
             Row row = new Row();
             container.add(row);
 
-            Column column = new Column(8, 2);
+            Column column = new Column(10, 1);
             row.add(column);
 
             BlockView blockView = new BlockView(block);

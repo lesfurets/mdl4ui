@@ -3,6 +3,7 @@ package org.mdl4ui.fields.sample.editor;
 import org.mdl4ui.fields.model.DefaultEditor;
 import org.mdl4ui.fields.model.Field;
 import org.mdl4ui.fields.model.WizardContext;
+import org.mdl4ui.fields.model.component.PasswordField;
 import org.mdl4ui.fields.model.component.TextBoxField;
 import org.mdl4ui.fields.model.validation.FieldValidation;
 import org.mdl4ui.fields.sample.InjectSampleEditor;
@@ -28,14 +29,14 @@ public class PasswordEditor extends DefaultEditor {
 
     @Override
     public void updateContext(Field field, WizardContext context) {
-        TextBoxField textbox = field.getComponent();
+        PasswordField textbox = field.getComponent();
         SampleContext sampleContext = (SampleContext) context;
         sampleContext.getUserAccount().setPassword(textbox.getValue());
     }
 
     @Override
     public FieldValidation validate(Field field, WizardContext context) {
-        TextBoxField textbox = field.getComponent();
+        PasswordField textbox = field.getComponent();
         String value = textbox.getValue();
         if (value == null || value.trim().length() == 0) {
             return error(field, messages.please_specify_your_password());

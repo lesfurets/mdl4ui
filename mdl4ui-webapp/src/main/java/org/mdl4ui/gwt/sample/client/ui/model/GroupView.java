@@ -21,7 +21,7 @@ public class GroupView implements ElementView {
 
     public GroupView(Group group) {
         row = new Row();
-        final Column column = new Column(5, 1);
+        final Column column = new Column(7, 1);
         row.add(column);
 
         for (Field field : group.fields()) {

@@ -20,6 +20,7 @@ import com.github.gwtbootstrap.client.ui.Legend;
 import com.github.gwtbootstrap.client.ui.Row;
 import com.github.gwtbootstrap.client.ui.WellForm;
 import com.github.gwtbootstrap.client.ui.constants.ButtonType;
+import com.github.gwtbootstrap.client.ui.constants.FormType;
 import com.github.gwtbootstrap.client.ui.constants.IconType;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -37,10 +38,11 @@ public class BlockView implements ElementView {
     public BlockView(final Block block) {
         this.block = block;
         form = new WellForm();
+        form.setType(FormType.HORIZONTAL);
 
         Row row = new Row();
 
-        Column column = new Column(7);
+        Column column = new Column(9);
         row.add(column);
         column.add(new Legend(block.getTitle()));
 
@@ -76,6 +78,7 @@ public class BlockView implements ElementView {
 
         actions = new FormActions();
         submit = new Button("Submit");
+        // TODO block navigation
         // submit.addClickHandler(new ClickHandler() {
         // @Override
         // public void onClick(ClickEvent event) {
