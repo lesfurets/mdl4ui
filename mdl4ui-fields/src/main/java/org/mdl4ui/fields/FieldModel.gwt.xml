@@ -2,8 +2,9 @@
 <!DOCTYPE module PUBLIC "-//Google Inc.//DTD Google Web Toolkit 2.1.0//EN" "http://google-web-toolkit.googlecode.com/svn/tags/2.1.0/distro-source/core/src/gwt-module.dtd">
 <module>
   <inherits name="org.mdl4ui.ui.UI" />
-
-   <source path='model'>
+  <inherits name="com.google.common.collect.Collect" />
+  
+  <source path='model'>
     <exclude name="**DesktopBundle.java" />
     <exclude name="**MobileBundle.java" />
     <exclude name="**DesktopBundleTest.java" />

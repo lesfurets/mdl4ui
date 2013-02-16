@@ -68,21 +68,21 @@ public class FieldView implements ElementView {
             case DEFAULT:
                 controlGroup.setVisible(true);
                 controlGroup.setType(ControlGroupType.NONE);
-                controlGroup.setTitle(null);
+                validation.setText(null);
                 break;
             case ERROR:
                 controlGroup.setVisible(true);
                 controlGroup.setType(ControlGroupType.ERROR);
-                controlGroup.setTitle(field.getValidation().getMessage());
+                validation.setText(field.getValidation().getMessage());
                 break;
             case HIDDEN:
                 controlGroup.setVisible(false);
-                controlGroup.setTitle(null);
+                validation.setText(null);
                 break;
             case SET:
                 controlGroup.setVisible(true);
                 controlGroup.setType(ControlGroupType.SUCCESS);
-                controlGroup.setTitle(null);
+                validation.setText(null);
                 break;
         }
     }

@@ -28,12 +28,14 @@ import com.google.gwt.user.client.ui.Widget;
 public class BlockView implements ElementView {
 
     private final WellForm form;
-    private final Button modify;
+    private final Button modify, submit;
     private final Fieldset fieldset;
     private final FormActions actions;
     private final List<ElementView> childs = new ArrayList<ElementView>();
+    private final Block block;
 
     public BlockView(final Block block) {
+        this.block = block;
         form = new WellForm();
 
         Row row = new Row();
@@ -73,16 +75,16 @@ public class BlockView implements ElementView {
         }
 
         actions = new FormActions();
-        Button validate = new Button("Submit");
-        validate.addClickHandler(new ClickHandler() {
-            @Override
-            public void onClick(ClickEvent event) {
-                collapse();
-            }
-        });
+        submit = new Button("Submit");
+        // submit.addClickHandler(new ClickHandler() {
+        // @Override
+        // public void onClick(ClickEvent event) {
+        // collapse();
+        // }
+        // });
 
-        validate.setType(ButtonType.PRIMARY);
-        actions.add(validate);
+        submit.setType(ButtonType.PRIMARY);
+        actions.add(submit);
 
         form.add(actions);
     }
@@ -97,9 +99,17 @@ public class BlockView implements ElementView {
         actions.setVisible(false);
     }
 
+    public Button getSubmit() {
+        return submit;
+    }
+
+    public Block getBlock() {
+        return block;
+    }
+
     @Override
     public EElementType elementType() {
-        return EElementType.GROUP;
+        return EElementType.BLOCK;
     }
 
     @Override

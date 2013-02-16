@@ -4,12 +4,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.mdl4ui.base.model.ScreenID;
+import org.mdl4ui.fields.model.Block;
 import org.mdl4ui.fields.model.DefaultWizard;
 import org.mdl4ui.fields.model.Field;
 import org.mdl4ui.fields.model.Screen;
 import org.mdl4ui.fields.model.Wizard;
 
 import com.github.gwtbootstrap.client.ui.FluidContainer;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.logical.shared.HasValueChangeHandlers;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
@@ -28,6 +31,7 @@ public class WizardView implements IsWidget {
             if (firstScreen == null) {
                 firstScreen = screenView.getScreen();
             }
+
             for (final Field field : screenView.getScreen().fields()) {
                 @SuppressWarnings({ "rawtypes", "unchecked" })
                 HasValueChangeHandlers<Object> hasChangeHandler = (HasValueChangeHandlers) field.getComponent();
@@ -41,6 +45,20 @@ public class WizardView implements IsWidget {
                     }
                 });
             }
+
+            for (final BlockView blockView : screenView.blocks()) {
+                blockView.getSubmit().addClickHandler(new ClickHandler() {
+                    @Override
+                    public void onClick(ClickEvent event) {
+                        Block block = blockView.getBlock();
+                        wizard.submit(block);
+                        for (FieldView fieldView : screenView.fields()) {
+                            fieldView.updateField();
+                        }
+                    }
+                });
+            }
+
             screens.put(screenID, screenView);
         }
         container = new FluidContainer();

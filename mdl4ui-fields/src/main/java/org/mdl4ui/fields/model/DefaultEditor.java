@@ -27,27 +27,15 @@ public abstract class DefaultEditor implements FieldEditor {
     }
 
     public static final FieldValidation valid(Field field) {
-        return valid(field.getFieldID());
-    }
-
-    protected static final FieldValidation valid(FieldID field) {
-        return new FieldValidation(field);
+        return new FieldValidation(field.getFieldID());
     }
 
     protected static final FieldValidation empty(Field field, String message) {
         return validation(field.getFieldID(), message, EErrorType.EMPTY_FIELD);
     }
 
-    protected static final FieldValidation empty(FieldID field, String message) {
-        return validation(field, message, EErrorType.EMPTY_FIELD);
-    }
-
     protected static final FieldValidation error(Field field, String message) {
         return validation(field.getFieldID(), message, EErrorType.INCONSISTENT_FIELD);
-    }
-
-    protected static final FieldValidation error(FieldID field, String message) {
-        return validation(field, message, EErrorType.INCONSISTENT_FIELD);
     }
 
     protected static final FieldValidation validation(FieldID field, String message, EErrorType errorType) {

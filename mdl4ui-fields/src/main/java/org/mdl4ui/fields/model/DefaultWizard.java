@@ -101,8 +101,8 @@ public class DefaultWizard implements Wizard {
     public void updateField(Field field) {
         // validate & update context if visible
         if (isVisible(field.getFieldID())) {
-            validate(field);
             updateContext(field);
+            validate(field);
         }
 
         // update field dependencies
@@ -202,4 +202,11 @@ public class DefaultWizard implements Wizard {
         return null;
     }
 
+    @Override
+    public void submit(Block block) {
+        for (Field field : block.fields()) {
+            updateField(field);
+        }
+        // TODO transition to next block/screen
+    }
 }

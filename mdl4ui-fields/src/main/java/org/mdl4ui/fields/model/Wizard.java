@@ -28,4 +28,6 @@ public interface Wizard {
     void updateField(Field field);
 
     FieldValidation validate(Field field);
+
+    void submit(Block block);
 }

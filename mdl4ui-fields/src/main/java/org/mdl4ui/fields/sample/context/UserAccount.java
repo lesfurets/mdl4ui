@@ -10,10 +10,12 @@ public class UserAccount {
 
     private String login;
     private String password;
+    private String passwordConfirmation;
 
-    private Timezone timezone;
-    private Language language;
+    private Timezone timezone = Timezone.ETC_GMT;
+    private Language language = Language.EN;
 
+    private String email;
     private Boolean acceptEmail;
     private Collection<EmailType> emailTypes = new HashSet<EmailType>();
     private int maxEmailPerWeek;
@@ -32,6 +34,14 @@ public class UserAccount {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPasswordConfirmation() {
+        return passwordConfirmation;
+    }
+
+    public void setPasswordConfirmation(String passwordConfirmation) {
+        this.passwordConfirmation = passwordConfirmation;
     }
 
     public Timezone getTimezone() {
@@ -72,5 +82,13 @@ public class UserAccount {
 
     public void setMaxEmailPerWeek(int maxEmailPerWeek) {
         this.maxEmailPerWeek = maxEmailPerWeek;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

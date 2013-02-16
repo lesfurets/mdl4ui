@@ -48,4 +48,12 @@ public enum Timezone {
         return displayName;
     }
 
+    public static Timezone fromCode(String code) {
+        for (Timezone timezone : values()) {
+            if (timezone.getCode().equals(code))
+                return timezone;
+        }
+        return null;
+    }
+
 }
