@@ -120,7 +120,6 @@ abstract class FieldProcessor extends AbstractProcessor {
 
     private String injectConstructorParameters(Element elt) {
         ExecutableElement constructor = null;
-
         // retrieve constructor with the highest parameter count
         for (Element enclosedElement : elt.getEnclosedElements()) {
             if (enclosedElement.getKind() == ElementKind.CONSTRUCTOR) {
@@ -136,8 +135,8 @@ abstract class FieldProcessor extends AbstractProcessor {
             return "";
         }
 
-        List<String> parameters = new ArrayList<String>();
-        FactoryName factoryName = isGwtFactory() ? new GwtFactoryName() : new BundleFactoryName();
+        final List<String> parameters = new ArrayList<String>();
+        final FactoryName factoryName = isGwtFactory() ? new GwtFactoryName() : new BundleFactoryName();
         for (VariableElement parameter : constructor.getParameters()) {
             TypeMirror asType = parameter.asType();
             if (processingEnv.getTypeUtils().asElement(asType).getAnnotation(MessageBundle.class) != null) {
@@ -158,7 +157,6 @@ abstract class FieldProcessor extends AbstractProcessor {
         String getName(ExecutableElement execElement, boolean fqcn);
 
         String[] prefix();
-
     }
 
     static final class GwtFactoryName implements FactoryName {
@@ -298,10 +296,9 @@ abstract class FieldProcessor extends AbstractProcessor {
     }
 
     private static String intersectPackage(String s1, String s2) {
-        String[] elements1 = StringUtils.split(s1, ".");
-        String[] elements2 = StringUtils.split(s2, ".");
-
-        List<String> intersection = new ArrayList<String>();
+        final String[] elements1 = StringUtils.split(s1, ".");
+        final String[] elements2 = StringUtils.split(s2, ".");
+        final List<String> intersection = new ArrayList<String>();
         for (int i = 0; i < min(elements1.length, elements2.length); i++) {
             if (!elements1[i].equals(elements2[i])) {
                 break;
@@ -313,8 +310,8 @@ abstract class FieldProcessor extends AbstractProcessor {
 
     static ElementID getElementID(Element element) throws Exception {
         final String elementName = element.getSimpleName().toString();
-        Class<?> enumClass = Class.forName(((TypeElement) element.getEnclosingElement()).getQualifiedName().toString());
-        List<ElementID> values = Arrays.asList((ElementID[]) enumClass.getMethod("values").invoke(null));
+        final Class<?> enumClass = Class.forName(((TypeElement) element.getEnclosingElement()).getQualifiedName().toString());
+        final List<ElementID> values = Arrays.asList((ElementID[]) enumClass.getMethod("values").invoke(null));
         for (ElementID elementID : values) {
             if (elementName.equals(elementID.toString())) {
                 return elementID;

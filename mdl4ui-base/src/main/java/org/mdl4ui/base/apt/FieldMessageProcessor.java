@@ -58,7 +58,6 @@ public abstract class FieldMessageProcessor extends FieldProcessor {
 
     @Override
     public final boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
-
         if (roundEnv.processingOver()) {
             return true;
         }

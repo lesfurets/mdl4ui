@@ -12,8 +12,8 @@
  */
 package org.ez18n.apt.macro;
 
+@SuppressWarnings("serial")
 public class PropertyParsingException extends Exception {
-
     public PropertyParsingException(String message) {
         super(message);
     }
