@@ -1,4 +1,4 @@
-package org.mdl4ui.gwt.sample.client.ui.renderer;
+package org.mdl4ui.gwt.sample.client.renderer;
 
 import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.fields.model.component.NumericField;

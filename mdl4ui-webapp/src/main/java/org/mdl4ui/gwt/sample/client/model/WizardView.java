@@ -1,4 +1,4 @@
-package org.mdl4ui.gwt.sample.client.ui.model;
+package org.mdl4ui.gwt.sample.client.model;
 
 import java.util.HashMap;
 import java.util.List;

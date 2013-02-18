@@ -1,4 +1,4 @@
-package org.mdl4ui.gwt.sample.client.ui.model;
+package org.mdl4ui.gwt.sample.client.model;
 
 import static org.mdl4ui.base.model.UIElementImpl.containsRec;
 
@@ -7,52 +7,38 @@ import java.util.List;
 
 import org.mdl4ui.base.model.EElementType;
 import org.mdl4ui.base.model.UIElementImpl;
-import org.mdl4ui.fields.model.Block;
-import org.mdl4ui.fields.model.Screen;
+import org.mdl4ui.fields.model.Field;
+import org.mdl4ui.fields.model.Group;
 
 import com.github.gwtbootstrap.client.ui.Column;
-import com.github.gwtbootstrap.client.ui.Container;
 import com.github.gwtbootstrap.client.ui.Row;
 import com.google.gwt.user.client.ui.Widget;
 
-public class ScreenView implements ElementView {
+public class GroupView implements ElementView {
 
-    private final Container container = new Container();
     private final List<ElementView> childs = new ArrayList<ElementView>();
-    private final Screen screen;
+    private final Row row;
 
-    public ScreenView(final Screen screen) {
-        this.screen = screen;
-        for (Block block : screen.blocks()) {
-            Row row = new Row();
-            container.add(row);
+    public GroupView(Group group) {
+        row = new Row();
+        final Column column = new Column(7, 1);
+        row.add(column);
 
-            Column column = new Column(10, 1);
-            row.add(column);
-
-            BlockView blockView = new BlockView(block);
-            column.add(blockView);
-            childs.add(blockView);
+        for (Field field : group.fields()) {
+            final FieldView fieldView = new FieldView(field);
+            column.add(fieldView);
+            childs.add(fieldView);
         }
-    }
-
-    public Screen getScreen() {
-        return this.screen;
     }
 
     @Override
     public Widget asWidget() {
-        return container;
+        return row;
     }
 
     @Override
     public EElementType elementType() {
-        return EElementType.SCREEN;
-    }
-
-    @Override
-    public List<ElementView> childs() {
-        return childs;
+        return EElementType.GROUP;
     }
 
     @Override
@@ -73,5 +59,10 @@ public class ScreenView implements ElementView {
     @Override
     public List<GroupView> groups() {
         return UIElementImpl.<GroupView, ElementView> collectGroups(this);
+    }
+
+    @Override
+    public List<ElementView> childs() {
+        return childs;
     }
 }

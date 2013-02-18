@@ -3,8 +3,8 @@ package org.mdl4ui.gwt.sample.client;
 import org.mdl4ui.fields.model.ClientFactory;
 import org.mdl4ui.fields.model.DefaultWizard;
 import org.mdl4ui.fields.sample.context.SampleContext;
-import org.mdl4ui.gwt.sample.client.ui.factory.GwtClientFactory;
-import org.mdl4ui.gwt.sample.client.ui.model.WizardView;
+import org.mdl4ui.gwt.sample.client.factory.GwtClientFactory;
+import org.mdl4ui.gwt.sample.client.model.WizardView;
 import org.mdl4ui.ui.sample.EScreenSample;
 
 import com.google.gwt.core.client.EntryPoint;

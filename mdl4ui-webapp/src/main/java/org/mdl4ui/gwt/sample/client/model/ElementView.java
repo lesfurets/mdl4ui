@@ -1,7 +1,7 @@
 /*
  * Copyright (C) by Courtanet, All Rights Reserved.
  */
-package org.mdl4ui.gwt.sample.client.ui.model;
+package org.mdl4ui.gwt.sample.client.model;
 
 import org.mdl4ui.base.model.UIElement;
 
