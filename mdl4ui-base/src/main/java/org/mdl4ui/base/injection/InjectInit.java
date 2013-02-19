@@ -6,6 +6,6 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.SOURCE)
-@Target(ElementType.TYPE)
+@Target(ElementType.ANNOTATION_TYPE)
 public @interface InjectInit {
 }
