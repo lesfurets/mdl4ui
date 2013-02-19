@@ -1,8 +1,0 @@
-    @Test
-    public void testFieldText_${field.name}() {
-        final String messageLabel = BundleFieldFactory.INSTANCE.getLabel(${field.name});
-        final String messageHelp = BundleFieldFactory.INSTANCE.getHelp(${field.name});
-        final String messagePlaceHolder = BundleFieldFactory.INSTANCE.getPlaceHolder(${field.name});
-${assert.message}
-    }
-

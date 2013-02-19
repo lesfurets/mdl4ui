@@ -1,6 +1,0 @@
-    @Test
-    public void testScreenFieldsOrder_${screen.name}() {
-        final List<FieldID> fields = ${screen.name}.fields();
-${assert.fields}
-    }
-

@@ -1,7 +1,0 @@
-    @Test
-    public void testScreenBlocks_${screen.name}() {
-        final List<BlockID> blocks = ${screen.name}.blocks();
-		assertEquals(${screen.enum.fieldCount}, ${screen.name}.fields().size());
-${assert.blocks}
-    }
-

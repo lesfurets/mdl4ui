@@ -1,6 +1,0 @@
-    @Test
-    public void testScreenBlocksOrder_${screen.name}() {
-        final List<BlockID> blocks = ${screen.name}.blocks();
-${assert.blocks}
-    }
-
