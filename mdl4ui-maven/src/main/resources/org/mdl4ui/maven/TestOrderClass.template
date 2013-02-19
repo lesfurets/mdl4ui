@@ -1,0 +1,23 @@
+package ${package.name};
+
+${static.imports}
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
+
+import java.util.List;
+
+import javax.annotation.Generated;
+
+import org.junit.Test;
+
+import org.mdl4ui.base.model.*;
+
+@Generated(value = "${process.class}",  date = "${process.date}")
+public final class ${target.class.name} {
+
+${screen.blocks.tests}
+${screen.blocks.order.tests}
+${screen.fields.order.tests}
+${block.content.order.tests}
+${group.content.order.tests}
+}

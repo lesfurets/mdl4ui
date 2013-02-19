@@ -1,0 +1,4 @@
+			<packagedElement xmi:type="uml:Dependency" xmi:id="${dependency.id}">
+				<supplier xmi:idref="${supplier.id}"/>
+				<client xmi:idref="${client.id}"/>
+			</packagedElement>

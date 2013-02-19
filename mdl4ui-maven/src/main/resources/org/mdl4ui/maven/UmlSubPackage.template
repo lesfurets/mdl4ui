@@ -1,0 +1,4 @@
+			<packagedElement xmi:type="uml:Package" xmi:id="${package.id}" name="${package.name}">
+				<classifier xmi:idref="${class.id}"/>
+${package.content}
+			</packagedElement>

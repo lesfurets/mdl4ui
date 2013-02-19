@@ -1,0 +1,6 @@
+    @Test
+    public void testGroupContentOrder_${group.name}() {
+        final List<ElementID> fields = ${group.name}.childs();
+${assert.group.items}
+    }
+
