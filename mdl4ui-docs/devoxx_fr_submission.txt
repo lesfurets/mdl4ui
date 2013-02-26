@@ -1,4 +1,4 @@
-﻿Titre : Java mieux avec mon IHM
+Titre : Refactoring UI en Action
 Type: Session
 Durée: 60 minutes
 Cible: débutant
