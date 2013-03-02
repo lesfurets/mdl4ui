@@ -51,10 +51,10 @@ public final class UIElementImpl {
     }
 
     @SuppressWarnings("unchecked")
-    public static <B, E extends UIElement<E, ?, ?, B>> B nextBlock(E screen, B block) {
-        final int index = screen.childs().indexOf(block);
+    public static <T, E extends UIElement<E, ?, ?, ?>> T nextChild(E screen, T childType) {
+        final int index = screen.childs().indexOf(childType);
         if (index < screen.childs().size() - 1) {
-            return (B) screen.childs().get(index + 1);
+            return (T) screen.childs().get(index + 1);
         } else {
             return null;
         }

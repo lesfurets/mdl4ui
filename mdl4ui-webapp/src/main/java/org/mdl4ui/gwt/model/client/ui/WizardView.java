@@ -11,8 +11,10 @@ import org.mdl4ui.fields.model.DefaultWizard;
 import org.mdl4ui.fields.model.Field;
 import org.mdl4ui.fields.model.Screen;
 import org.mdl4ui.fields.model.Wizard;
+import org.mdl4ui.gwt.model.client.factory.GwtScreenFactory;
 
 import com.github.gwtbootstrap.client.ui.FluidContainer;
+import com.google.gwt.core.shared.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.logical.shared.HasValueChangeHandlers;
@@ -24,12 +26,13 @@ import com.google.gwt.user.client.ui.Widget;
 public class WizardView implements IsWidget {
 
     private final FluidContainer container;
+    private final GwtScreenFactory screenFactory = GWT.create(GwtScreenFactory.class);
     private final Map<ScreenID, ScreenView> screens = new HashMap<ScreenID, ScreenView>();
 
     public WizardView(final DefaultWizard wizard) {
         Screen firstScreen = null;
         for (final ScreenID screenID : wizard.getScreens().keySet()) {
-            final ScreenView screenView = new ScreenView(wizard.getScreens().get(screenID));
+            final ScreenView screenView = screenFactory.getView(wizard.getScreens().get(screenID));
             if (firstScreen == null) {
                 firstScreen = screenView.getScreen();
             }
@@ -102,7 +105,10 @@ public class WizardView implements IsWidget {
     }
 
     private void submitScreen(final DefaultWizard wizard, final ScreenID screenID) {
-        // TODO not implemented
+        ScreenID nextScreen = wizard.getApplication().nextScreen(screenID);
+        if (nextScreen != null) {
+            displayScreen(wizard, nextScreen);
+        }
     }
 
     private void modifyBlock(ScreenView screenView, BlockView blockView) {
@@ -132,11 +138,13 @@ public class WizardView implements IsWidget {
         }
 
         List<BlockView> blocks = screenView.blocks();
-        blocks.get(0).expand();
-        blocks.remove(0);
-        for (BlockView blockView : blocks) {
-            blockView.collapse();
-            blockView.getModify().setVisible(false);
+        if (!blocks.isEmpty()) {
+            blocks.get(0).expand();
+            blocks.remove(0);
+            for (BlockView blockView : blocks) {
+                blockView.collapse();
+                blockView.getModify().setVisible(false);
+            }
         }
     }
 

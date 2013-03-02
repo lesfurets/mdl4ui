@@ -5,6 +5,7 @@ package org.mdl4ui.fields.model;
 
 import java.util.Map;
 
+import org.mdl4ui.base.model.ApplicationID;
 import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.base.model.ScreenID;
 import org.mdl4ui.fields.model.validation.FieldValidation;
@@ -15,7 +16,7 @@ public interface Wizard {
 
     void displayScreen(Screen screen);
 
-    void addScreens(ScreenID... screenIds);
+    void addScreens(ApplicationID application);
 
     WizardContext getContext();
 

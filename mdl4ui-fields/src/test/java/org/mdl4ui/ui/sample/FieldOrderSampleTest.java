@@ -16,7 +16,7 @@ import org.junit.Test;
 
 import org.mdl4ui.base.model.*;
 
-@Generated(value = "org.mdl4ui.maven.GenerateDepsTestMojo",  date = "02/03/13 12:24")
+@Generated(value = "org.mdl4ui.maven.GenerateDepsTestMojo")
 public final class FieldOrderSampleTest {
 
     @Test

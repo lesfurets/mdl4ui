@@ -72,5 +72,4 @@ public class GwtClientFactory implements ClientFactory {
     public FieldDependencyFactory getDependencyFactory() {
         return dependencyFactory;
     }
-
 }

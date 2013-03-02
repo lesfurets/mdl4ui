@@ -1,13 +1,11 @@
 package org.mdl4ui.ui.sample;
 
 import static org.mdl4ui.base.model.UIElementImpl.containsRec;
-import static org.mdl4ui.ui.sample.EBlockSample.ACCOUNT;
-import static org.mdl4ui.ui.sample.EBlockSample.PERSONAL_INFORMATIONS;
-import static org.mdl4ui.ui.sample.EBlockSample.SETTINGS;
 
 import java.util.Arrays;
 import java.util.List;
 
+import org.mdl4ui.base.model.ApplicationID;
 import org.mdl4ui.base.model.BlockID;
 import org.mdl4ui.base.model.EElementType;
 import org.mdl4ui.base.model.ElementID;
@@ -16,24 +14,29 @@ import org.mdl4ui.base.model.GroupID;
 import org.mdl4ui.base.model.ScreenID;
 import org.mdl4ui.base.model.UIElementImpl;
 
-public enum EScreenSample implements ScreenID {
-    SCR_REGISTRATION(PERSONAL_INFORMATIONS, SETTINGS, ACCOUNT), //
-    SCR_DONE();
+public enum EApplicationSample implements ApplicationID {
+    SAMPLE(EScreenSample.SCR_REGISTRATION, EScreenSample.SCR_DONE);
 
     private final List<ElementID> childs;
 
-    private EScreenSample(BlockID... blocks) {
-        this.childs = Arrays.<ElementID> asList(blocks);
+    private EApplicationSample(ElementID... blocks) {
+        this.childs = Arrays.asList(blocks);
     }
 
     @Override
     public EElementType elementType() {
-        return EElementType.SCREEN;
+        return EElementType.APPLICATION;
     }
 
     @Override
     public List<ElementID> childs() {
         return childs;
+    }
+
+    @Override
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    public List<ScreenID> screens() {
+        return (List) childs;
     }
 
     @Override
@@ -57,7 +60,7 @@ public enum EScreenSample implements ScreenID {
     }
 
     @Override
-    public BlockID nextBlock(BlockID block) {
-        return UIElementImpl.<BlockID, ElementID> nextChild(this, block);
+    public ScreenID nextScreen(ScreenID screen) {
+        return UIElementImpl.<ScreenID, ElementID> nextChild(this, screen);
     }
 }

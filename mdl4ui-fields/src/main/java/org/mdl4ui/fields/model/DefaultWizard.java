@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.mdl4ui.base.model.ApplicationID;
 import org.mdl4ui.base.model.BlockID;
 import org.mdl4ui.base.model.ElementID;
 import org.mdl4ui.base.model.FieldID;
@@ -25,6 +26,7 @@ public class DefaultWizard implements Wizard {
     private final Map<ScreenID, Screen> screens;
     private final WizardContext context;
 
+    private ApplicationID application;
     private Screen currentScreen;
 
     public DefaultWizard(WizardContext context, ClientFactory clientFactory) {
@@ -55,9 +57,14 @@ public class DefaultWizard implements Wizard {
         return clientFactory;
     }
 
+    public ApplicationID getApplication() {
+        return application;
+    }
+
     @Override
-    public void addScreens(ScreenID... screenIds) {
-        for (ScreenID screenID : screenIds) {
+    public void addScreens(ApplicationID application) {
+        this.application = application;
+        for (ScreenID screenID : application.screens()) {
             List<Block> blocks = new ArrayList<Block>();
             for (BlockID blockId : screenID.blocks()) {
                 List<Element> blockItems = new ArrayList<Element>();

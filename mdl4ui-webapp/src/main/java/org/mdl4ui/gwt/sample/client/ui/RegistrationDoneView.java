@@ -6,22 +6,31 @@ import java.util.List;
 
 import org.mdl4ui.base.model.EElementType;
 import org.mdl4ui.base.model.UIElementImpl;
+import org.mdl4ui.fields.model.Screen;
 import org.mdl4ui.gwt.model.client.ui.BlockView;
 import org.mdl4ui.gwt.model.client.ui.ElementView;
 import org.mdl4ui.gwt.model.client.ui.FieldView;
 import org.mdl4ui.gwt.model.client.ui.GroupView;
+import org.mdl4ui.gwt.model.client.ui.ScreenView;
 
 import com.github.gwtbootstrap.client.ui.Heading;
 import com.github.gwtbootstrap.client.ui.Hero;
 import com.google.gwt.user.client.ui.Widget;
 
-public class RegistrationDoneScreen implements ElementView {
+public class RegistrationDoneView implements ScreenView {
 
     private final Hero container;
+    private final Screen screen;
 
-    public RegistrationDoneScreen() {
+    public RegistrationDoneView(Screen screen) {
+        this.screen = screen;
         container = new Hero();
         container.add(new Heading(1, "Registration done successfully!"));
+    }
+
+    @Override
+    public Screen getScreen() {
+        return screen;
     }
 
     @Override
