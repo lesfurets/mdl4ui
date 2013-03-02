@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import org.mdl4ui.fields.sample.BundleFieldFactory;
 
-@Generated(value = "${process.class}",  date = "${process.date}")
+@Generated(value = "${process.class}")
 public final class ${target.class.name} {
 
 ${group.text.tests}

@@ -12,7 +12,7 @@ import org.junit.Test;
 
 import org.mdl4ui.base.model.*;
 
-@Generated(value = "${process.class}",  date = "${process.date}")
+@Generated(value = "${process.class}")
 public final class ${target.class.name} {
 
 ${screen.blocks.tests}

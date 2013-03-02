@@ -13,7 +13,7 @@ import org.junit.Test;
 
 import org.mdl4ui.base.model.FieldID;
 
-@Generated(value = "${process.class}",  date = "${process.date}")
+@Generated(value = "${process.class}")
 public final class ${target.class.name} {
 	private final ${factory.class.name} factory = new ${factory.class.name}();
 	
