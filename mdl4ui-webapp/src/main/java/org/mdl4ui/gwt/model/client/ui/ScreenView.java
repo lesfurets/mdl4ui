@@ -1,4 +1,4 @@
-package org.mdl4ui.gwt.sample.client.model;
+package org.mdl4ui.gwt.model.client.ui;
 
 import static org.mdl4ui.base.model.UIElementImpl.containsRec;
 

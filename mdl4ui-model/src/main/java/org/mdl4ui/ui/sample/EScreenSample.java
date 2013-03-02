@@ -17,7 +17,8 @@ import org.mdl4ui.base.model.ScreenID;
 import org.mdl4ui.base.model.UIElementImpl;
 
 public enum EScreenSample implements ScreenID {
-    SCR_WIDGETS_SHOWCASE(PERSONAL_INFORMATIONS, SETTINGS, ACCOUNT);
+    SCR_REGISTRATION(PERSONAL_INFORMATIONS, SETTINGS, ACCOUNT), //
+    SCR_DONE();
 
     private final List<ElementID> childs;
 

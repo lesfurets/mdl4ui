@@ -16,13 +16,20 @@ import org.junit.Test;
 
 import org.mdl4ui.base.model.*;
 
-@Generated(value = "org.mdl4ui.maven.GenerateDepsTestMojo", date = "2/19/13 12:51 PM")
+@Generated(value = "org.mdl4ui.maven.GenerateDepsTestMojo",  date = "02/03/13 12:24")
 public final class FieldOrderSampleTest {
 
     @Test
-    public void testScreenBlocks_SCR_WIDGETS_SHOWCASE() {
-        final List<BlockID> blocks = SCR_WIDGETS_SHOWCASE.blocks();
-		assertEquals(12, SCR_WIDGETS_SHOWCASE.fields().size());
+    public void testScreenBlocks_SCR_DONE() {
+        final List<BlockID> blocks = SCR_DONE.blocks();
+		assertEquals(0, SCR_DONE.fields().size());
+        assertTrue(blocks.isEmpty());
+    }
+
+    @Test
+    public void testScreenBlocks_SCR_REGISTRATION() {
+        final List<BlockID> blocks = SCR_REGISTRATION.blocks();
+		assertEquals(12, SCR_REGISTRATION.fields().size());
         assertTrue(blocks.contains(PERSONAL_INFORMATIONS));
         assertTrue(blocks.contains(SETTINGS));
         assertTrue(blocks.contains(ACCOUNT));
@@ -31,8 +38,15 @@ public final class FieldOrderSampleTest {
 
 
     @Test
-    public void testScreenBlocksOrder_SCR_WIDGETS_SHOWCASE() {
-        final List<BlockID> blocks = SCR_WIDGETS_SHOWCASE.blocks();
+    public void testScreenBlocksOrder_SCR_DONE() {
+        final List<BlockID> blocks = SCR_DONE.blocks();
+        assertEquals(0, blocks.size());
+
+    }
+
+    @Test
+    public void testScreenBlocksOrder_SCR_REGISTRATION() {
+        final List<BlockID> blocks = SCR_REGISTRATION.blocks();
         assertEquals(0, blocks.indexOf(PERSONAL_INFORMATIONS));
         assertEquals(1, blocks.indexOf(SETTINGS));
         assertEquals(2, blocks.indexOf(ACCOUNT));
@@ -42,8 +56,15 @@ public final class FieldOrderSampleTest {
 
 
     @Test
-    public void testScreenFieldsOrder_SCR_WIDGETS_SHOWCASE() {
-        final List<FieldID> fields = SCR_WIDGETS_SHOWCASE.fields();
+    public void testScreenFieldsOrder_SCR_DONE() {
+        final List<FieldID> fields = SCR_DONE.fields();
+        assertEquals(0, fields.size());
+
+    }
+
+    @Test
+    public void testScreenFieldsOrder_SCR_REGISTRATION() {
+        final List<FieldID> fields = SCR_REGISTRATION.fields();
         assertEquals(0, fields.indexOf(FIRST_NAME));
         assertEquals(1, fields.indexOf(LAST_NAME));
         assertEquals(2, fields.indexOf(EMAIL));

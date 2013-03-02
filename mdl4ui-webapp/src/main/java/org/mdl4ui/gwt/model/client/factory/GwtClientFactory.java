@@ -1,7 +1,7 @@
 /*
  * Copyright (C) by Courtanet, All Rights Reserved.
  */
-package org.mdl4ui.gwt.sample.client.factory;
+package org.mdl4ui.gwt.model.client.factory;
 
 import org.mdl4ui.fields.model.ClientFactory;
 import org.mdl4ui.fields.model.FieldBehaviourFactory;

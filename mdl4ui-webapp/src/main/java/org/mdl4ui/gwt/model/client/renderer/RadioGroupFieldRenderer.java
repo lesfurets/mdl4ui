@@ -1,8 +1,8 @@
-package org.mdl4ui.gwt.sample.client.renderer;
+package org.mdl4ui.gwt.model.client.renderer;
 
 import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.fields.model.component.RadioGroupField;
-import org.mdl4ui.gwt.sample.client.ui.RadioGroup;
+import org.mdl4ui.gwt.model.client.widget.RadioGroup;
 
 public class RadioGroupFieldRenderer extends BaseFieldRenderer<RadioGroupField> {
 

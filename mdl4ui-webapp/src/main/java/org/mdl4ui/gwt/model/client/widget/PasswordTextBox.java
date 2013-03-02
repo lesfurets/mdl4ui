@@ -1,4 +1,4 @@
-package org.mdl4ui.gwt.sample.client.ui;
+package org.mdl4ui.gwt.model.client.widget;
 
 import org.mdl4ui.fields.model.component.PasswordField;
 

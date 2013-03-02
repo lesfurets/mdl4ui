@@ -1,4 +1,4 @@
-package org.mdl4ui.gwt.sample.client.model;
+package org.mdl4ui.gwt.model.client.ui;
 
 import java.util.HashMap;
 import java.util.List;
@@ -66,6 +66,11 @@ public class WizardView implements IsWidget {
         container = new FluidContainer();
     }
 
+    @Override
+    public Widget asWidget() {
+        return container;
+    }
+
     private void updateField(final DefaultWizard wizard, final ScreenView screenView, final Field field) {
         wizard.updateField(field);
         for (FieldView fieldView : screenView.fields()) {
@@ -84,12 +89,20 @@ public class WizardView implements IsWidget {
             blockView.collapse();
             blockView.getModify().setVisible(true);
             BlockID nextBlock = screenID.nextBlock(block.getBlockID());
-            for (BlockView screenBlock : screenView.blocks()) {
-                if (screenBlock.getBlock().getBlockID() == nextBlock) {
-                    screenBlock.expand();
+            if (nextBlock != null) {
+                for (BlockView screenBlock : screenView.blocks()) {
+                    if (screenBlock.getBlock().getBlockID() == nextBlock) {
+                        screenBlock.expand();
+                    }
                 }
+            } else {
+                submitScreen(wizard, screenID);
             }
         }
+    }
+
+    private void submitScreen(final DefaultWizard wizard, final ScreenID screenID) {
+        // TODO not implemented
     }
 
     private void modifyBlock(ScreenView screenView, BlockView blockView) {
@@ -125,11 +138,6 @@ public class WizardView implements IsWidget {
             blockView.collapse();
             blockView.getModify().setVisible(false);
         }
-    }
-
-    @Override
-    public Widget asWidget() {
-        return container;
     }
 
 }

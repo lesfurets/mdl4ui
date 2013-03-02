@@ -13,7 +13,7 @@ import org.junit.Test;
 
 import org.mdl4ui.fields.sample.BundleFieldFactory;
 
-@Generated(value = "org.mdl4ui.maven.GenerateDepsTestMojo", date = "2/19/13 12:51 PM")
+@Generated(value = "org.mdl4ui.maven.GenerateDepsTestMojo",  date = "02/03/13 12:24")
 public final class FieldMessageSampleTest {
 
     @Test

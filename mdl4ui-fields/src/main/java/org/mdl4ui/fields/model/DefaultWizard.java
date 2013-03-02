@@ -51,6 +51,10 @@ public class DefaultWizard implements Wizard {
         return screens;
     }
 
+    public ClientFactory getClientFactory() {
+        return clientFactory;
+    }
+
     @Override
     public void addScreens(ScreenID... screenIds) {
         for (ScreenID screenID : screenIds) {
