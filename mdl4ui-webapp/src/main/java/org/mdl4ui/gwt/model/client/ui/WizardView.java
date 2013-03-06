@@ -1,5 +1,8 @@
 package org.mdl4ui.gwt.model.client.ui;
 
+import static org.mdl4ui.fields.model.event.FieldEvent.newEvent;
+import static org.mdl4ui.fields.model.event.FieldEvent.releaseSourceEvent;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +14,8 @@ import org.mdl4ui.fields.model.DefaultWizard;
 import org.mdl4ui.fields.model.Field;
 import org.mdl4ui.fields.model.Screen;
 import org.mdl4ui.fields.model.Wizard;
+import org.mdl4ui.fields.model.event.EventProperty;
+import org.mdl4ui.fields.model.event.FieldEvent;
 import org.mdl4ui.gwt.model.client.factory.GwtScreenFactory;
 
 import com.github.gwtbootstrap.client.ui.FluidContainer;
@@ -75,7 +80,12 @@ public class WizardView implements IsWidget {
     }
 
     private void updateField(final DefaultWizard wizard, final ScreenView screenView, final Field field) {
-        wizard.updateField(field);
+        final FieldEvent event = newEvent(field.getFieldID(), EventProperty.FIELD);
+        try {
+            wizard.updateField(field, event);
+        } finally {
+            releaseSourceEvent();
+        }
         for (FieldView fieldView : screenView.fields()) {
             fieldView.updateField();
         }

@@ -4,25 +4,26 @@
 package org.mdl4ui.fields.model;
 
 import org.mdl4ui.base.model.FieldID;
+import org.mdl4ui.fields.model.event.FieldEvent;
 import org.mdl4ui.fields.model.validation.EErrorType;
 import org.mdl4ui.fields.model.validation.FieldValidation;
 
 public abstract class DefaultEditor implements FieldEditor {
 
     @Override
-    public void updateFromContext(Field field, WizardContext context) {
+    public void updateFromContext(Field field, WizardContext context, FieldEvent fieldEvent) {
     }
 
     @Override
-    public void updateContext(Field field, WizardContext context) {
+    public void updateContext(Field field, WizardContext context, FieldEvent fieldEvent) {
     }
 
     @Override
-    public void reset(Field field, WizardContext context) {
+    public void reset(Field field, WizardContext context, FieldEvent fieldEvent) {
     }
 
     @Override
-    public FieldValidation validate(Field field, WizardContext context) {
+    public FieldValidation validate(Field field, WizardContext context, FieldEvent fieldEvent) {
         return valid(field);
     }
 

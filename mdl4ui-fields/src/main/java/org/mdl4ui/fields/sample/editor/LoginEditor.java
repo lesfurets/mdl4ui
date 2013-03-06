@@ -1,9 +1,11 @@
 package org.mdl4ui.fields.sample.editor;
 
+import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.fields.model.DefaultEditor;
 import org.mdl4ui.fields.model.Field;
 import org.mdl4ui.fields.model.WizardContext;
 import org.mdl4ui.fields.model.component.TextBoxField;
+import org.mdl4ui.fields.model.event.FieldEvent;
 import org.mdl4ui.fields.model.validation.FieldValidation;
 import org.mdl4ui.fields.sample.InjectSampleEditor;
 import org.mdl4ui.fields.sample.OnField;
@@ -20,21 +22,27 @@ public class LoginEditor extends DefaultEditor {
     }
 
     @Override
-    public void updateFromContext(Field field, WizardContext context) {
+    public String value(FieldID field, WizardContext context, FieldEvent fieldEvent) {
+        SampleContext sampleContext = (SampleContext) context;
+        return sampleContext.getUserAccount().getLogin();
+    }
+
+    @Override
+    public void updateFromContext(Field field, WizardContext context, FieldEvent fieldEvent) {
         SampleContext sampleContext = (SampleContext) context;
         TextBoxField textbox = field.getComponent();
         textbox.setValue(sampleContext.getUserAccount().getLogin());
     }
 
     @Override
-    public void updateContext(Field field, WizardContext context) {
+    public void updateContext(Field field, WizardContext context, FieldEvent fieldEvent) {
         TextBoxField textbox = field.getComponent();
         SampleContext sampleContext = (SampleContext) context;
         sampleContext.getUserAccount().setLogin(textbox.getValue());
     }
 
     @Override
-    public FieldValidation validate(Field field, WizardContext context) {
+    public FieldValidation validate(Field field, WizardContext context, FieldEvent fieldEvent) {
         TextBoxField textbox = field.getComponent();
         String value = textbox.getValue();
         if (value == null || value.trim().length() == 0) {

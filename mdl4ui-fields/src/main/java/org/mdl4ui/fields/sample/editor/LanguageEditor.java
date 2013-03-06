@@ -1,9 +1,11 @@
 package org.mdl4ui.fields.sample.editor;
 
+import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.fields.model.DefaultEditor;
 import org.mdl4ui.fields.model.Field;
 import org.mdl4ui.fields.model.WizardContext;
 import org.mdl4ui.fields.model.component.RadioGroupField;
+import org.mdl4ui.fields.model.event.FieldEvent;
 import org.mdl4ui.fields.model.validation.FieldValidation;
 import org.mdl4ui.fields.sample.InjectSampleEditor;
 import org.mdl4ui.fields.sample.OnField;
@@ -21,7 +23,14 @@ public class LanguageEditor extends DefaultEditor {
     }
 
     @Override
-    public void updateFromContext(Field field, WizardContext context) {
+    public String value(FieldID field, WizardContext context, FieldEvent fieldEvent) {
+        SampleContext sampleContext = (SampleContext) context;
+        Language language = sampleContext.getUserAccount().getLanguage();
+        return language != null ? language.name() : null;
+    }
+
+    @Override
+    public void updateFromContext(Field field, WizardContext context, FieldEvent fieldEvent) {
         SampleContext sampleContext = (SampleContext) context;
         Language language = sampleContext.getUserAccount().getLanguage();
         if (language != null) {
@@ -31,7 +40,7 @@ public class LanguageEditor extends DefaultEditor {
     }
 
     @Override
-    public void updateContext(Field field, WizardContext context) {
+    public void updateContext(Field field, WizardContext context, FieldEvent fieldEvent) {
         SampleContext sampleContext = (SampleContext) context;
         RadioGroupField radio = field.getComponent();
         if (radio.getValue() != null) {
@@ -40,7 +49,7 @@ public class LanguageEditor extends DefaultEditor {
     }
 
     @Override
-    public FieldValidation validate(Field field, WizardContext context) {
+    public FieldValidation validate(Field field, WizardContext context, FieldEvent fieldEvent) {
         RadioGroupField radio = field.getComponent();
         if (radio.getValue() == null) {
             return error(field, messages.please_specify_your_language());

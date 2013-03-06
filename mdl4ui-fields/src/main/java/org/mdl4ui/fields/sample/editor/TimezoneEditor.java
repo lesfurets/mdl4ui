@@ -1,9 +1,11 @@
 package org.mdl4ui.fields.sample.editor;
 
+import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.fields.model.DefaultEditor;
 import org.mdl4ui.fields.model.Field;
 import org.mdl4ui.fields.model.WizardContext;
 import org.mdl4ui.fields.model.component.ListBoxField;
+import org.mdl4ui.fields.model.event.FieldEvent;
 import org.mdl4ui.fields.model.validation.FieldValidation;
 import org.mdl4ui.fields.sample.InjectSampleEditor;
 import org.mdl4ui.fields.sample.OnField;
@@ -21,14 +23,21 @@ public class TimezoneEditor extends DefaultEditor {
     }
 
     @Override
-    public void updateFromContext(Field field, WizardContext context) {
+    public String value(FieldID field, WizardContext context, FieldEvent fieldEvent) {
+        SampleContext sampleContext = (SampleContext) context;
+        Timezone timezone = sampleContext.getUserAccount().getTimezone();
+        return timezone != null ? timezone.getCode() : null;
+    }
+
+    @Override
+    public void updateFromContext(Field field, WizardContext context, FieldEvent fieldEvent) {
         SampleContext sampleContext = (SampleContext) context;
         ListBoxField listbox = field.getComponent();
         listbox.setValue(sampleContext.getUserAccount().getTimezone().getCode());
     }
 
     @Override
-    public void updateContext(Field field, WizardContext context) {
+    public void updateContext(Field field, WizardContext context, FieldEvent fieldEvent) {
         ListBoxField listbox = field.getComponent();
         SampleContext sampleContext = (SampleContext) context;
         if (listbox.getValue() != null)
@@ -36,7 +45,7 @@ public class TimezoneEditor extends DefaultEditor {
     }
 
     @Override
-    public FieldValidation validate(Field field, WizardContext context) {
+    public FieldValidation validate(Field field, WizardContext context, FieldEvent fieldEvent) {
         ListBoxField listbox = field.getComponent();
         if (listbox.getValue() == null) {
             return error(field, messages.please_specify_your_timezone());

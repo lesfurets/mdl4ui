@@ -7,12 +7,14 @@ import javax.annotation.Generated;
 
 import org.mdl4ui.base.model.*;
 import org.mdl4ui.fields.model.*;
+import org.mdl4ui.fields.model.event.*;
 
 @Generated(value = "${process.class}",  date = "${process.date}")
 public final class ${target.class.name} implements FieldBehaviourFactory {
 	private static final FieldBehaviour NO_BEHAVIOUR = new org.mdl4ui.fields.model.NoBehaviour();
-
+	
 	private final Map<FieldID, ${enum.support}> ${map.name} = new HashMap<FieldID, ${enum.support}>();
+	private final FieldEventMulticaster multicaster = new DefaultFieldEventMulticaster();
 	
 	public ${target.class.name}() {
 ${class.init}
@@ -21,10 +23,10 @@ ${class.init}
 	private enum ${enum.support} {
 ${constants}
 	
-		private final FieldBehaviour behaviour;
+		private final FieldBehaviourInterceptor behaviour;
 	
 		${enum.support}(FieldBehaviour behaviour) {
-			this.behaviour = behaviour;
+			this.behaviour = new FieldBehaviourInterceptor(behaviour);
 		}
 	}
 	
@@ -33,6 +35,23 @@ ${constants}
 	    final ${enum.support} behaviour = ${map.name}.get(fieldId);
 	    if (behaviour == null)
 	        return NO_BEHAVIOUR;
+	    behaviour.behaviour.setFactory(this);
 	    return behaviour.behaviour;
 	}
+	
+		
+	@Override
+	public void notify(FieldEvent event) {
+		multicaster.notify(event);
+	}
+	
+	@Override
+	public void addListener(FieldEventListener listener) {
+        multicaster.addListener(listener);
+    }
+    
+    @Override
+    public boolean removeListener(FieldEventListener listener) {
+        return multicaster.removeListener(listener);
+    }
 }

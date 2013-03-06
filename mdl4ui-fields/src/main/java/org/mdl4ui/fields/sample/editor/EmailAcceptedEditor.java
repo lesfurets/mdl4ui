@@ -1,9 +1,11 @@
 package org.mdl4ui.fields.sample.editor;
 
+import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.fields.model.DefaultEditor;
 import org.mdl4ui.fields.model.Field;
 import org.mdl4ui.fields.model.WizardContext;
 import org.mdl4ui.fields.model.component.RadioGroupField;
+import org.mdl4ui.fields.model.event.FieldEvent;
 import org.mdl4ui.fields.model.validation.FieldValidation;
 import org.mdl4ui.fields.sample.InjectSampleEditor;
 import org.mdl4ui.fields.sample.OnField;
@@ -21,7 +23,14 @@ public class EmailAcceptedEditor extends DefaultEditor {
     }
 
     @Override
-    public void updateFromContext(Field field, WizardContext context) {
+    public String value(FieldID field, WizardContext context, FieldEvent fieldEvent) {
+        SampleContext sampleContext = (SampleContext) context;
+        Boolean acceptEmail = sampleContext.getUserAccount().isAcceptEmail();
+        return acceptEmail != null ? Boolean.toString(acceptEmail) : null;
+    }
+
+    @Override
+    public void updateFromContext(Field field, WizardContext context, FieldEvent fieldEvent) {
         SampleContext sampleContext = (SampleContext) context;
         Boolean acceptEmail = sampleContext.getUserAccount().isAcceptEmail();
         if (acceptEmail != null) {
@@ -31,14 +40,14 @@ public class EmailAcceptedEditor extends DefaultEditor {
     }
 
     @Override
-    public void updateContext(Field field, WizardContext context) {
+    public void updateContext(Field field, WizardContext context, FieldEvent fieldEvent) {
         SampleContext sampleContext = (SampleContext) context;
         RadioGroupField radio = field.getComponent();
         sampleContext.getUserAccount().setAcceptEmail(Boolean.valueOf(radio.getValue()));
     }
 
     @Override
-    public FieldValidation validate(Field field, WizardContext context) {
+    public FieldValidation validate(Field field, WizardContext context, FieldEvent fieldEvent) {
         RadioGroupField radioGroup = field.getComponent();
         if (radioGroup.getValue() == null) {
             return error(field, messages.do_your_want_receive_email_from_on_service());

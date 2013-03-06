@@ -4,6 +4,8 @@ import static java.util.Arrays.asList;
 import static org.mdl4ui.fields.model.DefaultEditor.valid;
 import static org.mdl4ui.fields.model.EFieldState.ERROR;
 import static org.mdl4ui.fields.model.EFieldState.SET;
+import static org.mdl4ui.fields.model.event.FieldEvent.newEvent;
+import static org.mdl4ui.fields.model.event.FieldEvent.releaseSourceEvent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,6 +20,9 @@ import org.mdl4ui.base.model.ElementID;
 import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.base.model.GroupID;
 import org.mdl4ui.base.model.ScreenID;
+import org.mdl4ui.fields.model.event.EventProperty;
+import org.mdl4ui.fields.model.event.FieldEvent;
+import org.mdl4ui.fields.model.event.FieldEventListener;
 import org.mdl4ui.fields.model.validation.FieldValidation;
 
 public class DefaultWizard implements Wizard {
@@ -36,11 +41,17 @@ public class DefaultWizard implements Wizard {
     }
 
     @Override
-    public void displayScreen(Screen screen) {
-        currentScreen = screen;
-        for (Field field : screen.fields()) {
-            updateBehaviour(field);
-        }
+    public void addFieldListener(FieldEventListener listener) {
+        clientFactory.getEditorFactory().addListener(listener);
+        clientFactory.getBehaviourFactory().addListener(listener);
+        clientFactory.getInitializerFactory().addListener(listener);
+    }
+
+    @Override
+    public void removeFieldListener(FieldEventListener listener) {
+        clientFactory.getEditorFactory().removeListener(listener);
+        clientFactory.getBehaviourFactory().removeListener(listener);
+        clientFactory.getInitializerFactory().removeListener(listener);
     }
 
     @Override
@@ -98,32 +109,38 @@ public class DefaultWizard implements Wizard {
                         clientFactory.getRendererFactory().get(fieldId));
         FieldInitializer initializer = clientFactory.getInitializerFactory().get(fieldId);
         if (initializer != null) {
-            initializer.init(field);
+            final FieldEvent event = newEvent(screenId, EventProperty.SCREEN);
+            try {
+                initializer.init(field, event);
+            } finally {
+                releaseSourceEvent();
+            }
         }
         return field;
     }
 
     @Override
-    public boolean isVisible(FieldID fieldId) {
-        return clientFactory.getBehaviourFactory().get(fieldId).isVisible(fieldId, getContext());
+    public boolean isVisible(FieldID fieldId, FieldEvent event) {
+        return clientFactory.getBehaviourFactory().get(fieldId).isVisible(fieldId, getContext(), event);
     }
 
     @Override
-    public void updateField(Field field) {
+    public void updateField(Field field, FieldEvent event) {
         // validate & update context if visible
-        if (isVisible(field.getFieldID())) {
-            updateContext(field);
-            validate(field);
+        if (isVisible(field.getFieldID(), event)) {
+            updateContext(field, event);
+            validate(field, event);
         }
 
         // update field dependencies
         final List<FieldID> fieldDeps = asList(clientFactory.getDependencyFactory().get(field.getFieldID()));
         final Set<FieldID> deps = new HashSet<FieldID>(fieldDeps);
         if (!deps.isEmpty()) {
+            event.setSourceProperty(EventProperty.DEPENDENCIES);
             for (Screen screen : screens.values()) {
                 for (Field otherField : screen.fields()) {
                     if (deps.contains(otherField.getFieldID())) {
-                        updateBehaviour(otherField);
+                        updateBehaviour(otherField, event);
                     }
                 }
             }
@@ -133,57 +150,78 @@ public class DefaultWizard implements Wizard {
         for (FieldID dep : deps) {
             for (Field depField : currentScreen.fields()) {
                 if (depField.getFieldID() == dep && depField.getState() == SET) {
-                    validate(depField);
+                    validate(depField, event);
                 }
             }
         }
     }
 
-    private final void updateBehaviour(Field field) {
-        clientFactory.getBehaviourFactory().get(field.getFieldID()).updateValue(field, context);
+    @Override
+    public void displayScreen(Screen screen) {
+        currentScreen = screen;
+        final FieldEvent event = newEvent(screen.getScreenID(), EventProperty.SCREEN);
+        try {
+            for (FieldID fieldId : screen.getScreenID().fields()) {
+                if (isVisible(fieldId, event)) {
+                    final Field field = getField(screen.getScreenID(), fieldId);
+                    if (field != null) {
+                        updateFromContext(field, event);
+                    }
+                }
+            }
+            for (Field field : screen.fields()) {
+                updateBehaviour(field, event);
+            }
+        } finally {
+            releaseSourceEvent();
+        }
+    }
+
+    private final void updateBehaviour(Field field, FieldEvent event) {
+        clientFactory.getBehaviourFactory().get(field.getFieldID()).updateValue(field, context, event);
         boolean visibleBeforeUpdate = field.getState() != EFieldState.HIDDEN;
-        boolean visibleAfterUpdate = isVisible(field.getFieldID());
+        boolean visibleAfterUpdate = isVisible(field.getFieldID(), event);
         if (!visibleBeforeUpdate && visibleAfterUpdate) {
             // update field using context, if field became visible
-            updateFromContext(field);
+            updateFromContext(field, event);
             field.setState(EFieldState.DEFAULT, null);
         } else if (!visibleAfterUpdate) {
             final FieldEditor editor = clientFactory.getEditorFactory().get(field.getFieldID());
             if (editor != null) {
                 // reset field if not visible anymore
-                editor.reset(field, context);
+                editor.reset(field, context, event);
             }
             field.setState(EFieldState.HIDDEN, null);
         }
     }
 
     @Override
-    public final void updateFromContext(Field field) {
+    public final void updateFromContext(Field field, FieldEvent event) {
         final FieldEditor editor = clientFactory.getEditorFactory().get(field.getFieldID());
         if (editor == null)
             return;
-        editor.updateFromContext(field, getContext());
+        editor.updateFromContext(field, context, event);
     }
 
     @Override
-    public final void updateContext(Field field) {
+    public final void updateContext(Field field, FieldEvent event) {
         final FieldEditor editor = clientFactory.getEditorFactory().get(field.getFieldID());
         if (editor == null)
             return;
-        editor.updateContext(field, getContext());
+        editor.updateContext(field, getContext(), event);
     }
 
     @Override
-    public final FieldValidation validate(Field field) {
+    public final FieldValidation validate(Field field, FieldEvent event) {
         final FieldEditor editor = clientFactory.getEditorFactory().get(field.getFieldID());
 
         // skip field if not visible or no visible field associated
-        if (!isVisible(field.getFieldID()) || editor == null) {
+        if (!isVisible(field.getFieldID(), event) || editor == null) {
             return valid(field);
         }
 
         // validate field
-        final FieldValidation validation = editor.validate(field, getContext());
+        final FieldValidation validation = editor.validate(field, getContext(), event);
 
         // update field state according to validation result
         final Field validated = getField(getScreen(field).getScreenID(), validation.getFieldID());
@@ -215,9 +253,13 @@ public class DefaultWizard implements Wizard {
 
     @Override
     public void submit(Block block) {
-        for (Field field : block.fields()) {
-            updateField(field);
+        final FieldEvent event = newEvent(block.getBlockID(), EventProperty.BLOCK);
+        try {
+            for (Field field : block.fields())
+                updateField(field, event);
+        } finally {
+            releaseSourceEvent();
         }
-        // TODO transition to next block/screen
     }
+
 }

@@ -1,9 +1,13 @@
 package org.mdl4ui.fields.sample.editor;
 
+import java.util.Date;
+
+import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.fields.model.DefaultEditor;
 import org.mdl4ui.fields.model.Field;
 import org.mdl4ui.fields.model.WizardContext;
 import org.mdl4ui.fields.model.component.DateField;
+import org.mdl4ui.fields.model.event.FieldEvent;
 import org.mdl4ui.fields.model.validation.FieldValidation;
 import org.mdl4ui.fields.sample.InjectSampleEditor;
 import org.mdl4ui.fields.sample.OnField;
@@ -21,21 +25,28 @@ public class BirthdateEditor extends DefaultEditor {
     }
 
     @Override
-    public void updateFromContext(Field field, WizardContext context) {
+    public String value(FieldID field, WizardContext context, FieldEvent fieldEvent) {
+        SampleContext sampleContext = (SampleContext) context;
+        Date birthDate = sampleContext.getPerson().getBirthDate();
+        return birthDate != null ? birthDate.toString() : null;
+    }
+
+    @Override
+    public void updateFromContext(Field field, WizardContext context, FieldEvent fieldEvent) {
         SampleContext sampleContext = (SampleContext) context;
         DateField dateField = field.getComponent();
         dateField.setValue(sampleContext.getPerson().getBirthDate());
     }
 
     @Override
-    public void updateContext(Field field, WizardContext context) {
+    public void updateContext(Field field, WizardContext context, FieldEvent fieldEvent) {
         DateField dateField = field.getComponent();
         SampleContext sampleContext = (SampleContext) context;
         sampleContext.getPerson().setBirthDate(dateField.getValue());
     }
 
     @Override
-    public FieldValidation validate(Field field, WizardContext context) {
+    public FieldValidation validate(Field field, WizardContext context, FieldEvent fieldEvent) {
         DateField dateField = field.getComponent();
         if (dateField.getValue() == null) {
             error(field, messages.please_specify_your_birth_date());

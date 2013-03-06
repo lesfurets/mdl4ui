@@ -8,27 +8,33 @@ import java.util.Map;
 import org.mdl4ui.base.model.ApplicationID;
 import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.base.model.ScreenID;
+import org.mdl4ui.fields.model.event.FieldEvent;
+import org.mdl4ui.fields.model.event.FieldEventListener;
 import org.mdl4ui.fields.model.validation.FieldValidation;
 
 public interface Wizard {
 
-    Map<ScreenID, Screen> getScreens();
+    WizardContext getContext();
 
-    void displayScreen(Screen screen);
+    Map<ScreenID, Screen> getScreens();
 
     void addScreens(ApplicationID application);
 
-    WizardContext getContext();
-
-    boolean isVisible(FieldID fieldId);
-
-    void updateFromContext(Field field);
-
-    void updateContext(Field field);
-
-    void updateField(Field field);
-
-    FieldValidation validate(Field field);
+    void displayScreen(Screen screen);
 
     void submit(Block block);
+
+    boolean isVisible(FieldID fieldId, FieldEvent event);
+
+    void updateFromContext(Field field, FieldEvent event);
+
+    void updateContext(Field field, FieldEvent event);
+
+    void updateField(Field field, FieldEvent event);
+
+    FieldValidation validate(Field field, FieldEvent event);
+
+    void addFieldListener(FieldEventListener listener);
+
+    void removeFieldListener(FieldEventListener listener);
 }

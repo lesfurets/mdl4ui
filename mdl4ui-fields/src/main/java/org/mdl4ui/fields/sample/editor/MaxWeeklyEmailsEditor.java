@@ -1,9 +1,11 @@
 package org.mdl4ui.fields.sample.editor;
 
+import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.fields.model.DefaultEditor;
 import org.mdl4ui.fields.model.Field;
 import org.mdl4ui.fields.model.WizardContext;
 import org.mdl4ui.fields.model.component.NumericField;
+import org.mdl4ui.fields.model.event.FieldEvent;
 import org.mdl4ui.fields.model.validation.FieldValidation;
 import org.mdl4ui.fields.sample.InjectSampleEditor;
 import org.mdl4ui.fields.sample.OnField;
@@ -20,14 +22,21 @@ public class MaxWeeklyEmailsEditor extends DefaultEditor {
     }
 
     @Override
-    public void updateFromContext(Field field, WizardContext context) {
+    public String value(FieldID field, WizardContext context, FieldEvent fieldEvent) {
+        SampleContext sampleContext = (SampleContext) context;
+        int maxEmailPerWeek = sampleContext.getUserAccount().getMaxEmailPerWeek();
+        return Integer.toString(maxEmailPerWeek);
+    }
+
+    @Override
+    public void updateFromContext(Field field, WizardContext context, FieldEvent fieldEvent) {
         SampleContext sampleContext = (SampleContext) context;
         NumericField texbox = field.getComponent();
         texbox.setValue(sampleContext.getUserAccount().getMaxEmailPerWeek());
     }
 
     @Override
-    public void updateContext(Field field, WizardContext context) {
+    public void updateContext(Field field, WizardContext context, FieldEvent fieldEvent) {
         NumericField texbox = field.getComponent();
         SampleContext sampleContext = (SampleContext) context;
         if (texbox.getValue() != null)
@@ -35,7 +44,7 @@ public class MaxWeeklyEmailsEditor extends DefaultEditor {
     }
 
     @Override
-    public FieldValidation validate(Field field, WizardContext context) {
+    public FieldValidation validate(Field field, WizardContext context, FieldEvent fieldEvent) {
         NumericField texbox = field.getComponent();
         if (texbox.getValue() == null) {
             return error(field, messages.please_specify_the_email_frequency());

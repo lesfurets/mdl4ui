@@ -6,6 +6,7 @@ package org.mdl4ui.fields.sample.initializer;
 import org.mdl4ui.fields.model.Field;
 import org.mdl4ui.fields.model.FieldInitializer;
 import org.mdl4ui.fields.model.component.CheckBoxGroupField;
+import org.mdl4ui.fields.model.event.FieldEvent;
 import org.mdl4ui.fields.sample.InjectSampleInit;
 import org.mdl4ui.fields.sample.OnField;
 import org.mdl4ui.fields.sample.context.EmailType;
@@ -22,7 +23,7 @@ public class EmailPreferencesInitializer implements FieldInitializer {
     }
 
     @Override
-    public void init(Field field) {
+    public void init(Field field, FieldEvent event) {
         CheckBoxGroupField radiogroup = field.getComponent();
         radiogroup.addItem(messages.privateMessage(), EmailType.PRIVATE.name());
         radiogroup.addItem(messages.administratorMessage(), EmailType.ADMINISTRATOR.name());

@@ -6,10 +6,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.fields.model.DefaultEditor;
 import org.mdl4ui.fields.model.Field;
 import org.mdl4ui.fields.model.WizardContext;
 import org.mdl4ui.fields.model.component.CheckBoxGroupField;
+import org.mdl4ui.fields.model.event.FieldEvent;
 import org.mdl4ui.fields.model.validation.FieldValidation;
 import org.mdl4ui.fields.sample.InjectSampleEditor;
 import org.mdl4ui.fields.sample.OnField;
@@ -29,7 +31,14 @@ public class EmailsPreferenceditor extends DefaultEditor {
     }
 
     @Override
-    public void updateFromContext(Field field, WizardContext context) {
+    public String value(FieldID field, WizardContext context, FieldEvent fieldEvent) {
+        SampleContext sampleContext = (SampleContext) context;
+        Collection<EmailType> emailTypes = sampleContext.getUserAccount().getEmailTypes();
+        return emailTypes != null ? emailTypes.toString() : null;
+    }
+
+    @Override
+    public void updateFromContext(Field field, WizardContext context, FieldEvent fieldEvent) {
         SampleContext sampleContext = (SampleContext) context;
         Collection<EmailType> emailTypes = sampleContext.getUserAccount().getEmailTypes();
         if (emailTypes != null) {
@@ -45,7 +54,7 @@ public class EmailsPreferenceditor extends DefaultEditor {
     }
 
     @Override
-    public void updateContext(Field field, WizardContext context) {
+    public void updateContext(Field field, WizardContext context, FieldEvent fieldEvent) {
         SampleContext sampleContext = (SampleContext) context;
         CheckBoxGroupField checkbox = field.getComponent();
         List<EmailType> value = new ArrayList<EmailType>(transform(checkbox.getValue(),
@@ -59,7 +68,7 @@ public class EmailsPreferenceditor extends DefaultEditor {
     }
 
     @Override
-    public FieldValidation validate(Field field, WizardContext context) {
+    public FieldValidation validate(Field field, WizardContext context, FieldEvent fieldEvent) {
         CheckBoxGroupField checkbox = field.getComponent();
         if (checkbox.getValue() == null || checkbox.getValue().isEmpty()) {
             return error(field, messages.please_specify_the_kind_of_email_you_wish_to_receive());

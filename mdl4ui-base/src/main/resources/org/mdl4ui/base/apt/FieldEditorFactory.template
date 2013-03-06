@@ -7,11 +7,13 @@ import javax.annotation.Generated;
 
 import org.mdl4ui.base.model.*;
 import org.mdl4ui.fields.model.*;
+import org.mdl4ui.fields.model.event.*;
 
 @Generated(value = "${process.class}",  date = "${process.date}")
 public final class ${target.class.name} implements FieldEditorFactory {
 	
 	private final Map<FieldID, ${enum.support}> ${map.name} = new HashMap<FieldID, ${enum.support}>();
+	private final FieldEventMulticaster multicaster = new DefaultFieldEventMulticaster();
 
 	public ${target.class.name}() {
 ${class.init}
@@ -20,10 +22,10 @@ ${class.init}
 	private enum ${enum.support} {
 ${constants}
 	
-		private final FieldEditor editor;
+		private final FieldEditorInterceptor editor;
 	
 		${enum.support}(FieldEditor editor) {
-			this.editor = editor;
+			this.editor = new FieldEditorInterceptor(editor);
 		}
 	}
 	
@@ -32,6 +34,22 @@ ${constants}
 	    final ${enum.support} editor = ${map.name}.get(fieldId);
 	    if (editor == null)
 	        return null;
+	    editor.editor.setFactory(this);
 	    return editor.editor;
 	}
+	
+	@Override
+	public void notify(FieldEvent event) {
+		multicaster.notify(event);
+	}
+	
+    @Override
+    public void addListener(FieldEventListener listener) {
+        multicaster.addListener(listener);
+    }
+
+    @Override
+    public boolean removeListener(FieldEventListener listener) {
+        return multicaster.removeListener(listener);
+    }
 }
