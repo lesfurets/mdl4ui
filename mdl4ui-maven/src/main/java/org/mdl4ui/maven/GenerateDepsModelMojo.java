@@ -20,7 +20,7 @@ import org.apache.maven.plugin.MojoFailureException;
 import org.ez18n.apt.macro.MacroProcessor;
 import org.ez18n.apt.macro.PropertyParsingException;
 import org.mdl4ui.base.model.DependencyPath;
-import org.mdl4ui.base.model.EElementType;
+import org.mdl4ui.base.model.ElementType;
 import org.mdl4ui.base.model.ElementID;
 import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.base.model.ScreenID;
@@ -112,7 +112,7 @@ public final class GenerateDepsModelMojo extends AbstractDepsMojo {
         packageConf.put("class.id", label(parentId, bundleFactory));
         final StringBuilder builder = new StringBuilder();
         for (ElementID childId : parentId.childs()) {
-            if (childId.elementType() == EElementType.GROUP || childId.elementType() == EElementType.BLOCK)
+            if (childId.elementType() == ElementType.GROUP || childId.elementType() == ElementType.BLOCK)
                 builder.append(generatePackage(childId, allDeps, bundleFactory));
             else
                 builder.append(generateField(childId, allDeps, bundleFactory));

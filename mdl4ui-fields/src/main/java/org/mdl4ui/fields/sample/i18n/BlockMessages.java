@@ -13,9 +13,13 @@ public interface BlockMessages {
     @Message("My Informations")
     String informations();
 
-    @InjectSampleLabel(@OnElement(blocks = EBlockSample.SETTINGS))
-    @Message("My Settings")
-    String settings();
+    @InjectSampleLabel(@OnElement(blocks = EBlockSample.MAIL_SETTINGS))
+    @Message("My Settings & EMail")
+    String emailSettings();
+
+    @InjectSampleLabel(@OnElement(blocks = EBlockSample.PHONE_SETTINGS))
+    @Message("My Settings & Phone Number")
+    String phoneSettings();
 
     @InjectSampleLabel(@OnElement(blocks = EBlockSample.ACCOUNT))
     @Message("My Account")

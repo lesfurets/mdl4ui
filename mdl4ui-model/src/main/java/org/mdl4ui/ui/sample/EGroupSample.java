@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.mdl4ui.base.model.BlockID;
-import org.mdl4ui.base.model.EElementType;
+import org.mdl4ui.base.model.ElementType;
 import org.mdl4ui.base.model.ElementID;
 import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.base.model.GroupID;
@@ -24,8 +24,8 @@ public enum EGroupSample implements GroupID {
     }
 
     @Override
-    public EElementType elementType() {
-        return EElementType.GROUP;
+    public ElementType elementType() {
+        return ElementType.GROUP;
     }
 
     @Override

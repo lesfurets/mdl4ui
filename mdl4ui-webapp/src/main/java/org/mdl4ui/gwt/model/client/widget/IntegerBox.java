@@ -7,4 +7,8 @@ import com.google.gwt.event.logical.shared.HasValueChangeHandlers;
 public class IntegerBox extends com.github.gwtbootstrap.client.ui.IntegerBox implements NumericField,
                 HasValueChangeHandlers<Integer> {
 
+    @Override
+    public boolean isEmpty() {
+        return getValue() == null;
+    }
 }

@@ -1,9 +1,7 @@
 package org.mdl4ui.fields.sample.editor;
 
 import org.mdl4ui.base.model.FieldID;
-import org.mdl4ui.fields.model.DefaultEditor;
 import org.mdl4ui.fields.model.Field;
-import org.mdl4ui.fields.model.WizardContext;
 import org.mdl4ui.fields.model.component.NumericField;
 import org.mdl4ui.fields.model.event.FieldEvent;
 import org.mdl4ui.fields.model.validation.FieldValidation;
@@ -14,7 +12,7 @@ import org.mdl4ui.fields.sample.i18n.ValidationMessages;
 import org.mdl4ui.ui.sample.EFieldSample;
 
 @InjectSampleEditor(@OnField(EFieldSample.MAX_WEEKLY_EMAILS))
-public class MaxWeeklyEmailsEditor extends DefaultEditor {
+public class MaxWeeklyEmailsEditor extends SampleEditor {
     private ValidationMessages messages;
 
     public MaxWeeklyEmailsEditor(ValidationMessages messages) {
@@ -22,31 +20,28 @@ public class MaxWeeklyEmailsEditor extends DefaultEditor {
     }
 
     @Override
-    public String value(FieldID field, WizardContext context, FieldEvent fieldEvent) {
-        SampleContext sampleContext = (SampleContext) context;
-        int maxEmailPerWeek = sampleContext.getUserAccount().getMaxEmailPerWeek();
+    public String value(FieldID field, SampleContext context, FieldEvent fieldEvent) {
+        int maxEmailPerWeek = context.getUserAccount().getMaxEmailPerWeek();
         return Integer.toString(maxEmailPerWeek);
     }
 
     @Override
-    public void updateFromContext(Field field, WizardContext context, FieldEvent fieldEvent) {
-        SampleContext sampleContext = (SampleContext) context;
+    public void updateFromContext(Field field, SampleContext context, FieldEvent fieldEvent) {
         NumericField texbox = field.getComponent();
-        texbox.setValue(sampleContext.getUserAccount().getMaxEmailPerWeek());
+        texbox.setValue(context.getUserAccount().getMaxEmailPerWeek());
     }
 
     @Override
-    public void updateContext(Field field, WizardContext context, FieldEvent fieldEvent) {
+    public void updateContext(Field field, SampleContext context, FieldEvent fieldEvent) {
         NumericField texbox = field.getComponent();
-        SampleContext sampleContext = (SampleContext) context;
         if (texbox.getValue() != null)
-            sampleContext.getUserAccount().setMaxEmailPerWeek(texbox.getValue());
+            context.getUserAccount().setMaxEmailPerWeek(texbox.getValue());
     }
 
     @Override
-    public FieldValidation validate(Field field, WizardContext context, FieldEvent fieldEvent) {
+    public FieldValidation validate(Field field, SampleContext context, FieldEvent fieldEvent) {
         NumericField texbox = field.getComponent();
-        if (texbox.getValue() == null) {
+        if (texbox.isEmpty()) {
             return error(field, messages.please_specify_the_email_frequency());
         }
         return valid(field);

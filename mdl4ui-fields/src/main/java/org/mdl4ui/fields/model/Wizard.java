@@ -5,7 +5,7 @@ package org.mdl4ui.fields.model;
 
 import java.util.Map;
 
-import org.mdl4ui.base.model.ApplicationID;
+import org.mdl4ui.base.model.ScenarioID;
 import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.base.model.ScreenID;
 import org.mdl4ui.fields.model.event.FieldEvent;
@@ -18,7 +18,7 @@ public interface Wizard {
 
     Map<ScreenID, Screen> getScreens();
 
-    void addScreens(ApplicationID application);
+    void addScreens(ScenarioID application);
 
     void displayScreen(Screen screen);
 

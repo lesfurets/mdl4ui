@@ -5,7 +5,7 @@ import static org.mdl4ui.base.model.UIElementImpl.containsRec;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.mdl4ui.base.model.EElementType;
+import org.mdl4ui.base.model.ElementType;
 import org.mdl4ui.base.model.UIElementImpl;
 import org.mdl4ui.fields.model.Block;
 import org.mdl4ui.fields.model.Element;
@@ -101,8 +101,8 @@ public class BlockView implements ElementView {
     }
 
     @Override
-    public EElementType elementType() {
-        return EElementType.BLOCK;
+    public ElementType elementType() {
+        return ElementType.BLOCK;
     }
 
     @Override

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.mdl4ui.base.model.BlockID;
-import org.mdl4ui.base.model.EElementType;
+import org.mdl4ui.base.model.ElementType;
 import org.mdl4ui.base.model.UIElementImpl;
 
 public class Block implements Element {
@@ -37,8 +37,8 @@ public class Block implements Element {
     }
 
     @Override
-    public EElementType elementType() {
-        return EElementType.BLOCK;
+    public ElementType elementType() {
+        return ElementType.BLOCK;
     }
 
     @Override
@@ -68,7 +68,7 @@ public class Block implements Element {
 
     public boolean isValid() {
         for (Field field : fields())
-            if (field.getState() == EFieldState.ERROR)
+            if (field.getState() == FieldState.ERROR)
                 return false;
         return true;
     }

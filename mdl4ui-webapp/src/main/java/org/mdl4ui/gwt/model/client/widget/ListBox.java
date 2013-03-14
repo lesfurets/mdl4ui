@@ -23,6 +23,11 @@ public class ListBox extends com.github.gwtbootstrap.client.ui.ListBox implement
     }
 
     @Override
+    public boolean isEmpty() {
+        return getValue() == null;
+    }
+
+    @Override
     public String getValue() {
         return getValue(getSelectedIndex());
     }

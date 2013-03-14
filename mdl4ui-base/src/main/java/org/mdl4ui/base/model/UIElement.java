@@ -9,7 +9,7 @@ import java.util.List;
  * @param <B> the block type
  */
 public interface UIElement<E, F, G, B> {
-    EElementType elementType();
+    ElementType elementType();
 
     List<E> childs();
 

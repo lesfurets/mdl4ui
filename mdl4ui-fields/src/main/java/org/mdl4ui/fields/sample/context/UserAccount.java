@@ -15,6 +15,7 @@ public class UserAccount {
     private Timezone timezone = Timezone.ETC_GMT;
     private Language language = Language.EN;
 
+    private String phoneNumber;
     private String email;
     private Boolean acceptEmail;
     private Collection<EmailType> emailTypes = new HashSet<EmailType>();
@@ -90,5 +91,13 @@ public class UserAccount {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }

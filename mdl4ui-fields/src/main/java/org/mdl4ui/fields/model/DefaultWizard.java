@@ -2,8 +2,8 @@ package org.mdl4ui.fields.model;
 
 import static java.util.Arrays.asList;
 import static org.mdl4ui.fields.model.DefaultEditor.valid;
-import static org.mdl4ui.fields.model.EFieldState.ERROR;
-import static org.mdl4ui.fields.model.EFieldState.SET;
+import static org.mdl4ui.fields.model.FieldState.ERROR;
+import static org.mdl4ui.fields.model.FieldState.SET;
 import static org.mdl4ui.fields.model.event.FieldEvent.newEvent;
 import static org.mdl4ui.fields.model.event.FieldEvent.releaseSourceEvent;
 
@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.mdl4ui.base.model.ApplicationID;
+import org.mdl4ui.base.model.ScenarioID;
 import org.mdl4ui.base.model.BlockID;
 import org.mdl4ui.base.model.ElementID;
 import org.mdl4ui.base.model.FieldID;
@@ -31,7 +31,7 @@ public class DefaultWizard implements Wizard {
     private final Map<ScreenID, Screen> screens;
     private final WizardContext context;
 
-    private ApplicationID application;
+    private ScenarioID application;
     private Screen currentScreen;
 
     public DefaultWizard(WizardContext context, ClientFactory clientFactory) {
@@ -68,12 +68,12 @@ public class DefaultWizard implements Wizard {
         return clientFactory;
     }
 
-    public ApplicationID getApplication() {
+    public ScenarioID getApplication() {
         return application;
     }
 
     @Override
-    public void addScreens(ApplicationID application) {
+    public void addScreens(ScenarioID application) {
         this.application = application;
         for (ScreenID screenID : application.screens()) {
             List<Block> blocks = new ArrayList<Block>();
@@ -179,19 +179,19 @@ public class DefaultWizard implements Wizard {
 
     private final void updateBehaviour(Field field, FieldEvent event) {
         clientFactory.getBehaviourFactory().get(field.getFieldID()).updateValue(field, context, event);
-        boolean visibleBeforeUpdate = field.getState() != EFieldState.HIDDEN;
+        boolean visibleBeforeUpdate = field.getState() != FieldState.HIDDEN;
         boolean visibleAfterUpdate = isVisible(field.getFieldID(), event);
         if (!visibleBeforeUpdate && visibleAfterUpdate) {
             // update field using context, if field became visible
             updateFromContext(field, event);
-            field.setState(EFieldState.DEFAULT, null);
+            field.setState(FieldState.DEFAULT, null);
         } else if (!visibleAfterUpdate) {
             final FieldEditor editor = clientFactory.getEditorFactory().get(field.getFieldID());
             if (editor != null) {
                 // reset field if not visible anymore
                 editor.reset(field, context, event);
             }
-            field.setState(EFieldState.HIDDEN, null);
+            field.setState(FieldState.HIDDEN, null);
         }
     }
 

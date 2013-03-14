@@ -5,7 +5,7 @@ import static org.mdl4ui.base.model.UIElementImpl.containsRec;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.mdl4ui.base.model.EElementType;
+import org.mdl4ui.base.model.ElementType;
 import org.mdl4ui.base.model.GroupID;
 import org.mdl4ui.base.model.UIElementImpl;
 
@@ -23,8 +23,8 @@ public class Group implements Element {
     }
 
     @Override
-    public EElementType elementType() {
-        return EElementType.GROUP;
+    public ElementType elementType() {
+        return ElementType.GROUP;
     }
 
     @Override

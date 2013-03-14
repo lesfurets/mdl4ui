@@ -5,27 +5,28 @@ import static org.mdl4ui.base.model.UIElementImpl.containsRec;
 import java.util.Arrays;
 import java.util.List;
 
-import org.mdl4ui.base.model.ApplicationID;
 import org.mdl4ui.base.model.BlockID;
-import org.mdl4ui.base.model.EElementType;
+import org.mdl4ui.base.model.ElementType;
 import org.mdl4ui.base.model.ElementID;
 import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.base.model.GroupID;
+import org.mdl4ui.base.model.ScenarioID;
 import org.mdl4ui.base.model.ScreenID;
 import org.mdl4ui.base.model.UIElementImpl;
 
-public enum EApplicationSample implements ApplicationID {
-    SAMPLE(EScreenSample.SCR_REGISTRATION, EScreenSample.SCR_DONE);
+public enum EScenarioSample implements ScenarioID {
+    SCENARIO_MAIL(EScreenSample.SCR_REGISTRATION_BY_MAIL, EScreenSample.SCR_DONE), //
+    SCENARIO_PHONE(EScreenSample.SCR_REGISTRATION_BY_PHONE, EScreenSample.SCR_DONE);
 
     private final List<ElementID> childs;
 
-    private EApplicationSample(ElementID... blocks) {
+    private EScenarioSample(ElementID... blocks) {
         this.childs = Arrays.asList(blocks);
     }
 
     @Override
-    public EElementType elementType() {
-        return EElementType.APPLICATION;
+    public ElementType elementType() {
+        return ElementType.SCENARIO;
     }
 
     @Override

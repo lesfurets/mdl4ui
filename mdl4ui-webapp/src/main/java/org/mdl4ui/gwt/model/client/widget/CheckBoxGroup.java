@@ -28,6 +28,11 @@ public class CheckBoxGroup extends com.github.gwtbootstrap.client.ui.ButtonGroup
     }
 
     @Override
+    public boolean isEmpty() {
+        return getValue() == null || getValue().isEmpty();
+    }
+
+    @Override
     public void addItem(String item, String value) {
         final Button button = new Button(item);
         button.addMouseUpHandler(new MouseUpHandler() {

@@ -1,9 +1,7 @@
 package org.mdl4ui.fields.sample.editor;
 
 import org.mdl4ui.base.model.FieldID;
-import org.mdl4ui.fields.model.DefaultEditor;
 import org.mdl4ui.fields.model.Field;
-import org.mdl4ui.fields.model.WizardContext;
 import org.mdl4ui.fields.model.component.PasswordField;
 import org.mdl4ui.fields.model.event.FieldEvent;
 import org.mdl4ui.fields.model.validation.FieldValidation;
@@ -15,7 +13,7 @@ import org.mdl4ui.fields.sample.i18n.ValidationMessages;
 import org.mdl4ui.ui.sample.EFieldSample;
 
 @InjectSampleEditor(@OnField(EFieldSample.PASSWORD_CONFIRMATION))
-public class PasswordConfirmationEditor extends DefaultEditor {
+public class PasswordConfirmationEditor extends SampleEditor {
     private ValidationMessages messages;
 
     public PasswordConfirmationEditor(ValidationMessages messages) {
@@ -23,31 +21,27 @@ public class PasswordConfirmationEditor extends DefaultEditor {
     }
 
     @Override
-    public String value(FieldID field, WizardContext context, FieldEvent fieldEvent) {
-        SampleContext sampleContext = (SampleContext) context;
-        return sampleContext.getUserAccount().getPasswordConfirmation();
+    public String value(FieldID field, SampleContext context, FieldEvent fieldEvent) {
+        return context.getUserAccount().getPasswordConfirmation();
     }
 
     @Override
-    public void updateFromContext(Field field, WizardContext context, FieldEvent fieldEvent) {
-        SampleContext sampleContext = (SampleContext) context;
+    public void updateFromContext(Field field, SampleContext context, FieldEvent fieldEvent) {
         PasswordField textbox = field.getComponent();
-        textbox.setValue(sampleContext.getUserAccount().getPasswordConfirmation());
+        textbox.setValue(context.getUserAccount().getPasswordConfirmation());
     }
 
     @Override
-    public void updateContext(Field field, WizardContext context, FieldEvent fieldEvent) {
+    public void updateContext(Field field, SampleContext context, FieldEvent fieldEvent) {
         PasswordField textbox = field.getComponent();
-        SampleContext sampleContext = (SampleContext) context;
-        sampleContext.getUserAccount().setPasswordConfirmation(textbox.getValue());
+        context.getUserAccount().setPasswordConfirmation(textbox.getValue());
     }
 
     @Override
-    public FieldValidation validate(Field field, WizardContext context, FieldEvent fieldEvent) {
-        UserAccount userAccount = ((SampleContext) context).getUserAccount();
+    public FieldValidation validate(Field field, SampleContext context, FieldEvent fieldEvent) {
+        UserAccount userAccount = context.getUserAccount();
         PasswordField textbox = field.getComponent();
-        String value = textbox.getValue();
-        if (value == null || value.trim().length() == 0) {
+        if (textbox.isEmpty()) {
             return error(field, messages.please_specify_your_password());
         }
         if (!userAccount.getPassword().equals(userAccount.getPasswordConfirmation())) {

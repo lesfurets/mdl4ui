@@ -7,9 +7,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.mdl4ui.base.model.FieldID;
-import org.mdl4ui.fields.model.DefaultEditor;
 import org.mdl4ui.fields.model.Field;
-import org.mdl4ui.fields.model.WizardContext;
 import org.mdl4ui.fields.model.component.CheckBoxGroupField;
 import org.mdl4ui.fields.model.event.FieldEvent;
 import org.mdl4ui.fields.model.validation.FieldValidation;
@@ -23,7 +21,7 @@ import org.mdl4ui.ui.sample.EFieldSample;
 import com.google.common.base.Function;
 
 @InjectSampleEditor(@OnField(EFieldSample.EMAILS_PREFERENCES))
-public class EmailsPreferenceditor extends DefaultEditor {
+public class EmailsPreferenceditor extends SampleEditor {
     private ValidationMessages messages;
 
     public EmailsPreferenceditor(ValidationMessages messages) {
@@ -31,16 +29,14 @@ public class EmailsPreferenceditor extends DefaultEditor {
     }
 
     @Override
-    public String value(FieldID field, WizardContext context, FieldEvent fieldEvent) {
-        SampleContext sampleContext = (SampleContext) context;
-        Collection<EmailType> emailTypes = sampleContext.getUserAccount().getEmailTypes();
+    public String value(FieldID field, SampleContext context, FieldEvent fieldEvent) {
+        Collection<EmailType> emailTypes = context.getUserAccount().getEmailTypes();
         return emailTypes != null ? emailTypes.toString() : null;
     }
 
     @Override
-    public void updateFromContext(Field field, WizardContext context, FieldEvent fieldEvent) {
-        SampleContext sampleContext = (SampleContext) context;
-        Collection<EmailType> emailTypes = sampleContext.getUserAccount().getEmailTypes();
+    public void updateFromContext(Field field, SampleContext context, FieldEvent fieldEvent) {
+        Collection<EmailType> emailTypes = context.getUserAccount().getEmailTypes();
         if (emailTypes != null) {
             CheckBoxGroupField checkbox = field.getComponent();
             List<String> value = new ArrayList<String>(transform(emailTypes, new Function<EmailType, String>() {
@@ -54,8 +50,7 @@ public class EmailsPreferenceditor extends DefaultEditor {
     }
 
     @Override
-    public void updateContext(Field field, WizardContext context, FieldEvent fieldEvent) {
-        SampleContext sampleContext = (SampleContext) context;
+    public void updateContext(Field field, SampleContext context, FieldEvent fieldEvent) {
         CheckBoxGroupField checkbox = field.getComponent();
         List<EmailType> value = new ArrayList<EmailType>(transform(checkbox.getValue(),
                         new Function<String, EmailType>() {
@@ -64,13 +59,13 @@ public class EmailsPreferenceditor extends DefaultEditor {
                                 return EmailType.valueOf(input);
                             }
                         }));
-        sampleContext.getUserAccount().setEmailTypes(value);
+        context.getUserAccount().setEmailTypes(value);
     }
 
     @Override
-    public FieldValidation validate(Field field, WizardContext context, FieldEvent fieldEvent) {
+    public FieldValidation validate(Field field, SampleContext context, FieldEvent fieldEvent) {
         CheckBoxGroupField checkbox = field.getComponent();
-        if (checkbox.getValue() == null || checkbox.getValue().isEmpty()) {
+        if (checkbox.isEmpty()) {
             return error(field, messages.please_specify_the_kind_of_email_you_wish_to_receive());
         }
         return valid(field);

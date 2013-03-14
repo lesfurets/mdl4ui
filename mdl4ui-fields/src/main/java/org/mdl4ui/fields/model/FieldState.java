@@ -1,5 +1,5 @@
 package org.mdl4ui.fields.model;
 
-public enum EFieldState {
+public enum FieldState {
     DEFAULT, SET, ERROR, HIDDEN;
 }

@@ -5,7 +5,7 @@ package org.mdl4ui.fields.model;
 
 import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.fields.model.event.FieldEvent;
-import org.mdl4ui.fields.model.validation.EErrorType;
+import org.mdl4ui.fields.model.validation.ErrorType;
 import org.mdl4ui.fields.model.validation.FieldValidation;
 
 public abstract class DefaultEditor implements FieldEditor {
@@ -32,14 +32,14 @@ public abstract class DefaultEditor implements FieldEditor {
     }
 
     protected static final FieldValidation empty(Field field, String message) {
-        return validation(field.getFieldID(), message, EErrorType.EMPTY_FIELD);
+        return validation(field.getFieldID(), message, ErrorType.EMPTY_FIELD);
     }
 
     protected static final FieldValidation error(Field field, String message) {
-        return validation(field.getFieldID(), message, EErrorType.INCONSISTENT_FIELD);
+        return validation(field.getFieldID(), message, ErrorType.INCONSISTENT_FIELD);
     }
 
-    protected static final FieldValidation validation(FieldID field, String message, EErrorType errorType) {
+    protected static final FieldValidation validation(FieldID field, String message, ErrorType errorType) {
         return new FieldValidation(field, message, errorType);
     }
 }

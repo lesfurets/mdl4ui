@@ -16,17 +16,17 @@ public class FieldValidation {
 
     private final FieldID fieldId;
     private final String message;
-    private final EErrorType errorType;
+    private final ErrorType errorType;
 
     public FieldValidation(FieldID fieldId) {
         this(fieldId, null);
     }
 
     public FieldValidation(FieldID fieldId, String message) {
-        this(fieldId, null, EErrorType.EMPTY_FIELD);
+        this(fieldId, null, ErrorType.EMPTY_FIELD);
     }
 
-    public FieldValidation(FieldID fieldId, String message, EErrorType kind) {
+    public FieldValidation(FieldID fieldId, String message, ErrorType kind) {
         this.fieldId = fieldId;
         this.message = message;
         this.errorType = kind;
@@ -40,7 +40,7 @@ public class FieldValidation {
         return this.message;
     }
 
-    public EErrorType getErrorType() {
+    public ErrorType getErrorType() {
         return this.errorType;
     }
 

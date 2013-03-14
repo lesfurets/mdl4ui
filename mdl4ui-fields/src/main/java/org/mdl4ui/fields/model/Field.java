@@ -4,7 +4,7 @@ import static org.mdl4ui.base.model.UIElementImpl.containsRec;
 
 import java.util.List;
 
-import org.mdl4ui.base.model.EElementType;
+import org.mdl4ui.base.model.ElementType;
 import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.base.model.UIElementImpl;
 import org.mdl4ui.fields.model.component.FieldComponent;
@@ -16,7 +16,7 @@ public class Field implements Element {
     private final String label, help, placeholder;
     private final FieldRenderer<?> renderer;
 
-    private EFieldState state = EFieldState.DEFAULT;
+    private FieldState state = FieldState.DEFAULT;
     private FieldValidation validation;
 
     public Field(FieldID fieldId, String label, String help, String placeholder, final FieldRenderer<?> renderer) {
@@ -54,7 +54,7 @@ public class Field implements Element {
         return renderer.isLabelInline();
     }
 
-    public EFieldState getState() {
+    public FieldState getState() {
         return state;
     }
 
@@ -62,14 +62,14 @@ public class Field implements Element {
         return validation;
     }
 
-    public final void setState(EFieldState newState, FieldValidation newValidation) {
+    public final void setState(FieldState newState, FieldValidation newValidation) {
         state = newState;
         validation = newValidation;
     }
 
     @Override
-    public EElementType elementType() {
-        return EElementType.FIELD;
+    public ElementType elementType() {
+        return ElementType.FIELD;
     }
 
     @Override

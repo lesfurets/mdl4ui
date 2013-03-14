@@ -1,9 +1,7 @@
 package org.mdl4ui.fields.sample.editor;
 
 import org.mdl4ui.base.model.FieldID;
-import org.mdl4ui.fields.model.DefaultEditor;
 import org.mdl4ui.fields.model.Field;
-import org.mdl4ui.fields.model.WizardContext;
 import org.mdl4ui.fields.model.component.TextBoxField;
 import org.mdl4ui.fields.model.event.FieldEvent;
 import org.mdl4ui.fields.model.validation.FieldValidation;
@@ -14,7 +12,7 @@ import org.mdl4ui.fields.sample.i18n.ValidationMessages;
 import org.mdl4ui.ui.sample.EFieldSample;
 
 @InjectSampleEditor(@OnField(EFieldSample.LOGIN))
-public class LoginEditor extends DefaultEditor {
+public class LoginEditor extends SampleEditor {
     private ValidationMessages messages;
 
     public LoginEditor(ValidationMessages messages) {
@@ -22,30 +20,26 @@ public class LoginEditor extends DefaultEditor {
     }
 
     @Override
-    public String value(FieldID field, WizardContext context, FieldEvent fieldEvent) {
-        SampleContext sampleContext = (SampleContext) context;
-        return sampleContext.getUserAccount().getLogin();
+    public String value(FieldID field, SampleContext context, FieldEvent fieldEvent) {
+        return context.getUserAccount().getLogin();
     }
 
     @Override
-    public void updateFromContext(Field field, WizardContext context, FieldEvent fieldEvent) {
-        SampleContext sampleContext = (SampleContext) context;
+    public void updateFromContext(Field field, SampleContext context, FieldEvent fieldEvent) {
         TextBoxField textbox = field.getComponent();
-        textbox.setValue(sampleContext.getUserAccount().getLogin());
+        textbox.setValue(context.getUserAccount().getLogin());
     }
 
     @Override
-    public void updateContext(Field field, WizardContext context, FieldEvent fieldEvent) {
+    public void updateContext(Field field, SampleContext context, FieldEvent fieldEvent) {
         TextBoxField textbox = field.getComponent();
-        SampleContext sampleContext = (SampleContext) context;
-        sampleContext.getUserAccount().setLogin(textbox.getValue());
+        context.getUserAccount().setLogin(textbox.getValue());
     }
 
     @Override
-    public FieldValidation validate(Field field, WizardContext context, FieldEvent fieldEvent) {
+    public FieldValidation validate(Field field, SampleContext context, FieldEvent fieldEvent) {
         TextBoxField textbox = field.getComponent();
-        String value = textbox.getValue();
-        if (value == null || value.trim().length() == 0) {
+        if (textbox.isEmpty()) {
             return error(field, messages.please_specify_your_login());
         }
         return valid(field);

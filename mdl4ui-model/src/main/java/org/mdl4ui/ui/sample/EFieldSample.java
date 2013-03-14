@@ -5,37 +5,38 @@ import static org.mdl4ui.base.model.UIElementImpl.containsRec;
 import java.util.List;
 
 import org.mdl4ui.base.model.BlockID;
-import org.mdl4ui.base.model.EElementType;
-import org.mdl4ui.base.model.EFieldType;
+import org.mdl4ui.base.model.ElementType;
+import org.mdl4ui.base.model.FieldType;
 import org.mdl4ui.base.model.ElementID;
 import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.base.model.GroupID;
 import org.mdl4ui.base.model.UIElementImpl;
 
 public enum EFieldSample implements FieldID {
-    FIRST_NAME(EFieldType.TEXTBOX), //
-    LAST_NAME(EFieldType.TEXTBOX), //
-    EMAIL(EFieldType.TEXTBOX), //
-    BIRTHDATE(EFieldType.DATE), //
-    LANGUAGE(EFieldType.RADIO_GROUP), //
-    TIMEZONE(EFieldType.LISTBOX), //
+    FIRST_NAME(FieldType.TEXTBOX), //
+    LAST_NAME(FieldType.TEXTBOX), //
+    EMAIL(FieldType.TEXTBOX), //
+    BIRTHDATE(FieldType.DATE), //
+    LANGUAGE(FieldType.RADIO_GROUP), //
+    TIMEZONE(FieldType.LISTBOX), //
 
-    EMAIL_ACCEPTED(EFieldType.RADIO_GROUP), //
-    EMAILS_PREFERENCES(EFieldType.CHECKBOX_GROUP), //
-    MAX_WEEKLY_EMAILS(EFieldType.NUMERIC), //
+    PHONE_NUMBER(FieldType.TEXTBOX), //
+    EMAIL_ACCEPTED(FieldType.RADIO_GROUP), //
+    EMAILS_PREFERENCES(FieldType.CHECKBOX_GROUP), //
+    MAX_WEEKLY_EMAILS(FieldType.NUMERIC), //
 
-    LOGIN(EFieldType.TEXTBOX), //
-    PASSWORD(EFieldType.PASSWORD), //
-    PASSWORD_CONFIRMATION(EFieldType.PASSWORD);
-    private EFieldType type;
+    LOGIN(FieldType.TEXTBOX), //
+    PASSWORD(FieldType.PASSWORD), //
+    PASSWORD_CONFIRMATION(FieldType.PASSWORD);
+    private FieldType type;
 
-    private EFieldSample(EFieldType type) {
+    private EFieldSample(FieldType type) {
         this.type = type;
     }
 
     @Override
-    public EElementType elementType() {
-        return EElementType.FIELD;
+    public ElementType elementType() {
+        return ElementType.FIELD;
     }
 
     @Override
@@ -64,7 +65,7 @@ public enum EFieldSample implements FieldID {
     }
 
     @Override
-    public EFieldType type() {
+    public FieldType type() {
         return type;
     }
 }

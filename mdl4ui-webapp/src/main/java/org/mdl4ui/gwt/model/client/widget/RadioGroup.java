@@ -26,6 +26,11 @@ public class RadioGroup extends com.github.gwtbootstrap.client.ui.ButtonGroup im
     }
 
     @Override
+    public boolean isEmpty() {
+        return getValue() == null;
+    }
+
+    @Override
     public void addItem(String item, String value) {
         final Button button = new Button(item);
         button.addClickHandler(new ClickHandler() {
@@ -66,4 +71,5 @@ public class RadioGroup extends com.github.gwtbootstrap.client.ui.ButtonGroup im
     public HandlerRegistration addValueChangeHandler(ValueChangeHandler<String> handler) {
         return addHandler(handler, ValueChangeEvent.getType());
     }
+
 }

@@ -5,7 +5,7 @@ import static org.mdl4ui.base.model.UIElementImpl.containsRec;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.mdl4ui.base.model.EElementType;
+import org.mdl4ui.base.model.ElementType;
 import org.mdl4ui.base.model.UIElementImpl;
 import org.mdl4ui.fields.model.Block;
 import org.mdl4ui.fields.model.Screen;
@@ -47,8 +47,8 @@ public class DefaultScreenView implements ScreenView {
     }
 
     @Override
-    public EElementType elementType() {
-        return EElementType.SCREEN;
+    public ElementType elementType() {
+        return ElementType.SCREEN;
     }
 
     @Override

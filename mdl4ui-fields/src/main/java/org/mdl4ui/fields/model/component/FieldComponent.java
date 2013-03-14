@@ -5,4 +5,6 @@ public interface FieldComponent<T> {
     T getValue();
 
     void setValue(T value);
+
+    boolean isEmpty();
 }

@@ -1,9 +1,7 @@
 package org.mdl4ui.fields.sample.editor;
 
 import org.mdl4ui.base.model.FieldID;
-import org.mdl4ui.fields.model.DefaultEditor;
 import org.mdl4ui.fields.model.Field;
-import org.mdl4ui.fields.model.WizardContext;
 import org.mdl4ui.fields.model.component.TextBoxField;
 import org.mdl4ui.fields.model.event.FieldEvent;
 import org.mdl4ui.fields.model.validation.FieldValidation;
@@ -14,7 +12,7 @@ import org.mdl4ui.fields.sample.i18n.ValidationMessages;
 import org.mdl4ui.ui.sample.EFieldSample;
 
 @InjectSampleEditor(@OnField(EFieldSample.EMAIL))
-public class EmailEditor extends DefaultEditor {
+public class EmailEditor extends SampleEditor {
 
     private ValidationMessages messages;
 
@@ -23,30 +21,26 @@ public class EmailEditor extends DefaultEditor {
     }
 
     @Override
-    public String value(FieldID field, WizardContext context, FieldEvent fieldEvent) {
-        SampleContext sampleContext = (SampleContext) context;
-        return sampleContext.getUserAccount().getEmail();
+    public String value(FieldID field, SampleContext context, FieldEvent fieldEvent) {
+        return context.getUserAccount().getEmail();
     }
 
     @Override
-    public void updateFromContext(Field field, WizardContext context, FieldEvent fieldEvent) {
-        SampleContext sampleContext = (SampleContext) context;
+    public void updateFromContext(Field field, SampleContext context, FieldEvent fieldEvent) {
         TextBoxField textbox = field.getComponent();
-        textbox.setValue(sampleContext.getUserAccount().getEmail());
+        textbox.setValue(context.getUserAccount().getEmail());
     }
 
     @Override
-    public void updateContext(Field field, WizardContext context, FieldEvent fieldEvent) {
+    public void updateContext(Field field, SampleContext context, FieldEvent fieldEvent) {
         TextBoxField textbox = field.getComponent();
-        SampleContext sampleContext = (SampleContext) context;
-        sampleContext.getUserAccount().setEmail(textbox.getValue());
+        context.getUserAccount().setEmail(textbox.getValue());
     }
 
     @Override
-    public FieldValidation validate(Field field, WizardContext context, FieldEvent fieldEvent) {
+    public FieldValidation validate(Field field, SampleContext context, FieldEvent fieldEvent) {
         TextBoxField textbox = field.getComponent();
-        String value = textbox.getValue();
-        if (value == null || value.trim().length() == 0) {
+        if (textbox.isEmpty()) {
             return error(field, messages.please_specify_your_email());
         }
         return valid(field);

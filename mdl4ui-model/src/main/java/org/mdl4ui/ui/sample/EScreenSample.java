@@ -2,14 +2,15 @@ package org.mdl4ui.ui.sample;
 
 import static org.mdl4ui.base.model.UIElementImpl.containsRec;
 import static org.mdl4ui.ui.sample.EBlockSample.ACCOUNT;
+import static org.mdl4ui.ui.sample.EBlockSample.MAIL_SETTINGS;
 import static org.mdl4ui.ui.sample.EBlockSample.PERSONAL_INFORMATIONS;
-import static org.mdl4ui.ui.sample.EBlockSample.SETTINGS;
+import static org.mdl4ui.ui.sample.EBlockSample.PHONE_SETTINGS;
 
 import java.util.Arrays;
 import java.util.List;
 
 import org.mdl4ui.base.model.BlockID;
-import org.mdl4ui.base.model.EElementType;
+import org.mdl4ui.base.model.ElementType;
 import org.mdl4ui.base.model.ElementID;
 import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.base.model.GroupID;
@@ -17,7 +18,8 @@ import org.mdl4ui.base.model.ScreenID;
 import org.mdl4ui.base.model.UIElementImpl;
 
 public enum EScreenSample implements ScreenID {
-    SCR_REGISTRATION(PERSONAL_INFORMATIONS, SETTINGS, ACCOUNT), //
+    SCR_REGISTRATION_BY_MAIL(PERSONAL_INFORMATIONS, MAIL_SETTINGS, ACCOUNT), //
+    SCR_REGISTRATION_BY_PHONE(PERSONAL_INFORMATIONS, PHONE_SETTINGS, ACCOUNT), //
     SCR_DONE();
 
     private final List<ElementID> childs;
@@ -27,8 +29,8 @@ public enum EScreenSample implements ScreenID {
     }
 
     @Override
-    public EElementType elementType() {
-        return EElementType.SCREEN;
+    public ElementType elementType() {
+        return ElementType.SCREEN;
     }
 
     @Override

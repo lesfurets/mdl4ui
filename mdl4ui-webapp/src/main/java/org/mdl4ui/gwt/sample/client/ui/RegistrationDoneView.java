@@ -4,7 +4,7 @@ import static org.mdl4ui.base.model.UIElementImpl.containsRec;
 
 import java.util.List;
 
-import org.mdl4ui.base.model.EElementType;
+import org.mdl4ui.base.model.ElementType;
 import org.mdl4ui.base.model.UIElementImpl;
 import org.mdl4ui.fields.model.Screen;
 import org.mdl4ui.gwt.model.client.ui.BlockView;
@@ -25,6 +25,7 @@ public class RegistrationDoneView implements ScreenView {
     public RegistrationDoneView(Screen screen) {
         this.screen = screen;
         container = new Hero();
+        // TODO add i18n resources
         container.add(new Heading(1, "Registration done successfully!"));
     }
 
@@ -39,8 +40,8 @@ public class RegistrationDoneView implements ScreenView {
     }
 
     @Override
-    public EElementType elementType() {
-        return EElementType.SCREEN;
+    public ElementType elementType() {
+        return ElementType.SCREEN;
     }
 
     @Override

@@ -1,6 +1,6 @@
 package org.mdl4ui.base.model;
 
-public enum EFieldType {
+public enum FieldType {
     TEXTBOX, //
     PASSWORD, //
     NUMERIC, //

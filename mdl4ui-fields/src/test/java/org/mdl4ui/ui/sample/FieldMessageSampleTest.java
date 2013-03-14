@@ -40,11 +40,11 @@ public final class FieldMessageSampleTest {
     }
 
     @Test
-    public void testBlockText_SETTINGS() {
-        final String messageLabel = BundleFieldFactory.INSTANCE.getLabel(SETTINGS);
-        final String messageHelp = BundleFieldFactory.INSTANCE.getHelp(SETTINGS);
-        final String messagePlaceHolder = BundleFieldFactory.INSTANCE.getPlaceHolder(SETTINGS);
-        assertEquals("My Settings", messageLabel);
+    public void testBlockText_MAIL_SETTINGS() {
+        final String messageLabel = BundleFieldFactory.INSTANCE.getLabel(MAIL_SETTINGS);
+        final String messageHelp = BundleFieldFactory.INSTANCE.getHelp(MAIL_SETTINGS);
+        final String messagePlaceHolder = BundleFieldFactory.INSTANCE.getPlaceHolder(MAIL_SETTINGS);
+        assertEquals("My Settings & EMail", messageLabel);
         assertNull(messageHelp);
         assertNull(messagePlaceHolder);
 
@@ -56,6 +56,17 @@ public final class FieldMessageSampleTest {
         final String messageHelp = BundleFieldFactory.INSTANCE.getHelp(ACCOUNT);
         final String messagePlaceHolder = BundleFieldFactory.INSTANCE.getPlaceHolder(ACCOUNT);
         assertEquals("My Account", messageLabel);
+        assertNull(messageHelp);
+        assertNull(messagePlaceHolder);
+
+    }
+
+    @Test
+    public void testBlockText_PHONE_SETTINGS() {
+        final String messageLabel = BundleFieldFactory.INSTANCE.getLabel(PHONE_SETTINGS);
+        final String messageHelp = BundleFieldFactory.INSTANCE.getHelp(PHONE_SETTINGS);
+        final String messagePlaceHolder = BundleFieldFactory.INSTANCE.getPlaceHolder(PHONE_SETTINGS);
+        assertEquals("My Settings & Phone Number", messageLabel);
         assertNull(messageHelp);
         assertNull(messagePlaceHolder);
 
@@ -191,6 +202,17 @@ public final class FieldMessageSampleTest {
         assertEquals("Confirm your password", messageLabel);
         assertNull(messageHelp);
         assertNull(messagePlaceHolder);
+
+    }
+
+    @Test
+    public void testFieldText_PHONE_NUMBER() {
+        final String messageLabel = BundleFieldFactory.INSTANCE.getLabel(PHONE_NUMBER);
+        final String messageHelp = BundleFieldFactory.INSTANCE.getHelp(PHONE_NUMBER);
+        final String messagePlaceHolder = BundleFieldFactory.INSTANCE.getPlaceHolder(PHONE_NUMBER);
+        assertEquals("Phone Number", messageLabel);
+        assertNull(messageHelp);
+        assertEquals("01 02 03 04 09", messagePlaceHolder);
 
     }
 

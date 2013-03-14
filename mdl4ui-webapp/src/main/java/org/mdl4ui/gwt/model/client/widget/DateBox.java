@@ -8,4 +8,9 @@ import com.google.gwt.event.logical.shared.HasValueChangeHandlers;
 
 public class DateBox extends com.github.gwtbootstrap.datepicker.client.ui.DateBox implements DateField,
                 HasValueChangeHandlers<Date> {
+
+    @Override
+    public boolean isEmpty() {
+        return getValue() == null;
+    }
 }
