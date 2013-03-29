@@ -44,7 +44,7 @@ public class BirthdateEditor extends SampleEditor {
     public FieldValidation validate(Field field, SampleContext context, FieldEvent fieldEvent) {
         DateField dateField = field.getComponent();
         if (dateField.isEmpty()) {
-            error(field, messages.please_specify_your_birth_date());
+            return error(field, messages.please_specify_your_birth_date());
         }
         return valid(field);
     }
