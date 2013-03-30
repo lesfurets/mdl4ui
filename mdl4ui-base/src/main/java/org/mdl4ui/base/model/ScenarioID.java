@@ -6,5 +6,5 @@ public interface ScenarioID extends ElementID {
 
     List<ScreenID> screens();
 
-    ScreenID nextScreen(ScreenID blockID);
+    ScreenID nextScreen(ScreenID screenID);
 }
