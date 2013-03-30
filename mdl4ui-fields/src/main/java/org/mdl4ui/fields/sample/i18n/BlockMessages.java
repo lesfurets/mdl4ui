@@ -14,11 +14,11 @@ public interface BlockMessages {
     String informations();
 
     @InjectSampleLabel(@OnElement(blocks = EBlockSample.MAIL_SETTINGS))
-    @Message("My Settings & EMail")
+    @Message("My Settings and Email")
     String emailSettings();
 
     @InjectSampleLabel(@OnElement(blocks = EBlockSample.PHONE_SETTINGS))
-    @Message("My Settings & Phone Number")
+    @Message("My Settings and Phone Number")
     String phoneSettings();
 
     @InjectSampleLabel(@OnElement(blocks = EBlockSample.ACCOUNT))
