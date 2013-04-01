@@ -47,13 +47,35 @@
     </resources>
     <testResources>
       <testResource>
+        <filtering>false</filtering>
         <directory>${project.build.directory}/generated-sources/apt-test</directory>
+        <targetPath>.</targetPath>
         <includes>
           <include>**/**.java</include>
         </includes>
       </testResource>
     </testResources>
     <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>1.8</version>
+        <executions>
+          <execution>
+            <id>add-test-source</id>
+            <phase>generate-test-sources</phase>
+            <goals>
+              <goal>add-test-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>src/test/resources</source>
+                <source>${project.build.directory}/generated-sources/apt-test</source>
+              </sources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <groupId>org.bsc.maven</groupId>
         <artifactId>maven-processor-plugin</artifactId>
