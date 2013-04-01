@@ -8,7 +8,8 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 
 public class SeleniumTest {
 
-    public static final String DEFAULT_TEST_URL = "http://127.0.0.1:8080/";
+    // FIXME
+    public static final String DEFAULT_TEST_URL = "http://127.0.0.1:8080/mdl4ui-webapp/";
 
     private WebDriver driver;
 
