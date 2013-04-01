@@ -1,0 +1,56 @@
+/*
+ * Copyright (C) by Courtanet, All Rights Reserved.
+ */
+package ${package.name};
+
+${imports}
+
+import javax.annotation.Generated;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+import org.mdl4ui.base.model.*;
+import org.mdl4ui.ui.core.selenium.*;
+
+/**
+ * @see ${source.bloc.class}
+ */
+@Generated(value = "${source.bloc.class}")
+public class ${target.class.name} extends AbstractSeleniumBlock<${target.class.name}> {
+
+${bloc.fields.declaration}
+    @FindBy(id = "${bloc.next}")
+    private WebElement next;
+
+    public ${target.class.name}(SeleniumScreen screen, WebDriver driver) {
+        super(screen, driver);
+    }
+
+    @Override
+    protected WebElement getNextButton() {
+        return next;
+    }
+    
+    @Override
+    public BlockID getID() {
+        return ${source.bloc.name};
+    }
+
+	@Override    
+    public void setValue(FieldID fieldID, String value) {
+    	if(value == null)
+    		return;
+${bloc.fields.ifStatements}
+    }
+    
+    @Override    
+    public boolean has(FieldID fieldID) {
+${bloc.fields.hasStatements}
+    	return false;
+    }
+
+${bloc.fields.getter}
+${bloc.fields.setter}
+}

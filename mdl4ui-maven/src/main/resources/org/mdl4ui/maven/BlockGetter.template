@@ -1,0 +1,3 @@
+    public ${field.bloc.class} get${field.bloc.type}() {
+        return ${field.bloc.name};
+    }

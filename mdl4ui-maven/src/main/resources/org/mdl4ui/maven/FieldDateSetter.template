@@ -1,0 +1,21 @@
+ /*   public ${target.class.name} set${field.type}(org.joda.time.ReadableDateTime date) {
+    	final java.text.SimpleDateFormat format = new java.text.SimpleDateFormat("dd/MM/yyyy");
+    	format.setTimeZone(java.util.TimeZone.getTimeZone("GMT"));
+        getScreen().setValue(${field.name}, format.format(date.toDateTime().toDate()));
+        ${field.name}.sendKeys("\n");
+        return this;
+     }
+    */
+    public ${target.class.name} set${field.type}(String date) {
+      //  try {
+        	// import JODA time API
+            // final java.text.SimpleDateFormat formatIso = new java.text.SimpleDateFormat("yyyyMMdd");
+        	// formatIso.setTimeZone(java.util.TimeZone.getTimeZone("GMT"));
+            // org.joda.time.DateTime dateTime = new org.joda.time.DateTime(formatIso.parse(date).getTime());
+            // set${field.type}(dateTime);
+            return this;
+       // } catch (java.text.ParseException e) {
+      //      throw new IllegalArgumentException("cannot parse date, check date format yyyyMMdd", e);
+      //  }
+    }
+

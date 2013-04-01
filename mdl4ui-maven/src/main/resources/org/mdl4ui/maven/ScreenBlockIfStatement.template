@@ -1,0 +1,2 @@
+		if(id == ${field.bloc.id})
+			return ${field.bloc.name};

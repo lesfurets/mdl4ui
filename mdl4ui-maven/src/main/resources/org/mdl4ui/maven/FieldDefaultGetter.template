@@ -1,0 +1,3 @@
+	public WebElement get${field.type}(){
+		return ${field.name};
+	}

@@ -1,0 +1,51 @@
+/*
+ * Copyright (C) by Courtanet, All Rights Reserved.
+ */
+package ${package.name};
+
+${imports}
+
+import javax.annotation.Generated;
+
+import org.openqa.selenium.WebDriver;
+
+import org.mdl4ui.base.model.*;
+import org.mdl4ui.ui.core.selenium.*;
+
+/**
+ * @see ${source.screen.class}
+ */
+@Generated(value = "${source.screen.class}")
+public class ${target.class.name} extends AbstractSeleniumScreen<${target.class.name}> {
+
+${field.blocs.declaration}
+
+    public ${target.class.name}(WebDriver driver) {
+        super(driver);
+${field.blocs.constructor}
+    }
+
+    @Override
+    public ScreenID getScreenID() {
+        return ${source.screen.name};
+    }
+
+    @Override
+    public org.openqa.selenium.By getIdentifyingElementLocator() {
+        return ${source.screen.identifier};
+    }
+    
+    @Override
+    public SeleniumBlock getBlock(BlockID id) {
+${field.blocs.ifBlocStatement}
+		return null;
+    }
+    
+    @Override
+    public SeleniumBlock getBlock(FieldID id) {
+${field.blocs.ifFieldStatement}
+		return null;
+    }
+    
+${field.blocs.getter}
+}

@@ -1,0 +1,5 @@
+    public ${target.class.name} set${field.type}(String value) {
+        getScreen().setValue(${field.name}, value);
+        ${field.name}.sendKeys("\n");
+        return this;
+    }

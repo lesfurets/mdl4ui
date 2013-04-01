@@ -1,0 +1,2 @@
+    @FindBy(id = "${field.code}")
+    private WebElement ${field.name};

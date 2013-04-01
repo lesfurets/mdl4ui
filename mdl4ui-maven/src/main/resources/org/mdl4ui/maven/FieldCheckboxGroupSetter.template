@@ -1,0 +1,4 @@
+    public ${target.class.name} set${field.type}(String value) {
+	    // TODO not implemented
+        return this;
+    }

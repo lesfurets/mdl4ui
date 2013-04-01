@@ -1,0 +1,1 @@
+        this.${field.bloc.name} = new ${field.bloc.class}(this, driver);

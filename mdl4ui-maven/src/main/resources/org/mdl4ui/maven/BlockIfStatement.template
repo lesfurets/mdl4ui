@@ -1,0 +1,2 @@
+		if(fieldID == ${block.field.id})
+			set${block.field.type}(value);

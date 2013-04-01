@@ -1,0 +1,9 @@
+    public ${target.class.name} set${field.type}Label(String value) {
+        getScreen().clickOptionByLabel(${field.name}, value);
+        return this;
+    }
+    
+    public ${target.class.name} set${field.type}(String value) {
+        getScreen().clickOptionByValue(${field.name}, value);
+        return this;
+    }
