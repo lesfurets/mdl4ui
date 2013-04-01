@@ -12,3 +12,4 @@ target-eclipse
 *Test.template
 mdl4ui-docs/*.bak
 mdl4ui-docs/Backup_*.cdr
+mdl4ui-docs/~$*
