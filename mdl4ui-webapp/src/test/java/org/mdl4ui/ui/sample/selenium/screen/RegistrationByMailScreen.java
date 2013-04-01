@@ -21,13 +21,13 @@ import org.mdl4ui.ui.core.selenium.*;
  * @see org.mdl4ui.ui.sample.EScreenSample
  */
 @Generated(value = "org.mdl4ui.ui.sample.EScreenSample")
-public class Registration_by_mailScreen extends AbstractSeleniumScreen<Registration_by_mailScreen> {
+public class RegistrationByMailScreen extends AbstractSeleniumScreen<RegistrationByMailScreen> {
 
     private final PersonalInformationsBlock personalInformations;
     private final MailSettingsBlock mailSettings;
     private final AccountBlock account;
 
-    public Registration_by_mailScreen(WebDriver driver) {
+    public RegistrationByMailScreen(WebDriver driver) {
         super(driver);
         this.personalInformations = new PersonalInformationsBlock(this, driver);
         this.mailSettings = new MailSettingsBlock(this, driver);

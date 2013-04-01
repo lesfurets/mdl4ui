@@ -10,7 +10,6 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.internal.Locatable;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
@@ -18,18 +17,11 @@ public abstract class AbstractSeleniumScreen<T extends SeleniumScreen> implement
 
     private final Logger LOGGER = Logger.getLogger(getClass().getSimpleName());
 
-    @FindBy(xpath = "//button[@class='blue-button back-link']")
-    private WebElement retourButton;
-
     protected final WebDriver driver;
 
     public AbstractSeleniumScreen(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
-    }
-
-    protected Logger getLogger() {
-        return this.LOGGER;
     }
 
     @Override
@@ -66,14 +58,6 @@ public abstract class AbstractSeleniumScreen<T extends SeleniumScreen> implement
         select.selectByValue(value);
     }
 
-    public void pause(long millis) {
-        try {
-            Thread.sleep(millis);
-        } catch (Exception e) {
-            LOGGER.error("exception occured ", e);
-        }
-    }
-
     @SuppressWarnings("unchecked")
     @Override
     public T assertDisplayed() {
@@ -84,10 +68,6 @@ public abstract class AbstractSeleniumScreen<T extends SeleniumScreen> implement
             throw new RuntimeException("Page attendue inexistante: " + getScreenID());
         }
         return (T) this;
-    }
-
-    public void back() {
-        retourButton.sendKeys("\n");
     }
 
     @Override

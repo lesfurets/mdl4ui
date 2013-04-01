@@ -1,4 +1,6 @@
     public ${target.class.name} set${field.type}(String value) {
-	    // TODO not implemented
+	   	org.openqa.selenium.By xpath = org.openqa.selenium.By.xpath("//div[@id='${field.code}']//span[text()=' "+value+" ']");
+        WebElement element = getScreen().getDriver().findElement(xpath);
+       	getScreen().scrollAndClick(element);
         return this;
     }

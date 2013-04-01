@@ -88,17 +88,23 @@ public class MailSettingsBlock extends AbstractSeleniumBlock<MailSettingsBlock> 
     }
 
     public MailSettingsBlock setLanguage(String value) {
-	    // TODO not implemented
+	   	org.openqa.selenium.By xpath = org.openqa.selenium.By.xpath("//div[@id='LANGUAGE']//span[text()=' "+value+" ']");
+        WebElement element = getScreen().getDriver().findElement(xpath);
+       	getScreen().scrollAndClick(element);
         return this;
     }
 
     public MailSettingsBlock setEmailAccepted(String value) {
-	    // TODO not implemented
+	   	org.openqa.selenium.By xpath = org.openqa.selenium.By.xpath("//div[@id='EMAIL_ACCEPTED']//span[text()=' "+value+" ']");
+        WebElement element = getScreen().getDriver().findElement(xpath);
+       	getScreen().scrollAndClick(element);
         return this;
     }
 
     public MailSettingsBlock setEmailsPreferences(String value) {
-	    // TODO not implemented
+	    org.openqa.selenium.By xpath = org.openqa.selenium.By.xpath("//div[@id='EMAILS_PREFERENCES']//span[text()=' "+value+" ']");
+        WebElement element = getScreen().getDriver().findElement(xpath);
+       	getScreen().scrollAndClick(element);
         return this;
     }
 

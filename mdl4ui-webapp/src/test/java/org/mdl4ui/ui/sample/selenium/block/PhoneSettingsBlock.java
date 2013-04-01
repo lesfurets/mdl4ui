@@ -74,7 +74,9 @@ public class PhoneSettingsBlock extends AbstractSeleniumBlock<PhoneSettingsBlock
     }
 
     public PhoneSettingsBlock setLanguage(String value) {
-	    // TODO not implemented
+	   	org.openqa.selenium.By xpath = org.openqa.selenium.By.xpath("//div[@id='LANGUAGE']//span[text()=' "+value+" ']");
+        WebElement element = getScreen().getDriver().findElement(xpath);
+       	getScreen().scrollAndClick(element);
         return this;
     }
 

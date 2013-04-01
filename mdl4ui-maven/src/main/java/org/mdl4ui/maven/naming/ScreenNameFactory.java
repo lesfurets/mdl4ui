@@ -13,8 +13,8 @@ public final class ScreenNameFactory extends DefaultNameFactory<ScreenID> {
 
     @Override
     public final String getClassName(ScreenID screenID) {
-        final String id = screenID.toString().replace("SCR_", "").toLowerCase();
-        return capitalize(id) + "Screen";
+        final String id = screenID.toString().replace("SCR_", "");
+        return camelize(capitalize(id.toLowerCase()), "_") + "Screen";
     }
 
     @Override

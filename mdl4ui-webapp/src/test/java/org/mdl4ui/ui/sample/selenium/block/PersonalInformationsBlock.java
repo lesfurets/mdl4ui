@@ -31,7 +31,7 @@ public class PersonalInformationsBlock extends AbstractSeleniumBlock<PersonalInf
     @FindBy(id = "EMAIL")
     private WebElement email;
 
-    @FindBy(xpath = "//div[@id='BIRTHDATE']/input")
+    @FindBy(id = "BIRTHDATE")
     private WebElement birthdate;
 
     @FindBy(id = "PERSONAL_INFORMATIONS_NEXT")
@@ -98,25 +98,24 @@ public class PersonalInformationsBlock extends AbstractSeleniumBlock<PersonalInf
         return this;
     }
 
- /*   public PersonalInformationsBlock setBirthdate(org.joda.time.ReadableDateTime date) {
+    public PersonalInformationsBlock setBirthdate(org.joda.time.ReadableDateTime date) {
     	final java.text.SimpleDateFormat format = new java.text.SimpleDateFormat("dd/MM/yyyy");
-    	format.setTimeZone(java.util.TimeZone.getTimeZone("GMT"));
-        getScreen().setValue(birthdate, format.format(date.toDateTime().toDate()));
-        birthdate.sendKeys("\n");
-        return this;
-     }
-    */
+       	format.setTimeZone(java.util.TimeZone.getTimeZone("GMT"));
+       	getScreen().setValue(birthdate, format.format(date.toDateTime().toDate()));
+       	birthdate.sendKeys("\n");
+       	return this;
+    }
+    
     public PersonalInformationsBlock setBirthdate(String date) {
-      //  try {
-        	// import JODA time API
-            // final java.text.SimpleDateFormat formatIso = new java.text.SimpleDateFormat("yyyyMMdd");
-        	// formatIso.setTimeZone(java.util.TimeZone.getTimeZone("GMT"));
-            // org.joda.time.DateTime dateTime = new org.joda.time.DateTime(formatIso.parse(date).getTime());
-            // setBirthdate(dateTime);
+       	try {
+        	final java.text.SimpleDateFormat formatIso = new java.text.SimpleDateFormat("yyyyMMdd");
+        	formatIso.setTimeZone(java.util.TimeZone.getTimeZone("GMT"));
+            org.joda.time.DateTime dateTime = new org.joda.time.DateTime(formatIso.parse(date).getTime());
+            setBirthdate(dateTime);
             return this;
-       // } catch (java.text.ParseException e) {
-      //      throw new IllegalArgumentException("cannot parse date, check date format yyyyMMdd", e);
-      //  }
+        } catch (java.text.ParseException e) {
+        	throw new IllegalArgumentException("cannot parse date, check date format yyyyMMdd", e);
+        }
     }
 
 

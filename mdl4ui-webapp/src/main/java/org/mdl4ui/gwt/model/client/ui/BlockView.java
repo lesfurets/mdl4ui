@@ -72,8 +72,10 @@ public class BlockView implements ElementView {
         actions = new FormActions();
         submit = new Button("Submit");
         submit.setType(ButtonType.PRIMARY);
+        submit.getElement().setId(block.getBlockID().toString().toUpperCase() + "_NEXT");
         actions.add(submit);
 
+        form.getElement().setId(block.getBlockID().toString().toUpperCase() + "_CONTENT");
         form.add(actions);
     }
 

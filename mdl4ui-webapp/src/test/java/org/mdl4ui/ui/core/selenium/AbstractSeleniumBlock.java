@@ -40,11 +40,6 @@ public abstract class AbstractSeleniumBlock<B extends SeleniumBlock> implements 
         return page;
     }
 
-    public void edit() {
-        final WebElement edit = driver.findElement(By.id(getID().toString().toUpperCase() + "_EDIT"));
-        getScreen().scrollAndClick(edit);
-    }
-
     @Override
     public final WebElement get(FieldID fieldID) {
         try {
@@ -66,27 +61,12 @@ public abstract class AbstractSeleniumBlock<B extends SeleniumBlock> implements 
     }
 
     @Override
-    public WebElement getTitle() {
-        try {
-            return driver.findElement(By.id(getTitleID()));
-        } catch (Exception e) {
-            LOGGER.error("unable to find element with id " + getTitleID(), e);
-            throw new RuntimeException("unable to find element with id " + getTitleID(), e);
-        }
-    }
-
-    @Override
     public final By getIdentifyingElementLocator() {
         return By.id(getContentPanelID());
     }
 
     protected String getContentPanelID() {
         return getID().toString().toUpperCase() + "_CONTENT";
-    }
-
-    @Override
-    public String getTitleID() {
-        return getID().toString().toUpperCase() + "_TITLE";
     }
 
     @Override

@@ -24,10 +24,6 @@ public interface SeleniumBlock {
 
     boolean waitUntilHidden();
 
-    WebElement getTitle();
-
-    String getTitleID();
-
     By getIdentifyingElementLocator();
 
     SeleniumBlock submit();

@@ -26,7 +26,9 @@ public class RegistrationDoneView implements ScreenView {
         this.screen = screen;
         container = new Hero();
         // TODO add i18n resources
-        container.add(new Heading(1, "Registration done successfully!"));
+        Heading heading = new Heading(1, "Registration done successfully!");
+        heading.getElement().setId("registration_done");
+        container.add(heading);
     }
 
     @Override

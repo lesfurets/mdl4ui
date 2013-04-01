@@ -80,6 +80,11 @@
       <artifactId>log4j</artifactId>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>joda-time</groupId>
+      <artifactId>joda-time</artifactId>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
   <build>
     <finalName>mdl4ui</finalName>
@@ -111,6 +116,14 @@
         <directory>${project.build.directory}/generated-sources/apt-test</directory>
         <includes>
           <include>**/**.java</include>
+        </includes>
+      </testResource>
+      <testResource>
+        <directory>src/test/resources</directory>
+        <includes>
+          <include>**/**.xml</include>
+          <include>**/**.xls</include>
+          <include>**/**.xlsx</include>
         </includes>
       </testResource>
     </testResources>
@@ -152,13 +165,13 @@
             <module>org.mdl4ui.gwt.sample.Sample</module>
           </modules>
         </configuration>
-        <!-- <executions>
+        <executions>
           <execution>
             <goals>
               <goal>compile</goal>
             </goals>
           </execution>
-        </executions> -->
+        </executions>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

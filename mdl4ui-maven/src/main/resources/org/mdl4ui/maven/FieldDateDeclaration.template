@@ -1,2 +1,0 @@
-    @FindBy(xpath = "//div[@id='${field.code}']/input")
-    private WebElement ${field.name};
