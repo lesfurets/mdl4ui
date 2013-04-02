@@ -1,16 +1,29 @@
 package org.mdl4ui.ui.sample.selenium.scenario;
 
+import static org.junit.Assert.assertThat;
+import static org.junit.internal.matchers.StringContains.containsString;
+
 import org.joda.time.DateMidnight;
 import org.junit.Test;
 import org.mdl4ui.ui.core.selenium.SeleniumTest;
 import org.mdl4ui.ui.sample.selenium.screen.RegistrationByMailScreen;
-import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class RegistrationByMailTest extends SeleniumTest {
+
+    @FindBy(id = "registration_done")
+    private WebElement registrationDone;
+
+    public RegistrationByMailTest() {
+        PageFactory.initElements(getDriver(), this);
+    }
 
     @Test
     public void testRegistration() {
         RegistrationByMailScreen registrationScreen = new RegistrationByMailScreen(getDriver());
+
         registrationScreen.assertDisplayed();
 
         registrationScreen.getPersonalInformations()//
@@ -35,6 +48,6 @@ public class RegistrationByMailTest extends SeleniumTest {
                         .setPasswordConfirmation("doe")//
                         .submit();
 
-        getDriver().findElement(By.id("registration_done")).getText().contains("Registration done successfully!");
+        assertThat(registrationDone.getText(), containsString("Registration done successfully!"));
     }
 }
