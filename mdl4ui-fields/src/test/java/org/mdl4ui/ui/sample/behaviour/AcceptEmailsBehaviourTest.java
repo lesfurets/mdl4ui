@@ -16,20 +16,15 @@ import java.util.Collection;
 import org.junit.Test;
 import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.fields.model.FieldBehaviour;
-import org.mdl4ui.fields.model.FieldBehaviourFactory;
-import org.mdl4ui.fields.model.FieldDependencyFactory;
 import org.mdl4ui.fields.sample.behaviour.MockFieldBehaviourFactory;
 import org.mdl4ui.fields.sample.context.SampleContext;
 import org.mdl4ui.ui.sample.FieldDependencySampleFactory;
 
 public class AcceptEmailsBehaviourTest {
 
-    private final FieldBehaviourFactory behaviourFactory = new MockFieldBehaviourFactory();
-    private final FieldDependencyFactory dependencyFactory = new FieldDependencySampleFactory();
-
     @Test
     public void dependencies() {
-        Collection<FieldID> dependencies = Arrays.asList(dependencyFactory.get(EMAIL_ACCEPTED));
+        Collection<FieldID> dependencies = Arrays.asList(new FieldDependencySampleFactory().get(EMAIL_ACCEPTED));
 
         assertEquals(2, dependencies.size());
         assertTrue(dependencies.contains(EMAILS_PREFERENCES));
@@ -40,8 +35,8 @@ public class AcceptEmailsBehaviourTest {
     public void dependenciesVisibility() {
         SampleContext context = new SampleContext();
 
-        for (FieldID dependency : dependencyFactory.get(EMAIL_ACCEPTED)) {
-            FieldBehaviour behaviour = behaviourFactory.get(dependency);
+        for (FieldID dependency : new FieldDependencySampleFactory().get(EMAIL_ACCEPTED)) {
+            FieldBehaviour behaviour = new MockFieldBehaviourFactory().get(dependency);
 
             context.getUserAccount().setAcceptEmail(false);
             assertFalse(behaviour.isVisible(dependency, context, null));
