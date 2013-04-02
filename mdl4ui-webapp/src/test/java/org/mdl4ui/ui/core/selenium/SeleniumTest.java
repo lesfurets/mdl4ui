@@ -28,6 +28,6 @@ public class SeleniumTest {
 
     @After
     public void after() {
-        driver.close();
+        driver.quit();
     }
 }
