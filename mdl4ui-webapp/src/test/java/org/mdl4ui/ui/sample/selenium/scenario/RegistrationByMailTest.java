@@ -9,16 +9,11 @@ import org.mdl4ui.ui.core.selenium.SeleniumTest;
 import org.mdl4ui.ui.sample.selenium.screen.RegistrationByMailScreen;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 public class RegistrationByMailTest extends SeleniumTest {
 
     @FindBy(id = "registration_done")
     private WebElement registrationDone;
-
-    public RegistrationByMailTest() {
-        PageFactory.initElements(getDriver(), this);
-    }
 
     @Test
     public void testRegistration() {

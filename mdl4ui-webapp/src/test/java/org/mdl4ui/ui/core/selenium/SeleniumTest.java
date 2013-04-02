@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.support.PageFactory;
 
 public class SeleniumTest {
 
@@ -20,10 +21,14 @@ public class SeleniumTest {
     @Before
     public void before() {
         FirefoxProfile profile = new FirefoxProfile();
+
         // disable unresponsive scripts popup
         profile.setPreference("dom.max_script_run_time", "999");//
         driver = new FirefoxDriver(profile);
         driver.navigate().to(DEFAULT_TEST_URL);
+
+        // look up the injected web elements
+        PageFactory.initElements(getDriver(), this);
     }
 
     @After
