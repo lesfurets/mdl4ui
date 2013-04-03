@@ -1,4 +1,4 @@
-package org.mdl4ui.ui.sample.selenium.scenario;
+package org.mdl4ui.ui.sample.selenium;
 
 import static org.junit.Assert.assertThat;
 import static org.junit.internal.matchers.StringContains.containsString;
