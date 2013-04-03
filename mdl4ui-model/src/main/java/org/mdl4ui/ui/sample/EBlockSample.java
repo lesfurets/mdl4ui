@@ -10,7 +10,6 @@ import static org.mdl4ui.ui.sample.EFieldSample.LAST_NAME;
 import static org.mdl4ui.ui.sample.EFieldSample.LOGIN;
 import static org.mdl4ui.ui.sample.EFieldSample.PASSWORD;
 import static org.mdl4ui.ui.sample.EFieldSample.PASSWORD_CONFIRMATION;
-import static org.mdl4ui.ui.sample.EFieldSample.PHONE_NUMBER;
 import static org.mdl4ui.ui.sample.EFieldSample.TIMEZONE;
 import static org.mdl4ui.ui.sample.EGroupSample.EMAIL_GROUP;
 
@@ -18,8 +17,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.mdl4ui.base.model.BlockID;
-import org.mdl4ui.base.model.ElementType;
 import org.mdl4ui.base.model.ElementID;
+import org.mdl4ui.base.model.ElementType;
 import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.base.model.GroupID;
 import org.mdl4ui.base.model.UIElementImpl;
@@ -32,9 +31,6 @@ public enum EBlockSample implements BlockID {
     MAIL_SETTINGS(LANGUAGE, //
                     EMAIL_ACCEPTED, //
                     EMAIL_GROUP, //
-                    TIMEZONE), //
-    PHONE_SETTINGS(LANGUAGE, //
-                    PHONE_NUMBER, //
                     TIMEZONE), //
     ACCOUNT(LOGIN, //
                     PASSWORD, //

@@ -1,5 +1,7 @@
 package org.mdl4ui.fields.sample.i18n;
 
+import java.util.Date;
+
 import org.ez18n.Message;
 import org.ez18n.MessageBundle;
 
@@ -9,11 +11,17 @@ public interface ValidationMessages {
     @Message("Please specify your birth date")
     String please_specify_your_birth_date();
 
+    @Message("Please specify a date after {0,date,medium} and before {1,date,medium}")
+    String please_specify_a_valid_date(Date startDate, Date endDate);
+
     @Message("Do your want receive email from on service?")
     String do_your_want_receive_email_from_on_service();
 
     @Message("Please specify your email")
     String please_specify_your_email();
+
+    @Message("Please specify a valid email")
+    String please_specify_a_valid_email();
 
     @Message("Please specify your phone number")
     String please_specify_your_phone_number();

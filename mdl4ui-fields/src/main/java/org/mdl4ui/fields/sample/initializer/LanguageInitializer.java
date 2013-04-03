@@ -16,7 +16,7 @@ import org.mdl4ui.ui.sample.EFieldSample;
 @InjectSampleInit(@OnField(EFieldSample.LANGUAGE))
 public class LanguageInitializer implements FieldInitializer {
 
-    private FieldMessages messages;
+    private final FieldMessages messages;
 
     public LanguageInitializer(FieldMessages messages) {
         this.messages = messages;

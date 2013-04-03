@@ -6,8 +6,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.mdl4ui.base.model.BlockID;
-import org.mdl4ui.base.model.ElementType;
 import org.mdl4ui.base.model.ElementID;
+import org.mdl4ui.base.model.ElementType;
 import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.base.model.GroupID;
 import org.mdl4ui.base.model.ScenarioID;
@@ -15,8 +15,7 @@ import org.mdl4ui.base.model.ScreenID;
 import org.mdl4ui.base.model.UIElementImpl;
 
 public enum EScenarioSample implements ScenarioID {
-    SCENARIO_MAIL(EScreenSample.SCR_REGISTRATION_BY_MAIL, EScreenSample.SCR_DONE), //
-    SCENARIO_PHONE(EScreenSample.SCR_REGISTRATION_BY_PHONE, EScreenSample.SCR_DONE);
+    SCENARIO_MAIL(EScreenSample.SCR_REGISTRATION_BY_MAIL, EScreenSample.SCR_DONE);
 
     private final List<ElementID> childs;
 

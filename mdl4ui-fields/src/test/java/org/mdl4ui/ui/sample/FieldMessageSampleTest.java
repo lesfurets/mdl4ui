@@ -61,17 +61,6 @@ public final class FieldMessageSampleTest {
 
     }
 
-    @Test
-    public void testBlockText_PHONE_SETTINGS() {
-        final String messageLabel = BundleFieldFactory.INSTANCE.getLabel(PHONE_SETTINGS);
-        final String messageHelp = BundleFieldFactory.INSTANCE.getHelp(PHONE_SETTINGS);
-        final String messagePlaceHolder = BundleFieldFactory.INSTANCE.getPlaceHolder(PHONE_SETTINGS);
-        assertEquals("My Settings and Phone Number", messageLabel);
-        assertNull(messageHelp);
-        assertNull(messagePlaceHolder);
-
-    }
-
 
     @Test
     public void testFieldText_FIRST_NAME() {
@@ -202,17 +191,6 @@ public final class FieldMessageSampleTest {
         assertEquals("Confirm your password", messageLabel);
         assertNull(messageHelp);
         assertNull(messagePlaceHolder);
-
-    }
-
-    @Test
-    public void testFieldText_PHONE_NUMBER() {
-        final String messageLabel = BundleFieldFactory.INSTANCE.getLabel(PHONE_NUMBER);
-        final String messageHelp = BundleFieldFactory.INSTANCE.getHelp(PHONE_NUMBER);
-        final String messagePlaceHolder = BundleFieldFactory.INSTANCE.getPlaceHolder(PHONE_NUMBER);
-        assertEquals("Phone Number", messageLabel);
-        assertNull(messageHelp);
-        assertEquals("01 02 03 04 09", messagePlaceHolder);
 
     }
 

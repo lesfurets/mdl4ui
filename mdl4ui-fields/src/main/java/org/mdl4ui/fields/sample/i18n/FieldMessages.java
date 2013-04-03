@@ -35,14 +35,6 @@ public interface FieldMessages {
     @Message("john@doe.com")
     String john_doe_com();
 
-    @InjectSampleLabel(@OnElement(fields = EFieldSample.PHONE_NUMBER))
-    @Message("Phone Number")
-    String phoneNumber();
-
-    @InjectSamplePlaceholder(@OnElement(fields = EFieldSample.PHONE_NUMBER))
-    @Message("01 02 03 04 09")
-    String phonePlaceholder();
-
     @InjectSampleHelp(@OnElement(fields = EFieldSample.EMAIL))
     @Message("You will receive a email to confirm your inscription")
     String confirmationEmail();

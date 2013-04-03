@@ -13,7 +13,7 @@ import org.mdl4ui.ui.sample.EFieldSample;
 
 @InjectSampleEditor(@OnField(EFieldSample.LOGIN))
 public class LoginEditor extends SampleEditor {
-    private ValidationMessages messages;
+    private final ValidationMessages messages;
 
     public LoginEditor(ValidationMessages messages) {
         this.messages = messages;

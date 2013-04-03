@@ -14,7 +14,7 @@ import org.mdl4ui.ui.sample.EFieldSample;
 @InjectSampleEditor(@OnField(EFieldSample.EMAIL_ACCEPTED))
 public class EmailAcceptedEditor extends SampleEditor {
 
-    private ValidationMessages messages;
+    private final ValidationMessages messages;
 
     public EmailAcceptedEditor(ValidationMessages messages) {
         this.messages = messages;

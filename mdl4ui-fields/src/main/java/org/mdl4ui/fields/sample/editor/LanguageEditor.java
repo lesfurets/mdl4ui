@@ -14,7 +14,7 @@ import org.mdl4ui.ui.sample.EFieldSample;
 
 @InjectSampleEditor(@OnField(EFieldSample.LANGUAGE))
 public class LanguageEditor extends SampleEditor {
-    private ValidationMessages messages;
+    private final ValidationMessages messages;
 
     public LanguageEditor(ValidationMessages messages) {
         this.messages = messages;

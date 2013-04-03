@@ -14,7 +14,7 @@ import org.mdl4ui.ui.sample.EFieldSample;
 
 @InjectSampleEditor(@OnField(EFieldSample.TIMEZONE))
 public class TimezoneEditor extends SampleEditor {
-    private ValidationMessages messages;
+    private final ValidationMessages messages;
 
     public TimezoneEditor(ValidationMessages messages) {
         this.messages = messages;

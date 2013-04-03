@@ -17,9 +17,6 @@ public interface BlockMessages {
     @Message("My Settings and Email")
     String emailSettings();
 
-    @InjectSampleLabel(@OnElement(blocks = EBlockSample.PHONE_SETTINGS))
-    @Message("My Settings and Phone Number")
-    String phoneSettings();
 
     @InjectSampleLabel(@OnElement(blocks = EBlockSample.ACCOUNT))
     @Message("My Account")

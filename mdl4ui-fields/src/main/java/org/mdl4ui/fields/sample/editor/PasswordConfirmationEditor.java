@@ -14,7 +14,7 @@ import org.mdl4ui.ui.sample.EFieldSample;
 
 @InjectSampleEditor(@OnField(EFieldSample.PASSWORD_CONFIRMATION))
 public class PasswordConfirmationEditor extends SampleEditor {
-    private ValidationMessages messages;
+    private final ValidationMessages messages;
 
     public PasswordConfirmationEditor(ValidationMessages messages) {
         this.messages = messages;

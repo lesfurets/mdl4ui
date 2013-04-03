@@ -19,9 +19,9 @@ public class Sample implements EntryPoint {
 
     @Override
     public void onModuleLoad() {
-        String token = History.getToken();
         ScenarioID scenario;
         try {
+            String token = History.getToken();
             scenario = EScenarioSample.valueOf(token);
         } catch (Exception e) {
             scenario = EScenarioSample.SCENARIO_MAIL;

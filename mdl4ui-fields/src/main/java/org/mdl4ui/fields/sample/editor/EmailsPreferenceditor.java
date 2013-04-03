@@ -22,7 +22,7 @@ import com.google.common.base.Function;
 
 @InjectSampleEditor(@OnField(EFieldSample.EMAILS_PREFERENCES))
 public class EmailsPreferenceditor extends SampleEditor {
-    private ValidationMessages messages;
+    private final ValidationMessages messages;
 
     public EmailsPreferenceditor(ValidationMessages messages) {
         this.messages = messages;

@@ -16,7 +16,7 @@ import org.mdl4ui.ui.sample.EFieldSample;
 @InjectSampleEditor(@OnField(EFieldSample.BIRTHDATE))
 public class BirthdateEditor extends SampleEditor {
 
-    private ValidationMessages messages;
+    private final ValidationMessages messages;
 
     public BirthdateEditor(ValidationMessages messages) {
         this.messages = messages;
@@ -45,6 +45,9 @@ public class BirthdateEditor extends SampleEditor {
         DateField dateField = field.getComponent();
         if (dateField.isEmpty()) {
             return error(field, messages.please_specify_your_birth_date());
+        }
+        if (!dateField.isDateInRange()) {
+            return error(field, messages.please_specify_a_valid_date(dateField.getStartDate(), dateField.getEndDate()));
         }
         return valid(field);
     }

@@ -14,7 +14,9 @@ import org.mdl4ui.ui.sample.EFieldSample;
 @InjectSampleEditor(@OnField(EFieldSample.EMAIL))
 public class EmailEditor extends SampleEditor {
 
-    private ValidationMessages messages;
+    private static final String EMAIL_PATTERN = "[\\-!#\\$%&'*\\+/=\\?\\^_`\\{\\|\\}~A-Za-z0-9]+(\\.[\\-!#\\$%&'*\\+/=\\?\\^_`\\{\\|\\}\\~A-Za-z0-9]+)*@([\\-_A-Za-z0-9]+\\.)*[\\-_A-Za-z0-9]+\\.[\\-_A-Za-z0-9]{2,}";
+
+    private final ValidationMessages messages;
 
     public EmailEditor(ValidationMessages messages) {
         this.messages = messages;
@@ -42,6 +44,8 @@ public class EmailEditor extends SampleEditor {
         TextBoxField textbox = field.getComponent();
         if (textbox.isEmpty()) {
             return error(field, messages.please_specify_your_email());
+        } else if (!textbox.getValue().matches(EMAIL_PATTERN)) {
+            return error(field, messages.please_specify_a_valid_email());
         }
         return valid(field);
     }

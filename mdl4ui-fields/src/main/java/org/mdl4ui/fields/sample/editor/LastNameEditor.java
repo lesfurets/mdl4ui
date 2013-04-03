@@ -13,7 +13,7 @@ import org.mdl4ui.ui.sample.EFieldSample;
 
 @InjectSampleEditor(@OnField(EFieldSample.LAST_NAME))
 public class LastNameEditor extends SampleEditor {
-    private ValidationMessages messages;
+    private final ValidationMessages messages;
 
     public LastNameEditor(ValidationMessages messages) {
         this.messages = messages;
