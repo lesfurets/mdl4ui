@@ -1,6 +1,7 @@
 package org.mdl4ui.gwt.sample.client.ui;
 
 import static org.mdl4ui.base.model.UIElementImpl.containsRec;
+import static org.mdl4ui.gwt.sample.client.i18n.SampleMessagesFactory.MSG_SM;
 
 import java.util.List;
 
@@ -25,8 +26,7 @@ public class RegistrationDoneView implements ScreenView {
     public RegistrationDoneView(Screen screen) {
         this.screen = screen;
         container = new Hero();
-        // TODO add i18n resources
-        Heading heading = new Heading(1, "Registration done successfully!");
+        Heading heading = new Heading(1, MSG_SM().registration_done());
         heading.getElement().setId("registration_done");
         container.add(heading);
     }

@@ -165,7 +165,8 @@ abstract class FieldProcessor extends AbstractProcessor {
             final String simpleName = element.getSimpleName().toString();
             final int resourceIndex = simpleName.indexOf("Resources");
             final String shortName = resourceIndex > 0 ? simpleName.substring(0, resourceIndex) : simpleName;
-            return (fqcn ? element.getEnclosingElement().toString() + "." : "") + shortName + "MessagesFactory.MSG_"
+            final String suffix = shortName.endsWith("Messages") ? "Factory" : "MessagesFactory";
+            return (fqcn ? element.getEnclosingElement().toString() + "." : "") + shortName + suffix + ".MSG_"
                             + toCamelCase(element) + "()";
         }
 
@@ -310,7 +311,8 @@ abstract class FieldProcessor extends AbstractProcessor {
 
     static ElementID getElementID(Element element) throws Exception {
         final String elementName = element.getSimpleName().toString();
-        final Class<?> enumClass = Class.forName(((TypeElement) element.getEnclosingElement()).getQualifiedName().toString());
+        final Class<?> enumClass = Class.forName(((TypeElement) element.getEnclosingElement()).getQualifiedName()
+                        .toString());
         final List<ElementID> values = Arrays.asList((ElementID[]) enumClass.getMethod("values").invoke(null));
         for (ElementID elementID : values) {
             if (elementName.equals(elementID.toString())) {

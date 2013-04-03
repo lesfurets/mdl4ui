@@ -54,7 +54,8 @@ public final class MessagesFactoryProcessor extends LabelBundleProcessor {
         final String simpleName = typeElement.getSimpleName().toString();
         final int resourceIndex = simpleName.indexOf("Resources");
         final String shortName = resourceIndex > 0 ? simpleName.substring(0, resourceIndex) : simpleName;
-        return (fqcn ? typeElement.getEnclosingElement().toString() + "." : "") + shortName + "MessagesFactory";
+        final String suffix = shortName.endsWith("Messages") ? "Factory" : "MessagesFactory";
+        return (fqcn ? typeElement.getEnclosingElement().toString() + "." : "") + shortName + suffix;
     }
 
     @Override
