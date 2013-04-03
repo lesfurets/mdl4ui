@@ -34,7 +34,7 @@ public class AcceptEmailsBehaviourTest {
     }
 
     @Test
-    public void dependenciesVisibility() {
+    public void visibility() {
         FieldDependencyFactory dependencyFactory = new FieldDependencySampleFactory();
         MockFieldBehaviourFactory behaviourFactory = new MockFieldBehaviourFactory();
 
