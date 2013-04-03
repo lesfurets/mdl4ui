@@ -3,21 +3,16 @@
  */
 package org.mdl4ui.ui.sample;
 
-import static org.mdl4ui.ui.sample.EFieldSample.EMAILS_PREFERENCES;
-import static org.mdl4ui.ui.sample.EFieldSample.EMAIL_ACCEPTED;
-import static org.mdl4ui.ui.sample.EFieldSample.MAX_WEEKLY_EMAILS;
-import static org.mdl4ui.ui.sample.EFieldSample.PASSWORD;
-import static org.mdl4ui.ui.sample.EFieldSample.PASSWORD_CONFIRMATION;
-
 import org.mdl4ui.base.model.FieldDependency;
 import org.mdl4ui.base.model.FieldID;
 
 public enum EFieldDependencySample implements FieldDependency {
 
     NO(null), //
-    DEP_EMAIL_ACCEPTED(EMAIL_ACCEPTED, EMAILS_PREFERENCES, MAX_WEEKLY_EMAILS), //
-    DEP_PASSWORD(PASSWORD, PASSWORD_CONFIRMATION), //
-    DEP_PASSWORD_CONFIRMATION(PASSWORD_CONFIRMATION, PASSWORD);
+    DEP_EMAIL_ACCEPTED(EFieldSample.EMAIL_ACCEPTED,//
+                    EFieldSample.EMAILS_PREFERENCES, EFieldSample.MAX_WEEKLY_EMAILS), //
+    DEP_PASSWORD(EFieldSample.PASSWORD, EFieldSample.PASSWORD_CONFIRMATION), //
+    DEP_PASSWORD_CONFIRMATION(EFieldSample.PASSWORD_CONFIRMATION, EFieldSample.PASSWORD);
 
     private final FieldID from;
     private final FieldID[] to;

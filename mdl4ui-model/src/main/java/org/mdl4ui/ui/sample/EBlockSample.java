@@ -1,17 +1,6 @@
 package org.mdl4ui.ui.sample;
 
 import static org.mdl4ui.base.model.UIElementImpl.containsRec;
-import static org.mdl4ui.ui.sample.EFieldSample.BIRTHDATE;
-import static org.mdl4ui.ui.sample.EFieldSample.EMAIL;
-import static org.mdl4ui.ui.sample.EFieldSample.EMAIL_ACCEPTED;
-import static org.mdl4ui.ui.sample.EFieldSample.FIRST_NAME;
-import static org.mdl4ui.ui.sample.EFieldSample.LANGUAGE;
-import static org.mdl4ui.ui.sample.EFieldSample.LAST_NAME;
-import static org.mdl4ui.ui.sample.EFieldSample.LOGIN;
-import static org.mdl4ui.ui.sample.EFieldSample.PASSWORD;
-import static org.mdl4ui.ui.sample.EFieldSample.PASSWORD_CONFIRMATION;
-import static org.mdl4ui.ui.sample.EFieldSample.TIMEZONE;
-import static org.mdl4ui.ui.sample.EGroupSample.EMAIL_GROUP;
 
 import java.util.Arrays;
 import java.util.List;
@@ -24,17 +13,17 @@ import org.mdl4ui.base.model.GroupID;
 import org.mdl4ui.base.model.UIElementImpl;
 
 public enum EBlockSample implements BlockID {
-    PERSONAL_INFORMATIONS(FIRST_NAME, //
-                    LAST_NAME, //
-                    EMAIL, //
-                    BIRTHDATE), //
-    MAIL_SETTINGS(LANGUAGE, //
-                    EMAIL_ACCEPTED, //
-                    EMAIL_GROUP, //
-                    TIMEZONE), //
-    ACCOUNT(LOGIN, //
-                    PASSWORD, //
-                    PASSWORD_CONFIRMATION);
+    PERSONAL_INFORMATIONS(EFieldSample.FIRST_NAME, //
+                    EFieldSample.LAST_NAME, //
+                    EFieldSample.EMAIL, //
+                    EFieldSample.BIRTHDATE), //
+    MAIL_SETTINGS(EFieldSample.LANGUAGE, //
+                    EFieldSample.EMAIL_ACCEPTED, //
+                    EGroupSample.EMAIL_GROUP, //
+                    EFieldSample.TIMEZONE), //
+    ACCOUNT(EFieldSample.LOGIN, //
+                    EFieldSample.PASSWORD, //
+                    EFieldSample.PASSWORD_CONFIRMATION);
 
     private final List<ElementID> childs;
 

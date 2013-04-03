@@ -1,21 +1,20 @@
 package org.mdl4ui.ui.sample;
 
 import static org.mdl4ui.base.model.UIElementImpl.containsRec;
-import static org.mdl4ui.ui.sample.EFieldSample.EMAILS_PREFERENCES;
-import static org.mdl4ui.ui.sample.EFieldSample.MAX_WEEKLY_EMAILS;
 
 import java.util.Arrays;
 import java.util.List;
 
 import org.mdl4ui.base.model.BlockID;
-import org.mdl4ui.base.model.ElementType;
 import org.mdl4ui.base.model.ElementID;
+import org.mdl4ui.base.model.ElementType;
 import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.base.model.GroupID;
 import org.mdl4ui.base.model.UIElementImpl;
 
 public enum EGroupSample implements GroupID {
-    EMAIL_GROUP(EMAILS_PREFERENCES, MAX_WEEKLY_EMAILS);
+    EMAIL_GROUP(EFieldSample.EMAILS_PREFERENCES,//
+                    EFieldSample.MAX_WEEKLY_EMAILS);
 
     private final List<ElementID> childs;
 

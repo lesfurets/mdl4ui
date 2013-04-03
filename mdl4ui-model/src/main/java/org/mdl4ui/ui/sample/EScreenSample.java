@@ -1,9 +1,6 @@
 package org.mdl4ui.ui.sample;
 
 import static org.mdl4ui.base.model.UIElementImpl.containsRec;
-import static org.mdl4ui.ui.sample.EBlockSample.ACCOUNT;
-import static org.mdl4ui.ui.sample.EBlockSample.MAIL_SETTINGS;
-import static org.mdl4ui.ui.sample.EBlockSample.PERSONAL_INFORMATIONS;
 
 import java.util.Arrays;
 import java.util.List;
@@ -17,7 +14,9 @@ import org.mdl4ui.base.model.ScreenID;
 import org.mdl4ui.base.model.UIElementImpl;
 
 public enum EScreenSample implements ScreenID {
-    SCR_REGISTRATION_BY_MAIL(PERSONAL_INFORMATIONS, MAIL_SETTINGS, ACCOUNT), //
+    SCR_REGISTRATION_BY_MAIL(EBlockSample.PERSONAL_INFORMATIONS,//
+                    EBlockSample.MAIL_SETTINGS,//
+                    EBlockSample.ACCOUNT), //
     SCR_DONE();
 
     private final List<ElementID> childs;
