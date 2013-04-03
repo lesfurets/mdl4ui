@@ -21,10 +21,6 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 public @interface Message {
 
-    String BASE_MESSAGE = "###mobile_message###";
-
     String value();
-
-    String mobile() default BASE_MESSAGE;
 
 }

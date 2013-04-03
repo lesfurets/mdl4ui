@@ -16,7 +16,6 @@ import static java.text.DateFormat.SHORT;
 import static javax.lang.model.SourceVersion.RELEASE_6;
 import static org.ez18n.apt.macro.MacroProcessor.replaceProperties;
 import static org.ez18n.apt.processor.DesktopMessagesProcessor.getDesktopMessagesClassName;
-import static org.ez18n.apt.processor.MobileMessagesProcessor.getMobileMessagesClassName;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -69,7 +68,6 @@ public final class MessagesFactoryProcessor extends LabelBundleProcessor {
         conf.put("source.class.name", bundleType.getSimpleName().toString());
         conf.put("package.name", bundleType.getEnclosingElement().toString());
         conf.put("desktop.messages.class.name", getDesktopMessagesClassName(bundleType, true));
-        conf.put("mobile.messages.class.name", getMobileMessagesClassName(bundleType, true));
         try {
             code = replaceProperties(template, conf, NO_VALUE);
         } catch (PropertyParsingException e) {

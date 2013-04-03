@@ -12,35 +12,19 @@
  */
 package org.ez18n.apt;
 
-import org.ez18n.Message;
 import org.ez18n.apt.base.TemplateMethod;
 import org.ez18n.apt.base.TemplateParam;
 
 public final class LabelTemplateMethod extends TemplateMethod {
 
     private final String base;
-    private final String mobile;
 
-    public LabelTemplateMethod(String name, boolean deprecated, TemplateParam returnParam, String base, String mobile) {
+    public LabelTemplateMethod(String name, boolean deprecated, TemplateParam returnParam, String base) {
         super(name, deprecated, returnParam);
         this.base = base;
-        this.mobile = mobile;
     }
 
     public String getBase() {
         return base;
     }
-
-    public String getMobile() {
-        return getMobile(true);
-    }
-
-    public String getMobile(boolean effective) {
-        if (effective) {
-            return Message.BASE_MESSAGE.equals(mobile) ? base : mobile;
-        } else {
-            return mobile;
-        }
-    }
-
 }

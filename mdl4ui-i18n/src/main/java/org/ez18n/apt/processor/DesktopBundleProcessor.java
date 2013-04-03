@@ -35,73 +35,71 @@ import org.ez18n.apt.macro.PropertyParsingException;
 @SupportedAnnotationTypes(value = "org.ez18n.MessageBundle")
 @SupportedSourceVersion(RELEASE_6)
 public final class DesktopBundleProcessor extends LabelBundleProcessor {
-	private final String template;
-	private final String no_param_method_template;
-	private final String multi_param_method_template;
+    private final String template;
+    private final String no_param_method_template;
+    private final String multi_param_method_template;
 
-	public DesktopBundleProcessor() {
-		try {
-			template = TemplateLoader.load("DesktopBundle.template");
-			no_param_method_template = TemplateLoader.load("NoParamBundleMethod.template");
-			multi_param_method_template = TemplateLoader.load("MultiParamBundleMethod.template");
-		} catch (IOException e) {
-			throw new IllegalStateException(e);
-		}
-	}
+    public DesktopBundleProcessor() {
+        try {
+            template = TemplateLoader.load("DesktopBundle.template");
+            no_param_method_template = TemplateLoader.load("NoParamBundleMethod.template");
+            multi_param_method_template = TemplateLoader.load("MultiParamBundleMethod.template");
+        } catch (IOException e) {
+            throw new IllegalStateException(e);
+        }
+    }
 
-	@Override
-	protected String getTargetSimpleName(TypeElement typeElement) {
-		return getDesktopBundleClassName(typeElement, false);
-	}
+    @Override
+    protected String getTargetSimpleName(TypeElement typeElement) {
+        return getDesktopBundleClassName(typeElement, false);
+    }
 
-	static final String getDesktopBundleClassName(TypeElement typeElement, boolean fqcn) {
-		final String simpleName = typeElement.getSimpleName().toString();
-		final int resourceIndex = simpleName.indexOf("Resources");
-		final String shortName = resourceIndex > 0 ? simpleName.substring(0, resourceIndex) : simpleName;
-		return (fqcn ? typeElement.getEnclosingElement().toString() + "." : "") + shortName + "DesktopBundle";
-	}
+    static final String getDesktopBundleClassName(TypeElement typeElement, boolean fqcn) {
+        final String simpleName = typeElement.getSimpleName().toString();
+        final int resourceIndex = simpleName.indexOf("Resources");
+        final String shortName = resourceIndex > 0 ? simpleName.substring(0, resourceIndex) : simpleName;
+        return (fqcn ? typeElement.getEnclosingElement().toString() + "." : "") + shortName + "DesktopBundle";
+    }
 
-	@Override
-	protected String getCode(TypeElement bundleType, List<LabelTemplateMethod> methods) {
-		final StringBuffer methodsCode = new StringBuffer();
-		for (LabelTemplateMethod method : methods)
-			methodsCode.append(getCode(bundleType, method));
+    @Override
+    protected String getCode(TypeElement bundleType, List<LabelTemplateMethod> methods) {
+        final StringBuffer methodsCode = new StringBuffer();
+        for (LabelTemplateMethod method : methods)
+            methodsCode.append(getCode(bundleType, method));
 
-		final String code;
-		final Map<String, String> conf = new HashMap<String, String>();
-		conf.put("process.class", getClass().getName());
-		conf.put("process.date", DateFormat.getDateTimeInstance(SHORT, SHORT).format(new Date()));
-		conf.put("source.class.name.camel", toCamelCase(bundleType));
-		conf.put("target.class.name", getTargetSimpleName(bundleType));
-		conf.put("source.class.name", bundleType.getSimpleName().toString());
-		conf.put("package.name", bundleType.getEnclosingElement().toString());
-		conf.put("methods.code", methodsCode.toString());
-		conf.put("bundle.property.file", "Desktop" + bundleType.getSimpleName().toString());
-		try {
-			code = replaceProperties(template, conf, NO_VALUE);
-		} catch (PropertyParsingException e) {
-			throw new RuntimeException(e);
-		}
-		return code;
-	}
+        final String code;
+        final Map<String, String> conf = new HashMap<String, String>();
+        conf.put("process.class", getClass().getName());
+        conf.put("process.date", DateFormat.getDateTimeInstance(SHORT, SHORT).format(new Date()));
+        conf.put("source.class.name.camel", toCamelCase(bundleType));
+        conf.put("target.class.name", getTargetSimpleName(bundleType));
+        conf.put("source.class.name", bundleType.getSimpleName().toString());
+        conf.put("package.name", bundleType.getEnclosingElement().toString());
+        conf.put("methods.code", methodsCode.toString());
+        conf.put("bundle.property.file", "Desktop" + bundleType.getSimpleName().toString());
+        try {
+            code = replaceProperties(template, conf, NO_VALUE);
+        } catch (PropertyParsingException e) {
+            throw new RuntimeException(e);
+        }
+        return code;
+    }
 
-	private final String getCode(TypeElement bundleType, LabelTemplateMethod method) {
-		checkTemplateMethod(bundleType, method);
-
-		final String code;
-		final Map<String, String> conf = new HashMap<String, String>();
-		conf.put("return.type", trimJavaDotLangDot(method.getReturnParam().getType()));
-		conf.put("default.message", method.getMobile(true));
-		conf.put("method.name", method.getName());
-		conf.put("input.params", method.formatParamsName(false));
-		conf.put("input.typed.params", method.formatParamsTypeAndName(false));
-		final String method_template = method.getParams().isEmpty() ? no_param_method_template
-				: multi_param_method_template;
-		try {
-			code = replaceProperties(method_template, conf, NO_VALUE);
-		} catch (PropertyParsingException e) {
-			throw new RuntimeException(e);
-		}
-		return code;
-	}
+    private final String getCode(TypeElement bundleType, LabelTemplateMethod method) {
+        final String code;
+        final Map<String, String> conf = new HashMap<String, String>();
+        conf.put("return.type", trimJavaDotLangDot(method.getReturnParam().getType()));
+        conf.put("default.message", method.getBase());
+        conf.put("method.name", method.getName());
+        conf.put("input.params", method.formatParamsName(false));
+        conf.put("input.typed.params", method.formatParamsTypeAndName(false));
+        final String method_template = method.getParams().isEmpty() ? no_param_method_template
+                        : multi_param_method_template;
+        try {
+            code = replaceProperties(method_template, conf, NO_VALUE);
+        } catch (PropertyParsingException e) {
+            throw new RuntimeException(e);
+        }
+        return code;
+    }
 }

@@ -1,6 +1,0 @@
-
-  <replace-with class="${mobile.label.factory.class.name}">
-    <when-type-is class="${desktop.label.factory.class.name}" />
-    <when-property-is name="isMobile" value="yes" />
-    <when-property-is name="user.agent" value="safari" />
-  </replace-with>

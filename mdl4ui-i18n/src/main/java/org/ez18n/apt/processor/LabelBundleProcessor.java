@@ -14,7 +14,6 @@ package org.ez18n.apt.processor;
 
 import static java.lang.Character.isUpperCase;
 import static javax.tools.StandardLocation.SOURCE_OUTPUT;
-import static org.apache.commons.lang3.StringUtils.isEmpty;
 
 import java.io.IOException;
 import java.io.Writer;
@@ -106,7 +105,7 @@ abstract class LabelBundleProcessor extends TemplateAnnotationProcessor<LabelTem
             final LabelTemplateMethod labelMethod;
             try {
                 labelMethod = new LabelTemplateMethod(method.getSimpleName().toString(), deprecated, returnType,
-                                labelAnnotation.value(), labelAnnotation.mobile());
+                                labelAnnotation.value());
             } catch (Throwable t) {
                 processingEnv.getMessager().printMessage(Kind.WARNING, t.getMessage(), resourcesType);
                 continue;
@@ -124,18 +123,6 @@ abstract class LabelBundleProcessor extends TemplateAnnotationProcessor<LabelTem
                 labelMethod.getParams().add(new TemplateParam(paramType, paramName, annotations));
             }
             methods.add(labelMethod);
-        }
-    }
-
-    protected void checkTemplateMethod(TypeElement bundleType, LabelTemplateMethod method) {
-        if (isEmpty(method.getMobile())) {
-            processingEnv.getMessager().printMessage(Kind.WARNING, "mobile message is empty", bundleType);
-        }
-
-        if (method.getBase().equals(method.getMobile(false))) {
-            processingEnv.getMessager().printMessage(Kind.WARNING,
-                            method.getName() + ": duplicate mobile & desktop messages, mobile value can be removed",
-                            bundleType);
         }
     }
 

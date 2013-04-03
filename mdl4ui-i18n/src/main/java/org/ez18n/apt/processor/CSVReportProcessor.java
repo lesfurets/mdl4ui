@@ -68,7 +68,7 @@ public final class CSVReportProcessor extends AbstractProcessor {
                 final LabelTemplateMethod labelMethod;
                 try {
                     labelMethod = new LabelTemplateMethod(method.getSimpleName().toString(), deprecated, returnType,
-                                    labelAnnotation.value(), labelAnnotation.mobile());
+                                    labelAnnotation.value());
                 } catch (Throwable t) {
                     processingEnv.getMessager().printMessage(Kind.WARNING, t.getMessage(), enclosedElement);
                     continue;
@@ -103,9 +103,8 @@ public final class CSVReportProcessor extends AbstractProcessor {
                     writer.write("\";\"");
                     writer.write(templateMethod.getName());
                     writer.write("\";\"");
-                    writer.write(new MessageFormat(templateMethod.getBase()).format(new Object[] {}).replace("\"", "''"));
-                    writer.write("\";\"");
-                    writer.write(new MessageFormat(templateMethod.getMobile()).format(new Object[] {}).replace("\"", "''"));
+                    writer.write(new MessageFormat(templateMethod.getBase()).format(new Object[] {})
+                                    .replace("\"", "''"));
                     writer.write("\"\n");
                 }
             }

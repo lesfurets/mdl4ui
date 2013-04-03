@@ -22,12 +22,4 @@ public class ${target.class.name} {
             return GWT.create(${desktop.messages.class.name}.class);
         }
     }
-
-    @SuppressWarnings("unused")
-    private static class MobileLabelFactory implements LabelFactory {
-        @Override
-        public ${source.class.name} getLabels() {
-            return GWT.create(${mobile.messages.class.name}.class);
-        }
-    }
 }

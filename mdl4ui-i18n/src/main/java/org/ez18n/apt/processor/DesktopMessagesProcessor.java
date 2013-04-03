@@ -84,8 +84,6 @@ public final class DesktopMessagesProcessor extends LabelBundleProcessor {
     }
 
     private final String getCode(TypeElement bundleType, LabelTemplateMethod method) {
-        checkTemplateMethod(bundleType, method);
-
         final String code;
         final Map<String, String> conf = new HashMap<String, String>();
         conf.put("return.type", trimJavaDotLangDot(method.getReturnParam().getType()));
