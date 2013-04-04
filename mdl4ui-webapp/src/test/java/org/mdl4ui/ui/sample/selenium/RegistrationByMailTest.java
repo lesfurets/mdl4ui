@@ -6,6 +6,7 @@ import static org.junit.internal.matchers.StringContains.containsString;
 import org.joda.time.DateMidnight;
 import org.junit.Test;
 import org.mdl4ui.ui.core.selenium.SeleniumTest;
+import org.mdl4ui.ui.sample.EScenarioSample;
 import org.mdl4ui.ui.sample.selenium.screen.RegistrationByMailScreen;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,10 +16,13 @@ public class RegistrationByMailTest extends SeleniumTest {
     @FindBy(id = "registration_done")
     private WebElement registrationDone;
 
+    public RegistrationByMailTest() {
+        super(EScenarioSample.SCENARIO_MAIL);
+    }
+
     @Test
     public void testRegistration() {
         RegistrationByMailScreen registrationScreen = new RegistrationByMailScreen(getDriver());
-
         registrationScreen.assertDisplayed();
 
         registrationScreen.getPersonalInformations()//

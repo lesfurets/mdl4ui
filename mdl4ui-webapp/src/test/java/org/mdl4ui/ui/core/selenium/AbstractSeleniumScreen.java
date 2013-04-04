@@ -64,8 +64,7 @@ public abstract class AbstractSeleniumScreen<T extends SeleniumScreen> implement
         try {
             getDriver().findElement(getIdentifyingElementLocator());
         } catch (NoSuchElementException e) {
-            LOGGER.error("Page attendue inexistante:" + getScreenID());
-            throw new RuntimeException("Page attendue inexistante: " + getScreenID());
+            throw new RuntimeException("Page attendue inexistante: " + getScreenID(), e);
         }
         return (T) this;
     }
