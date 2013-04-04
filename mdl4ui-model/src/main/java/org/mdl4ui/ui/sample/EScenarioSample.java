@@ -15,7 +15,8 @@ import org.mdl4ui.base.model.ScreenID;
 import org.mdl4ui.base.model.UIElementImpl;
 
 public enum EScenarioSample implements ScenarioID {
-    SCENARIO_MAIL(EScreenSample.SCR_REGISTRATION_BY_MAIL, EScreenSample.SCR_DONE);
+    SCENARIO_MAIL(EScreenSample.SCR_REGISTRATION_BY_MAIL, EScreenSample.SCR_DONE), //
+    SCENARIO_PHONE(EScreenSample.SCR_REGISTRATION_BY_PHONE, EScreenSample.SCR_DONE);
 
     private final List<ElementID> childs;
 
