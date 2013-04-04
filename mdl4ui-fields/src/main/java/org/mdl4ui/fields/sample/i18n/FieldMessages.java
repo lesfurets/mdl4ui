@@ -100,6 +100,11 @@ public interface FieldMessages {
     @Message("No")
     String no();
 
+    @InjectSampleLabel(@OnElement(fields = EFieldSample.PHONE_NUMBER))
     @Message("Phone Number")
     String phoneNumber();
+
+    @InjectSamplePlaceholder(@OnElement(fields = EFieldSample.PHONE_NUMBER))
+    @Message("01 02 03 04 06")
+    String phonePlaceholder();
 }

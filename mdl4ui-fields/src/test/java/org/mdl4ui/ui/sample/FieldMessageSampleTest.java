@@ -66,7 +66,7 @@ public final class FieldMessageSampleTest {
         final String messageLabel = BundleFieldFactory.INSTANCE.getLabel(PHONE_SETTINGS);
         final String messageHelp = BundleFieldFactory.INSTANCE.getHelp(PHONE_SETTINGS);
         final String messagePlaceHolder = BundleFieldFactory.INSTANCE.getPlaceHolder(PHONE_SETTINGS);
-        assertNull(messageLabel);
+        assertEquals("My Settings and Phone Number", messageLabel);
         assertNull(messageHelp);
         assertNull(messagePlaceHolder);
 
@@ -210,9 +210,9 @@ public final class FieldMessageSampleTest {
         final String messageLabel = BundleFieldFactory.INSTANCE.getLabel(PHONE_NUMBER);
         final String messageHelp = BundleFieldFactory.INSTANCE.getHelp(PHONE_NUMBER);
         final String messagePlaceHolder = BundleFieldFactory.INSTANCE.getPlaceHolder(PHONE_NUMBER);
-        assertNull(messageLabel);
+        assertEquals("Phone Number", messageLabel);
         assertNull(messageHelp);
-        assertNull(messagePlaceHolder);
+        assertEquals("01 02 03 04 06", messagePlaceHolder);
 
     }
 

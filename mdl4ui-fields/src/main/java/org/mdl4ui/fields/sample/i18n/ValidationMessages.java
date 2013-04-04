@@ -50,4 +50,9 @@ public interface ValidationMessages {
     @Message("Please specify the kind of email you wish to receive")
     String please_specify_the_kind_of_email_you_wish_to_receive();
 
+    @Message("Please specify a phone number")
+    String please_specify_a_phone_number();
+
+    @Message("Please specify a valid number")
+    String please_specify_a_valid_phone_number();
 }
