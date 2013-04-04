@@ -47,6 +47,6 @@ public class RegistrationByMailTest extends SeleniumTest {
                         .setPasswordConfirmation("doe")//
                         .submit();
 
-        assertThat(registrationDone.getText(), containsString("Registration done successfully!"));
+        assertThat(registrationDone.getText(), containsString("Registration done!"));
     }
 }
