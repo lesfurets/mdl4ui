@@ -115,7 +115,7 @@ public class WizardView implements IsWidget {
     }
 
     private void submitScreen(final DefaultWizard wizard, final ScreenID screenID) {
-        ScreenID nextScreen = wizard.getApplication().nextScreen(screenID);
+        ScreenID nextScreen = wizard.getScenario().nextScreen(screenID);
         if (nextScreen != null) {
             displayScreen(wizard, nextScreen);
         }

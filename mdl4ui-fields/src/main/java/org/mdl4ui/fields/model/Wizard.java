@@ -5,14 +5,16 @@ package org.mdl4ui.fields.model;
 
 import java.util.Map;
 
-import org.mdl4ui.base.model.ScenarioID;
 import org.mdl4ui.base.model.FieldID;
+import org.mdl4ui.base.model.ScenarioID;
 import org.mdl4ui.base.model.ScreenID;
 import org.mdl4ui.fields.model.event.FieldEvent;
 import org.mdl4ui.fields.model.event.FieldEventListener;
 import org.mdl4ui.fields.model.validation.FieldValidation;
 
 public interface Wizard {
+
+    ScenarioID getScenario();
 
     WizardContext getContext();
 

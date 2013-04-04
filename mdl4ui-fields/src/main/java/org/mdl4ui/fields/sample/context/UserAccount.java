@@ -3,10 +3,11 @@
  */
 package org.mdl4ui.fields.sample.context;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
 
-public class UserAccount {
+public class UserAccount implements Serializable {
 
     private String login;
     private String password;

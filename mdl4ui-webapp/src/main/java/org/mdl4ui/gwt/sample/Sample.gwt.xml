@@ -17,7 +17,7 @@
     <exclude name="**Mock**Factory.java" />
   </source>
 
-  <replace-with class="org.mdl4ui.gwt.sample.client.factory.GwtSampleScreenFactory">
+  <replace-with class="org.mdl4ui.gwt.sample.client.factory.SampleScreenFactory">
     <when-type-is class="org.mdl4ui.gwt.model.client.factory.GwtScreenFactory" />
   </replace-with>
 </module>

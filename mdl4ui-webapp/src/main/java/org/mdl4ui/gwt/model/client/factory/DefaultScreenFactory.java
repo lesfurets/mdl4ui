@@ -4,9 +4,9 @@ import org.mdl4ui.fields.model.Screen;
 import org.mdl4ui.gwt.model.client.ui.DefaultScreenView;
 import org.mdl4ui.gwt.model.client.ui.ScreenView;
 
-public class DefaultGwtScreenFactory implements GwtScreenFactory {
+public class DefaultScreenFactory implements GwtScreenFactory {
 
-    private DefaultGwtScreenFactory() {
+    private DefaultScreenFactory() {
     }
 
     @Override

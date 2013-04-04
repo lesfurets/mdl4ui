@@ -2,30 +2,11 @@
 <!DOCTYPE module PUBLIC "-//Google Inc.//DTD Google Web Toolkit 1.6.2//EN" "http://google-web-toolkit.googlecode.com/svn/tags/1.6.2/distro-source/core/src/gwt-module.dtd">
 <module rename-to='sample'>
 
-  <!-- Deferred binding for mobile -->
-  <define-property name="isMobile" values="yes,no" />
-  <property-provider name="isMobile">
-      <![CDATA[
-    var ua = navigator.userAgent.toLowerCase();
-        if (ua.indexOf("mobile") != -1) {
-        return "yes";
-        }
-        return "no";
-  ]]>
-  </property-provider>
-
   <!-- Inherit the core Web Toolkit stuff. -->
   <inherits name='com.google.gwt.user.User' />
   <inherits name="com.github.gwtbootstrap.Bootstrap" />
   <inherits name="com.github.gwtbootstrap.datepicker.Datepicker" />
   <inherits name="org.mdl4ui.fields.FieldSample" />
-
-  <!-- Constrain the value for non-webkit browsers -->
-  <set-property name="isMobile" value="no">
-    <none> <!-- Actually means NOR, in this case "not safari" -->
-      <when-property-is name="user.agent" value="safari" />
-    </none>
-  </set-property>
 
   <source path='client'>
     <exclude name="**DesktopBundle.java" />
@@ -36,7 +17,7 @@
     <exclude name="**Mock**Factory.java" />
   </source>
 
-  <replace-with class="org.mdl4ui.gwt.model.client.factory.DefaultGwtScreenFactory">
+  <replace-with class="org.mdl4ui.gwt.model.client.factory.DefaultScreenFactory">
     <when-type-is class="org.mdl4ui.gwt.model.client.factory.GwtScreenFactory" />
   </replace-with>
 </module>
