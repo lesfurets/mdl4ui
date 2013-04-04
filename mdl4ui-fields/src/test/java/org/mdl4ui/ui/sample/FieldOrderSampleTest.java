@@ -36,6 +36,16 @@ public final class FieldOrderSampleTest {
 
     }
 
+    @Test
+    public void testScreenBlocks_SCR_REGISTRATION_BY_PHONE() {
+        final List<BlockID> blocks = SCR_REGISTRATION_BY_PHONE.blocks();
+		assertEquals(10, SCR_REGISTRATION_BY_PHONE.fields().size());
+        assertTrue(blocks.contains(PERSONAL_INFORMATIONS));
+        assertTrue(blocks.contains(PHONE_SETTINGS));
+        assertTrue(blocks.contains(ACCOUNT));
+
+    }
+
 
     @Test
     public void testScreenBlocksOrder_SCR_DONE() {
@@ -49,6 +59,16 @@ public final class FieldOrderSampleTest {
         final List<BlockID> blocks = SCR_REGISTRATION_BY_MAIL.blocks();
         assertEquals(0, blocks.indexOf(PERSONAL_INFORMATIONS));
         assertEquals(1, blocks.indexOf(MAIL_SETTINGS));
+        assertEquals(2, blocks.indexOf(ACCOUNT));
+        assertEquals(3, blocks.size());
+
+    }
+
+    @Test
+    public void testScreenBlocksOrder_SCR_REGISTRATION_BY_PHONE() {
+        final List<BlockID> blocks = SCR_REGISTRATION_BY_PHONE.blocks();
+        assertEquals(0, blocks.indexOf(PERSONAL_INFORMATIONS));
+        assertEquals(1, blocks.indexOf(PHONE_SETTINGS));
         assertEquals(2, blocks.indexOf(ACCOUNT));
         assertEquals(3, blocks.size());
 
@@ -81,6 +101,23 @@ public final class FieldOrderSampleTest {
 
     }
 
+    @Test
+    public void testScreenFieldsOrder_SCR_REGISTRATION_BY_PHONE() {
+        final List<FieldID> fields = SCR_REGISTRATION_BY_PHONE.fields();
+        assertEquals(0, fields.indexOf(FIRST_NAME));
+        assertEquals(1, fields.indexOf(LAST_NAME));
+        assertEquals(2, fields.indexOf(EMAIL));
+        assertEquals(3, fields.indexOf(BIRTHDATE));
+        assertEquals(4, fields.indexOf(LANGUAGE));
+        assertEquals(5, fields.indexOf(PHONE_NUMBER));
+        assertEquals(6, fields.indexOf(TIMEZONE));
+        assertEquals(7, fields.indexOf(LOGIN));
+        assertEquals(8, fields.indexOf(PASSWORD));
+        assertEquals(9, fields.indexOf(PASSWORD_CONFIRMATION));
+        assertEquals(10, fields.size());
+
+    }
+
 
     @Test
     public void testBlockContentOrder_PERSONAL_INFORMATIONS() {
@@ -110,6 +147,16 @@ public final class FieldOrderSampleTest {
         assertEquals(0, blockItems.indexOf(LOGIN));
         assertEquals(1, blockItems.indexOf(PASSWORD));
         assertEquals(2, blockItems.indexOf(PASSWORD_CONFIRMATION));
+        assertEquals(3, blockItems.size());
+
+    }
+
+    @Test
+    public void testBlockContentOrder_PHONE_SETTINGS() {
+        final List<ElementID> blockItems = PHONE_SETTINGS.childs();
+        assertEquals(0, blockItems.indexOf(LANGUAGE));
+        assertEquals(1, blockItems.indexOf(PHONE_NUMBER));
+        assertEquals(2, blockItems.indexOf(TIMEZONE));
         assertEquals(3, blockItems.size());
 
     }

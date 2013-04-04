@@ -21,6 +21,9 @@ public enum EBlockSample implements BlockID {
                     EFieldSample.EMAIL_ACCEPTED, //
                     EGroupSample.EMAIL_GROUP, //
                     EFieldSample.TIMEZONE), //
+    PHONE_SETTINGS(EFieldSample.LANGUAGE, //
+                    EFieldSample.PHONE_NUMBER, //
+                    EFieldSample.TIMEZONE), //
     ACCOUNT(EFieldSample.LOGIN, //
                     EFieldSample.PASSWORD, //
                     EFieldSample.PASSWORD_CONFIRMATION);

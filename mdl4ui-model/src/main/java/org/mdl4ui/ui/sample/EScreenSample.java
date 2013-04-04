@@ -17,6 +17,9 @@ public enum EScreenSample implements ScreenID {
     SCR_REGISTRATION_BY_MAIL(EBlockSample.PERSONAL_INFORMATIONS,//
                     EBlockSample.MAIL_SETTINGS,//
                     EBlockSample.ACCOUNT), //
+    SCR_REGISTRATION_BY_PHONE(EBlockSample.PERSONAL_INFORMATIONS, //
+                    EBlockSample.PHONE_SETTINGS, //
+                    EBlockSample.ACCOUNT), //
     SCR_DONE();
 
     private final List<ElementID> childs;

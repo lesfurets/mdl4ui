@@ -20,6 +20,7 @@ public enum EFieldSample implements FieldID {
     LANGUAGE(FieldType.RADIO_GROUP), //
     TIMEZONE(FieldType.LISTBOX), //
 
+    PHONE_NUMBER(FieldType.TEXTBOX), //
     EMAIL_ACCEPTED(FieldType.RADIO_GROUP), //
     EMAILS_PREFERENCES(FieldType.CHECKBOX_GROUP), //
     MAX_WEEKLY_EMAILS(FieldType.NUMERIC), //
