@@ -18,7 +18,7 @@ import org.mdl4ui.fields.model.event.EventProperty;
 import org.mdl4ui.fields.model.event.FieldEvent;
 import org.mdl4ui.gwt.model.client.factory.GwtScreenFactory;
 
-import com.github.gwtbootstrap.client.ui.FluidContainer;
+import com.github.gwtbootstrap.client.ui.Container;
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -30,7 +30,7 @@ import com.google.gwt.user.client.ui.Widget;
 
 public class WizardView implements IsWidget {
 
-    private final FluidContainer container;
+    private final Container container;
     private final GwtScreenFactory screenFactory = GWT.create(GwtScreenFactory.class);
     private final Map<ScreenID, ScreenView> screens = new HashMap<ScreenID, ScreenView>();
 
@@ -71,7 +71,7 @@ public class WizardView implements IsWidget {
 
             screens.put(screenID, screenView);
         }
-        container = new FluidContainer();
+        container = new Container();
     }
 
     @Override
@@ -141,7 +141,10 @@ public class WizardView implements IsWidget {
         if (screenView == null) {
             throw new IllegalArgumentException("unknow screen id : " + screenView);
         }
+
+        screenView.onDisplay(wizard.getContext());
         container.add(screenView);
+
         wizard.displayScreen(screenView.getScreen());
         for (FieldView fieldView : screenView.fields()) {
             fieldView.updateField();

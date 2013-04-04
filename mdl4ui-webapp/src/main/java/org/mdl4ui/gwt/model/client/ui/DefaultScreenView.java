@@ -9,6 +9,7 @@ import org.mdl4ui.base.model.ElementType;
 import org.mdl4ui.base.model.UIElementImpl;
 import org.mdl4ui.fields.model.Block;
 import org.mdl4ui.fields.model.Screen;
+import org.mdl4ui.fields.model.WizardContext;
 
 import com.github.gwtbootstrap.client.ui.Column;
 import com.github.gwtbootstrap.client.ui.Container;
@@ -34,6 +35,11 @@ public class DefaultScreenView implements ScreenView {
             column.add(blockView);
             childs.add(blockView);
         }
+    }
+
+    @Override
+    public final void onDisplay(WizardContext context) {
+        // nothing to do
     }
 
     @Override

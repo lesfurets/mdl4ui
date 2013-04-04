@@ -8,14 +8,20 @@ import java.util.List;
 import org.mdl4ui.base.model.ElementType;
 import org.mdl4ui.base.model.UIElementImpl;
 import org.mdl4ui.fields.model.Screen;
+import org.mdl4ui.fields.model.WizardContext;
+import org.mdl4ui.fields.sample.context.Person;
+import org.mdl4ui.fields.sample.context.SampleContext;
+import org.mdl4ui.fields.sample.context.UserAccount;
 import org.mdl4ui.gwt.model.client.ui.BlockView;
 import org.mdl4ui.gwt.model.client.ui.ElementView;
 import org.mdl4ui.gwt.model.client.ui.FieldView;
 import org.mdl4ui.gwt.model.client.ui.GroupView;
 import org.mdl4ui.gwt.model.client.ui.ScreenView;
 
+import com.github.gwtbootstrap.client.ui.Column;
 import com.github.gwtbootstrap.client.ui.Heading;
 import com.github.gwtbootstrap.client.ui.Hero;
+import com.github.gwtbootstrap.client.ui.Row;
 import com.google.gwt.user.client.ui.Widget;
 
 public class RegistrationDoneView implements ScreenView {
@@ -26,9 +32,34 @@ public class RegistrationDoneView implements ScreenView {
     public RegistrationDoneView(Screen screen) {
         this.screen = screen;
         container = new Hero();
+    }
+
+    @Override
+    public void onDisplay(WizardContext context) {
+        container.clear();
+
+        // add title for registration success
         Heading heading = new Heading(1, MSG_SM().registration_done());
         heading.getElement().setId("registration_done");
-        container.add(heading);
+        Row row = new Row();
+        row.add(new Column(10, heading));
+        container.add(row);
+
+        SampleContext sampleContext = (SampleContext) context;
+        Row rowDetails = new Row();
+        container.add(rowDetails);
+
+        // add section for personal information
+        Person person = sampleContext.getPerson();
+        PersonWidget personWidget = new PersonWidget();
+        personWidget.setPerson(person);
+        rowDetails.add(new Column(5, personWidget.asWidget()));
+
+        // add section for user account
+        UserAccount userAccount = sampleContext.getUserAccount();
+        UserAccountWidget userAccountWidget = new UserAccountWidget();
+        userAccountWidget.setUserAccount(userAccount);
+        rowDetails.add(new Column(5, userAccountWidget.asWidget()));
     }
 
     @Override

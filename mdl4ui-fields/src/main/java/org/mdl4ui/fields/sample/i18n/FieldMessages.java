@@ -99,4 +99,7 @@ public interface FieldMessages {
 
     @Message("No")
     String no();
+
+    @Message("Phone Number")
+    String phoneNumber();
 }

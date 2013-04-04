@@ -6,6 +6,12 @@ import org.ez18n.MessageBundle;
 @MessageBundle
 public interface SampleMessages {
 
-    @Message("Registration done successfully!")
+    @Message("Registration done!")
     String registration_done();
+
+    @Message("Me")
+    String me();
+
+    @Message("My Account")
+    String my_account();
 }
