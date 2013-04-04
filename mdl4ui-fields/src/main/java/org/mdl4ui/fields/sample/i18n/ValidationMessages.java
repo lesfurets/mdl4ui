@@ -23,9 +23,6 @@ public interface ValidationMessages {
     @Message("Please specify a valid email")
     String please_specify_a_valid_email();
 
-    @Message("Please specify your phone number")
-    String please_specify_your_phone_number();
-
     @Message("Please specify your first name")
     String please_specify_your_first_name();
 
