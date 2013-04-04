@@ -36,8 +36,8 @@ public class UserAccountWidget extends RegistrationWidget {
                     break;
             }
         }
-        addRow(MSG_FM().emailAccepted(), account.isAcceptEmail() ? MSG_FM().yes() : MSG_FM().no());
-        if (account.isAcceptEmail()) {
+        if (account.isAcceptEmail() != null && account.isAcceptEmail()) {
+            addRow(MSG_FM().emailAccepted(), account.isAcceptEmail() ? MSG_FM().yes() : MSG_FM().no());
             if (account.getEmailTypes() != null) {
                 StringBuilder builder = new StringBuilder();
                 for (EmailType type : account.getEmailTypes()) {
