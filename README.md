@@ -2,7 +2,7 @@ mdl4ui
 ======
 
 UI meta modeling framework based on java annotation and APT.
-This project. will show patterns and architecture to solve classical UI issues using a modeling approach:
+This project will show patterns and architecture to solve classical UI issues using a modeling approach:
 
 * Complex UI form with more than 100 fields described in a model
 * Linked form fields (dependencies)
@@ -41,8 +41,8 @@ https://oracleus.activeevents.com/connect/sessionDetail.ww?SESSION_ID=11234
 Session speakers:
 -----------------
 
-> Gilles Di Guglielmo
-> Gilles is a 10+ software developer working for various software vendors (ILOG, PrimaSolution, Courtanet) : graphic 2D library, rules engine, J2EE service platform, domain model code generation. He is currently software architect for the insurance aggregator web site LesFurets.com. He loves to feel the fresh air of San Francisco and Anvers. He was speaking at JavaOne, Devoxx and some Java User Groups in France.
+### Gilles Di Guglielmo
+ Gilles is a 10+ software developer working for various software vendors (ILOG, PrimaSolution, Courtanet) : graphic 2D library, rules engine, J2EE service platform, domain model code generation. He is currently software architect for the insurance aggregator web site LesFurets.com. He loves to feel the fresh air of San Francisco and Anvers. He was speaking at JavaOne, Devoxx and some Java User Groups in France.
 
-> Julien Baudry
-> Julien is a senior developer at the insurance aggregator web site LesFurets.com. He also worked for Prima Solutions insurance software vendor. He has 5+ years¡¯ experience of Java design & coding experience, Model Driven Architecture, code generation, J2EE & Web Framework.
+### Julien Baudry
+ Julien is a senior developer at the insurance aggregator web site LesFurets.com. He also worked for Prima Solutions insurance software vendor. He has 5+ years¡¯ experience of Java design & coding experience, Model Driven Architecture, code generation, J2EE & Web Framework.
