@@ -1,0 +1,16 @@
+Nous avons travaillé longuement sur le reverse engineering des formulaires de notre comparateur d’assurance. Le résultat s'est traduit par un modèle, décrivant les dépendances entre les champs de cette UI: visibilité, mise à jour du domaine de valeur...
+
+Nous avons décidé de transformer ce modèle en un méta-modèle d'IHM, écrit en Java. Ce modèle se base uniquement sur des énumérations, des annotations et des relations entre littéraux pour décrire les dépendances directes entre champs.
+
+Afin de comprendre le graphe de dépendances, nous avons exporté le modèle en XMI, afin de pouvoir le manipuler dans un modeleur UML. Nous avons également implémenté une validation statique du modèle de dépendances lors la compilation Java. Nous générons statiquement lors de la compilation l’ensemble des dépendances profondes pour chaque champ, dans le but d’améliorer les performances runtime, et d’éviter les possibles dépendances cycliques.
+
+A partir de ce méta-modèle, nous avons implémenté un pattern MVC : chaque widget est instancié dynamiquement au runtime, et le framework MVC lie widget et  modèle de donnée, via des patterns d’injections. Les injections sont résolues statiquement lors de la compilation.
+
+Nous avons décidé d’ajouter la notion de layout au méta-modèle d'IHM : les champs sont agrégés en écrans, blocs et groupes. Cette structure permet de valider la topologie du graphe pendant la compilation : ainsi le layout est compatible avec les dépendances de champs.
+
+Nous expérimentons actuellement des AB testings en déclarant plusieurs permutations du modèle de champs, pour améliorer l’expérience utilisateur de notre site.
+
+Notre projet est disponible sur GitHub. Nous présenterons les patterns, le code et une démo durant la session.
+
+Cette session a été présentée précédemment à Code Generation Conference 2013. 
+http://codegeneration.net/cg2013/sessions/index.php?session=18
