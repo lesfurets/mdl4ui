@@ -7,21 +7,23 @@ Step 1: add a scenario in the UI model
 
 Goal: Create a new scenario for our application: registration using a phone.
 
-org.mdl4ui.ui.sample.EScenarioSample
-	SCENARIO_PHONE(EScreenSample.SCR_REGISTRATION_BY_PHONE, EScreenSample.SCR_DONE)
-	
-org.mdl4ui.ui.sample.EScreenSample
-    SCR_REGISTRATION_BY_PHONE(EBlockSample.PERSONAL_INFORMATIONS, //
-					EBlockSample.PHONE_SETTINGS, //
-					EBlockSample.ACCOUNT), //
+
+org.mdl4ui.ui.sample.EFieldSample
+	PHONE_NUMBER(FieldType.TEXTBOX), //
+
 
 org.mdl4ui.ui.sample.EBlockSample
 	PHONE_SETTINGS(EFieldSample.LANGUAGE, //
                     EFieldSample.PHONE_NUMBER, //
-                    EFieldSample.TIMEZONE), //
+                    EFieldSample.TIMEZONE), //	
 
-org.mdl4ui.ui.sample.EFieldSample
-	PHONE_NUMBER(FieldType.TEXTBOX), //
+org.mdl4ui.ui.sample.EScreenSample
+    SCR_REGISTRATION_BY_PHONE(EBlockSample.PERSONAL_INFORMATIONS, //
+					EBlockSample.PHONE_SETTINGS, //
+					EBlockSample.ACCOUNT), //
+					
+org.mdl4ui.ui.sample.EScenarioSample
+	SCENARIO_PHONE(EScreenSample.SCR_REGISTRATION_BY_PHONE, EScreenSample.SCR_DONE)
 
 Step 1: add i18n resources
 --------------------------
@@ -82,12 +84,14 @@ public class PhoneEditor extends SampleEditor {
 
     @Override
     public void updateFromContext(Field field, SampleContext context, FieldEvent fieldEvent) {
+		// load the email from the context and update the textbox
         TextBoxField textbox = field.getComponent();
         textbox.setValue(context.getUserAccount().getPhoneNumber());
     }
 
     @Override
     public void updateContext(Field field, SampleContext context, FieldEvent fieldEvent) {
+		// read textbox value and update the model
         TextBoxField textbox = field.getComponent();
         context.getUserAccount().setPhoneNumber(textbox.getValue());
     }
@@ -96,8 +100,10 @@ public class PhoneEditor extends SampleEditor {
     public FieldValidation validate(Field field, SampleContext context, FieldEvent fieldEvent) {
         TextBoxField textbox = field.getComponent();
         if (textbox.isEmpty()) {
+			// the field is valid
             return error(field, messages.please_specify_a_phone_number());
         } else if (!textbox.getValue().replace(" ", "").matches(PHONE_PATTERN)) {
+			// the field content is invalid
             return error(field, messages.please_specify_a_valid_phone_number());
         }
         return valid(field);
