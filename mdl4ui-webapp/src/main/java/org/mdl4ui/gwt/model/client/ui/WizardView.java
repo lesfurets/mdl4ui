@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.mdl4ui.base.model.BlockID;
+import org.mdl4ui.base.model.GroupID;
 import org.mdl4ui.base.model.ScreenID;
 import org.mdl4ui.fields.model.Block;
 import org.mdl4ui.fields.model.DefaultWizard;
@@ -82,13 +83,22 @@ public class WizardView implements IsWidget {
     private void updateField(final DefaultWizard wizard, final ScreenView screenView, final Field field) {
         final FieldEvent event = newEvent(field.getFieldID(), EventProperty.FIELD);
         try {
+            // udpate field
             wizard.updateField(field, event);
+
+            // update owning group
+
+            for (FieldView fieldView : screenView.fields()) {
+                fieldView.updateField();
+            }
+            for (GroupView groupView : screenView.groups()) {
+                GroupID groupID = groupView.getGroup().getGroupID();
+                groupView.asWidget().setVisible(wizard.isVisible(groupID, event));
+            }
         } finally {
             releaseSourceEvent();
         }
-        for (FieldView fieldView : screenView.fields()) {
-            fieldView.updateField();
-        }
+
     }
 
     private void submitBlock(final DefaultWizard wizard, final ScreenID screenID, final ScreenView screenView,

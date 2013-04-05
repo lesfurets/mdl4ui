@@ -5,7 +5,7 @@ package org.mdl4ui.fields.model;
 
 import java.util.Map;
 
-import org.mdl4ui.base.model.FieldID;
+import org.mdl4ui.base.model.ElementID;
 import org.mdl4ui.base.model.ScenarioID;
 import org.mdl4ui.base.model.ScreenID;
 import org.mdl4ui.fields.model.event.FieldEvent;
@@ -26,7 +26,7 @@ public interface Wizard {
 
     void submit(Block block);
 
-    boolean isVisible(FieldID fieldId, FieldEvent event);
+    boolean isVisible(ElementID fieldId, FieldEvent event);
 
     void updateFromContext(Field field, FieldEvent event);
 

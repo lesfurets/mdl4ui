@@ -12,23 +12,33 @@ import org.mdl4ui.fields.model.Group;
 
 import com.github.gwtbootstrap.client.ui.Column;
 import com.github.gwtbootstrap.client.ui.Row;
+import com.github.gwtbootstrap.client.ui.Well;
 import com.google.gwt.user.client.ui.Widget;
 
 public class GroupView implements ElementView {
 
+    private final Group group;
     private final List<ElementView> childs = new ArrayList<ElementView>();
     private final Row row;
 
     public GroupView(Group group) {
+        this.group = group;
         row = new Row();
-        final Column column = new Column(7, 1);
+        final Column column = new Column(7, 2);
         row.add(column);
+
+        Well well = new Well();
+        column.add(well);
 
         for (Field field : group.fields()) {
             final FieldView fieldView = new FieldView(field);
-            column.add(fieldView);
+            well.add(fieldView);
             childs.add(fieldView);
         }
+    }
+
+    public Group getGroup() {
+        return this.group;
     }
 
     @Override

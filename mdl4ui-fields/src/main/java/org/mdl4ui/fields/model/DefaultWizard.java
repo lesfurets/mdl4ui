@@ -16,6 +16,7 @@ import java.util.Set;
 
 import org.mdl4ui.base.model.BlockID;
 import org.mdl4ui.base.model.ElementID;
+import org.mdl4ui.base.model.ElementType;
 import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.base.model.GroupID;
 import org.mdl4ui.base.model.ScenarioID;
@@ -121,8 +122,18 @@ public class DefaultWizard implements Wizard {
     }
 
     @Override
-    public boolean isVisible(FieldID fieldId, FieldEvent event) {
-        return clientFactory.getBehaviourFactory().get(fieldId).isVisible(fieldId, getContext(), event);
+    public boolean isVisible(ElementID elementID, FieldEvent event) {
+        if (elementID.elementType() == ElementType.FIELD) {
+            FieldID fieldId = (FieldID) elementID;
+            return clientFactory.getBehaviourFactory().get(fieldId).isVisible(fieldId, getContext(), event);
+        } else {
+            for (FieldID fieldID : elementID.fields()) {
+                if (!isVisible(fieldID, event)) {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 
     @Override
