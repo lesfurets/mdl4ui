@@ -13,4 +13,5 @@ Nous expérimentons actuellement des AB testings en déclarant plusieurs permuta
 Notre projet est disponible sur GitHub. Nous présenterons les patterns, le code et une démo durant la session.
 
 Cette session a été présentée précédemment à Code Generation Conference 2013. 
+
 http://codegeneration.net/cg2013/sessions/index.php?session=18
