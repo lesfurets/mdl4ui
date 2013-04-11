@@ -160,10 +160,9 @@ public class DefaultWizard implements Wizard {
 
         // validate field dependencies already set
         for (FieldID dep : deps) {
-            for (Field depField : currentScreen.fields()) {
-                if (depField.getFieldID() == dep && depField.getState() == SET) {
-                    validate(depField, event);
-                }
+            Field depField = currentScreen.getField(dep);
+            if (depField != null && (depField.getState() == SET || depField.getState() == ERROR)) {
+                validate(depField, event);
             }
         }
     }

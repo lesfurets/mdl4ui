@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.mdl4ui.base.model.ElementType;
+import org.mdl4ui.base.model.FieldID;
 import org.mdl4ui.base.model.ScreenID;
 import org.mdl4ui.base.model.UIElementImpl;
 
@@ -36,6 +37,15 @@ public class Screen implements Element {
     @Override
     public boolean contains(Element child) {
         return containsRec(this, child);
+    }
+
+    public Field getField(FieldID fieldID) {
+        for (Field field : fields()) {
+            if (field.getFieldID() == fieldID) {
+                return field;
+            }
+        }
+        return null;
     }
 
     @Override

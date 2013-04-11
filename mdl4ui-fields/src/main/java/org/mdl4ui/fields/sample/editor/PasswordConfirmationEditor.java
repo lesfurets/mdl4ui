@@ -44,7 +44,8 @@ public class PasswordConfirmationEditor extends SampleEditor {
         if (textbox.isEmpty()) {
             return error(field, messages.please_specify_your_password());
         }
-        if (!userAccount.getPassword().equals(userAccount.getPasswordConfirmation())) {
+        String password = userAccount.getPassword();
+        if (password == null || !password.equals(userAccount.getPasswordConfirmation())) {
             return error(field, messages.passwords_does_not_match());
         }
         return valid(field);
