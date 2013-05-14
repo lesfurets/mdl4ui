@@ -1,3 +1,5 @@
+[![Build Status](https://buildhive.cloudbees.com/job/lesfurets/job/mdl4ui/badge/icon)](https://buildhive.cloudbees.com/job/lesfurets/job/mdl4ui/)
+
 mdl4ui
 ======
 
