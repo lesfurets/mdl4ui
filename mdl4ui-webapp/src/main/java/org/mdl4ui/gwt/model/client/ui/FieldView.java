@@ -41,8 +41,8 @@ public class FieldView implements ElementView {
         if (field.getHelp() != null) {
             Tooltip tooltip = new Tooltip(field.getHelp());
             tooltip.setTrigger(Trigger.HOVER);
-            controls.add(tooltip);
             tooltip.add(component);
+            controls.add(tooltip);
         } else {
             controls.add(component);
         }
