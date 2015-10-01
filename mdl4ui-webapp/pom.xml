@@ -127,6 +127,9 @@
             <fileset>
               <directory>war/sample</directory>
             </fileset>
+            <fileset>
+              <directory>${basedir}/src/generated</directory>
+            </fileset>
           </filesets>
         </configuration>
       </plugin>
@@ -142,6 +145,10 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <generatedSourcesDirectory>${basedir}/src/generated/java</generatedSourcesDirectory>
+          <generatedTestSourcesDirectory>${basedir}/src/generated/selenium</generatedTestSourcesDirectory>
+        </configuration>
         <executions>
           <execution>
             <id>generate-i18n-source</id>
@@ -151,7 +158,6 @@
             <phase>generate-sources</phase>
             <configuration>
               <proc>only</proc>
-              <generatedSourceDirectory>${basedir}/src/generated/java</generatedSourceDirectory>
               <annotationProcessors>
                 <processor>org.ez18n.apt.processor.MessagesFactoryProcessor</processor>
                 <processor>org.ez18n.apt.processor.DesktopMessagesProcessor</processor>
@@ -174,29 +180,29 @@
             <goals>
               <goal>compile</goal>
             </goals>
-            <phase>generate-sources</phase>
+            <phase>generate-resources</phase>
             <configuration>
               <proc>only</proc>
-              <generatedSourceDirectory>${basedir}/src/generated/resources</generatedSourceDirectory>
+              <generatedSourcesDirectory>${basedir}/src/generated/resources</generatedSourcesDirectory>
               <annotationProcessors>
                 <processor>org.ez18n.apt.processor.CSVReportProcessor</processor>
               </annotationProcessors>
             </configuration>
           </execution>
-          <execution>
-            <id>generate-i18n-test</id>
-            <goals>
-              <goal>compile</goal>
-            </goals>
-            <phase>generate-test-sources</phase>
-            <configuration>
-              <proc>only</proc>
-              <generatedSourceDirectory>${basedir}/src/test/java</generatedSourceDirectory>
-              <annotationProcessors>
-                <processor>org.ez18n.apt.processor.TestDesktopBundleProcessor</processor>
-              </annotationProcessors>
-            </configuration>
-          </execution>
+          <!--<execution>-->
+          <!--<id>generate-i18n-test</id>-->
+          <!--<goals>-->
+          <!--<goal>compile</goal>-->
+          <!--</goals>-->
+          <!--<phase>generate-test-sources</phase>-->
+          <!--<configuration>-->
+          <!--<proc>only</proc>-->
+          <!--<generatedSourcesDirectory>${basedir}/src/test/java</generatedSourcesDirectory>-->
+          <!--<annotationProcessors>-->
+          <!--<processor>org.ez18n.apt.processor.TestDesktopBundleProcessor</processor>-->
+          <!--</annotationProcessors>-->
+          <!--</configuration>-->
+          <!--</execution>-->
         </executions>
       </plugin>
       <plugin>
@@ -228,7 +234,7 @@
           <screenClasses>
             <screenClasse>org.mdl4ui.ui.sample.EScreenSample</screenClasse>
           </screenClasses>
-          <outputTestDirectory>${project.build.directory}/generated-sources/apt-test</outputTestDirectory>
+          <outputTestDirectory>${basedir}/src/generated/selenium</outputTestDirectory>
         </configuration>
         <executions>
           <execution>
@@ -279,6 +285,7 @@
               <extraJvmArgs>-Xmx256M</extraJvmArgs>
               <localWorkers>3</localWorkers>
               <strict>true</strict>
+              <sourceLevel>1.7</sourceLevel>
               <gwtSdkFirstInClasspath>true</gwtSdkFirstInClasspath>
               <modules>
                 <module>org.mdl4ui.gwt.sample.Sample</module>

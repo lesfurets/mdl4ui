@@ -29,7 +29,7 @@
   <build>
     <resources>
       <resource>
-        <directory>${basedir}src/main/java</directory>
+        <directory>${basedir}/src/main/java</directory>
         <includes>
           <include>**/**.java</include>
           <include>**/*.gwt.xml</include>
@@ -46,11 +46,6 @@
         </includes>
       </resource>
     </resources>
-    <testResources>
-      <testResource>
-        <directory>${basedir}/src/generated/java</directory>
-      </testResource>
-    </testResources>
     <plugins>
       <plugin>
         <artifactId>maven-clean-plugin</artifactId>
@@ -100,27 +95,26 @@
             <phase>generate-sources</phase>
             <configuration>
               <proc>only</proc>
-              <generateSourcesDirectory>${basedir}/src/generated/java</generateSourcesDirectory>
+              <generatedSourcesDirectory>${basedir}/src/generated/java</generatedSourcesDirectory>
               <annotationProcessors>
                 <processor>org.ez18n.apt.processor.CSVReportProcessor</processor>
               </annotationProcessors>
             </configuration>
           </execution>
-          <execution>
-            <id>generate-i18n-test</id>
-            <goals>
-              <goal>compile</goal>
-            </goals>
-            <phase>generate-test-sources</phase>
-            <configuration>
-              <proc>only</proc>
-              <generateSourcesDirectory>${basedir}/src/test/java</generateSourcesDirectory>
-              <annotationProcessors>
-                <processor>org.ez18n.apt.processor.TestDesktopBundleProcessor</processor>
-              </annotationProcessors>
-              <sourceDirectory>${project.build.sourceDirectory}</sourceDirectory>
-            </configuration>
-          </execution>
+          <!--<execution>-->
+          <!--<id>generate-i18n-test</id>-->
+          <!--<goals>-->
+          <!--<goal>compile</goal>-->
+          <!--</goals>-->
+          <!--<phase>generate-sources</phase>-->
+          <!--<configuration>-->
+          <!--<proc>only</proc>-->
+          <!--<generatedSourcesDirectory>${basedir}/src/test/java</generatedSourcesDirectory>-->
+          <!--<annotationProcessors>-->
+          <!--<processor>org.ez18n.apt.processor.TestDesktopBundleProcessor</processor>-->
+          <!--</annotationProcessors>-->
+          <!--</configuration>-->
+          <!--</execution>-->
         </executions>
       </plugin>
       <plugin>
@@ -149,26 +143,6 @@
             <phase>process-classes</phase>
             <goals>
               <goal>generateModel</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <artifactId>maven-assembly-plugin</artifactId>
-        <version>2.3</version>
-        <configuration>
-          <descriptorRefs>
-            <descriptorRef>jar-with-dependencies</descriptorRef>
-          </descriptorRefs>
-        </configuration>
-        <executions>
-          <execution>
-            <id>make-assembly</id>
-            <!-- this is used for inheritance merges -->
-            <phase>package</phase>
-            <!-- bind to the packaging phase -->
-            <goals>
-              <goal>single</goal>
             </goals>
           </execution>
         </executions>
