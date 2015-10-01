@@ -5,19 +5,10 @@ package org.mdl4ui.maven;
 
 import static java.text.DateFormat.SHORT;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.text.DateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Set;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -43,6 +34,11 @@ public final class GenerateDepsClassesMojo extends AbstractDepsMojo {
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
         getLog().info("outputDirectory : " + outputDirectory.getAbsolutePath());
+
+        // add source directory to current project
+        outputDirectory.mkdirs();
+        project.addCompileSourceRoot(outputDirectory.getPath());
+
         final ClassLoader classLoader = getClassLoader();
         final Map<FieldID, List<DependencyPath>> allDeepDeps = new HashMap<FieldID, List<DependencyPath>>();
         final Map<FieldID, List<FieldID>> allDeps = new HashMap<FieldID, List<FieldID>>();

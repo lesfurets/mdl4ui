@@ -8,30 +8,14 @@ import static java.util.Arrays.asList;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLClassLoader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.net.*;
+import java.util.*;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.maven.artifact.DependencyResolutionRequiredException;
-import org.apache.maven.plugin.AbstractMojo;
-import org.apache.maven.plugin.MojoExecutionException;
-import org.apache.maven.plugin.MojoFailureException;
+import org.apache.maven.plugin.*;
 import org.apache.maven.project.MavenProject;
-import org.mdl4ui.base.model.BlockID;
-import org.mdl4ui.base.model.DependencyPath;
-import org.mdl4ui.base.model.FieldDependency;
-import org.mdl4ui.base.model.FieldID;
-import org.mdl4ui.base.model.GroupID;
-import org.mdl4ui.base.model.ScreenID;
+import org.mdl4ui.base.model.*;
 import org.mdl4ui.maven.util.BundleFieldFactoryDelegate;
 
 abstract class AbstractDepsMojo extends AbstractMojo {
@@ -57,7 +41,7 @@ abstract class AbstractDepsMojo extends AbstractMojo {
      * @required
      * @readonly
      */
-    private MavenProject project;
+    protected MavenProject project;
 
     /**
      * @parameter default-value="org.mdl4ui.fields.sample.BundleFieldFactory"

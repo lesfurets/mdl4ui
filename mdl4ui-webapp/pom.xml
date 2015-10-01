@@ -142,6 +142,9 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <generatedSourcesDirectory>src/generated/java</generatedSourcesDirectory>
+        </configuration>
         <executions>
           <execution>
             <id>generate-i18n-source</id>
@@ -151,7 +154,7 @@
             <phase>generate-sources</phase>
             <configuration>
               <proc>only</proc>
-              <generatedSourceDirectory>${basedir}/src/generated/java</generatedSourceDirectory>
+              <generatedSourcesDirectory>${basedir}/src/generated/java</generatedSourcesDirectory>
               <annotationProcessors>
                 <processor>org.ez18n.apt.processor.MessagesFactoryProcessor</processor>
                 <processor>org.ez18n.apt.processor.DesktopMessagesProcessor</processor>
@@ -177,7 +180,7 @@
             <phase>generate-sources</phase>
             <configuration>
               <proc>only</proc>
-              <generatedSourceDirectory>${basedir}/src/generated/resources</generatedSourceDirectory>
+              <generatedSourcesDirectory>${basedir}/src/generated/resources</generatedSourcesDirectory>
               <annotationProcessors>
                 <processor>org.ez18n.apt.processor.CSVReportProcessor</processor>
               </annotationProcessors>
@@ -191,7 +194,7 @@
             <phase>generate-test-sources</phase>
             <configuration>
               <proc>only</proc>
-              <generatedSourceDirectory>${basedir}/src/test/java</generatedSourceDirectory>
+              <generatedSourcesDirectory>${basedir}/src/test/java</generatedSourcesDirectory>
               <annotationProcessors>
                 <processor>org.ez18n.apt.processor.TestDesktopBundleProcessor</processor>
               </annotationProcessors>
