@@ -111,7 +111,7 @@
             <goals>
               <goal>compile</goal>
             </goals>
-            <phase>generate-sources</phase>
+            <phase>generate-test-sources</phase>
             <configuration>
               <proc>only</proc>
               <generateSourcesDirectory>${basedir}/src/test/java</generateSourcesDirectory>

@@ -13,3 +13,6 @@ target-eclipse
 mdl4ui-docs/*.bak
 mdl4ui-docs/Backup_*.cdr
 mdl4ui-docs/~$*
+*.iml
+.idea
+**/src/generated

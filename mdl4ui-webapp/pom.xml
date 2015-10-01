@@ -151,8 +151,8 @@
             <phase>generate-sources</phase>
             <configuration>
               <proc>only</proc>
-              <outputDirectory>${basedir}/src/generated/java</outputDirectory>
-              <processors>
+              <generatedSourceDirectory>${basedir}/src/generated/java</generatedSourceDirectory>
+              <annotationProcessors>
                 <processor>org.ez18n.apt.processor.MessagesFactoryProcessor</processor>
                 <processor>org.ez18n.apt.processor.DesktopMessagesProcessor</processor>
                 <processor>org.ez18n.apt.processor.DesktopBundleProcessor</processor>
@@ -166,7 +166,7 @@
                 <processor>org.mdl4ui.base.apt.J2seFieldEditorProcessor</processor>
                 <processor>org.mdl4ui.base.apt.GwtFieldBehaviourProcessor</processor>
                 <processor>org.mdl4ui.base.apt.J2seFieldBehaviourProcessor</processor>
-              </processors>
+              </annotationProcessors>
             </configuration>
           </execution>
           <execution>
@@ -188,7 +188,7 @@
             <goals>
               <goal>compile</goal>
             </goals>
-            <phase>generate-sources</phase>
+            <phase>generate-test-sources</phase>
             <configuration>
               <proc>only</proc>
               <generatedSourceDirectory>${basedir}/src/test/java</generatedSourceDirectory>
@@ -233,6 +233,7 @@
         <executions>
           <execution>
             <id>generate-selenium</id>
+            <phase>generate-test-sources</phase>
             <goals>
               <goal>generateSelenium</goal>
             </goals>
@@ -279,8 +280,6 @@
               <localWorkers>3</localWorkers>
               <strict>true</strict>
               <gwtSdkFirstInClasspath>true</gwtSdkFirstInClasspath>
-              <showDeprecation>true</showDeprecation>
-              <showWarnings>true</showWarnings>
               <modules>
                 <module>org.mdl4ui.gwt.sample.Sample</module>
               </modules>
