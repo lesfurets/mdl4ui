@@ -5,14 +5,26 @@ package org.mdl4ui.maven;
 
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
-import java.net.*;
-import java.util.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
 
 import org.apache.maven.artifact.DependencyResolutionRequiredException;
-import org.apache.maven.plugin.*;
+import org.apache.maven.plugin.AbstractMojo;
+import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.project.MavenProject;
 import org.mdl4ui.base.model.FieldID;
-import org.mdl4ui.maven.field.*;
+import org.mdl4ui.maven.field.CheckboxGroupCodeGenerator;
+import org.mdl4ui.maven.field.DateCodeGenerator;
+import org.mdl4ui.maven.field.FieldCodeGenerator;
+import org.mdl4ui.maven.field.ListboxCodeGenerator;
+import org.mdl4ui.maven.field.RadioGroupCodeGenerator;
+import org.mdl4ui.maven.field.TextboxCodeGenerator;
 
 abstract class AbstractSeleniumMojo extends AbstractMojo {
 
@@ -26,14 +38,14 @@ abstract class AbstractSeleniumMojo extends AbstractMojo {
      * @parameter default-value="${project.build.outputDirectory}"
      * @required
      */
-    protected File buildDirectory;
+    private File buildDirectory;
 
     /**
      * @parameter default-value="${project}"
      * @required
      * @readonly
      */
-    protected MavenProject project;
+    private MavenProject project;
 
     /**
      * Set this to "true" to bypass unit tests entirely. Its use is NOT RECOMMENDED, especially if you enable it using

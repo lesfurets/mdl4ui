@@ -6,17 +6,34 @@ package org.mdl4ui.maven;
 import static java.io.File.separatorChar;
 import static java.text.DateFormat.SHORT;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.DateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.ez18n.apt.macro.MacroProcessor;
 import org.ez18n.apt.macro.PropertyParsingException;
-import org.mdl4ui.base.model.*;
+import org.mdl4ui.base.model.BlockID;
+import org.mdl4ui.base.model.DependencyPath;
+import org.mdl4ui.base.model.ElementID;
+import org.mdl4ui.base.model.FieldDependency;
+import org.mdl4ui.base.model.FieldID;
+import org.mdl4ui.base.model.GroupID;
+import org.mdl4ui.base.model.ScreenID;
 import org.mdl4ui.maven.util.BundleFieldFactoryDelegate;
 
 /**
@@ -46,11 +63,6 @@ public class GenerateDepsTestMojo extends AbstractDepsMojo {
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
         getLog().info("outputDirectory : " + outputTestDirectory.getAbsolutePath());
-
-        // add source directory to current project
-        outputTestDirectory.mkdirs();
-        project.addTestCompileSourceRoot(outputTestDirectory.getPath());
-
         final ClassLoader classLoader = getClassLoader();
         final BundleFieldFactoryDelegate bundleFactory = getBundleFactoy(getBundleFieldFactoryClass(), classLoader);
         final Map<FieldID, List<DependencyPath>> allDeepDeps = new HashMap<FieldID, List<DependencyPath>>();

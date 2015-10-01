@@ -10,15 +10,26 @@ import static org.apache.commons.lang3.StringUtils.capitalize;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
 import static org.apache.commons.lang3.StringUtils.join;
 
-import java.io.*;
-import java.util.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.ez18n.apt.macro.MacroProcessor;
 import org.ez18n.apt.macro.PropertyParsingException;
-import org.mdl4ui.base.model.*;
+import org.mdl4ui.base.model.BlockID;
+import org.mdl4ui.base.model.FieldID;
+import org.mdl4ui.base.model.ScreenID;
 import org.mdl4ui.maven.field.FieldCodeGenerator;
 import org.mdl4ui.maven.naming.BlockNameFactory;
 import org.mdl4ui.maven.naming.ScreenNameFactory;
@@ -47,10 +58,6 @@ public final class GenerateSeleniumMojo extends AbstractSeleniumMojo {
             getLog().info("Tests are skipped, generated apt-test also.");
             return;
         }
-
-        // add source directory to current project
-        buildDirectory.mkdirs();
-        project.addTestCompileSourceRoot(buildDirectory.getPath());
 
         final ClassLoader classLoader = getClassLoader(true);
 
