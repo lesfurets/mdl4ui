@@ -12,15 +12,11 @@
  */
 package org.ez18n.apt.processor;
 
-import static javax.lang.model.SourceVersion.RELEASE_6;
-
 import javax.annotation.processing.SupportedAnnotationTypes;
-import javax.annotation.processing.SupportedSourceVersion;
 
 import org.ez18n.apt.LabelTemplateMethod;
 
 @SupportedAnnotationTypes(value = "org.ez18n.MessageBundle")
-@SupportedSourceVersion(RELEASE_6)
 public final class DesktopBundlePropertiesProcessor extends BundlePropertiesProcessor {
 
     @Override

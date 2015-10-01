@@ -3,14 +3,10 @@
  */
 package org.ez18n.apt.processor;
 
-import static javax.lang.model.SourceVersion.RELEASE_6;
-
 import javax.annotation.processing.SupportedAnnotationTypes;
-import javax.annotation.processing.SupportedSourceVersion;
 import javax.lang.model.element.TypeElement;
 
 @SupportedAnnotationTypes(value = "org.ez18n.MessageBundle")
-@SupportedSourceVersion(RELEASE_6)
 public class TestDesktopBundleProcessor extends TestBundleProcessor {
 
     @Override

@@ -29,6 +29,7 @@ import javax.annotation.processing.FilerException;
 import javax.annotation.processing.RoundEnvironment;
 import javax.annotation.processing.SupportedAnnotationTypes;
 import javax.annotation.processing.SupportedSourceVersion;
+import javax.lang.model.SourceVersion;
 import javax.lang.model.element.AnnotationMirror;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
@@ -45,10 +46,14 @@ import org.ez18n.apt.base.TemplateAnnotation;
 import org.ez18n.apt.base.TemplateParam;
 
 @SupportedAnnotationTypes(value = "org.ez18n.MessageBundle")
-@SupportedSourceVersion(RELEASE_6)
 public final class CSVReportProcessor extends AbstractProcessor {
 
     @Override
+	public SourceVersion getSupportedSourceVersion() {
+		return SourceVersion.latest();
+	}
+
+	@Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
         if (roundEnv.processingOver())
             return true;

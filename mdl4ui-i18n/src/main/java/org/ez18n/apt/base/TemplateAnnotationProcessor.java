@@ -15,11 +15,17 @@ package org.ez18n.apt.base;
 import java.util.Map;
 
 import javax.annotation.processing.AbstractProcessor;
+import javax.lang.model.SourceVersion;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.type.DeclaredType;
 
 public abstract class TemplateAnnotationProcessor<M extends TemplateMethod> extends AbstractProcessor {
-    protected final String getTargetClassName(TypeElement typeElement) {
+    @Override
+	public SourceVersion getSupportedSourceVersion() {
+		return SourceVersion.latest();
+	}
+
+	protected final String getTargetClassName(TypeElement typeElement) {
         return typeElement.getEnclosingElement().toString() + '.' + getTargetSimpleName(typeElement);
     }
 

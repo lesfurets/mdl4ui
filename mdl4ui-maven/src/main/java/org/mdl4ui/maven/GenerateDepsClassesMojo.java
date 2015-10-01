@@ -36,7 +36,7 @@ import org.mdl4ui.base.model.FieldID;
 public final class GenerateDepsClassesMojo extends AbstractDepsMojo {
 
     /**
-     * @parameter expression="${project.build.directory}/generated-sources/apt"
+     * @parameter expression="${basedir}/src/generated/java"
      */
     private File outputDirectory;
 

@@ -1,9 +1,9 @@
 package org.mdl4ui.ui.sample;
 
-import static org.mdl4ui.ui.sample.EFieldSample.*;
 import static org.mdl4ui.ui.sample.EScreenSample.*;
-import static org.mdl4ui.ui.sample.EBlockSample.*;
+import static org.mdl4ui.ui.sample.EFieldSample.*;
 import static org.mdl4ui.ui.sample.EGroupSample.*;
+import static org.mdl4ui.ui.sample.EBlockSample.*;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;

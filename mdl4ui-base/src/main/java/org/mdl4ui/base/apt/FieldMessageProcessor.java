@@ -4,7 +4,6 @@
 package org.mdl4ui.base.apt;
 
 import static java.text.DateFormat.SHORT;
-import static javax.lang.model.SourceVersion.RELEASE_6;
 import static javax.lang.model.element.ElementKind.ANNOTATION_TYPE;
 import static javax.lang.model.element.ElementKind.METHOD;
 
@@ -22,7 +21,6 @@ import java.util.Set;
 
 import javax.annotation.processing.RoundEnvironment;
 import javax.annotation.processing.SupportedAnnotationTypes;
-import javax.annotation.processing.SupportedSourceVersion;
 import javax.lang.model.element.AnnotationMirror;
 import javax.lang.model.element.AnnotationValue;
 import javax.lang.model.element.Element;
@@ -44,7 +42,6 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 
 @SupportedAnnotationTypes(value = "org.mdl4ui.base.injection.InjectLabel")
-@SupportedSourceVersion(RELEASE_6)
 public abstract class FieldMessageProcessor extends FieldProcessor {
 
     @Override

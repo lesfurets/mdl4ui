@@ -13,7 +13,6 @@
 package org.ez18n.apt.processor;
 
 import static java.text.DateFormat.SHORT;
-import static javax.lang.model.SourceVersion.RELEASE_6;
 import static org.ez18n.apt.macro.MacroProcessor.replaceProperties;
 import static org.ez18n.apt.processor.DesktopMessagesProcessor.getDesktopMessagesClassName;
 
@@ -25,7 +24,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.processing.SupportedAnnotationTypes;
-import javax.annotation.processing.SupportedSourceVersion;
 import javax.lang.model.element.TypeElement;
 
 import org.ez18n.apt.LabelTemplateMethod;
@@ -33,7 +31,6 @@ import org.ez18n.apt.TemplateLoader;
 import org.ez18n.apt.macro.PropertyParsingException;
 
 @SupportedAnnotationTypes(value = "org.ez18n.MessageBundle")
-@SupportedSourceVersion(RELEASE_6)
 public final class MessagesFactoryProcessor extends LabelBundleProcessor {
     private final String template;
 

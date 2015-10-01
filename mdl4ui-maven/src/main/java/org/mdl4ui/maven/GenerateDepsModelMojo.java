@@ -35,7 +35,7 @@ import org.mdl4ui.maven.util.BundleFieldFactoryDelegate;
 public final class GenerateDepsModelMojo extends AbstractDepsMojo {
 
     /**
-     * @parameter expression="${project.build.directory}/generated-resources/apt"
+     * @parameter expression="${basedir}/src/generated/resources"
      */
     private File outputDirectory;
 

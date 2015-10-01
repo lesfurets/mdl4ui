@@ -29,16 +29,16 @@
   <build>
     <resources>
       <resource>
-        <directory>src/main/java</directory>
+        <directory>${basedir}src/main/java</directory>
         <includes>
           <include>**/**.java</include>
           <include>**/*.gwt.xml</include>
+          <include>**/*.properties</include>
         </includes>
       </resource>
       <resource>
         <filtering>false</filtering>
-        <directory>${project.build.directory}/generated-sources/apt</directory>
-        <targetPath>.</targetPath>
+        <directory>${basedir}/src/generated/java</directory>
         <includes>
           <include>**/**.java</include>
           <include>**/*.gwt.xml</include>
@@ -48,44 +48,34 @@
     </resources>
     <testResources>
       <testResource>
-        <directory>${project.build.directory}/generated-sources/apt-test</directory>
+        <directory>${basedir}/src/generated/java</directory>
       </testResource>
     </testResources>
     <plugins>
       <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>build-helper-maven-plugin</artifactId>
-        <version>1.8</version>
-        <executions>
-          <execution>
-            <id>add-test-source</id>
-            <phase>generate-test-sources</phase>
-            <goals>
-              <goal>add-test-source</goal>
-            </goals>
-            <configuration>
-              <sources>
-                <source>src/test/resources</source>
-                <source>${project.build.directory}/generated-sources/apt-test</source>
-              </sources>
-            </configuration>
-          </execution>
-        </executions>
+        <artifactId>maven-clean-plugin</artifactId>
+        <configuration>
+          <filesets>
+            <fileset>
+              <directory>${basedir}/src/generated</directory>
+            </fileset>
+          </filesets>
+        </configuration>
       </plugin>
       <plugin>
-        <groupId>org.bsc.maven</groupId>
-        <artifactId>maven-processor-plugin</artifactId>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
         <executions>
           <execution>
             <id>generate-i18n-source</id>
             <goals>
-              <goal>process</goal>
+              <goal>compile</goal>
             </goals>
             <phase>generate-sources</phase>
             <configuration>
-              <compilerArguments>-encoding UTF-8</compilerArguments>
-              <outputDirectory>${project.build.directory}/generated-sources/apt</outputDirectory>
-              <processors>
+              <proc>only</proc>
+              <generatedSourcesDirectory>${basedir}/src/generated/java</generatedSourcesDirectory>
+              <annotationProcessors>
                 <processor>org.ez18n.apt.processor.MessagesFactoryProcessor</processor>
                 <processor>org.ez18n.apt.processor.DesktopMessagesProcessor</processor>
                 <processor>org.ez18n.apt.processor.DesktopBundleProcessor</processor>
@@ -99,35 +89,35 @@
                 <processor>org.mdl4ui.base.apt.J2seFieldEditorProcessor</processor>
                 <processor>org.mdl4ui.base.apt.GwtFieldBehaviourProcessor</processor>
                 <processor>org.mdl4ui.base.apt.J2seFieldBehaviourProcessor</processor>
-              </processors>
+              </annotationProcessors>
             </configuration>
           </execution>
           <execution>
             <id>generate-i18n-resource</id>
             <goals>
-              <goal>process</goal>
+              <goal>compile</goal>
             </goals>
             <phase>generate-sources</phase>
             <configuration>
-              <compilerArguments>-encoding UTF-8</compilerArguments>
-              <outputDirectory>${project.build.directory}/generated-resources/apt</outputDirectory>
-              <processors>
+              <proc>only</proc>
+              <generateSourcesDirectory>${basedir}/src/generated/java</generateSourcesDirectory>
+              <annotationProcessors>
                 <processor>org.ez18n.apt.processor.CSVReportProcessor</processor>
-              </processors>
+              </annotationProcessors>
             </configuration>
           </execution>
           <execution>
             <id>generate-i18n-test</id>
             <goals>
-              <goal>process-test</goal>
+              <goal>compile</goal>
             </goals>
             <phase>generate-sources</phase>
             <configuration>
-              <compilerArguments>-encoding UTF-8</compilerArguments>
-              <outputDirectory>${project.build.directory}/generated-sources/apt-test</outputDirectory>
-              <processors>
+              <proc>only</proc>
+              <generateSourcesDirectory>${basedir}/src/test/java</generateSourcesDirectory>
+              <annotationProcessors>
                 <processor>org.ez18n.apt.processor.TestDesktopBundleProcessor</processor>
-              </processors>
+              </annotationProcessors>
               <sourceDirectory>${project.build.sourceDirectory}</sourceDirectory>
             </configuration>
           </execution>
@@ -159,13 +149,6 @@
             <phase>process-classes</phase>
             <goals>
               <goal>generateModel</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>generate-tests</id>
-            <phase>process-classes</phase>
-            <goals>
-              <goal>generateTests</goal>
             </goals>
           </execution>
         </executions>
