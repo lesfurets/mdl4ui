@@ -5,16 +5,14 @@ import static org.mdl4ui.base.model.UIElementImpl.containsRec;
 import java.util.Arrays;
 import java.util.List;
 
-import org.mdl4ui.base.model.BlockID;
-import org.mdl4ui.base.model.ElementID;
-import org.mdl4ui.base.model.ElementType;
-import org.mdl4ui.base.model.FieldID;
-import org.mdl4ui.base.model.GroupID;
-import org.mdl4ui.base.model.UIElementImpl;
+import org.mdl4ui.base.model.*;
 
 public enum EGroupSample implements GroupID {
-    EMAIL_GROUP(EFieldSample.EMAILS_PREFERENCES,//
-                    EFieldSample.MAX_WEEKLY_EMAILS);
+    EMAIL_GROUP(EFieldSample.EMAILS_PREFERENCES, EFieldSample.MAX_EMAILS_PER_WEEK),//
+
+    FAVORITE_WEB_SITE_1(EFieldSample.FAVORITE_SITE_NAME_1, EFieldSample.FAVORITE_SITE_URL_1),//
+    FAVORITE_WEB_SITE_2(EFieldSample.FAVORITE_SITE_NAME_2, EFieldSample.FAVORITE_SITE_URL_2),//
+    FAVORITE_WEB_SITE_3(EFieldSample.FAVORITE_SITE_NAME_3, EFieldSample.FAVORITE_SITE_URL_3);
 
     private final List<ElementID> childs;
 

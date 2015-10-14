@@ -69,6 +69,7 @@
             <phase>generate-sources</phase>
             <configuration>
               <proc>only</proc>
+              <fork>true</fork>
               <generatedSourcesDirectory>${basedir}/src/generated/java</generatedSourcesDirectory>
               <annotationProcessors>
                 <processor>org.ez18n.apt.processor.MessagesFactoryProcessor</processor>
@@ -95,6 +96,7 @@
             <phase>generate-sources</phase>
             <configuration>
               <proc>only</proc>
+              <fork>true</fork>
               <generatedSourcesDirectory>${basedir}/src/generated/java</generatedSourcesDirectory>
               <annotationProcessors>
                 <processor>org.ez18n.apt.processor.CSVReportProcessor</processor>
@@ -106,9 +108,10 @@
           <!--<goals>-->
           <!--<goal>compile</goal>-->
           <!--</goals>-->
-          <!--<phase>generate-sources</phase>-->
+          <!--<phase>generate-test-sources</phase>-->
           <!--<configuration>-->
           <!--<proc>only</proc>-->
+          <!--<fork>true</fork>-->
           <!--<generatedSourcesDirectory>${basedir}/src/test/java</generatedSourcesDirectory>-->
           <!--<annotationProcessors>-->
           <!--<processor>org.ez18n.apt.processor.TestDesktopBundleProcessor</processor>-->

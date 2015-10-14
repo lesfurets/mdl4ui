@@ -8,7 +8,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mdl4ui.ui.sample.EFieldSample.EMAILS_PREFERENCES;
 import static org.mdl4ui.ui.sample.EFieldSample.EMAIL_ACCEPTED;
-import static org.mdl4ui.ui.sample.EFieldSample.MAX_WEEKLY_EMAILS;
+import static org.mdl4ui.ui.sample.EFieldSample.MAX_EMAILS_PER_WEEK;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -30,7 +30,7 @@ public class AcceptEmailsBehaviourTest {
 
         assertEquals(2, dependencies.size());
         assertTrue(dependencies.contains(EMAILS_PREFERENCES));
-        assertTrue(dependencies.contains(MAX_WEEKLY_EMAILS));
+        assertTrue(dependencies.contains(MAX_EMAILS_PER_WEEK));
     }
 
     @Test

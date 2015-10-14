@@ -2,10 +2,7 @@ package org.mdl4ui.fields.sample.i18n;
 
 import org.ez18n.Message;
 import org.ez18n.MessageBundle;
-import org.mdl4ui.fields.sample.InjectSampleHelp;
-import org.mdl4ui.fields.sample.InjectSampleLabel;
-import org.mdl4ui.fields.sample.InjectSamplePlaceholder;
-import org.mdl4ui.fields.sample.OnElement;
+import org.mdl4ui.fields.sample.*;
 import org.mdl4ui.ui.sample.EFieldSample;
 
 @MessageBundle
@@ -63,7 +60,7 @@ public interface FieldMessages {
     @Message("Email preference")
     String emailPreference();
 
-    @InjectSampleLabel(@OnElement(fields = EFieldSample.MAX_WEEKLY_EMAILS))
+    @InjectSampleLabel(@OnElement(fields = EFieldSample.MAX_EMAILS_PER_WEEK))
     @Message("Emails limit / week")
     String max_mail_per_week();
 
@@ -78,6 +75,30 @@ public interface FieldMessages {
     @InjectSampleLabel(@OnElement(fields = EFieldSample.PASSWORD_CONFIRMATION))
     @Message("Confirm your password")
     String confirmPassword();
+
+    @InjectSampleLabel(@OnElement(fields = EFieldSample.FAVORITE_SITE_NAME_1))
+    @Message("1st Fav WebSite Name")
+    String favoriteWebSiteName1();
+
+    @InjectSampleLabel(@OnElement(fields = EFieldSample.FAVORITE_SITE_NAME_2))
+    @Message("2nd Fav WebSite Name")
+    String favoriteWebSiteName2();
+
+    @InjectSampleLabel(@OnElement(fields = EFieldSample.FAVORITE_SITE_NAME_3))
+    @Message("3rd Fav WebSite Name")
+    String favoriteWebSiteName3();
+
+    @InjectSampleLabel(@OnElement(fields = EFieldSample.FAVORITE_SITE_URL_1))
+    @Message("1st Fav WebSite Url")
+    String favoriteWebSiteUrl1();
+
+    @InjectSampleLabel(@OnElement(fields = EFieldSample.FAVORITE_SITE_URL_2))
+    @Message("2nd Fav WebSite Url")
+    String favoriteWebSiteUrl2();
+
+    @InjectSampleLabel(@OnElement(fields = EFieldSample.FAVORITE_SITE_URL_3))
+    @Message("3rd Fav WebSite Url")
+    String favoriteWebSiteUrl3();
 
     @Message("Private messages")
     String privateMessage();
@@ -107,4 +128,28 @@ public interface FieldMessages {
     @InjectSamplePlaceholder(@OnElement(fields = EFieldSample.PHONE_NUMBER))
     @Message("01 02 03 04 06")
     String phonePlaceholder();
+
+    @InjectSamplePlaceholder(@OnElement(fields = EFieldSample.FAVORITE_SITE_NAME_1))
+    @Message("Google")
+    String favoriteWebSiteName1Placeholder();
+
+    @InjectSamplePlaceholder(@OnElement(fields = EFieldSample.FAVORITE_SITE_URL_1))
+    @Message("www.google.com")
+    String favoriteWebSiteUrl1Placeholder();
+
+    @InjectSamplePlaceholder(@OnElement(fields = EFieldSample.FAVORITE_SITE_NAME_2))
+    @Message("Yahoo")
+    String favoriteWebSiteName2Placeholder();
+
+    @InjectSamplePlaceholder(@OnElement(fields = EFieldSample.FAVORITE_SITE_URL_2))
+    @Message("www.yahoo.com")
+    String favoriteWebSiteUrl2Placeholder();
+
+    @InjectSamplePlaceholder(@OnElement(fields = EFieldSample.FAVORITE_SITE_NAME_3))
+    @Message("Bing")
+    String favoriteWebSiteName3Placeholder();
+
+    @InjectSamplePlaceholder(@OnElement(fields = EFieldSample.FAVORITE_SITE_URL_3))
+    @Message("www.bing.com")
+    String favoriteWebSiteUrl3Placeholder();
 }

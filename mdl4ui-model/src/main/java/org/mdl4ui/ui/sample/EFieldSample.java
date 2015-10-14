@@ -4,34 +4,50 @@ import static org.mdl4ui.base.model.UIElementImpl.containsRec;
 
 import java.util.List;
 
-import org.mdl4ui.base.model.BlockID;
-import org.mdl4ui.base.model.ElementID;
-import org.mdl4ui.base.model.ElementType;
-import org.mdl4ui.base.model.FieldID;
-import org.mdl4ui.base.model.FieldType;
-import org.mdl4ui.base.model.GroupID;
-import org.mdl4ui.base.model.UIElementImpl;
+import org.mdl4ui.base.model.*;
 
 public enum EFieldSample implements FieldID {
-    FIRST_NAME(FieldType.TEXTBOX), //
-    LAST_NAME(FieldType.TEXTBOX), //
-    EMAIL(FieldType.TEXTBOX), //
-    BIRTHDATE(FieldType.DATE), //
-    LANGUAGE(FieldType.RADIO_GROUP), //
-    TIMEZONE(FieldType.LISTBOX), //
+    FIRST_NAME(FieldType.TEXTBOX, ESampleTag.USER), //
+    LAST_NAME(FieldType.TEXTBOX, ESampleTag.USER), //
+    BIRTHDATE(FieldType.DATE, ESampleTag.USER), //
 
-    PHONE_NUMBER(FieldType.TEXTBOX), //
-    EMAIL_ACCEPTED(FieldType.RADIO_GROUP), //
-    EMAILS_PREFERENCES(FieldType.CHECKBOX_GROUP), //
-    MAX_WEEKLY_EMAILS(FieldType.NUMERIC), //
+    EMAIL(FieldType.TEXTBOX, ESampleTag.ACCOUNT), //
+    LANGUAGE(FieldType.RADIO_GROUP, ESampleTag.ACCOUNT), //
+    TIMEZONE(FieldType.LISTBOX, ESampleTag.ACCOUNT), //
 
-    LOGIN(FieldType.TEXTBOX), //
-    PASSWORD(FieldType.PASSWORD), //
-    PASSWORD_CONFIRMATION(FieldType.PASSWORD);
+    PHONE_NUMBER(FieldType.TEXTBOX, ESampleTag.ACCOUNT), //
+    EMAIL_ACCEPTED(FieldType.RADIO_GROUP, ESampleTag.ACCOUNT), //
+    EMAILS_PREFERENCES(FieldType.CHECKBOX_GROUP, ESampleTag.ACCOUNT), //
+    MAX_EMAILS_PER_WEEK(FieldType.NUMERIC, ESampleTag.ACCOUNT), //
+
+    FAVORITE_SITE_NAME_1(FieldType.TEXTBOX, 1, ESampleTag.ACCOUNT),
+    FAVORITE_SITE_NAME_2(FieldType.TEXTBOX, 2, ESampleTag.ACCOUNT),
+    FAVORITE_SITE_NAME_3(FieldType.TEXTBOX, 3, ESampleTag.ACCOUNT),
+
+    FAVORITE_SITE_URL_1(FieldType.TEXTBOX, 1, ESampleTag.ACCOUNT),
+    FAVORITE_SITE_URL_2(FieldType.TEXTBOX, 2, ESampleTag.ACCOUNT),
+    FAVORITE_SITE_URL_3(FieldType.TEXTBOX, 3, ESampleTag.ACCOUNT),
+
+    LOGIN(FieldType.TEXTBOX, ESampleTag.ACCOUNT), //
+    PASSWORD(FieldType.PASSWORD, ESampleTag.ACCOUNT), //
+    PASSWORD_CONFIRMATION(FieldType.PASSWORD, ESampleTag.ACCOUNT);
+
     private FieldType type;
+    private final int position;
+    private final TagId[] tags;
 
     private EFieldSample(FieldType type) {
+        this(type, -1);
+    }
+
+    private EFieldSample(FieldType type, TagId... tags) {
+        this(type, -1, tags);
+    }
+
+    private EFieldSample(FieldType type, int position, TagId... tags) {
         this.type = type;
+        this.position = position;
+        this.tags = tags;
     }
 
     @Override
@@ -67,5 +83,15 @@ public enum EFieldSample implements FieldID {
     @Override
     public FieldType type() {
         return type;
+    }
+
+    @Override
+    public int position() {
+        return position;
+    }
+
+    @Override
+    public TagId[] tags() {
+        return tags;
     }
 }

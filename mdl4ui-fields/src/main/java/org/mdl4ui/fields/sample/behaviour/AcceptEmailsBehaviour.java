@@ -9,7 +9,7 @@ import org.mdl4ui.fields.sample.OnField;
 import org.mdl4ui.fields.sample.context.SampleContext;
 import org.mdl4ui.ui.sample.EFieldSample;
 
-@InjectSampleBehaviour(@OnField({ EFieldSample.EMAILS_PREFERENCES, EFieldSample.MAX_WEEKLY_EMAILS }))
+@InjectSampleBehaviour(@OnField({ EFieldSample.EMAILS_PREFERENCES, EFieldSample.MAX_EMAILS_PER_WEEK }))
 public class AcceptEmailsBehaviour extends DefaultBehaviour {
 
     @Override

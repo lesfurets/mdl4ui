@@ -10,7 +10,7 @@ public enum EFieldDependencySample implements FieldDependency {
 
     NO(null), //
     DEP_EMAIL_ACCEPTED(EFieldSample.EMAIL_ACCEPTED,//
-                    EFieldSample.EMAILS_PREFERENCES, EFieldSample.MAX_WEEKLY_EMAILS), //
+                    EFieldSample.EMAILS_PREFERENCES, EFieldSample.MAX_EMAILS_PER_WEEK), //
     DEP_PASSWORD(EFieldSample.PASSWORD, EFieldSample.PASSWORD_CONFIRMATION), //
     DEP_PASSWORD_CONFIRMATION(EFieldSample.PASSWORD_CONFIRMATION, EFieldSample.PASSWORD);
 

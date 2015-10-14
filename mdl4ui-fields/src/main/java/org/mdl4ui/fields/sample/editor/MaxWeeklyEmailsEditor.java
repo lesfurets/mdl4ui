@@ -11,7 +11,7 @@ import org.mdl4ui.fields.sample.context.SampleContext;
 import org.mdl4ui.fields.sample.i18n.ValidationMessages;
 import org.mdl4ui.ui.sample.EFieldSample;
 
-@InjectSampleEditor(@OnField(EFieldSample.MAX_WEEKLY_EMAILS))
+@InjectSampleEditor(@OnField(EFieldSample.MAX_EMAILS_PER_WEEK))
 public class MaxWeeklyEmailsEditor extends SampleEditor {
     private final ValidationMessages messages;
 

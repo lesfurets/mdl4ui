@@ -4,8 +4,7 @@
 package org.mdl4ui.fields.sample.context;
 
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.HashSet;
+import java.util.*;
 
 public class UserAccount implements Serializable {
 
@@ -21,6 +20,8 @@ public class UserAccount implements Serializable {
     private Boolean acceptEmail;
     private Collection<EmailType> emailTypes = new HashSet<EmailType>();
     private int maxEmailPerWeek;
+
+    private List<FavoriteWebsite> top3WebSite = new ArrayList<>();
 
     public String getLogin() {
         return login;
@@ -100,5 +101,20 @@ public class UserAccount implements Serializable {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public List<FavoriteWebsite> getTop3WebSite() {
+        return top3WebSite;
+    }
+
+    public FavoriteWebsite getWebSite(int index) {
+        if (top3WebSite.isEmpty() || index >= top3WebSite.size()) {
+            return null;
+        }
+        return top3WebSite.get(index);
+    }
+
+    public void setTop3WebSite(List<FavoriteWebsite> top3WebSite) {
+        this.top3WebSite = top3WebSite;
     }
 }
