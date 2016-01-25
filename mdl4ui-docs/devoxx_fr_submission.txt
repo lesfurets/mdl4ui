@@ -1,56 +1,46 @@
-Titre : Refactoring UI en Action
-Type: Session
-Durée: 60 minutes
-Cible: débutant
+Titre :
+——-----
+
+Pragmatic UI meta modeling
 
 
 Session abstract:
 -----------------
 
-Cette session présente l’architecture et les patterns utilisés pour péréniser l'intelligence métier de l'IHM d'un site web grand public. Ce travail se base largement sur de la modelisation et des techniques de refactoring pour résoudre les problèmatiques courantes lors de ce type de développement. Notre projet est disponible sur GitHub, avec un exemple complet ainsi que tout le framework. Nous présenterons les patterns, le code et une démo durant la session.
+Nous avons travaillé pendant plusieurs mois pour reprendre le code des formulaires du site LesFurets.com. Après ce long travail, nous avons obtenus un modèle graphique des dépendances entre les différents champs du formulaire ainsi que la sémantique qui les liaient.
 
-* Modélisation métier 'pure' Java
-* Formulaires complexes, avec une centaine de champs modélisés,
-* Champs liés entre eux (dépendances),
-* Affichage conditionnel de certains champs,
-* Contenu dynamique pour les listes, radio listes and combo boxes,
-* Domaine de valeur variable, pour les champs numériques et les dates,
-* Validation incrémentale en fonction de la saisie et de la navigation de l’utilisateur,
-* Application web AJAX,
-* Environnements avec des ressources limités (mobile),
-* Compatibilité avec les navigateurs anciens fabriqués à Seattle.
+Nous avons commencé à imaginer comment réécrire ce code complexe pour garantir son évolution.
 
-Session description:
---------------------
+Afin de conserver la connaissance capturée lors de la reprise de code, nous avons transcrit le modèle graphique sous forme d'annotations et d'énumérations afin de décrire la structure du formulaire et les relations entre ses différents champs.
 
-Au départ, nous avons travaillé longuement sur le reverse engineering des formulaires de notre comparateur d’assurance. Le résultat s'est traduit par un modèle, décrivant les dépendances entre les champs de cette UI (visibilité, mise à jour du domaine de valeur ...). A partir de ce modèle, nous avons conçu la future architecture de notre IHM.
+Rapidement nous avons souhaité visualiser à nouveau le graphe obtenu afin de débugger les cycles qui avaient été introduits dans les dépendances entre champs du formulaire. Nous avons développé, grâce à des processeurs d'annotations (APT), des outils de validations et généré des classes qui permettent d'obtenir pour chaque champs l'ensemble des ses dépendances. Cette approche améliore sensiblement la performance de l'IHM et garantie l'absence de cycle à l'exécution.
 
-Nous avons décidé de ne plus perdre cette connaissance, et décidé de transformer ce modèle en un méta-modèle d'IHM, écrit en Java. Ce modèle se base uniquement sur des énumérations, des annotations et des relations entre littéraux. Les dépendances directes entre les champs ont été décrites avec le même pattern.
+La suite du projet nous a permis de mener à bien une réécriture complète de formulaires contenant plus de 800 questions et plusieurs milliers de dépendances.
 
-Mais l'aventure ne faisait que commencer :
-
-Il a été rapidement nécessaire de visualiser le graphe de dépendances, afin de comprendre les cycles potentiels, et de résoudre les soucis de dépendances. Notre modèle de UI Java a été exporté en XMI, afin de pouvoir le manipuler dans un modeleur UML. Nous avons également implémenté une validation statique du modèle de dépendances lors la compilation Java. Nous générons statiquement lors de la compilation l’ensemble des dépendances profondes pour chaque champ, dans le but d’améliorer les performances runtime, et d’éviter les possibles dépendances cycliques.
-
-A partir de ce méta-modèle d'IHM décrit en java, nous avons implémenté un pattern MVC, pour lier les widgets des formulaires et les données du modèle de données : en se basant sur le méta-modèle, chaque widget est instancié dynamiquement au runtime, et le framework MVC lie widget et  modèle de donnée, via des patterns d’injections. Les injections sont résolues statiquement lors de la compilation. De la même manière, les labels, placeholders, aide, tips et toute autre ressource i18n sont injectées.
-
-La refonte des formulaires progressait rapidement, et nous avons décidé d’ajouter la notion de layout au méta-modèle d'IHM : les champs sont agrégés en écrans, blocs et groupes. Cette structure permet de valider la topologie du graphe pendant la compilation : ainsi le layout est compatible avec les dépendances de champs.
-
-Nous expérimentons actuellement des AB testings en déclarant plusieurs permutations du modèle de champs, pour optimiser l’expérience utilisateur et améliorer le taux de conversion de notre site.
-
-Notre projet est disponible sur GitHub,  avec un exemple complet ainsi que tout le framework. Nous présenterons les patterns, le code et une démo durant la session.
-
-Cette session a été présentée précédemment à JavaOne 2012, ainsi qu’à plusieurs Java User Group in France, principalement axés sur i18n et les problématiques liés aux libellés. Lors de cette session, nous nous concentrerons en détail sur la partie modélisation d'IHM du projet. Quelques explications sur les problématiques liés à i18n seront abordées. 
-
-https://oracleus.activeevents.com/connect/sessionDetail.ww?SESSION_ID=11234
+Notre projet est disponible sur GitHub avec les différents outils et un exemple complet. Durant la session nous montrerons les différents patterns ainsi qu'une démonstration en live coding.
 
 Session speakers:
 -----------------
 
 * Gilles Di Guglielmo
 
-Gilles travaille depuis plus de 10 ans pour différents éditeurs de logiciels (ILOG, PrimaSolution, Courtanet) sur des sujets très variés: librairie graphique 2D, moteur de règles, plate-forme de services pour J2EE, code génération de modèle métier. Actuellement, il est architecte pour le site LesFurets.com (comparateur d'assurances), et aime aussi prendre l'air de temps en temps à San Francisco ou à Anvers. Il a présenté différentes sessions à JavaOne, Devoxx et plusieurs Java User Group en France.
+Gilles travaille depuis 15 ans pour différents éditeurs de logiciels (ILOG, PrimaSolution, Courtanet) sur des sujets très variés: librairie graphique 2D, moteur de règles, plate-forme de services, code génération de modèle métier. Actuellement, il est architecte pour le site LesFurets.com, et aime prendre l'air de temps en temps à San Francisco ou à Anvers. Il a présenté différentes sessions à JavaOne, Devoxx, SoftShake, CodeGeneration et plusieurs Java User Group en France.
 
+Photo :
+-------
 
-* Julien Baudry
+http://www.gravatar.com/avatar/10812203f3d64bcfad23fb55b8618f17
 
-Julien est développeur senior pour le site LesFurets.com (comparateur d'assurances). Il a également travaillé chez l’éditeur de logiciel d’assurance Prima Solutions. Il possède plus de 5 ans d’expérience en développement Java/J2EE, frameworks web, Model Driven Architecture, et code génération de modèle métier.
+Speaker qualifications :
+------------------------
+
+Devoxx France 2012
+BreizCamp 2012
+JavaOne 2012
+Paris JUG 2013
+Marseille JUG 2013
+Codegen Conf 2013
+Normandy JUG 2014
+SoftShake.ch 2015
+Tours JUG 2016
+Alpes JUG 2016

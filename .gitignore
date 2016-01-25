@@ -16,3 +16,4 @@ mdl4ui-docs/~$*
 *.iml
 .idea
 **/src/generated
+.DS_Store
